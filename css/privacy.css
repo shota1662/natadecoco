@@ -1,0 +1,186 @@
+@charset "UTF-8";
+
+/* ===================================
+   HEROセクション
+   =================================== */
+.privacy-hero {
+    background-color: #9fd9f6;
+    padding: 80px 20px 60px;
+    text-align: center;
+}
+
+.privacy-hero-en {
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    color: #fff;
+    margin: 0 0 10px;
+}
+
+.privacy-hero-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #516881;
+    margin: 0 0 16px;
+    letter-spacing: 0.05em;
+}
+
+.privacy-hero-date {
+    font-size: 13px;
+    color: #516881;
+    margin: 0;
+}
+
+/* ===================================
+   本文セクション
+   =================================== */
+.privacy-section {
+    padding: 80px 20px 100px;
+    background-color: #fff;
+}
+
+.privacy-inner {
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+/* ===================================
+   各条文
+   =================================== */
+.privacy-article {
+    margin-bottom: 48px;
+}
+
+.privacy-article-title {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    font-size: 17px;
+    font-weight: 700;
+    color: #516881;
+    border-bottom: 2px solid #9fd9f6;
+    padding-bottom: 10px;
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+.privacy-article-num {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    background-color: #30b9bf;
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 20px;
+    flex-shrink: 0;
+}
+
+.privacy-article p {
+    font-size: 14px;
+    line-height: 2;
+    color: #555;
+    margin: 0 0 12px;
+}
+
+.privacy-article p:last-child {
+    margin-bottom: 0;
+}
+
+/* ===================================
+   リスト
+   =================================== */
+.privacy-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 12px;
+}
+
+.privacy-list li {
+    font-size: 14px;
+    line-height: 2;
+    color: #555;
+    padding-left: 18px;
+    position: relative;
+}
+
+.privacy-list li::before {
+    content: '・';
+    position: absolute;
+    left: 0;
+    color: #30b9bf;
+}
+
+/* ===================================
+   注記
+   =================================== */
+.privacy-note {
+    font-size: 13px !important;
+    color: #888 !important;
+    background-color: #f0faff;
+    border-left: 3px solid #9fd9f6;
+    padding: 10px 14px;
+    border-radius: 0 6px 6px 0;
+    margin-top: 12px;
+    line-height: 1.8 !important;
+}
+
+/* ===================================
+   以上 / 戻るボタン
+   =================================== */
+.privacy-end {
+    text-align: right;
+    font-size: 14px;
+    color: #888;
+    margin: 0 0 48px;
+    padding-top: 16px;
+    border-top: 1px solid #e8f4fb;
+}
+
+.privacy-back {
+    text-align: center;
+}
+
+.privacy-back-btn {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #516881;
+    text-decoration: none;
+    border: 2px solid #9fd9f6;
+    border-radius: 30px;
+    padding: 12px 28px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.privacy-back-btn:hover {
+    background-color: #9fd9f6;
+    color: #fff;
+}
+
+/* ===================================
+   本文中リンク
+   =================================== */
+.privacy-contact-link {
+    color: #30b9bf;
+    text-decoration: underline;
+}
+
+.privacy-contact-link:hover {
+    opacity: 0.7;
+}
+
+/* ===================================
+   レスポンシブ
+   =================================== */
+@media (max-width: 600px) {
+    .privacy-hero-title {
+        font-size: 28px;
+    }
+
+    .privacy-article-title {
+        font-size: 15px;
+        flex-wrap: wrap;
+    }
+}

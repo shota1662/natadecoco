@@ -1,0 +1,614 @@
+@charset "UTF-8";
+
+/* ===================================
+   HERO セクション
+   =================================== */
+.cases-hero {
+    position: relative;
+    width: 100%;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background-color: #516881;
+}
+
+.cases-hero-img-wrap {
+    position: absolute;
+    inset: 0;
+}
+
+.cases-hero-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.cases-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to right,
+        rgba(81, 104, 129, 0.88) 0%,
+        rgba(81, 104, 129, 0.70) 55%,
+        rgba(81, 104, 129, 0.30) 100%
+    );
+}
+
+.cases-hero-inner {
+    position: relative;
+    z-index: 1;
+    padding: 80px 60px 80px 80px;
+    max-width: 700px;
+}
+
+.cases-hero-en {
+    font-size: 13px;
+    letter-spacing: 0.25em;
+    color: #9fd9f6;
+    font-weight: bold;
+    margin: 0 0 12px;
+}
+
+.cases-hero-title {
+    font-size: 52px;
+    color: #fff;
+    font-weight: bold;
+    line-height: 1.2;
+    margin: 0 0 8px;
+}
+
+.cases-hero-title span {
+    font-size: 36px;
+    font-weight: 500;
+    display: block;
+    color: #f5f29f;
+    letter-spacing: 0.08em;
+}
+
+.cases-hero-lead {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.88);
+    line-height: 2;
+    margin: 20px 0 36px;
+}
+
+.cases-hero-btn {
+    display: inline-flex;
+    align-items: center;
+    background-color: #f5f29f;
+    border-radius: 30px;
+    padding: 0 28px 0 4px;
+    height: 52px;
+    box-shadow: 5px 5px #2a3e50;
+    transition: all 0.1s;
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+    letter-spacing: 0.05em;
+}
+
+.cases-hero-btn img {
+    height: 52px;
+    width: auto;
+    margin-right: 8px;
+}
+
+.cases-hero-btn:hover {
+    box-shadow: none;
+    transform: translate(5px, 5px);
+    opacity: 1;
+}
+
+/* ===================================
+   APPEAL / STATS セクション
+   =================================== */
+.cases-appeal {
+    width: 100%;
+    background-color: #9fd9f6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px 20px 60px;
+}
+
+.cases-appeal-sub {
+    font-size: 16px;
+    color: #516881;
+    margin: 8px 0 0;
+    text-align: center;
+}
+
+.cases-stats {
+    display: flex;
+    gap: 32px;
+    margin: 48px 0 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.cases-stat-item {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 32px 36px;
+    text-align: center;
+    min-width: 190px;
+    box-shadow: 5px 5px 0 rgba(81, 104, 129, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.cases-stat-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+}
+
+.stat-pink::before  { background-color: #fe4c7f; }
+.stat-teal::before  { background-color: #30b9bf; }
+.stat-coral::before { background-color: #f87a6d; }
+
+.cases-stat-num {
+    font-size: 44px;
+    font-weight: bold;
+    color: #516881;
+    line-height: 1;
+    font-family: 'Roboto', sans-serif;
+}
+
+.cases-stat-unit {
+    font-size: 18px;
+    font-weight: bold;
+    color: #516881;
+}
+
+.cases-stat-label {
+    font-size: 13px;
+    color: #888;
+    margin-top: 10px;
+    letter-spacing: 0.05em;
+}
+
+.cases-appeal-message {
+    max-width: 760px;
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 36px 44px;
+    margin-top: 48px;
+    box-shadow: 5px 5px 0 rgba(81, 104, 129, 0.2);
+}
+
+.cases-appeal-message p {
+    font-size: 15px;
+    line-height: 2;
+    color: #444;
+    margin: 0;
+}
+
+.cases-appeal-message strong {
+    color: #30b9bf;
+    font-weight: bold;
+}
+
+/* ===================================
+   CASE STUDIES セクション
+   =================================== */
+.cases-section {
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px 20px 60px;
+}
+
+.case-card {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    max-width: 900px;
+    width: 100%;
+    margin: 40px 0;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 6px 6px 0 rgba(81, 104, 129, 0.15);
+    background-color: #fff;
+    border: 2px solid #e8f4fb;
+}
+
+.case-card-reverse {
+    flex-direction: row-reverse;
+}
+
+.case-photo {
+    width: 340px;
+    flex-shrink: 0;
+}
+
+.case-photo-placeholder {
+    width: 100%;
+    height: 100%;
+    min-height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.ph-blue   { background-color: #9fd9f6; }
+.ph-teal   { background-color: #30b9bf; }
+.ph-coral  { background-color: #f87a6d; }
+.ph-purple { background-color: #a58bbf; }
+
+.case-body {
+    flex: 1;
+    padding: 36px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.case-tag {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.tag-school      { background-color: #fe4c7f; }
+.tag-kindergarten { background-color: #30b9bf; }
+.tag-municipal   { background-color: #f87a6d; }
+.tag-junior      { background-color: #516881; }
+
+.case-meta {
+    font-size: 12px;
+    color: #999;
+    margin: 0 0 10px;
+    letter-spacing: 0.05em;
+}
+
+.case-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #516881;
+    line-height: 1.5;
+    margin: 0 0 16px;
+}
+
+.case-text {
+    font-size: 14px;
+    line-height: 1.9;
+    color: #555;
+    margin: 0 0 20px;
+}
+
+.case-points {
+    margin: 0;
+    padding: 16px 20px;
+    background-color: #f0faff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.case-points li {
+    font-size: 13px;
+    color: #516881;
+    padding-left: 16px;
+    position: relative;
+    list-style: none;
+}
+
+.case-points li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #30b9bf;
+    font-weight: bold;
+}
+
+/* ===================================
+   VOICES セクション
+   =================================== */
+.cases-voices {
+    width: 100%;
+    background-color: #9fd9f6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px 20px 60px;
+}
+
+.voices-grid {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 48px;
+    max-width: 940px;
+}
+
+.voice-card {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 36px 32px 28px;
+    width: 280px;
+    flex-shrink: 0;
+    box-shadow: 5px 5px 0 rgba(81, 104, 129, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.voice-quote {
+    font-size: 60px;
+    color: #9fd9f6;
+    line-height: 0.6;
+    font-family: Georgia, serif;
+    font-weight: bold;
+}
+
+.voice-text {
+    font-size: 14px;
+    line-height: 2;
+    color: #444;
+    flex: 1;
+    margin: 0;
+}
+
+.voice-person {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-top: 1px solid #e8f4fb;
+    padding-top: 16px;
+}
+
+.voice-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.av-pink  { background-color: #fe4c7f; }
+.av-teal  { background-color: #30b9bf; }
+.av-coral { background-color: #f87a6d; }
+
+.voice-name {
+    font-size: 13px;
+    font-weight: bold;
+    color: #516881;
+}
+
+.voice-org {
+    font-size: 11px;
+    color: #999;
+    margin-top: 3px;
+}
+
+/* ===================================
+   FEATURES セクション
+   =================================== */
+.cases-features {
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px 20px 60px;
+}
+
+.features-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    max-width: 900px;
+    margin-top: 48px;
+}
+
+.feature-item {
+    background-color: #f0faff;
+    border-radius: 16px;
+    padding: 32px 28px;
+    width: 260px;
+    border-top: 4px solid #9fd9f6;
+    box-shadow: 4px 4px 0 rgba(159, 217, 246, 0.5);
+}
+
+.feature-num {
+    font-size: 13px;
+    font-weight: bold;
+    color: #9fd9f6;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.feature-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #516881;
+    margin: 0 0 12px;
+    line-height: 1.4;
+}
+
+.feature-text {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.8;
+    margin: 0;
+}
+
+/* ===================================
+   FLOW セクション
+   =================================== */
+.cases-flow {
+    width: 100%;
+    background-color: #9fd9f6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px 20px 60px;
+}
+
+.flow-steps {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    margin-top: 48px;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1000px;
+}
+
+.flow-step {
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 28px 20px;
+    width: 160px;
+    text-align: center;
+    box-shadow: 4px 4px 0 rgba(81, 104, 129, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flow-arrow {
+    display: flex;
+    align-items: center;
+    padding: 0 4px;
+    color: #516881;
+    font-size: 20px;
+    align-self: center;
+    margin-top: -8px;
+}
+
+.flow-step-num {
+    font-size: 11px;
+    font-weight: bold;
+    color: #fe4c7f;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.flow-step-icon {
+    font-size: 32px;
+    margin-bottom: 10px;
+    line-height: 1;
+}
+
+.flow-step-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #516881;
+    margin: 0 0 10px;
+    line-height: 1.4;
+}
+
+.flow-step-text {
+    font-size: 11px;
+    color: #777;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* ===================================
+   CTA / CONTACT セクション
+   =================================== */
+.cases-cta {
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px 20px 100px;
+}
+
+.cta-inner {
+    width: 100%;
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cta-title {
+    font-size: 28px;
+    color: #516881;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 0 20px;
+    line-height: 1.5;
+}
+
+.cta-text {
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    line-height: 2;
+    margin: 0 0 40px;
+}
+
+.cta-cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 56px;
+    width: 100%;
+}
+
+.cta-card {
+    background-color: #f0faff;
+    border-radius: 16px;
+    padding: 28px 24px;
+    width: 200px;
+    text-align: center;
+    border-top: 4px solid #30b9bf;
+}
+
+.cta-card-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+    line-height: 1;
+}
+
+.cta-card-title {
+    font-size: 15px;
+    font-weight: bold;
+    color: #516881;
+    margin: 0 0 10px;
+}
+
+.cta-card-text {
+    font-size: 12px;
+    color: #777;
+    line-height: 1.8;
+    margin: 0;
+}
+
+.cta-form {
+    width: 100%;
+}

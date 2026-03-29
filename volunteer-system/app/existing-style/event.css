@@ -1,0 +1,266 @@
+@charset "UTF-8";
+
+/* ===================================
+   イベントヒーロー (Hero)
+   =================================== */
+.event-hero {
+    width: 100%;
+    background-color: #9fd9f6;
+    padding: 60px 20px 40px;
+}
+
+.event-hero-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.event-hero-icon {
+    width: 100px;
+    flex-shrink: 0;
+}
+
+.event-hero-en {
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 0.3em;
+    color: #fff;
+    margin: 0 0 6px;
+}
+
+.event-hero-title {
+    font-size: 36px;
+    font-weight: bold;
+    color: #516881;
+    margin: 0 0 14px;
+    line-height: 1.3;
+    letter-spacing: 0.05em;
+}
+
+.event-hero-sub {
+    font-size: 15px;
+    color: #516881;
+    line-height: 1.9;
+    margin: 0;
+}
+
+/* ===================================
+   イベント一覧セクション (Event List)
+   =================================== */
+.event-list-section {
+    width: 100%;
+    background-color: #fff;
+    padding: 70px 20px 100px;
+}
+
+/* カテゴリフィルター */
+.event-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 56px;
+}
+
+.filter-btn {
+    padding: 9px 22px;
+    border-radius: 22px;
+    border: 2px solid #9fd9f6;
+    background-color: #fff;
+    color: #516881;
+    font-size: 13px;
+    font-family: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    transition: background-color 0.2s, color 0.2s, transform 0.15s;
+}
+
+.filter-btn:hover {
+    background-color: #e5f6fd;
+}
+
+.filter-btn--active {
+    background-color: #9fd9f6;
+    color: #516881;
+    border-color: #9fd9f6;
+}
+
+/* イベントカードグリッド */
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    max-width: 980px;
+    margin: 0 auto 20px;
+}
+
+/* ===================================
+   イベントカード (Event Card)
+   =================================== */
+.event-card {
+    background-color: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 5px 5px 0 rgba(81, 104, 129, 0.15);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s, opacity 0.25s;
+}
+
+.event-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 5px 11px 0 rgba(81, 104, 129, 0.18);
+}
+
+/* サムネイル */
+.event-card-thumb {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.event-card-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s;
+}
+
+.event-card:hover .event-card-thumb img {
+    transform: scale(1.05);
+}
+
+/* カテゴリバッジ */
+.event-cat-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-size: 11px;
+    font-weight: bold;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 12px;
+    letter-spacing: 0.06em;
+    z-index: 1;
+}
+
+.badge-story    { background-color: #f87a6d; }
+.badge-workshop { background-color: #fe4c7f; }
+.badge-online   { background-color: #516881; }
+.badge-exchange { background-color: #30b9bf; }
+
+/* 日付バッジ */
+.event-date-badge {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    padding: 6px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1;
+    min-width: 44px;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.12);
+}
+
+.edb-month {
+    font-size: 10px;
+    color: #516881;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    margin-bottom: 2px;
+}
+
+.edb-day {
+    font-size: 22px;
+    font-weight: bold;
+    color: #fe4c7f;
+    line-height: 1;
+}
+
+.edb-week {
+    font-size: 10px;
+    color: #888;
+    margin-top: 2px;
+}
+
+/* カード本文 */
+.event-card-body {
+    padding: 20px 20px 24px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.event-card-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin: 0 0 10px;
+    line-height: 1.4;
+}
+
+.event-card-location {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: #888;
+    margin: 0 0 12px;
+}
+
+.event-card-location svg {
+    color: #9fd9f6;
+    flex-shrink: 0;
+}
+
+.event-card-desc {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.7;
+    margin: 0 0 20px;
+    flex: 1;
+}
+
+/* カード内ボタン */
+.event-card-btn {
+    display: inline-flex;
+    align-items: center;
+    background-color: #f5f29f;
+    border-radius: 20px;
+    padding: 8px 18px 8px 4px;
+    box-shadow: 3px 3px #898787;
+    transition: transform 0.1s, box-shadow 0.1s;
+    align-self: flex-start;
+    color: #333;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+}
+
+.event-card-btn img {
+    height: 32px;
+    width: auto;
+    margin-right: 6px;
+}
+
+.event-card-btn:hover {
+    box-shadow: none;
+    transform: translate(3px, 3px);
+    opacity: 1;
+}
+
+/* ===================================
+   イベントページ専用：ヘッダーボタン active
+   =================================== */
+.btn-event--active {
+    background-color: #d64f43;
+}

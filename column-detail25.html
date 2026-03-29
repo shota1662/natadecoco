@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>子どもと外国人をつなぐ、NPOスタッフの1日｜コラム｜NPOナタデココ</title>
+    <meta name="description" content="国際交流NPOのボランティアは1日何をするのか？土曜日午後の交流イベントを例に、タイムラインと具体的な役割をリアルにご紹介します。">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="img/favicon.ico.png">
+    <link rel="apple-touch-icon" href="img/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/column-detail.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+    <style>
+        /* ---- テーブル共通 ---- */
+        .cd-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+        .cd-table th,
+        .cd-table td {
+            border: 1px solid #d0e4f0;
+            padding: 10px 14px;
+            text-align: left;
+            vertical-align: top;
+        }
+        .cd-table th {
+            background-color: #eaf5fb;
+            color: #2a3e4f;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .cd-table td {
+            color: #333;
+        }
+        .cd-table .col-time {
+            white-space: nowrap;
+            font-weight: 700;
+            color: #30b9bf;
+        }
+
+        /* ---- サブ見出し ---- */
+        .cd-h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #30b9bf;
+            margin: 28px 0 10px;
+            padding-left: 12px;
+            border-left: 3px solid #9fd9f6;
+        }
+
+        /* ---- 引用ボックス ---- */
+        .cd-quote-box {
+            background: #f0faf9;
+            border-left: 4px solid #30b9bf;
+            border-radius: 6px;
+            padding: 16px 20px;
+            margin: 20px 0;
+        }
+        .cd-quote-box p {
+            font-size: 0.93rem;
+            color: #333;
+            line-height: 1.8;
+            margin: 0 0 8px;
+        }
+        .cd-quote-box p:last-child {
+            margin: 0;
+        }
+        .cd-quote-box p::before {
+            content: "「";
+        }
+        .cd-quote-box p::after {
+            content: "」";
+        }
+    </style>
+</head>
+
+<body>
+    <div id="splash">
+        <div id="splash-logo">
+            <img src="img/loding.logo.png" alt="" class="fadeUp">
+        </div>
+    </div>
+
+    <header id="header">
+    <div class="header-inner">
+        <div class="header-logo">
+            <h1 class="logo">
+                <a href="index.html">
+                    <img src="img/logo.svg" alt="NPOナタデココ">
+                </a>
+            </h1>
+        </div>
+
+        <div class="header-nav-wrap">
+            <div class="header-top-nav">
+                <ul class="top-nav-list">
+                    <li><a href="foreigner.html">Foreigner</a></li>
+                    <li><a href="faq.html">よくある質問</a></li>
+                    <li><a href="">学校・自治体のみなさまへ</a></li>
+                    <li><a href="contact.html">お問い合わせ</a></li>
+                </ul>
+            </div>
+            <nav class="header-bottom-nav">
+                <ul class="bottom-nav-list">
+                    <li class="has-dropdown">
+                        <a href="about.html">ナタデココとは</a>
+                        <div class="mega-menu">
+                            <a href="about.html" class="mega-item">
+                                <div class="mega-img"><img src="img/charactor/1.jpg" alt=""></div>
+                                <div class="mega-body">
+                                    <span class="mega-title">団体概要</span>
+                                    <span class="mega-desc">NPOナタデココの成り立ちと活動について</span>
+                                </div>
+                            </a>
+                            <a href="strengths.html" class="mega-item">
+                                <div class="mega-img"><img src="img/charactor/2.jpg" alt=""></div>
+                                <div class="mega-body">
+                                    <span class="mega-title">５つの強み</span>
+                                    <span class="mega-desc">子どもたちの心に世界地図を届ける</span>
+                                </div>
+                            </a>
+                            <a href="member.html" class="mega-item">
+                                <div class="mega-img"><img src="img/charactor/3.jpg" alt=""></div>
+                                <div class="mega-body">
+                                    <span class="mega-title">メンバー</span>
+                                    <span class="mega-desc">ナタデココを支えるメンバー紹介</span>
+                                </div>
+                                </a>
+                        </div>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="activities.html">活動紹介</a>
+                        <div class="mega-menu mega-menu--col">
+                            <div class="mega-top-row">
+                            <a href="" class="mega-item">
+                                <div class="mega-img"><img src="img/class-photo.jpg" alt=""></div>
+                                <div class="mega-body">
+                                    <span class="mega-title">文化交流教室</span>
+                                    <span class="mega-desc">外国人との対面交流で異文化を体験</span>
+                                </div>
+                            </a>
+                            <a href="cocosalon.html" class="mega-item">
+                                <div class="mega-img"><img src="img/cocosalon.logo.jpg" alt=""></div>
+                                <div class="mega-body">
+                                    <span class="mega-title">CocoSalon</span>
+                                    <span class="mega-desc">オンラインで楽しむ国際交流サロン</span>
+                                </div>
+                            </a>
+                            <a href="kit.html" class="mega-item">
+                                <div class="mega-img"><img src="img/kit.logo.jpg" alt=""></div>
+                                <div class="mega-body">
+                                    <span class="mega-title">文化交流キット</span>
+                                    <span class="mega-desc">先生向けの授業で使える教材キット</span>
+                                </div>
+                            </a>
+                            </div>
+                            <a href="cases.html" class="mega-item mega-item--wide">
+                                <div class="mega-body">
+                                    <span class="mega-title">事例紹介</span>
+                                    <span class="mega-desc">実際にご依頼いただいた学校・団体の活動事例</span>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li><a href="volunteer.html">ボランティア</a></li>
+                    <li><a href="column.html">コラム・ニュース</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <a href="event.html" class="btn-event">
+            <span>イベント情報</span>
+            <span class="btn-event-arrow">→</span>
+        </a>
+
+        <button class="hamburger" aria-label="メニューを開く" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+
+    <div class="mobile-menu">
+        <nav class="mobile-nav">
+            <ul class="mobile-nav-list">
+                <li><a href="about.html">ナタデココとは</a></li>
+                <li><a href="activities.html">活動紹介</a></li>
+                <li><a href="volunteer.html">ボランティア</a></li>
+                <li><a href="column.html">コラム・ニュース</a></li>
+                <li class="mobile-nav-sep"></li>
+                <li><a href="foreigner.html">Foreigner</a></li>
+                <li><a href="faq.html">よくある質問</a></li>
+                <li><a href="">学校・自治体のみなさまへ</a></li>
+                <li><a href="contact.html">お問い合わせ</a></li>
+            </ul>
+            <a href="event.html" class="mobile-event-btn">イベント情報</a>
+        </nav>
+    </div>
+</header>
+
+    <main id="main">
+
+        <!-- ① ヒーロー（水色） -->
+        <section class="cd-hero">
+            <div class="cd-hero-inner">
+
+                <!-- パンくずリスト -->
+                <nav class="cd-breadcrumb">
+                    <a href="index.html">ホーム</a>
+                    <span class="cd-bc-sep">›</span>
+                    <a href="column.html">コラム</a>
+                    <span class="cd-bc-sep">›</span>
+                    <span>子どもと外国人をつなぐ、NPOスタッフの1日</span>
+                </nav>
+
+                <!-- タイトルエリア -->
+                <div class="cd-hero-body">
+                    <div class="cd-hero-left">
+                        <span class="column-tag col-tag-volunteer">ボランティア</span>
+                        <h2 class="cd-hero-title">子どもと外国人をつなぐ、<br>NPOスタッフの1日</h2>
+                        <div class="cd-hero-meta">
+                            <time class="cd-meta-date">2026年3月15日</time>
+                            <div class="cd-meta-author">
+                                <img src="img/member-photo/reo.png" alt="Leo" class="cd-meta-author-photo">
+                                <span class="cd-meta-author-name">Leo</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cd-hero-right">
+                        <div class="cd-hero-thumb">
+                            <img src="img/column-photo/photo-column25-001.jpg" alt="子どもと外国人スタッフが交流するイベントの様子">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 水色 → 白 -->
+        <div class="wave-divider" style="background-color: #9fd9f6;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path fill="#fff" fill-opacity="0.3" d="M0,55 C240,95 480,15 720,55 C960,95 1200,15 1440,55 L1440,120 L0,120 Z"/>
+                <path fill="#fff" fill-opacity="0.6" d="M0,70 C200,105 440,30 680,70 C920,100 1160,35 1440,70 L1440,120 L0,120 Z"/>
+                <path fill="#fff" d="M0,85 C160,108 380,55 600,82 C820,105 1040,56 1260,80 C1360,90 1410,68 1440,85 L1440,120 L0,120 Z"/>
+            </svg>
+        </div>
+
+        <!-- ② 記事本文（白） -->
+        <article class="cd-article">
+            <div class="cd-article-inner">
+
+                <!-- リード文 -->
+                <p class="cd-lead">
+                    私たちの文化交流教室は、外国出身のお兄さん・お姉さんとの交流を通じて、子どもたちの異文化への興味・関心を最大限に引き出す特別なプログラムです。そのイベントを陰で支えているのが、ナタデココのボランティアスタッフです。<strong>実際に1日何をしているのか、どんなやりがいや難しさがあるのか</strong>——土曜日午後の交流イベントを例に、リアルな1日をご紹介します。
+                </p>
+
+                <div class="cd-quote-box">
+                    <p>外国人を見かけると、なんだか怖いなと感じて身構えてしまう。</p>
+                    <p>世界のことをもっと知りたい、でも触れる機会がない。</p>
+                    <p>学校で英語の授業が始まった。でも、何のために勉強しているのか分からない。</p>
+                </div>
+
+                <p class="cd-p">
+                    私たちは、こうした思いを持つ全国の子どもたちに、異文化と自然につながる体験を届けています。そして、その出会いの場を支えているのがナタデココのスタッフです。会場づくりから受付、活動中のフォロー、子どもと外国人メンバーの橋渡し、片付けや振り返りまで、その役割は多岐にわたります。
+                </p>
+
+                <!-- Section 1 -->
+                <h3 class="cd-h3">1. イベント当日のタイムライン（例：土曜午後の交流イベント）</h3>
+
+                <table class="cd-table">
+                    <thead>
+                        <tr>
+                            <th>時間</th>
+                            <th>内容</th>
+                            <th>ボランティアの動き</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="col-time">13:00</td>
+                            <td><strong>会場入り・設営</strong></td>
+                            <td>机・椅子の配置、道具の準備、名札作成など。メンバーで分担しながら準備を進めます。</td>
+                        </tr>
+                        <tr>
+                            <td class="col-time">13:15</td>
+                            <td><strong>スタッフ・ボランティアのミーティング</strong></td>
+                            <td>当日の流れや担当の確認、外国人メンバーとの顔合わせ。一度に20人ほどのボランティアが集まるので、「今日はどんな国の人がいるのかな？」とドキドキ・ワクワクの瞬間です。</td>
+                        </tr>
+                        <tr>
+                            <td class="col-time">13:45</td>
+                            <td><strong>子ども・保護者の受付開始</strong></td>
+                            <td>玄関で出迎え、名前の確認、子どもをグループに案内。緊張した子供たちを笑顔でお迎えします。</td>
+                        </tr>
+                        <tr>
+                            <td class="col-time">14:00</td>
+                            <td><strong>アイスブレイク → グロメン自己紹介 → 風船 → サイレントジェスチャー → 世界地図</strong></td>
+                            <td>グループのサポート、盛り上げ役、困っている子のフォロー。</td>
+                        </tr>
+                        <tr>
+                            <td class="col-time">14:15</td>
+                            <td><strong>自己紹介タイム</strong></td>
+                            <td>子どもと外国人メンバーが自己紹介しやすいよう会話をつなぐ。</td>
+                        </tr>
+                        <tr>
+                            <td class="col-time">14:30</td>
+                            <td><strong>外国の遊び①（色鬼）日本</strong></td>
+                            <td>子どもたちが安心して参加できるよう見守る。</td>
+                        </tr>
+                        <tr>
+                            <td class="col-time">14:40</td>
+                            <td><strong>外国の遊び②（キムズゲーム）英国</strong></td>
+                            <td>活動中の様子に気を配りながらサポートする。</td>
+                        </tr>
+                        <tr>
+                            <td class="col-time">14:50</td>
+                            <td><strong>外国の遊び③（フリーズダンス）欧米</strong></td>
+                            <td>子どもたちや外国人メンバーと一緒に体を動かして楽しむ。</td>
+                        </tr>
+                        <tr>
+                            <td class="col-time">15:00</td>
+                            <td><strong>クイズ大会</strong></td>
+                            <td>クイズに参加する子どもたちをサポートする。</td>
+                        </tr>
+                        <tr>
+                            <td class="col-time">15:15</td>
+                            <td><strong>メッセージ交換（質問カード）</strong></td>
+                            <td>子どもと外国人メンバーが自然にやり取りできるよう後押しする。</td>
+                        </tr>
+                        <tr>
+                            <td class="col-time">15:30</td>
+                            <td><strong>解散・片付け</strong></td>
+                            <td>会場を元の状態に戻し、片付けを行う。</td>
+                        </tr>
+                        <tr>
+                            <td class="col-time">16:30</td>
+                            <td><strong>スタッフ・外国人メンバーの振り返りミーティング</strong></td>
+                            <td>感想を共有し、次回に向けた改善点を話し合う。</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- 写真1 -->
+                <figure class="cd-figure">
+                    <img src="img/column-photo/photo-column25-002.jpg" alt="子どもたちと外国人メンバーが一緒に遊ぶ様子">
+                    <figcaption class="cd-figcaption">外国人メンバーと一緒に体を動かして楽しむ子どもたち</figcaption>
+                </figure>
+
+                <!-- Section 2 -->
+                <h3 class="cd-h3">2. ボランティアが実際にやること</h3>
+                <p class="cd-p">
+                    ナタデココの土曜日午後の交流イベントでは、ボランティアは「ただ参加する人」ではなく、イベント全体を支える役割を担います。
+                </p>
+                <p class="cd-p">
+                    まず13時ごろに会場に入り、机や椅子の配置、道具の準備、名札作りなどの設営を行います。その後、スタッフ・ボランティア同士で当日の流れや担当を確認し、外国人メンバーとも顔合わせをします。
+                </p>
+                <p class="cd-p">
+                    受付が始まると、子どもや保護者を笑顔で迎え、名前を確認し、グループに案内します。イベント中は、アイスブレイクや自己紹介、各国の遊び、クイズ大会などがスムーズに進むようにサポートします。特に、<strong>緊張している子どもや、うまく輪に入れない子への声かけ、外国人メンバーと自然に話せるように橋渡しをすること</strong>が大事な役割です。
+                </p>
+                <p class="cd-p">
+                    また、遊びの時間には安全面にも気を配りながら、子どもたちと一緒に体を動かしたり盛り上げたりします。イベント終了後は片付けを行い、最後に振り返りミーティングで感想や改善点を共有します。
+                </p>
+                <p class="cd-p">
+                    つまり、<strong>設営・受付・進行サポート・子どものフォロー・片付け・振り返りまで、イベント全体に幅広く関わるのがボランティアの役割</strong>です。
+                </p>
+
+                <!-- Section 3 -->
+                <h3 class="cd-h3">3. 「大変だな」と感じる場面</h3>
+                <p class="cd-p">
+                    正直に言うと、楽しいだけではなく、「難しいな」と感じる場面もあります。
+                </p>
+
+                <h4 class="cd-h4">① 子どもの様子を見ながら進行する難しさ</h4>
+                <p class="cd-p">
+                    元気いっぱいでどんどん動く子もいれば、初めての場所で緊張してなかなか話せない子もいるので、それぞれに合わせた関わり方が求められます。子どもたちの様子を見ながらイベントを進めるのは、意外と難しいです。
+                </p>
+
+                <h4 class="cd-h4">② 言葉や雰囲気の橋渡し</h4>
+                <p class="cd-p">
+                    外国人メンバーと子どもたちの間に入って橋渡しをする場面では、言葉や雰囲気の違いをうまくつなぐ必要があります。全員が楽しめる空気をつくるには、周りをよく見て動くことが大切なので、最初は戸惑うこともあると思います。
+                </p>
+
+                <h4 class="cd-h4">③ 体力と集中力を要する長丁場</h4>
+                <p class="cd-p">
+                    イベントは当日だけで終わりではなく、設営や片付け、振り返りまで含めて運営なので、思っていたより体力や集中力を使うと感じる人もいるかもしれません。
+                </p>
+
+                <p class="cd-p">
+                    ただ、その分、イベントが無事終わったときや、子どもたちの笑顔が見られたときの達成感は大きいです。
+                </p>
+                <p class="cd-p">
+                    ちなみに、よく聞かれるのですが、<strong>英語力は必須ではありません</strong>。外国人メンバーの中には日本語ができるメンバーもたくさんいるので、それぞれの得意なことを活かしながら、活動が可能です。
+                </p>
+
+                <!-- 写真2 -->
+                <figure class="cd-figure">
+                    <img src="img/column-photo/photo-column25-003.jpg" alt="イベント後の振り返りミーティングの様子">
+                    <figcaption class="cd-figcaption">イベント終了後の振り返りミーティング。次回に向けて改善点を共有します</figcaption>
+                </figure>
+
+                <!-- Section 4 -->
+                <h3 class="cd-h3">4. まとめ</h3>
+                <p class="cd-p">
+                    ナタデココのボランティアは、子どもたちと外国人メンバーが安心して楽しく交流できる場をつくる、大切な存在です。
+                </p>
+                <p class="cd-p">
+                    やることは幅広く、ときには気配りや体力が必要で大変さもありますが、その分、実際の現場でしか得られない学びや達成感があります。
+                </p>
+                <p class="cd-p">
+                    「子どもが好き」「国際交流に関わってみたい」「誰かが安心して楽しめる場を支えたい」という気持ちがある人にとっては、とてもやりがいのある活動だと思います。
+                </p>
+                <p class="cd-p">
+                    ただイベントを手伝うだけではなく、<strong>人と人をつなぐ経験ができるのが、このボランティアの大きな魅力</strong>です。
+                </p>
+
+                <!-- まとめボックス -->
+                <div class="cd-summary-box">
+                    <div class="cd-summary-icon">
+                        <img src="img/mayu-one.svg" alt="">
+                    </div>
+                    <div class="cd-summary-body">
+                        <p class="cd-summary-title">この記事のまとめ</p>
+                        <ul class="cd-summary-list">
+                            <li>ボランティアは「参加者」ではなく、設営・受付・進行サポート・片付け・振り返りまでイベント全体を担う</li>
+                            <li>子どもの様子を見ながらの柔軟な対応や、言葉の橋渡しが大事な役割</li>
+                            <li>体力・集中力を要する場面もあるが、子どもたちの笑顔が達成感につながる</li>
+                            <li>英語力は不要。それぞれの得意を活かして活動できる</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 著者・戻るボタン -->
+                <div class="cd-footer-row">
+                    <div class="cd-author">
+                        <div class="cd-author-icon">
+                            <img src="img/member-photo/reo.png" alt="Leo">
+                        </div>
+                        <div class="cd-author-info">
+                            <span class="cd-author-label">執筆</span>
+                            <span class="cd-author-name">Leo</span>
+                        </div>
+                    </div>
+                    <a href="column.html" class="cd-back-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                        コラム一覧へ戻る
+                    </a>
+                </div>
+
+            </div>
+        </article>
+
+        <!-- 白 → 水色 -->
+        <div class="wave-divider" style="background-color: #fff;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path fill="#9fd9f6" fill-opacity="0.3" d="M0,55 C240,15 480,95 720,55 C960,15 1200,95 1440,55 L1440,120 L0,120 Z"/>
+                <path fill="#9fd9f6" fill-opacity="0.6" d="M0,70 C200,30 440,105 680,70 C920,35 1160,100 1440,70 L1440,120 L0,120 Z"/>
+                <path fill="#9fd9f6" d="M0,85 C160,55 380,108 600,82 C820,56 1040,105 1260,80 C1360,68 1410,90 1440,85 L1440,120 L0,120 Z"/>
+            </svg>
+        </div>
+
+        <!-- ③ 関連コラム（水色） -->
+        <section class="cd-related">
+            <div class="cd-related-inner">
+                <h3 class="cd-related-heading">関連コラム</h3>
+
+                <div class="cd-related-grid">
+
+                    <a href="column-detail.html" class="cd-related-card">
+                        <div class="cd-related-thumb" style="background-color: #f87a6d;">
+                            <span class="cd-thumb-label">PHOTO</span>
+                        </div>
+                        <div class="cd-related-body">
+                            <span class="column-tag col-tag-volunteer">ボランティア</span>
+                            <p class="cd-related-title">ボランティアが語る、活動で得た3つのこと</p>
+                            <time class="cd-related-date">2025年11月5日</time>
+                        </div>
+                    </a>
+
+                    <a href="column-detail.html" class="cd-related-card">
+                        <div class="cd-related-thumb" style="background-color: #516881;">
+                            <span class="cd-thumb-label">PHOTO</span>
+                        </div>
+                        <div class="cd-related-body">
+                            <span class="column-tag col-tag-volunteer">ボランティア</span>
+                            <p class="cd-related-title">外国人スタッフに聞く、日本の子どもたちとの交流</p>
+                            <time class="cd-related-date">2025年6月10日</time>
+                        </div>
+                    </a>
+
+                    <a href="column-detail01.html" class="cd-related-card">
+                        <div class="cd-related-thumb" style="background-color: #516881;">
+                            <img src="img/photo-column1-001.jpg" alt="">
+                        </div>
+                        <div class="cd-related-body">
+                            <span class="column-tag col-tag-edu">教育</span>
+                            <p class="cd-related-title">総合的な学習の時間に使える国際理解プログラムとは？外部講師活用のポイント</p>
+                            <time class="cd-related-date">2026年3月10日</time>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 水色 → フッター紺 -->
+        <div class="wave-divider" style="background-color: #9fd9f6;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path fill="#516881" fill-opacity="0.3" d="M0,55 C240,15 480,95 720,55 C960,15 1200,95 1440,55 L1440,120 L0,120 Z"/>
+                <path fill="#516881" fill-opacity="0.6" d="M0,70 C200,30 440,105 680,70 C920,35 1160,100 1440,70 L1440,120 L0,120 Z"/>
+                <path fill="#516881" d="M0,85 C160,55 380,108 600,82 C820,56 1040,105 1260,80 C1360,68 1410,90 1440,85 L1440,120 L0,120 Z"/>
+            </svg>
+        </div>
+
+    </main>
+
+    <footer id="footer">
+        <div class="footer-inner">
+
+            <div class="footer-top">
+
+                <!-- Col 1: ロゴ＋キャッチ -->
+                <div class="footer-col footer-col--brand">
+                    <a href="index.html" class="footer-logo">
+                        <img src="img/logo.svg" alt="NPOナタデココ">
+                    </a>
+                    <p class="footer-tagline">子どもたちに、<br>世界地図を。</p>
+                </div>
+
+                <!-- Col 2: サイトマップ -->
+                <div class="footer-col footer-col--nav">
+                    <p class="footer-col-title">Site Map</p>
+                    <ul class="footer-nav-list">
+                        <li><a href="about.html">ナタデココとは</a></li>
+                        <li><a href="activities.html">活動紹介</a></li>
+                        <li><a href="event.html">イベント情報</a></li>
+                        <li><a href="volunteer.html">ボランティア</a></li>
+                        <li><a href="column.html">コラム・ニュース</a></li>
+                        <li><a href="faq.html">よくある質問</a></li>
+                        <li><a href="contact.html">お問い合わせ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: 連絡先＋SNS -->
+                <div class="footer-col footer-col--contact">
+                    <p class="footer-col-title">Access</p>
+                    <address class="footer-address">
+                        〒106-0093<br>
+                        東京都千代田区平河町１－６－１５　USビル８F<br>
+                        <a href="mailto:info@natadecoco.org">info@natadecoco.org</a>
+                    </address>
+                    <div class="footer-sns">
+                        <a href="" class="sns-link" aria-label="Twitter / X">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="" class="sns-link" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                            </svg>
+                        </a>
+                        <a href="" class="sns-link" aria-label="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 下段：リンク＋コピーライト -->
+            <div class="footer-copy">
+                <div class="footer-copy-links">
+                    <a href="privacy.html">プライバシーポリシー</a>
+                </div>
+                <p>© 2026 NPOナタデココ All Rights Reserved.</p>
+            </div>
+
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,294 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #516881;
+  --color-primary-dark: #3d5068;
+  --color-accent-blue: #9fd9f6;
+  --color-accent-blue-light: #d9eaf4;
+  --color-accent-teal: #30b9bf;
+  --color-accent-pink: #fe4c7f;
+  --color-accent-coral: #f87a6d;
+  --color-accent-yellow: #f5f29f;
+  --color-accent-yellow-dark: #f5c842;
+  --color-input-bg: #f7fbfe;
+
+  --font-sans: 'Noto Sans JP', 'YuGothic', 'Yu Gothic', sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  color: #000;
+  font-family: 'Noto Sans JP', 'YuGothic', 'Yu Gothic', sans-serif;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  letter-spacing: 0.05em;
+  background-color: #fff;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: bottom;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+/* ===================================
+   フォームスタイル (Form)
+   =================================== */
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 13px 16px;
+  border: 2px solid #d9eaf4;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #333;
+  background-color: #f7fbfe;
+  outline: none;
+  transition: border-color 0.2s, background-color 0.2s;
+  letter-spacing: 0.05em;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: #9fd9f6;
+  background-color: #fff;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: #bbb;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.7;
+}
+
+/* ===================================
+   ボタン (Button)
+   =================================== */
+.btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f29f;
+  border: none;
+  width: 260px;
+  height: 54px;
+  border-radius: 27px;
+  box-shadow: 5px 5px #898787;
+  cursor: pointer;
+  font-size: 15px;
+  font-family: inherit;
+  font-weight: bold;
+  color: #333;
+  letter-spacing: 0.1em;
+  transition: transform 0.1s, box-shadow 0.1s;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  box-shadow: none;
+  transform: translate(5px, 5px);
+  opacity: 1;
+}
+
+.btn-coral {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f87a6d;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 5px 5px #898787;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: bold;
+  color: #fff;
+  letter-spacing: 0.05em;
+  transition: transform 0.1s, box-shadow 0.1s;
+  text-decoration: none;
+}
+
+.btn-coral:hover {
+  box-shadow: none;
+  transform: translate(5px, 5px);
+  opacity: 1;
+  color: #fff;
+}
+
+.btn-teal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #30b9bf;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 5px 5px #898787;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: bold;
+  color: #fff;
+  letter-spacing: 0.05em;
+  transition: transform 0.1s, box-shadow 0.1s;
+  text-decoration: none;
+}
+
+.btn-teal:hover {
+  box-shadow: none;
+  transform: translate(5px, 5px);
+  opacity: 1;
+  color: #fff;
+}
+
+.btn-pink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fe4c7f;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 5px 5px #898787;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: bold;
+  color: #fff;
+  letter-spacing: 0.05em;
+  transition: transform 0.1s, box-shadow 0.1s;
+  text-decoration: none;
+}
+
+.btn-pink:hover {
+  box-shadow: none;
+  transform: translate(5px, 5px);
+  opacity: 1;
+  color: #fff;
+}
+
+/* ===================================
+   波形区切り (Wave Divider)
+   =================================== */
+.wave-divider {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  display: block;
+}
+
+.wave-divider svg {
+  display: block;
+  width: 100%;
+  height: 80px;
+}
+
+/* ===================================
+   セクションタイトル
+   =================================== */
+.section-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #516881;
+}
+
+/* ===================================
+   カード (Card)
+   =================================== */
+.card {
+  background-color: #fff;
+  border-radius: 14px;
+  box-shadow: 5px 5px 0 rgba(81, 104, 129, 0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 5px 8px 0 rgba(81, 104, 129, 0.2);
+}
+
+/* ===================================
+   バッジ
+   =================================== */
+.badge-pink {
+  background-color: #fe4c7f;
+  color: #fff;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 3px 10px;
+  border-radius: 3px;
+  letter-spacing: 0.05em;
+  display: inline-block;
+}
+
+.badge-teal {
+  background-color: #30b9bf;
+  color: #fff;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 3px 10px;
+  border-radius: 3px;
+  letter-spacing: 0.05em;
+  display: inline-block;
+}
+
+.badge-primary {
+  background-color: #516881;
+  color: #fff;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 3px 10px;
+  border-radius: 3px;
+  letter-spacing: 0.05em;
+  display: inline-block;
+}
+
+/* ===================================
+   テーブル
+   =================================== */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.data-table th {
+  background-color: #516881;
+  color: #fff;
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+}
+
+.data-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e5e7eb;
+  color: #333;
+}
+
+.data-table tr:hover td {
+  background-color: #f7fbfe;
+}

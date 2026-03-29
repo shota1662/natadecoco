@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl:*)",
+      "Bash(taskkill:*)",
+      "Bash(cd /c/Users/shota/volunteer-system && npx tsc --noEmit 2>&1)",
+      "Bash(tail:*)",
+      "Bash(cd /c/Users/shota/volunteer-system && npm run dev 2>&1)",
+      "Bash(echo stopped:*)",
+      "Bash(cd:*)",
+      "Bash(cmd.exe:*)"
+    ]
+  }
+}

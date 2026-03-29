@@ -1,0 +1,287 @@
+@font-face {
+    font-family: 'hanatotyoutyou';
+    src: url('../fonts/花とちょうちょ.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* ===================================================
+   国旗デコレーション（トップページ・top-letter 周辺）
+   =================================================== */
+
+.jack-flag {
+    position: absolute;
+    z-index: 10;
+    pointer-events: none;
+    opacity: 0;
+    transform-origin: center center;
+    transition: opacity 1.6s ease, transform 1.6s ease;
+}
+
+.jack-flag .fi {
+    display: block;
+    width: 56px;
+    height: 42px;
+    border-radius: 5px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.22);
+    border: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+/* --- 各フラグの位置と傾き（top-letter 周辺の左エリア） --- */
+
+/* 日本：左上あたり、少し左に傾く */
+#jf0 {
+    left: 23%;
+    top: 22%;
+    transform: translateY(12px) rotate(-9deg);
+}
+
+/* アメリカ：上部やや右、右に傾く */
+#jf1 {
+    left: 75%;
+    top: 17%;
+    transform: translateY(12px) rotate(6deg);
+}
+
+/* ブラジル：左中ほど、大きく左傾き */
+#jf2 {
+    left: 12%;
+    top: 50%;
+    transform: translateY(12px) rotate(-13deg);
+}
+
+/* 中国：中央やや右、右傾き */
+#jf3 {
+    left: 76%;
+    top: 54%;
+    transform: translateY(12px) rotate(8deg);
+}
+
+/* 韓国：下部中央、軽い傾き */
+#jf4 {
+    left: 26%;
+    top: 70%;
+    transform: translateY(12px) rotate(-4deg);
+}
+
+/* フランス：上部中央、右に軽く傾く */
+#jf5 {
+    left: 35%;
+    top: 5%;
+    transform: translateY(12px) rotate(5deg);
+}
+
+/* じんわり表示（JS で付与） */
+.jack-flag.is-visible {
+    opacity: 1;
+    transform: translateY(0) rotate(var(--flag-rot, 0deg));
+}
+
+/* is-visible 時の傾きを個別に上書き */
+#jf0.is-visible { transform: translateY(0) rotate(-9deg);  }
+#jf1.is-visible { transform: translateY(0) rotate(6deg);   }
+#jf2.is-visible { transform: translateY(0) rotate(-13deg); }
+#jf3.is-visible { transform: translateY(0) rotate(8deg);   }
+#jf4.is-visible { transform: translateY(0) rotate(-4deg);  }
+#jf5.is-visible { transform: translateY(0) rotate(5deg);   }
+
+/* --- トランジション遅延（stagger） --- */
+#jf0 { transition-delay: 0.0s; }
+#jf1 { transition-delay: 0.35s; }
+#jf5 { transition-delay: 0.55s; }
+#jf2 { transition-delay: 0.7s; }
+#jf3 { transition-delay: 1.05s; }
+#jf4 { transition-delay: 1.4s; }
+
+/* ===================================
+   レスポンシブ：jack-flag
+   =================================== */
+@media (max-width: 900px) {
+    .jack-flag {
+        display: none;
+    }
+}
+
+/* ===================================================
+   私たちの想い
+   =================================================== */
+
+.our-message {
+    width: 100%;
+    background-color: #9fd9f6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 20px 64px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 国旗共通 */
+.msg-flag {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+}
+
+.msg-flag .fi {
+    display: block;
+    width: 52px;
+    height: 39px;
+    border-radius: 5px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+/* 回転は .fi 側に分離（animation の transform と競合させない） */
+.msg-flag--l1 .fi { transform: rotate(-10deg); }
+.msg-flag--l2 .fi { transform: rotate(-5deg);  }
+.msg-flag--l3 .fi { transform: rotate(-13deg); }
+.msg-flag--l4 .fi { transform: rotate(-7deg);  }
+.msg-flag--r1 .fi { transform: rotate(9deg);   }
+.msg-flag--r2 .fi { transform: rotate(5deg);   }
+.msg-flag--r3 .fi { transform: rotate(12deg);  }
+.msg-flag--r4 .fi { transform: rotate(4deg);   }
+
+/* ふわふわ浮遊アニメーション（translateY のみ） */
+@keyframes flagFloat {
+    0%   { transform: translateY(0px); }
+    50%  { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.msg-flag.is-visible {
+    opacity: 1;
+    animation: flagFloat 4s ease-in-out infinite;
+}
+
+/* 左側の配置 */
+.msg-flag--l1 { left: 3%;  top: 8%;  }
+.msg-flag--l2 { left: 6%;  top: 32%; }
+.msg-flag--l3 { left: 2%;  top: 58%; }
+.msg-flag--l4 { left: 7%;  top: 80%; }
+
+/* 右側の配置 */
+.msg-flag--r1 { right: 3%;  top: 12%; }
+.msg-flag--r2 { right: 7%;  top: 38%; }
+.msg-flag--r3 { right: 2%;  top: 62%; }
+.msg-flag--r4 { right: 6%;  top: 84%; }
+
+/* animation-delay は is-visible と同じタイミングで適用する必要がある */
+.msg-flag--l1.is-visible { animation-delay: 0s;   }
+.msg-flag--l2.is-visible { animation-delay: 0.5s; }
+.msg-flag--l3.is-visible { animation-delay: 1.0s; }
+.msg-flag--l4.is-visible { animation-delay: 0.3s; }
+.msg-flag--r1.is-visible { animation-delay: 0.7s; }
+.msg-flag--r2.is-visible { animation-delay: 1.2s; }
+.msg-flag--r3.is-visible { animation-delay: 0.4s; }
+.msg-flag--r4.is-visible { animation-delay: 0.9s; }
+
+/* フェードインの時間差（transition-delay） */
+.msg-flag--l1 { transition-delay: 0s;   }
+.msg-flag--l2 { transition-delay: 0.15s; }
+.msg-flag--l3 { transition-delay: 0.3s; }
+.msg-flag--l4 { transition-delay: 0.45s; }
+.msg-flag--r1 { transition-delay: 0.1s; }
+.msg-flag--r2 { transition-delay: 0.25s; }
+.msg-flag--r3 { transition-delay: 0.4s; }
+.msg-flag--r4 { transition-delay: 0.55s; }
+
+@media (max-width: 768px) {
+    .msg-flag .fi { width: 36px; height: 27px; }
+    .msg-flag--l1, .msg-flag--l2, .msg-flag--l3, .msg-flag--l4 { left: 0; }
+    .msg-flag--r1, .msg-flag--r2, .msg-flag--r3, .msg-flag--r4 { right: 0; }
+}
+
+.our-message-inner {
+    max-width: 560px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.our-message-en {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: #fff;
+    margin: 0 0 6px;
+}
+
+.our-message-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #1e3a5a;
+    margin: 0 0 32px;
+}
+
+.our-message-body {
+    margin-top: 0;
+    background-color: rgba(255, 255, 255, 0.45);
+    border-radius: 12px;
+    padding: 32px 40px;
+}
+
+.our-message-body p {
+    font-size: 15px;
+    font-family: 'hanatotyoutyou', sans-serif;
+    color: #1e3a5a;
+    line-height: 2.4;
+    margin: 0 0 20px;
+}
+
+.our-message-body p:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+    .our-message-title { font-size: 20px; }
+    .our-message-body p { font-size: 14px; }
+}
+
+/* ===================================================
+   パートナー（助成団体）
+   =================================================== */
+
+.partners {
+    padding: 40px 20px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.partners-inner {
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.partners-label {
+    font-size: 13px;
+    color: #aaa;
+    letter-spacing: 0.08em;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+}
+
+.partners-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.partners-logo-item img {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(30%);
+    opacity: 0.85;
+    transition: opacity 0.2s, filter 0.2s;
+}
+
+.partners-logo-item img:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+}

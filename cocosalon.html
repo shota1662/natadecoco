@@ -1,0 +1,1877 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>CocoSalon｜NPOナタデココ — 世界と繋がる、あなたの居場所。</title>
+    <meta name="description" content="CocoSalonは、世界の文化に興味を持つ方向けのオンライン文化交流コミュニティです。月額880円、10日間無料トライアル実施中。">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="img/favicon.ico.png">
+    <link rel="apple-touch-icon" href="img/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress/min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+
+<style>
+/* ============================================================
+   CocoSalon LP — Inline Styles
+   ============================================================ */
+
+/* ---------- 共通 ---------- */
+.lp-section-label {
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 0.35em;
+    color: #30b9bf;
+    margin: 0 0 10px;
+    text-transform: uppercase;
+}
+
+.lp-section-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #1e3a5a;
+    margin: 0 0 12px;
+    letter-spacing: 0.04em;
+    line-height: 1.3;
+}
+
+.lp-section-sub {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.9;
+    margin: 0;
+}
+
+.lp-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.lp-section-head {
+    text-align: center;
+    margin-bottom: 52px;
+}
+
+/* ---------- ① ヒーロー ---------- */
+.lp-hero {
+    background: linear-gradient(135deg, #1e3a5a 0%, #1a9ea4 60%, #33d7d2 100%);
+    padding: 80px 20px 70px;
+    position: relative;
+    overflow: hidden;
+}
+
+.lp-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(51,215,210,0.18) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.lp-hero-inner {
+    max-width: 920px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    position: relative;
+    z-index: 1;
+}
+
+.lp-hero-text {
+    flex: 1;
+}
+
+.lp-hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.35);
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.15em;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.lp-hero-catch {
+    font-size: 44px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.35;
+    margin: 0 0 16px;
+    letter-spacing: 0.03em;
+}
+
+.lp-hero-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.8;
+    margin: 0 0 32px;
+}
+
+.lp-hero-price-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+}
+
+.lp-hero-price {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+}
+
+.lp-hero-price strong {
+    font-size: 26px;
+    font-weight: 900;
+    color: #fff;
+    margin-right: 2px;
+}
+
+.lp-hero-trial {
+    background: #fe4c7f;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 6px 14px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+}
+
+.lp-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(90deg, #fe4c7f, #ff7043);
+    color: #fff;
+    font-size: 17px;
+    font-weight: bold;
+    padding: 18px 40px;
+    border-radius: 50px;
+    letter-spacing: 0.06em;
+    box-shadow: 0 6px 24px rgba(254,76,127,0.4);
+    transition: transform 0.15s, box-shadow 0.15s;
+    text-decoration: none;
+}
+
+.lp-cta-btn::after {
+    content: ' →';
+}
+
+.lp-cta-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 32px rgba(254,76,127,0.5);
+    color: #fff;
+    opacity: 1;
+}
+
+.lp-hero-note {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    margin-top: 14px;
+}
+
+.lp-hero-visual {
+    width: 280px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.lp-hero-logo {
+    width: 220px;
+    border-radius: 20px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+}
+
+.lp-hero-flags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    font-size: 28px;
+    opacity: 0.9;
+}
+
+/* ---------- wave override for dark hero ---------- */
+.wave-dark-to-white {
+    background-color: #33d7d2;
+}
+
+/* ---------- ② サロン概要 ---------- */
+.lp-about {
+    background: #fff;
+    padding: 80px 20px;
+}
+
+.lp-about-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 64px;
+    align-items: center;
+}
+
+.lp-about-body p {
+    font-size: 15px;
+    color: #444;
+    line-height: 2.1;
+    margin: 0 0 20px;
+}
+
+.lp-about-body p:last-child {
+    margin: 0;
+}
+
+.lp-about-visual {
+    text-align: center;
+}
+
+.lp-about-logo {
+    width: 200px;
+    border-radius: 16px;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+    margin-bottom: 16px;
+}
+
+.lp-about-tagline {
+    font-size: 12px;
+    color: #30b9bf;
+    font-weight: bold;
+    letter-spacing: 0.12em;
+    line-height: 1.8;
+}
+
+/* ---------- ③ どんな人が参加しているの？ ---------- */
+.lp-who {
+    background: #d0f2f1;
+    padding: 80px 20px;
+}
+
+.lp-who-desc {
+    font-size: 15px;
+    color: #1e3a5a;
+    line-height: 2.1;
+    max-width: 720px;
+    margin: 0 auto 40px;
+    text-align: center;
+}
+
+.lp-who-invite {
+    font-size: 16px;
+    font-weight: bold;
+    color: #1e3a5a;
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 48px;
+    line-height: 1.8;
+}
+
+.lp-persona-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.lp-persona-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px 22px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.lp-persona-card:hover {
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+}
+
+.lp-persona-emoji {
+    font-size: 32px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.lp-persona-text h3 {
+    font-size: 14px;
+    font-weight: bold;
+    color: #1e3a5a;
+    margin: 0 0 6px;
+    line-height: 1.5;
+}
+
+.lp-persona-text p {
+    font-size: 12px;
+    color: #555;
+    margin: 0;
+    line-height: 1.7;
+}
+
+/* ---------- ④ ご挨拶 ---------- */
+.lp-greeting {
+    background: #fff;
+    padding: 80px 20px;
+}
+
+.lp-greeting-inner {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.lp-greeting-body {
+    font-size: 15px;
+    color: #444;
+    line-height: 2.1;
+}
+
+.lp-greeting-body p {
+    margin: 0 0 20px;
+}
+
+.lp-greeting-body p:last-child {
+    margin: 0;
+}
+
+/* ---------- ⑤ 提供コンテンツ ---------- */
+.lp-contents {
+    background: #fff;
+    padding: 80px 20px;
+}
+
+.lp-contents-rows {
+    max-width: 980px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+}
+
+.lp-content-row {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.lp-content-row.is-reverse {
+    flex-direction: row-reverse;
+}
+
+.lp-content-row-img {
+    flex: 0 0 44%;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 36px rgba(0,0,0,0.13);
+    aspect-ratio: 4 / 3;
+}
+
+.lp-content-row-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.lp-content-row-img:hover img {
+    transform: scale(1.03);
+}
+
+.lp-content-row-body {
+    flex: 1;
+}
+
+.lp-content-row-num {
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 0.35em;
+    color: #30b9bf;
+    margin: 0 0 8px;
+    text-transform: uppercase;
+}
+
+.lp-content-row h3 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #1e3a5a;
+    margin: 0 0 6px;
+    line-height: 1.3;
+}
+
+.lp-content-meta {
+    font-size: 12px;
+    color: #30b9bf;
+    font-weight: bold;
+    margin: 0 0 14px;
+}
+
+.lp-content-row-body > p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.85;
+    margin: 0 0 20px;
+}
+
+.lp-content-sublist {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.lp-content-subitem {
+    background: #f0faf9;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #444;
+    line-height: 1.75;
+}
+
+.lp-content-subitem strong {
+    display: block;
+    color: #1e3a5a;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+.lp-content-subitem .lp-content-example {
+    font-size: 12px;
+    color: #888;
+    margin-top: 4px;
+}
+
+.lp-past-countries {
+    margin-top: 10px;
+}
+
+.lp-past-countries-label {
+    font-size: 11px;
+    color: #30b9bf;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+}
+
+.lp-past-countries-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.lp-past-country-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: #e8f8f8;
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 12px;
+    color: #1e3a5a;
+    font-weight: 500;
+}
+
+.lp-past-country-flag {
+    width: 20px;
+    height: 14px;
+    object-fit: cover;
+    border-radius: 2px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.lp-content-note {
+    font-size: 11px;
+    color: #888;
+    margin-top: 12px;
+    line-height: 1.6;
+}
+
+.lp-content-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.lp-tag {
+    background: #e0f7f6;
+    color: #1e3a5a;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+/* ---------- ⑤.5 次回スケジュール ---------- */
+.lp-schedule {
+    background: #fffbe6;
+    padding: 40px 20px;
+    border-top: 2px solid #f5d87a;
+}
+
+.lp-schedule-inner {
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+.lp-schedule-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.lp-schedule-head-label {
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 0.3em;
+    color: #30b9bf;
+    text-transform: uppercase;
+}
+
+.lp-schedule-head-title {
+    font-size: 17px;
+    font-weight: bold;
+    color: #1e3a5a;
+}
+
+.lp-schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.lp-schedule-table thead th {
+    text-align: left;
+    font-size: 11px;
+    font-weight: bold;
+    color: #30b9bf;
+    letter-spacing: 0.1em;
+    padding: 6px 12px;
+    border-bottom: 2px solid #cceeed;
+}
+
+.lp-schedule-table tbody tr {
+    border-bottom: 1px solid #e8f3f3;
+}
+
+.lp-schedule-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.lp-schedule-table tbody td {
+    padding: 12px 12px;
+    color: #333;
+    vertical-align: middle;
+}
+
+.lp-schedule-table .col-date {
+    white-space: nowrap;
+    color: #1e3a5a;
+    font-weight: bold;
+    width: 110px;
+}
+
+.lp-schedule-table .col-program {
+    color: #30b9bf;
+    font-weight: bold;
+    width: 160px;
+}
+
+.lp-schedule-table .col-title {
+    color: #333;
+}
+
+.lp-schedule-table .col-time {
+    white-space: nowrap;
+    color: #888;
+    font-size: 12px;
+    text-align: right;
+}
+
+/* ---------- ⑥ 主宰者のメッセージ ---------- */
+.lp-message {
+    background: #fff;
+    padding: 80px 20px;
+}
+
+.lp-message-inner {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.lp-message-card {
+    background: #f5fafa;
+    border-left: 5px solid #30b9bf;
+    border-radius: 0 20px 20px 0;
+    padding: 44px 52px;
+}
+
+.lp-message-card p {
+    font-size: 15px;
+    color: #444;
+    line-height: 2.1;
+    margin: 0 0 20px;
+}
+
+.lp-message-card p:last-child {
+    margin: 0;
+}
+
+/* ---------- ⑥.5 Touch the World 過去イベント ---------- */
+.lp-past-events {
+    background: #f0faf9;
+    padding: 80px 20px;
+    color: #333;
+}
+.lp-past-events .lp-section-label {
+    color: #1a9ea4;
+}
+.lp-past-events .lp-section-title {
+    color: #1e3a5a;
+}
+.lp-past-events .lp-section-sub {
+    color: #555;
+}
+/* ---------- フォトギャラリー ---------- */
+.lp-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    gap: 14px;
+    max-width: 960px;
+    margin: 56px auto 0;
+}
+
+.lp-gallery-item {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.13);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    background: #cce8e7;
+}
+
+.lp-gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; transform: rotate(-0.8deg); }
+.lp-gallery-item:nth-child(2) { transform: rotate(1.2deg); }
+.lp-gallery-item:nth-child(3) { transform: rotate(-1.5deg); }
+.lp-gallery-item:nth-child(4) { transform: rotate(0.7deg); }
+.lp-gallery-item:nth-child(5) { grid-column: span 2; transform: rotate(-0.5deg); }
+
+.lp-gallery-item:hover {
+    transform: rotate(0deg) scale(1.02) !important;
+    box-shadow: 0 12px 36px rgba(0,0,0,0.22);
+    z-index: 2;
+}
+
+.lp-gallery-img {
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.lp-gallery-item:nth-child(1) .lp-gallery-img {
+    min-height: 360px;
+}
+
+.lp-gallery-item:hover .lp-gallery-img {
+    transform: scale(1.05);
+}
+
+.lp-gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 28px 18px 16px;
+    background: linear-gradient(to top, rgba(0,0,0,0.62) 0%, transparent 100%);
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.lp-gallery-item:hover .lp-gallery-overlay {
+    opacity: 1;
+}
+
+.lp-gallery-label {
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #a0eeec;
+    margin-bottom: 4px;
+}
+
+.lp-gallery-title {
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 1.4;
+}
+
+/* 画像未設定時のプレースホルダー */
+.lp-gallery-placeholder {
+    width: 100%;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.7);
+    font-size: 13px;
+    letter-spacing: 0.05em;
+}
+
+.lp-gallery-item:nth-child(1) .lp-gallery-placeholder { min-height: 360px; background: linear-gradient(135deg, #85d4d3 0%, #4ab8bf 100%); }
+.lp-gallery-item:nth-child(2) .lp-gallery-placeholder { min-height: 200px; background: linear-gradient(135deg, #f8b4c8 0%, #e87fa0 100%); }
+.lp-gallery-item:nth-child(3) .lp-gallery-placeholder { min-height: 200px; background: linear-gradient(135deg, #a8d8ea 0%, #6fb8d4 100%); }
+.lp-gallery-item:nth-child(4) .lp-gallery-placeholder { min-height: 200px; background: linear-gradient(135deg, #b5e8b5 0%, #72c47e 100%); }
+.lp-gallery-item:nth-child(5) .lp-gallery-placeholder { min-height: 200px; background: linear-gradient(135deg, #ffd6a0 0%, #f0a84e 100%); }
+
+.lp-gallery-placeholder-icon { font-size: 40px; }
+
+.lp-gallery-static-label {
+    position: absolute;
+    bottom: 14px;
+    left: 16px;
+    color: #fff;
+    pointer-events: none;
+}
+
+.lp-gallery-static-label .lp-gallery-label { opacity: 0.85; }
+.lp-gallery-static-label .lp-gallery-title { font-size: 14px; text-shadow: 0 1px 4px rgba(0,0,0,0.5); }
+
+.lp-events-note {
+    text-align: center;
+    margin-top: 24px;
+    color: #999;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+}
+
+@media (max-width: 640px) {
+    .lp-gallery {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+    .lp-gallery-item:nth-child(1) { grid-column: span 2; }
+    .lp-gallery-item:nth-child(5) { grid-column: span 2; }
+    .lp-gallery-item { transform: none !important; }
+    .lp-gallery-overlay { opacity: 1; }
+}
+
+/* ---------- ⑦ 参加特典 ---------- */
+.lp-benefits {
+    background: #d0f2f1;
+    padding: 80px 20px;
+}
+
+.lp-benefits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.lp-benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.6);
+}
+
+.lp-benefit-item:last-child {
+    border-bottom: none;
+}
+
+.lp-benefit-check {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #1e3a5a;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.lp-benefit-body h4 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #1e3a5a;
+    margin: 0 0 4px;
+}
+
+.lp-benefit-body p {
+    font-size: 13px;
+    color: #444;
+    margin: 0;
+    line-height: 1.7;
+}
+
+/* ---------- ⑧ こんな方におすすめ ---------- */
+.lp-persona {
+    background: #fff;
+    padding: 80px 20px;
+}
+
+.lp-recommend-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.lp-recommend-item {
+    background: #f5fafa;
+    border: 2px solid #bce6e4;
+    border-radius: 14px;
+    padding: 20px 18px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.lp-recommend-item .lp-ri-emoji {
+    font-size: 24px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.lp-recommend-item p {
+    font-size: 13px;
+    color: #1e3a5a;
+    font-weight: 500;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.lp-recommend-check-box {
+    background: #f0faf9;
+    border: 2px solid #bce6e4;
+    border-radius: 16px;
+    padding: 32px 36px;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.lp-recommend-check-box h4 {
+    font-size: 15px;
+    font-weight: bold;
+    color: #1e3a5a;
+    margin: 0 0 20px;
+    line-height: 1.6;
+}
+
+.lp-check-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.lp-check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14px;
+    color: #444;
+    line-height: 1.7;
+}
+
+.lp-check-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #30b9bf;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* ---------- ⑨ FAQ ---------- */
+.lp-faq {
+    background: #d0f2f1;
+    padding: 80px 20px;
+}
+
+.lp-faq-list {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.lp-faq-item {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.lp-faq-question {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 22px 24px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.lp-faq-q-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #30b9bf;
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.lp-faq-question h4 {
+    flex: 1;
+    font-size: 15px;
+    font-weight: bold;
+    color: #1e3a5a;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.lp-faq-arrow {
+    font-size: 14px;
+    color: #30b9bf;
+    transition: transform 0.25s;
+    flex-shrink: 0;
+}
+
+.lp-faq-item.open .lp-faq-arrow {
+    transform: rotate(180deg);
+}
+
+.lp-faq-answer {
+    display: none;
+    padding: 0 24px 22px 70px;
+}
+
+.lp-faq-item.open .lp-faq-answer {
+    display: block;
+}
+
+.lp-faq-a-icon {
+    color: #fe4c7f;
+    font-weight: bold;
+    font-size: 14px;
+    margin-right: 8px;
+}
+
+.lp-faq-answer p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.9;
+    margin: 0;
+}
+
+/* ---------- ⑩ 料金・入会CTA ---------- */
+.lp-pricing {
+    background: linear-gradient(135deg, #1e3a5a 0%, #1a9ea4 60%, #33d7d2 100%);
+    padding: 90px 20px 100px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.lp-pricing::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(51,215,210,0.18) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.lp-pricing-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.lp-pricing-label {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.35);
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.15em;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+}
+
+.lp-pricing-title {
+    font-size: 34px;
+    font-weight: bold;
+    color: #fff;
+    margin: 0 0 14px;
+    letter-spacing: 0.04em;
+}
+
+.lp-pricing-card {
+    background: rgba(255,255,255,0.1);
+    border: 1.5px solid rgba(255,255,255,0.25);
+    border-radius: 20px;
+    padding: 36px 40px;
+    margin: 32px 0;
+    backdrop-filter: blur(4px);
+}
+
+.lp-pricing-trial {
+    font-size: 16px;
+    color: #f5f29f;
+    font-weight: bold;
+    margin: 0 0 10px;
+    letter-spacing: 0.06em;
+}
+
+.lp-pricing-price {
+    font-size: 16px;
+    color: rgba(255,255,255,0.7);
+    margin: 0 0 6px;
+}
+
+.lp-pricing-price strong {
+    font-size: 52px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+}
+
+.lp-pricing-unit {
+    font-size: 18px;
+    color: rgba(255,255,255,0.8);
+}
+
+.lp-pricing-note-small {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    margin: 10px 0 0;
+}
+
+.lp-pricing-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(90deg, #fe4c7f, #ff7043);
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 20px 52px;
+    border-radius: 50px;
+    letter-spacing: 0.06em;
+    box-shadow: 0 8px 28px rgba(254,76,127,0.45);
+    transition: transform 0.15s, box-shadow 0.15s;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+.lp-pricing-cta::after {
+    content: ' →';
+}
+
+.lp-pricing-cta:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 36px rgba(254,76,127,0.55);
+    color: #fff;
+    opacity: 1;
+}
+
+.lp-pricing-links {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+}
+
+.lp-pricing-link {
+    color: rgba(255,255,255,0.7);
+    font-size: 13px;
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+
+.lp-pricing-link:hover {
+    color: #fff;
+    opacity: 1;
+}
+
+.lp-pricing-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    margin-top: 16px;
+}
+
+/* ---------- レスポンシブ ---------- */
+@media (max-width: 768px) {
+    .lp-hero-inner { flex-direction: column; gap: 32px; }
+    .lp-hero-catch { font-size: 32px; }
+    .lp-hero-visual { width: 100%; }
+    .lp-about-inner { grid-template-columns: 1fr; gap: 32px; }
+    .lp-about-visual { display: none; }
+    .lp-persona-grid { grid-template-columns: 1fr; }
+    .lp-contents-rows { gap: 48px; }
+    .lp-content-row,
+    .lp-content-row.is-reverse { flex-direction: column; gap: 24px; }
+    .lp-content-row-img { flex: none; width: 100%; aspect-ratio: 16 / 9; }
+    .lp-message-card { padding: 28px 24px; }
+    .lp-recommend-grid { grid-template-columns: 1fr; }
+    .lp-recommend-check-box { padding: 24px 20px; }
+}
+</style>
+</head>
+
+<body>
+    <div id="splash">
+        <div id="splash-logo">
+            <img src="img/loding.logo.png" alt="" class="fadeUp">
+        </div>
+    </div>
+
+    <header id="header">
+    <div class="header-inner">
+        <div class="header-logo">
+            <h1 class="logo">
+                <a href="index.html">
+                    <img src="img/logo.svg" alt="NPOナタデココ">
+                </a>
+            </h1>
+        </div>
+
+        <div class="header-nav-wrap">
+            <div class="header-top-nav">
+                <ul class="top-nav-list">
+                    <li><a href="foreigner.html">Foreigner</a></li>
+                    <li><a href="faq.html">よくある質問</a></li>
+                    <li><a href="">学校・自治体のみなさまへ</a></li>
+                    <li><a href="contact.html">お問い合わせ</a></li>
+                </ul>
+            </div>
+            <nav class="header-bottom-nav">
+                <ul class="bottom-nav-list">
+                    <li class="has-dropdown">
+                        <a href="about.html">ナタデココとは</a>
+                        <div class="mega-menu">
+                            <a href="about.html" class="mega-item">
+                                <div class="mega-img"><img src="img/charactor/1.jpg" alt=""></div>
+                                <div class="mega-body">
+                                    <span class="mega-title">団体概要</span>
+                                    <span class="mega-desc">NPOナタデココの成り立ちと活動について</span>
+                                </div>
+                            </a>
+                            <a href="strengths.html" class="mega-item">
+                                <div class="mega-img"><img src="img/charactor/2.jpg" alt=""></div>
+                                <div class="mega-body">
+                                    <span class="mega-title">５つの強み</span>
+                                    <span class="mega-desc">子どもたちの心に世界地図を届ける</span>
+                                </div>
+                            </a>
+                            <a href="member.html" class="mega-item">
+                                <div class="mega-img"><img src="img/charactor/3.jpg" alt=""></div>
+                                <div class="mega-body">
+                                    <span class="mega-title">メンバー</span>
+                                    <span class="mega-desc">ナタデココを支えるメンバー紹介</span>
+                                </div>
+                                </a>
+                        </div>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="activities.html">活動紹介</a>
+                        <div class="mega-menu mega-menu--col">
+                            <div class="mega-top-row">
+                            <a href="" class="mega-item">
+                                <div class="mega-img"><img src="img/class-photo.jpg" alt=""></div>
+                                <div class="mega-body">
+                                    <span class="mega-title">文化交流教室</span>
+                                    <span class="mega-desc">外国人との対面交流で異文化を体験</span>
+                                </div>
+                            </a>
+                            <a href="cocosalon.html" class="mega-item">
+                                <div class="mega-img"><img src="img/cocosalon.logo.jpg" alt=""></div>
+                                <div class="mega-body">
+                                    <span class="mega-title">CocoSalon</span>
+                                    <span class="mega-desc">オンラインで楽しむ国際交流サロン</span>
+                                </div>
+                            </a>
+                            <a href="kit.html" class="mega-item">
+                                <div class="mega-img"><img src="img/kit.logo.jpg" alt=""></div>
+                                <div class="mega-body">
+                                    <span class="mega-title">文化交流キット</span>
+                                    <span class="mega-desc">先生向けの授業で使える教材キット</span>
+                                </div>
+                            </a>
+                            </div>
+                            <a href="cases.html" class="mega-item mega-item--wide">
+                                <div class="mega-body">
+                                    <span class="mega-title">事例紹介</span>
+                                    <span class="mega-desc">実際にご依頼いただいた学校・団体の活動事例</span>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li><a href="volunteer.html">ボランティア</a></li>
+                    <li><a href="column.html">コラム・ニュース</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <a href="event.html" class="btn-event">
+            <span>イベント情報</span>
+            <span class="btn-event-arrow">→</span>
+        </a>
+
+        <button class="hamburger" aria-label="メニューを開く" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+
+    <div class="mobile-menu">
+        <nav class="mobile-nav">
+            <ul class="mobile-nav-list">
+                <li><a href="about.html">ナタデココとは</a></li>
+                <li><a href="activities.html">活動紹介</a></li>
+                <li><a href="volunteer.html">ボランティア</a></li>
+                <li><a href="column.html">コラム・ニュース</a></li>
+                <li class="mobile-nav-sep"></li>
+                <li><a href="foreigner.html">Foreigner</a></li>
+                <li><a href="faq.html">よくある質問</a></li>
+                <li><a href="">学校・自治体のみなさまへ</a></li>
+                <li><a href="contact.html">お問い合わせ</a></li>
+            </ul>
+            <a href="event.html" class="mobile-event-btn">イベント情報</a>
+        </nav>
+    </div>
+</header>
+
+    <main id="main">
+
+        <!-- ① ヒーロー -->
+        <section class="lp-hero">
+            <div class="lp-hero-inner">
+                <div class="lp-hero-text">
+                    <span class="lp-hero-badge">🌍 ONLINE CULTURE EXCHANGE SALON</span>
+                    <h2 class="lp-hero-catch">世界と繋がる、<br>あなたの居場所。</h2>
+                    <p class="lp-hero-sub">年齢や国籍、経験をこえて、人と文化が出会う場所。<br>誰もが世界とつながれる文化交流コミュニティ。</p>
+                    <div class="lp-hero-price-row">
+                        <span class="lp-hero-price">月額 <strong>880円</strong></span>
+                        <span class="lp-hero-trial">10日間無料トライアル実施中</span>
+                    </div>
+                    <a href="https://lounge.dmm.com/detail/9152/" class="lp-cta-btn" target="_blank" rel="noopener">
+                        10日間無料で試してみる
+                    </a>
+                    <p class="lp-hero-note">いつでも退会可能。まずは気軽にお試しください。</p>
+                </div>
+                <div class="lp-hero-visual">
+                    <img src="img/cocosalon.logo.jpg" alt="CocoSalon" class="lp-hero-logo">
+                </div>
+            </div>
+        </section>
+
+        <!-- dark → white wave -->
+        <div class="wave-divider wave-dark-to-white">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path fill="#fff" fill-opacity="0.3" d="M0,55 C240,95 480,15 720,55 C960,95 1200,15 1440,55 L1440,120 L0,120 Z"/>
+                <path fill="#fff" fill-opacity="0.6" d="M0,70 C200,105 440,30 680,70 C920,100 1160,35 1440,70 L1440,120 L0,120 Z"/>
+                <path fill="#fff" d="M0,85 C160,108 380,55 600,82 C820,105 1040,56 1260,80 C1360,90 1410,68 1440,85 L1440,120 L0,120 Z"/>
+            </svg>
+        </div>
+
+        <!-- ② サロン概要 -->
+        <section class="lp-about">
+            <div class="lp-about-inner">
+                <div class="lp-about-body">
+                    <p class="lp-section-label">About</p>
+                    <h2 class="lp-section-title">サロン概要</h2>
+                    <p>「Coco Salon the World」（通称：ココサロン）は、誰もが世界とつながれる文化交流・国際交流コミュニティです。年齢や国籍、経験をこえて人と文化が出会う場所として、言語を超え文化そのものにふれる体験を大切にしています。</p>
+                </div>
+                <div class="lp-about-visual">
+                    <img src="img/cocosalon.logo.jpg" alt="Coco Salon the World" class="lp-about-logo">
+                    <p class="lp-about-tagline">Coco Salon the World<br>文化交流サロン</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- white → 水色 -->
+        <div class="wave-divider" style="background-color: #fff;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path fill="#d0f2f1" fill-opacity="0.3" d="M0,58 C220,18 460,98 700,58 C940,18 1180,98 1440,58 L1440,120 L0,120 Z"/>
+                <path fill="#d0f2f1" fill-opacity="0.6" d="M0,72 C180,32 420,108 660,72 C900,36 1140,108 1440,72 L1440,120 L0,120 Z"/>
+                <path fill="#d0f2f1" d="M0,88 C140,60 360,110 580,84 C800,58 1020,108 1240,82 C1350,70 1410,92 1440,88 L1440,120 L0,120 Z"/>
+            </svg>
+        </div>
+
+        <!-- ③ どんな人が参加しているの？ -->
+        <section class="lp-who">
+            <div class="lp-inner">
+                <div class="lp-section-head">
+                    <p class="lp-section-label">Members</p>
+                    <h2 class="lp-section-title">どんな人が参加しているの？</h2>
+                </div>
+                <p class="lp-who-desc">20〜40代の日本人メンバーを中心に、海外に興味関心がある子どもたちまで、幅広い世代が参加しています。海外駐在経験者、JICA海外協力隊参加者、元バックパッカーなど海外経験は様々。これから世界に挑戦していきたいという若い世代や子どもたちも参加しています。</p>
+                <div class="lp-persona-grid">
+                    <div class="lp-persona-card">
+                        <span class="lp-persona-emoji">🏠</span>
+                        <div class="lp-persona-text">
+                            <h3>おうちから国際交流を楽しみたい</h3>
+                            <p>忙しい日常の中でも、自宅から気軽に世界とつながりたい方。オンラインだから、どこにいても異文化交流を楽しめます。</p>
+                        </div>
+                    </div>
+                    <div class="lp-persona-card">
+                        <span class="lp-persona-emoji">🤝</span>
+                        <div class="lp-persona-text">
+                            <h3>日本に住む外国人の人と交流したい</h3>
+                            <p>海外に行かなくても、日本にいながら外国人メンバーと友達になれる。多様な文化・価値観に触れたい方にぴったりです。</p>
+                        </div>
+                    </div>
+                    <div class="lp-persona-card">
+                        <span class="lp-persona-emoji">👨‍👩‍👧</span>
+                        <div class="lp-persona-text">
+                            <h3>子供と一緒に異文化体験</h3>
+                            <p>子どもの頃から「世界」を身近に感じてほしい保護者の方へ。親子で楽しめるイベントや交流の機会を用意しています。</p>
+                        </div>
+                    </div>
+                    <div class="lp-persona-card">
+                        <span class="lp-persona-emoji">🎒</span>
+                        <div class="lp-persona-text">
+                            <h3>海外経験者（留学・ワーホリ・世界一周など）</h3>
+                            <p>海外での経験や思い出を語り合える仲間が見つかります。あの頃の情熱を、同じ感覚を持つ仲間と分かち合いましょう。</p>
+                        </div>
+                    </div>
+                    <div class="lp-persona-card">
+                        <span class="lp-persona-emoji">💼</span>
+                        <div class="lp-persona-text">
+                            <h3>国際キャリアを目指している</h3>
+                            <p>海外で働きたい、国際的な仕事に就きたいと考えている方。異文化理解力や英語力を磨きながら、キャリアへの視野を広げられます。</p>
+                        </div>
+                    </div>
+                    <div class="lp-persona-card">
+                        <span class="lp-persona-emoji">✈️</span>
+                        <div class="lp-persona-text">
+                            <h3>いつか海外に飛び出したい</h3>
+                            <p>「いつかは海外へ」という夢を持っている方。仲間の体験談やリアルな情報が、あなたの背中を押してくれるはずです。</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="lp-who-invite" style="margin-top: 48px;">ここはただ交流を楽しむ場ではなく、<br>あなたの世界への想いや経験を共有できるコミュニティです。<br>ぜひ、ここで一緒に発信していきませんか？</p>
+            </div>
+        </section>
+
+        <!-- 水色 → white -->
+        <div class="wave-divider" style="background-color: #d0f2f1; line-height: 0;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none" style="height:60px; width:100%; display:block;">
+                <path fill="#fff" fill-opacity="0.3" d="M0,55 C240,95 480,15 720,55 C960,95 1200,15 1440,55 L1440,120 L0,120 Z"/>
+                <path fill="#fff" fill-opacity="0.6" d="M0,70 C200,105 440,30 680,70 C920,100 1160,35 1440,70 L1440,120 L0,120 Z"/>
+                <path fill="#fff" d="M0,85 C160,108 380,55 600,82 C820,105 1040,56 1260,80 C1360,90 1410,68 1440,85 L1440,120 L0,120 Z"/>
+            </svg>
+        </div>
+
+        <!-- ⑤ 提供コンテンツ -->
+        <section class="lp-contents">
+            <div class="lp-inner">
+                <div class="lp-section-head">
+                    <p class="lp-section-label">Contents</p>
+                    <h2 class="lp-section-title">提供コンテンツ</h2>
+                    <p class="lp-section-sub">サロンメンバーとそのご家族が一緒に楽しめる、世界とつながるための多彩なプログラムをご用意しています。</p>
+                </div>
+                <div class="lp-contents-rows">
+
+                    <!-- コンテンツ① 写真RIGHT -->
+                    <div class="lp-content-row is-reverse">
+                        <div class="lp-content-row-img">
+                            <img src="img/cocosalon-photo/photo-cocosalon001.jpg" alt="オンラインワークショップの様子" style="object-fit: contain;">
+                        </div>
+                        <div class="lp-content-row-body">
+                            <p class="lp-content-row-num">Contents 01</p>
+                            <h3>オンラインワークショップ</h3>
+                            <p class="lp-content-meta">第１・第３日曜 10:00〜10:30　※変更の場合あり</p>
+                            <p>世界を「知る」「話す」「感じる」をテーマに、様々なオンラインワークショップをお届けします。</p>
+                            <div class="lp-content-sublist">
+                                <div class="lp-content-subitem">
+                                    <strong>🌐 Touch the World</strong>
+                                    世界の異文化や歴史、人々の暮らしについて深く学ぶ時間です。子どもから大人まで楽しめます。
+                                    <p class="lp-content-example">第３日曜 10:00〜10:30</p>
+                                    <p class="lp-content-example">【開催例】ロシアの文化について知ろう！（2025年7月）— 参加者同士のオンライン交流＋ロシア人メンバーによる文化紹介</p>
+                                    <div class="lp-past-countries">
+                                        <p class="lp-past-countries-label">過去に紹介した国</p>
+                                        <div class="lp-past-countries-list">
+                                            <span class="lp-past-country-item"><img class="lp-past-country-flag" src="https://flagcdn.com/w40/ru.png" alt="ロシア国旗">ロシア</span>
+                                            <span class="lp-past-country-item"><img class="lp-past-country-flag" src="https://flagcdn.com/w40/vn.png" alt="ベトナム国旗">ベトナム</span>
+                                            <span class="lp-past-country-item"><img class="lp-past-country-flag" src="https://flagcdn.com/w40/se.png" alt="スウェーデン国旗">スウェーデン</span>
+                                            <span class="lp-past-country-item"><img class="lp-past-country-flag" src="https://flagcdn.com/w40/ke.png" alt="ケニア国旗">ケニア</span>
+                                            <span class="lp-past-country-item"><img class="lp-past-country-flag" src="https://flagcdn.com/w40/bd.png" alt="バングラデシュ国旗">バングラデシュ</span>
+                                            <span class="lp-past-country-item"><img class="lp-past-country-flag" src="https://flagcdn.com/w40/in.png" alt="インド国旗">インド</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="lp-content-subitem">
+                                    <strong>☕ Coco Cafe</strong>
+                                    英語での会話や海外での仕事・学び・国際協力など、メンバーの興味に合わせてゆるやかに語り合うフリートークの時間です。英語力不問、どなたでも気軽にご参加ください。
+                                    <p class="lp-content-example">第１日曜 10:00〜11:00</p>
+                                    <p class="lp-content-example">【開催例】最新の多様性研究について語ろう</p>
+                                </div>
+                            </div>
+                            <p class="lp-content-note">※開催日時は諸事情により変更となる場合があります。</p>
+                        </div>
+                    </div>
+
+                    <!-- コンテンツ② 写真LEFT -->
+                    <div class="lp-content-row">
+                        <div class="lp-content-row-img">
+                            <img src="img/cocosalon-photo/photo-cocosalon004.jpg" alt="対面イベントの様子">
+                        </div>
+                        <div class="lp-content-row-body">
+                            <p class="lp-content-row-num">Contents 02</p>
+                            <h3>対面イベント</h3>
+                            <p class="lp-content-meta">年２回〜</p>
+                            <p>サロンメンバーと在日外国人メンバーが直接触れ合えるイベントを企画・開催。温かい雰囲気の中でリラックスして交流を深めましょう！</p>
+                            <div class="lp-content-sublist">
+                                <div class="lp-content-subitem">
+                                    <strong>🍖 イベント例</strong>
+                                    ピクニック、BBQ、クリスマス会、初詣 など
+                                </div>
+                                <div class="lp-content-subitem">
+                                    <strong>💡 企画への参加</strong>
+                                    「こんなイベントがしたい！」というアイデアも大歓迎。一緒に最高の思い出を作りませんか？
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- コンテンツ③ 写真RIGHT -->
+                    <div class="lp-content-row is-reverse">
+                        <div class="lp-content-row-img">
+                            <img src="img/cocosalon-photo/photo-cocosalon002.jpeg" alt="オンライン交流の様子">
+                        </div>
+                        <div class="lp-content-row-body">
+                            <p class="lp-content-row-num">Contents 03</p>
+                            <h3>オンライン交流</h3>
+                            <p class="lp-content-meta">いつでも参加OK！</p>
+                            <p>FacebookプライベートページやMessengerコミュニティを活用して、いつでもどこでもメンバー間の交流が可能です。日本在住の外国人メンバーともつながれるので、海外に行かずとも国際交流をお楽しみいただけます。</p>
+                            <div class="lp-content-sublist">
+                                <div class="lp-content-subitem">
+                                    <strong>📣 国際交流イベント情報の共有</strong>
+                                    参加したイベントのレポートや、おすすめの国際交流イベント情報を自由にシェアできます。
+                                </div>
+                            </div>
+                            <div class="lp-content-tags">
+                                <span class="lp-tag">Facebook</span>
+                                <span class="lp-tag">Messenger</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <p style="margin-top: 20px; font-size: 13px; color: #888;">※そのほかナタデココの活動にボランティア参加可能</p>
+            </div>
+        </section>
+
+        <!-- ⑤.5 次回スケジュール -->
+        <section class="lp-schedule">
+            <div class="lp-schedule-inner">
+                <div class="lp-schedule-head">
+                    <p class="lp-schedule-head-label">Upcoming</p>
+                    <h2 class="lp-schedule-head-title">次回のスケジュール</h2>
+                </div>
+                <table class="lp-schedule-table">
+                    <thead>
+                        <tr>
+                            <th>日程</th>
+                            <th>プログラム</th>
+                            <th>テーマ</th>
+                            <th>時間</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="col-date">3月22日（日）</td>
+                            <td class="col-program">☕ Coco Cafe</td>
+                            <td class="col-title">「英語で多様性について語ろう」（大人向け）</td>
+                            <td class="col-time">10:00〜11:00</td>
+                        </tr>
+                        <tr>
+                            <td class="col-date">4月5日（日）</td>
+                            <td class="col-program">☕ Coco Café</td>
+                            <td class="col-title">「最近の国際情勢について語ろう」（大人向け）</td>
+                            <td class="col-time">10:00〜11:00</td>
+                        </tr>
+                        <tr>
+                            <td class="col-date">4月19日（日）</td>
+                            <td class="col-program">🌐 Touch the World</td>
+                            <td class="col-title">オーストラリア編（大人・子ども歓迎！）</td>
+                            <td class="col-time">10:00〜11:30</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="margin-top: 16px; font-size: 13px; color: #555;">🌿 夏にはメンバー交流ピクニックを予定しています。</p>
+            </div>
+        </section>
+
+        <!-- white → 薄ミント -->
+        <div class="wave-divider" style="background-color: #fff;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path fill="#f0faf9" fill-opacity="0.3" d="M0,58 C220,18 460,98 700,58 C940,18 1180,98 1440,58 L1440,120 L0,120 Z"/>
+                <path fill="#f0faf9" fill-opacity="0.6" d="M0,72 C180,32 420,108 660,72 C900,36 1140,108 1440,72 L1440,120 L0,120 Z"/>
+                <path fill="#f0faf9" d="M0,88 C140,60 360,110 580,84 C800,58 1020,108 1240,82 C1350,70 1410,92 1440,88 L1440,120 L0,120 Z"/>
+            </svg>
+        </div>
+
+        <!-- ⑦ 参加特典 -->
+        <section class="lp-benefits">
+            <div class="lp-inner">
+                <div class="lp-section-head">
+                    <p class="lp-section-label">Benefits</p>
+                    <h2 class="lp-section-title">参加特典</h2>
+                    <p class="lp-section-sub">入会すると、これだけのコンテンツにアクセスできます。</p>
+                </div>
+                <div class="lp-benefits-list">
+                    <div class="lp-benefit-item">
+                        <div class="lp-benefit-check">✓</div>
+                        <div class="lp-benefit-body">
+                            <h4>限定オンライングループへの招待</h4>
+                            <p>メンバー限定のFacebook / Messengerコミュニティに参加できます。気軽に交流をスタートしましょう。</p>
+                        </div>
+                    </div>
+                    <div class="lp-benefit-item">
+                        <div class="lp-benefit-check">✓</div>
+                        <div class="lp-benefit-body">
+                            <h4>オンラインワークショップへの参加</h4>
+                            <p>毎月開催のTouch the World / Talk in English / 国際キャリア談義など、多彩なオンラインWSに参加できます。</p>
+                        </div>
+                    </div>
+                    <div class="lp-benefit-item">
+                        <div class="lp-benefit-check">✓</div>
+                        <div class="lp-benefit-body">
+                            <h4>対面交流イベントへの参加</h4>
+                            <p>年2回以上開催されるBBQ・ピクニックなどの対面イベントに参加できます。</p>
+                        </div>
+                    </div>
+                    <div class="lp-benefit-item">
+                        <div class="lp-benefit-check">✓</div>
+                        <div class="lp-benefit-body">
+                            <h4>NPOナタデココ主催「文化交流教室」の優先招待（子ども向け）</h4>
+                            <p>全国で開催する文化交流教室への優先案内をお届けします。</p>
+                        </div>
+                    </div>
+                    <div class="lp-benefit-item">
+                        <div class="lp-benefit-check">✓</div>
+                        <div class="lp-benefit-body">
+                            <h4>文化交流イベントの企画・会議への参加</h4>
+                            <p>小学校や地方自治体で先生として活躍する機会も！活動をつくる側に回れます。</p>
+                        </div>
+                    </div>
+                    <div class="lp-benefit-item">
+                        <div class="lp-benefit-check">✓</div>
+                        <div class="lp-benefit-body">
+                            <h4>特別会員カードの配布</h4>
+                            <p>CocoSalonメンバーの証となるオリジナル会員カードをお届けします。（文化交流教室や対面イベントの際にお渡しいたします）</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 水色 → white -->
+        <div class="wave-divider" style="background-color: #d0f2f1;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path fill="#fff" fill-opacity="0.3" d="M0,58 C220,18 460,98 700,58 C940,18 1180,98 1440,58 L1440,120 L0,120 Z"/>
+                <path fill="#fff" fill-opacity="0.6" d="M0,72 C180,32 420,108 660,72 C900,36 1140,108 1440,72 L1440,120 L0,120 Z"/>
+                <path fill="#fff" d="M0,88 C140,60 360,110 580,84 C800,58 1020,108 1240,82 C1350,70 1410,92 1440,88 L1440,120 L0,120 Z"/>
+            </svg>
+        </div>
+
+        <!-- ⑧ こんな方におすすめ -->
+        <section class="lp-persona">
+            <div class="lp-inner">
+                <div class="lp-section-head">
+                    <p class="lp-section-label">For You</p>
+                    <h2 class="lp-section-title">こんな方におすすめ</h2>
+                    <p class="lp-section-sub">「なんとなく世界が好き」でも大丈夫。英語力も経験も不問です。</p>
+                </div>
+                <div class="lp-recommend-grid">
+                    <div class="lp-recommend-item">
+                        <span class="lp-ri-emoji">🌱</span>
+                        <p>ゼロからの新しいコミュニティ作りに携わりたい方</p>
+                    </div>
+                    <div class="lp-recommend-item">
+                        <span class="lp-ri-emoji">🌍</span>
+                        <p>世界の文化や価値観にふれてみたい、文化交流に関心がある方</p>
+                    </div>
+                    <div class="lp-recommend-item">
+                        <span class="lp-ri-emoji">💬</span>
+                        <p>英語を使って気軽に交流してみたい方</p>
+                    </div>
+                    <div class="lp-recommend-item">
+                        <span class="lp-ri-emoji">👨‍👩‍👧</span>
+                        <p>お子様と一緒に、学びのきっかけをつくりたい方</p>
+                    </div>
+                    <div class="lp-recommend-item">
+                        <span class="lp-ri-emoji">🎓</span>
+                        <p>自分の経験を子どもたちに伝えていきたい方</p>
+                    </div>
+                    <div class="lp-recommend-item">
+                        <span class="lp-ri-emoji">❤️</span>
+                        <p>NPO法人ナタデココの活動や想いに共感してくださる方</p>
+                    </div>
+                </div>
+
+                <div class="lp-recommend-check-box">
+                    <h4>以下にひとつでも当てはまる人は、ぜひココサロンでお待ちしています！</h4>
+                    <div class="lp-check-list">
+                        <div class="lp-check-item">
+                            <span class="lp-check-icon">✓</span>
+                            <span>海外駐在経験、グローバルメンバーと仕事をしている、世界を相手に働いている</span>
+                        </div>
+                        <div class="lp-check-item">
+                            <span class="lp-check-icon">✓</span>
+                            <span>海外大学・大学院への留学、語学留学など、海外での学習経験がある</span>
+                        </div>
+                        <div class="lp-check-item">
+                            <span class="lp-check-icon">✓</span>
+                            <span>世界一周やバックパッカー、海外ボランティアやワーキングホリデーなどの経験がある</span>
+                        </div>
+                        <div class="lp-check-item">
+                            <span class="lp-check-icon">✓</span>
+                            <span>上記のような経験をこれからしていきたい、知っていきたい人</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- white → 水色 -->
+        <div class="wave-divider" style="background-color: #fff;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path fill="#d0f2f1" fill-opacity="0.3" d="M0,58 C220,18 460,98 700,58 C940,18 1180,98 1440,58 L1440,120 L0,120 Z"/>
+                <path fill="#d0f2f1" fill-opacity="0.6" d="M0,72 C180,32 420,108 660,72 C900,36 1140,108 1440,72 L1440,120 L0,120 Z"/>
+                <path fill="#d0f2f1" d="M0,88 C140,60 360,110 580,84 C800,58 1020,108 1240,82 C1350,70 1410,92 1440,88 L1440,120 L0,120 Z"/>
+            </svg>
+        </div>
+
+        <!-- ⑨ FAQ -->
+        <section class="lp-faq">
+            <div class="lp-inner">
+                <div class="lp-section-head">
+                    <p class="lp-section-label">FAQ</p>
+                    <h2 class="lp-section-title">よくある質問</h2>
+                </div>
+                <div class="lp-faq-list">
+
+                    <div class="lp-faq-item">
+                        <div class="lp-faq-question">
+                            <div class="lp-faq-q-icon">Q</div>
+                            <h4>月初に入会した方がお得ですか？</h4>
+                            <span class="lp-faq-arrow">▼</span>
+                        </div>
+                        <div class="lp-faq-answer">
+                            <p><span class="lp-faq-a-icon">A</span>入会日から1ヶ月ごとに課金されるため、どのタイミングで入会しても損得はありません。</p>
+                        </div>
+                    </div>
+
+                    <div class="lp-faq-item">
+                        <div class="lp-faq-question">
+                            <div class="lp-faq-q-icon">Q</div>
+                            <h4>英語が話せなくても大丈夫ですか？</h4>
+                            <span class="lp-faq-arrow">▼</span>
+                        </div>
+                        <div class="lp-faq-answer">
+                            <p><span class="lp-faq-a-icon">A</span>はい、ご安心ください！「Coco Salon the world」は言語学習を目的としたサロンではありません。文化そのものに触れる体験を大切にしていますので、英語力は問いません。「Talk in English」のように英語を使う機会もありますが、無理なく楽しめる内容ですので、英語が苦手な方でも大歓迎です！</p>
+                        </div>
+                    </div>
+
+                    <div class="lp-faq-item">
+                        <div class="lp-faq-question">
+                            <div class="lp-faq-q-icon">Q</div>
+                            <h4>子どもと一緒に参加できますか？</h4>
+                            <span class="lp-faq-arrow">▼</span>
+                        </div>
+                        <div class="lp-faq-answer">
+                            <p><span class="lp-faq-a-icon">A</span>はい、もちろんご参加いただけます！サロンメンバーとそのご家族であれば、すべてのコンテンツにご参加可能です。お子様と一緒に異文化に触れ、新しい学びのきっかけを見つける場として、ぜひご活用ください。</p>
+                        </div>
+                    </div>
+
+                    <div class="lp-faq-item">
+                        <div class="lp-faq-question">
+                            <div class="lp-faq-q-icon">Q</div>
+                            <h4>オンラインサロンの活動は、具体的にどのような形で参加できますか？</h4>
+                            <span class="lp-faq-arrow">▼</span>
+                        </div>
+                        <div class="lp-faq-answer">
+                            <p><span class="lp-faq-a-icon">A</span>主な活動は、毎月開催されるオンラインワークショップ、年2回開催されるオフラインイベント、そしてFacebookプライベートページでの日常的なオンライン交流です。ご自身のペースで、興味のある活動に自由にご参加いただけます。積極的にイベント企画に参加したり、Facebookページで交流を深めたりと、楽しみ方はあなた次第です！</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 水色 → dark -->
+        <div class="wave-divider" style="background-color: #d0f2f1;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path fill="#1a9ea4" fill-opacity="0.4" d="M0,55 C240,15 480,95 720,55 C960,15 1200,95 1440,55 L1440,120 L0,120 Z"/>
+                <path fill="#1a9ea4" fill-opacity="0.7" d="M0,70 C200,30 440,105 680,70 C920,35 1160,100 1440,70 L1440,120 L0,120 Z"/>
+                <path fill="#1a9ea4" d="M0,85 C160,55 380,108 600,82 C820,56 1040,105 1260,80 C1360,68 1410,90 1440,85 L1440,120 L0,120 Z"/>
+            </svg>
+        </div>
+
+        <!-- ⑩ 料金・入会CTA -->
+        <section class="lp-pricing">
+            <div class="lp-pricing-inner">
+                <span class="lp-pricing-label">MEMBERSHIP</span>
+                <h2 class="lp-pricing-title">今すぐ世界と繋がろう。</h2>
+                <div class="lp-pricing-card">
+                    <p class="lp-pricing-trial">🎁 10日間 無料トライアル実施中</p>
+                    <p class="lp-pricing-price">月額 <strong>880</strong><span class="lp-pricing-unit">円</span></p>
+                    <p class="lp-pricing-note-small">税込 ／ いつでも退会可能</p>
+                </div>
+                <a href="https://lounge.dmm.com/detail/9152/" class="lp-pricing-cta" target="_blank" rel="noopener">
+                    今すぐ入会する
+                </a>
+                <p class="lp-pricing-sub">DMMサロンページへ移動します</p>
+                <div class="lp-pricing-links">
+                    <a href="https://natadecoco.org/" class="lp-pricing-link" target="_blank" rel="noopener">公式HP</a>
+                    <a href="https://www.instagram.com/natadecoco_org/" class="lp-pricing-link" target="_blank" rel="noopener">Instagram</a>
+                    <a href="contact.html" class="lp-pricing-link">お問い合わせ</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- dark → footer -->
+    <div class="wave-divider" style="background-color: #1e3a5a;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+            <path fill="#516881" fill-opacity="0.3" d="M0,55 C240,15 480,95 720,55 C960,15 1200,95 1440,55 L1440,120 L0,120 Z"/>
+            <path fill="#516881" fill-opacity="0.6" d="M0,70 C200,30 440,105 680,70 C920,35 1160,100 1440,70 L1440,120 L0,120 Z"/>
+            <path fill="#516881" d="M0,85 C160,55 380,108 600,82 C820,56 1040,105 1260,80 C1360,68 1410,90 1440,85 L1440,120 L0,120 Z"/>
+        </svg>
+    </div>
+
+    <footer id="footer">
+        <div class="footer-inner">
+
+            <div class="footer-top">
+
+                <!-- Col 1: ロゴ＋キャッチ -->
+                <div class="footer-col footer-col--brand">
+                    <a href="index.html" class="footer-logo">
+                        <img src="img/logo.svg" alt="NPOナタデココ">
+                    </a>
+                    <p class="footer-tagline">子どもたちに、<br>世界地図を。</p>
+                </div>
+
+                <!-- Col 2: サイトマップ -->
+                <div class="footer-col footer-col--nav">
+                    <p class="footer-col-title">Site Map</p>
+                    <ul class="footer-nav-list">
+                        <li><a href="about.html">ナタデココとは</a></li>
+                        <li><a href="activities.html">活動紹介</a></li>
+                        <li><a href="event.html">イベント情報</a></li>
+                        <li><a href="volunteer.html">ボランティア</a></li>
+                        <li><a href="column.html">コラム・ニュース</a></li>
+                        <li><a href="faq.html">よくある質問</a></li>
+                        <li><a href="contact.html">お問い合わせ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: 連絡先＋SNS -->
+                <div class="footer-col footer-col--contact">
+                    <p class="footer-col-title">Access</p>
+                    <address class="footer-address">
+                        〒106-0093<br>
+                        東京都千代田区平河町１－６－１５　USビル８F<br>
+                        <a href="mailto:info@natadecoco.org">info@natadecoco.org</a>
+                    </address>
+                    <div class="footer-sns">
+                        <a href="" class="sns-link" aria-label="Twitter / X">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="" class="sns-link" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                            </svg>
+                        </a>
+                        <a href="" class="sns-link" aria-label="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 下段：リンク＋コピーライト -->
+            <div class="footer-copy">
+                <div class="footer-copy-links">
+                    <a href="privacy.html">プライバシーポリシー</a>
+                </div>
+                <p>© 2026 NPOナタデココ All Rights Reserved.</p>
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+    // FAQ アコーディオン
+    document.querySelectorAll('.lp-faq-question').forEach(function(q) {
+        q.addEventListener('click', function() {
+            var item = this.closest('.lp-faq-item');
+            var isOpen = item.classList.contains('open');
+            document.querySelectorAll('.lp-faq-item').forEach(function(i) {
+                i.classList.remove('open');
+            });
+            if (!isOpen) {
+                item.classList.add('open');
+            }
+        });
+    });
+    </script>
+
+</body>
+</html>

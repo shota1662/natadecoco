@@ -1,0 +1,117 @@
+@charset "UTF-8";
+
+/* ===================================
+   ヒーロー (Hero)
+   =================================== */
+.st-hero {
+    width: 100%;
+    background-color: #9fd9f6;
+    display: flex;
+    justify-content: center;
+    padding: 80px 20px 60px;
+}
+
+.st-hero-inner {
+    max-width: 860px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.st-hero-icon {
+    width: 90px;
+    margin-bottom: 24px;
+}
+
+.st-hero-text {
+    text-align: center;
+}
+
+.st-hero-en {
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: #516881;
+    font-weight: bold;
+    margin: 0 0 8px;
+}
+
+.st-hero-title {
+    font-size: 52px;
+    color: #516881;
+    margin: 0 0 20px;
+    letter-spacing: 0.08em;
+}
+
+.st-hero-sub {
+    font-size: 16px;
+    color: #516881;
+    line-height: 2;
+    margin: 0;
+}
+
+/* ===================================
+   強み一覧 (List)
+   =================================== */
+.st-list {
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    padding: 80px 20px 100px;
+}
+
+.st-list-inner {
+    max-width: 860px;
+    width: 100%;
+}
+
+/* 区切り線 */
+.st-divider {
+    border: none;
+    border-top: 2px dashed #d9eaf4;
+    margin: 60px 0;
+}
+
+/* 強みアイテム */
+.st-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+.st-item--reverse {
+    flex-direction: row-reverse;
+}
+
+/* 番号 */
+.st-item-num {
+    font-size: 72px;
+    font-weight: bold;
+    color: #9fd9f6;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 120px;
+    text-align: center;
+    letter-spacing: -0.02em;
+}
+
+/* 本文エリア */
+.st-item-body {
+    flex: 1;
+    padding-top: 8px;
+}
+
+.st-item-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #516881;
+    margin: 0 0 16px;
+}
+
+.st-item-text {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.9;
+    margin: 0;
+}

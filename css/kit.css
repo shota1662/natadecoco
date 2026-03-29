@@ -1,0 +1,717 @@
+@charset "UTF-8";
+
+/* ===================================
+   ① ヒーロー (Hero)
+   =================================== */
+.kit-hero {
+    width: 100%;
+    background-color: #9fd9f6;
+    padding: 70px 20px 60px;
+}
+
+.kit-hero-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.kit-hero-text {
+    flex: 1;
+}
+
+.kit-hero-en {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: #fff;
+    font-weight: bold;
+    margin: 0 0 14px;
+}
+
+.kit-hero-catch {
+    font-size: 40px;
+    font-weight: bold;
+    color: #1e3a5a;
+    line-height: 1.5;
+    margin: 0 0 24px;
+    letter-spacing: 0.03em;
+}
+
+.kit-hero-desc {
+    font-size: 14px;
+    color: #516881;
+    line-height: 1.9;
+    margin: 0 0 14px;
+}
+
+.kit-hero-note {
+    font-size: 12px;
+    color: #516881;
+    background: rgba(255, 255, 255, 0.45);
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin: 18px 0 28px;
+}
+
+.kit-hero-btns {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.kit-hero-btn {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: bold;
+    padding: 14px 28px;
+    border-radius: 32px;
+    letter-spacing: 0.05em;
+    transition: opacity 0.2s, transform 0.15s;
+    text-align: center;
+    min-width: 160px;
+}
+
+.kit-hero-btn--a {
+    background-color: #30b9bf;
+}
+
+.kit-hero-btn--b {
+    background-color: #fe4c7f;
+}
+
+.kit-hero-btn-name {
+    font-size: 16px;
+    line-height: 1.3;
+}
+
+.kit-hero-btn-sub {
+    font-size: 11px;
+    font-weight: normal;
+    opacity: 0.9;
+    margin-top: 3px;
+}
+
+.kit-hero-btn:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+    color: #fff;
+}
+
+.kit-hero-img {
+    width: 260px;
+    flex-shrink: 0;
+}
+
+.kit-hero-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    object-fit: contain;
+}
+
+/* ===================================
+   セクション共通
+   =================================== */
+.kit-section-head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.kit-section-title {
+    font-size: 34px;
+    color: #516881;
+    margin: 10px 0 12px;
+    letter-spacing: 0.05em;
+}
+
+.kit-section-sub {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.9;
+    margin: 0;
+}
+
+.kit-inner {
+    max-width: 860px;
+    width: 100%;
+}
+
+/* ===================================
+   ② キット概要 (Overview)
+   =================================== */
+.kit-overview {
+    width: 100%;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    padding: 80px 20px;
+}
+
+.kit-meta-list {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1.5px solid #d9eaf4;
+}
+
+.kit-meta-row {
+    display: flex;
+    border-bottom: 1.5px solid #d9eaf4;
+}
+
+.kit-meta-row:last-child {
+    border-bottom: none;
+}
+
+.kit-meta-row dt {
+    width: 160px;
+    flex-shrink: 0;
+    background: #f0f9fe;
+    padding: 18px 24px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #516881;
+    display: flex;
+    align-items: center;
+}
+
+.kit-meta-row dd {
+    flex: 1;
+    padding: 18px 24px;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.9;
+}
+
+/* ===================================
+   ③ カリキュラム紹介 (Curriculum)
+   =================================== */
+.kit-curriculum {
+    width: 100%;
+    background: #9fd9f6;
+    display: flex;
+    justify-content: center;
+    padding: 80px 20px;
+}
+
+.kit-curriculum-inner {
+    max-width: 860px;
+    width: 100%;
+}
+
+.kit-curriculum-parts {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.kit-curriculum-part {
+    position: relative;
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px 36px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.kit-part-number {
+    position: absolute;
+    top: -12px;
+    left: 18px;
+    font-size: 100px;
+    font-weight: 900;
+    line-height: 1;
+    color: rgba(159, 217, 246, 0.28);
+    pointer-events: none;
+    user-select: none;
+}
+
+.kit-part-body {
+    position: relative;
+    z-index: 1;
+}
+
+.kit-part-badge {
+    display: inline-block;
+    background: #fe4c7f;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 12px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    letter-spacing: 0.05em;
+}
+
+.kit-part-title {
+    font-size: 19px;
+    font-weight: bold;
+    color: #1e3a5a;
+    margin: 0 0 12px;
+}
+
+.kit-part-text {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.9;
+    margin: 0;
+}
+
+.kit-part-note {
+    font-size: 12px;
+    color: #888;
+    margin: 10px 0 0;
+    padding-left: 1em;
+}
+
+.kit-curriculum-photos {
+    display: flex;
+    gap: 16px;
+    margin-top: 40px;
+}
+
+.kit-curriculum-photo {
+    flex: 1;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.kit-curriculum-photo img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.3s;
+    background: #f0f0f0;
+}
+
+.kit-curriculum-photo:hover img {
+    transform: scale(1.04);
+}
+
+@media (max-width: 600px) {
+    .kit-curriculum-photos {
+        flex-direction: column;
+    }
+    .kit-curriculum-photo img {
+        height: 220px;
+    }
+}
+
+/* ===================================
+   ④ 同梱物 (Contents)
+   =================================== */
+.kit-contents-section {
+    width: 100%;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    padding: 80px 20px;
+}
+
+.kit-contents-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.kit-contents-item {
+    display: flex;
+    gap: 20px;
+    padding: 24px 0;
+    border-bottom: 1px solid #e8f5fd;
+    align-items: flex-start;
+}
+
+.kit-contents-item:last-child {
+    border-bottom: none;
+}
+
+.kit-contents-item-head {
+    font-size: 16px;
+    font-weight: bold;
+    color: #516881;
+    margin: 0 0 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.kit-badge {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+
+.kit-badge.ab {
+    background: #30b9bf;
+    color: #fff;
+}
+
+.kit-badge.b-only {
+    background: #fe4c7f;
+    color: #fff;
+}
+
+.kit-contents-text {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.9;
+    margin: 0;
+}
+
+/* ===================================
+   ⑤ 比較表 (Compare)
+   =================================== */
+.kit-compare-section {
+    width: 100%;
+    background: #9fd9f6;
+    display: flex;
+    justify-content: center;
+    padding: 80px 20px;
+}
+
+.kit-compare-inner {
+    max-width: 860px;
+    width: 100%;
+}
+
+.kit-compare-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+}
+
+.kit-compare-table thead th {
+    padding: 20px 24px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+}
+
+.kit-compare-table thead th.col-item {
+    background: #516881;
+    text-align: left;
+    width: 40%;
+}
+
+.kit-compare-table thead th.col-a {
+    background: #30b9bf;
+}
+
+.kit-compare-table thead th.col-b {
+    background: #fe4c7f;
+}
+
+.kit-compare-table thead th .plan-label {
+    display: block;
+    font-size: 11px;
+    font-weight: normal;
+    opacity: 0.85;
+    margin-top: 4px;
+}
+
+.kit-compare-table tbody tr.cat-row td {
+    background: #e4f4fb;
+    font-size: 12px;
+    font-weight: bold;
+    color: #30b9bf;
+    letter-spacing: 0.1em;
+    padding: 9px 24px;
+}
+
+.kit-compare-table tbody td {
+    background: #fff;
+    padding: 16px 24px;
+    font-size: 13px;
+    color: #333;
+    border-bottom: 1px solid #e8f5fd;
+    vertical-align: top;
+    line-height: 1.7;
+}
+
+.kit-compare-table tbody td.col-item {
+    font-weight: bold;
+    color: #516881;
+    background: #f7fbfe;
+}
+
+.kit-compare-table tbody td.col-a,
+.kit-compare-table tbody td.col-b {
+    text-align: center;
+}
+
+.kit-compare-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.check { color: #30b9bf; font-size: 18px; font-weight: bold; }
+.cross { color: #ccc; font-size: 18px; }
+
+/* ===================================
+   ⑥ 申込みの流れ (Flow)
+   =================================== */
+.kit-flow {
+    width: 100%;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    padding: 80px 20px;
+}
+
+.kit-steps {
+    display: flex;
+    flex-direction: column;
+}
+
+.kit-step {
+    display: flex;
+    gap: 28px;
+    padding-bottom: 36px;
+    position: relative;
+}
+
+.kit-step:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 26px;
+    top: 54px;
+    bottom: 0;
+    width: 2px;
+    background: #d9eaf4;
+}
+
+.kit-step-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    flex-shrink: 0;
+    color: #fff;
+}
+
+.kit-step-icon.num   { background: #30b9bf; }
+.kit-step-icon.star  { background: #fe4c7f; font-size: 22px; }
+.kit-step-icon.opt   { background: #9fd9f6; color: #516881; font-size: 13px; font-weight: bold; }
+
+.kit-step-body {
+    flex: 1;
+    padding-top: 10px;
+}
+
+.kit-step-head {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.kit-step-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1e3a5a;
+    margin: 0;
+}
+
+.kit-step-badge {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.kit-step-badge.ab     { background: #30b9bf; color: #fff; }
+.kit-step-badge.b-only { background: #fe4c7f; color: #fff; }
+
+.kit-step-duration {
+    font-size: 12px;
+    color: #30b9bf;
+    font-weight: bold;
+    margin: 0 0 6px;
+}
+
+.kit-step-text {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.9;
+    margin: 0;
+}
+
+/* ===================================
+   ⑦ CTA・申込み (Apply)
+   =================================== */
+.kit-apply {
+    width: 100%;
+    background-color: #9fd9f6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px 20px 100px;
+}
+
+.kit-apply-inner {
+    max-width: 640px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.kit-apply-title {
+    font-size: 36px;
+    color: #516881;
+    margin: 10px 0 24px;
+    letter-spacing: 0.05em;
+}
+
+.kit-apply-text {
+    font-size: 15px;
+    color: #516881;
+    line-height: 2;
+    margin: 0 0 40px;
+}
+
+.kit-apply-btns {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.kit-apply-btn {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: bold;
+    padding: 14px 28px;
+    border-radius: 32px;
+    letter-spacing: 0.05em;
+    transition: opacity 0.2s, transform 0.15s;
+    text-align: center;
+    min-width: 160px;
+}
+
+.kit-apply-btn--a {
+    background-color: #30b9bf;
+}
+
+.kit-apply-btn--b {
+    background-color: #fe4c7f;
+}
+
+.kit-apply-btn img {
+    display: none;
+}
+
+.kit-apply-btn-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.kit-apply-btn-name {
+    font-size: 16px;
+    line-height: 1.3;
+}
+
+.kit-apply-btn-sub {
+    font-size: 11px;
+    font-weight: normal;
+    opacity: 0.9;
+    margin-top: 3px;
+}
+
+.kit-apply-btn:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+    color: #fff;
+}
+
+/* ===================================
+   ⑦ CTA おすすめポイント (Points)
+   =================================== */
+.kit-points {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+    margin-top: 72px;
+}
+
+.kit-point-card {
+    background: #fffef0;
+    border: 2px solid #f9d84a;
+    border-top: 5px solid #f9c41a;
+    border-radius: 16px;
+    padding: 32px 28px;
+    box-shadow: 0 6px 20px rgba(249, 196, 26, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    text-align: left;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.kit-point-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(249, 196, 26, 0.25);
+}
+
+.kit-point-label {
+    display: inline-block;
+    background: #f9c41a;
+    color: #1e3a5a;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 0.15em;
+    padding: 4px 14px;
+    border-radius: 20px;
+    align-self: flex-start;
+}
+
+.kit-point-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #1e3a5a;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.kit-point-text {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.9;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .kit-points {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>CocoSalon｜NPOナタデココ</title>
+    <meta name="description" content="CocoSalonは、オンラインで国際交流を楽しめるナタデココのサロンです。毎月さまざまなテーマで外国人と交流できます。">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="img/favicon.ico.png">
+    <link rel="apple-touch-icon" href="img/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress/min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cocosalon.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+</head>
+
+<body>
+    <div id="splash">
+        <div id="splash-logo">
+            <img src="img/loding.logo.png" alt="" class="fadeUp">
+        </div>
+    </div>
+
+    <header id="header">
+        <div class="top-navi">
+            <ul class="top-navi-list">
+                <li>For Foreigner</li>
+                <li><a href="faq.html">よくある質問</a></li>
+                <li>法人・団体の方へ</li>
+                <li>報道関係の方へ</li>
+            </ul>
+        </div>
+
+        <div class="header-main">
+            <h1 class="logo">
+                <a href="index.html">
+                    <img src="img/logo.svg" alt="NPOナタデココ">
+                </a>
+            </h1>
+
+            <div class="header-right">
+                <nav class="bottom-navi">
+                    <ul class="bottom-navi-list">
+                        <li class="li-top li-about">
+                            <a href="about.html">
+                                <img src="img/mayu.logo.svg" alt="">
+                                <span class="text-overlay">▷ナタデココについて</span>
+                            </a>
+                        </li>
+                        <li class="li-top li-activity li-activity--active">
+                            <a href="">
+                                <img src="img/dice.logo.svg" alt="">
+                                <span class="text-overlay">▷活動紹介</span>
+                            </a>
+                        </li>
+                        <li class="li-top li-strengh">
+                            <a href="strengths.html">
+                                <img src="img/light.logo.svg" alt="">
+                                <span class="text-overlay">▷５つの強み</span>
+                            </a>
+                        </li>
+                        <li class="li-top li-volunteer">
+                            <a href="volunteer.html">
+                                <img src="img/hands.logo.svg" alt="">
+                                <span class="text-overlay">▷ボランティア</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="header-btn-wrap">
+                    <a href="event.html">
+                        <div class="btn-event">
+                            <span class="event-info">子ども向け<br>イベント情報</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+
+        <!-- ① ヒーロー／CocoSalon概要（水色） -->
+        <section class="cs-hero">
+            <div class="cs-hero-inner">
+                <img src="img/dice.logo.svg" alt="" class="cs-hero-icon">
+                <div class="cs-hero-text">
+                    <p class="cs-hero-en">ONLINE COCOSALON</p>
+                    <h2 class="cs-hero-title">CocoSalon</h2>
+                    <p class="cs-hero-sub">オンラインで国際交流を楽しむ、ここだけのサロン。<br>画面越しに世界と出会う、特別なひとときをお届けします。</p>
+                </div>
+                <div class="cs-hero-overview">
+                    <div class="cs-overview-card">
+                        <div class="cs-overview-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#30b9bf" width="36" height="36"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+                        </div>
+                        <p class="cs-overview-label">毎月開催</p>
+                    </div>
+                    <div class="cs-overview-card">
+                        <div class="cs-overview-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#30b9bf" width="36" height="36"><path d="M20 18h-2V8l-6-6H6c-1.1 0-2 .9-2 2v14H2v2h20v-2zm-8-12.5L17.5 11H12V5.5z"/></svg>
+                        </div>
+                        <p class="cs-overview-label">完全オンライン</p>
+                    </div>
+                    <div class="cs-overview-card">
+                        <div class="cs-overview-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#30b9bf" width="36" height="36"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                        </div>
+                        <p class="cs-overview-label">少人数制</p>
+                    </div>
+                    <div class="cs-overview-card">
+                        <div class="cs-overview-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#30b9bf" width="36" height="36"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                        </div>
+                        <p class="cs-overview-label">外国語不要</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 水色 → 白 -->
+        <div class="wave-divider" style="background-color: #9fd9f6;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path fill="#fff" fill-opacity="0.3" d="M0,55 C240,95 480,15 720,55 C960,95 1200,15 1440,55 L1440,120 L0,120 Z"/>
+                <path fill="#fff" fill-opacity="0.6" d="M0,70 C200,105 440,30 680,70 C920,100 1160,35 1440,70 L1440,120 L0,120 Z"/>
+                <path fill="#fff" d="M0,85 C160,108 380,55 600,82 C820,105 1040,56 1260,80 C1360,90 1410,68 1440,85 L1440,120 L0,120 Z"/>
+            </svg>
+        </div>
+
+        <!-- ② Salonの活動紹介（白） -->
+        <section class="cs-about">
+            <div class="cs-about-inner">
+                <div class="cs-section-head">
+                    <img src="img/mayu.svg" alt="" class="section-icon">
+                    <h2 class="cs-section-title">Salonの活動紹介</h2>
+                    <p class="cs-section-sub">CocoSalonでは毎月テーマを変えながら、楽しく学べるプログラムをお届けしています。</p>
+                </div>
+
+                <!-- 対象 -->
+                <div class="cs-about-block">
+                    <div class="cs-block-label">
+                        <span class="cs-block-num">01</span>
+                        <h3 class="cs-block-title">対象</h3>
+                    </div>
+                    <div class="cs-target-grid">
+                        <div class="cs-target-card">
+                            <div class="cs-target-icon" style="background-color: #fe4c7f;">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" width="30" height="30"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                            </div>
+                            <p class="cs-target-name">小学生〜中学生</p>
+                            <p class="cs-target-desc">英語力・海外経験一切不要。好奇心だけで参加できます。</p>
+                        </div>
+                        <div class="cs-target-card">
+                            <div class="cs-target-icon" style="background-color: #30b9bf;">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" width="30" height="30"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                            </div>
+                            <p class="cs-target-name">保護者も参加OK</p>
+                            <p class="cs-target-desc">お子さまと一緒に楽しめます。親子での参加も大歓迎。</p>
+                        </div>
+                        <div class="cs-target-card">
+                            <div class="cs-target-icon" style="background-color: #f87a6d;">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" width="30" height="30"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/></svg>
+                            </div>
+                            <p class="cs-target-name">国際交流が初めての方</p>
+                            <p class="cs-target-desc">初めての外国人との交流も、スタッフがしっかりサポートします。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- アクティビティ -->
+                <div class="cs-about-block">
+                    <div class="cs-block-label">
+                        <span class="cs-block-num">02</span>
+                        <h3 class="cs-block-title">アクティビティ</h3>
+                    </div>
+                    <div class="cs-activity-grid">
+                        <div class="cs-activity-item">
+                            <div class="cs-activity-icon-wrap">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#516881" width="32" height="32"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+                            </div>
+                            <h4 class="cs-activity-name">フリートーク</h4>
+                            <p class="cs-activity-desc">外国人スタッフと自由な話題でおしゃべり。身振り手振りで通じ合う楽しさを体験。</p>
+                        </div>
+                        <div class="cs-activity-item">
+                            <div class="cs-activity-icon-wrap">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#516881" width="32" height="32"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
+                            </div>
+                            <h4 class="cs-activity-name">文化体験セッション</h4>
+                            <p class="cs-activity-desc">各国の音楽・料理・行事など、テーマに沿った文化を一緒に学びます。</p>
+                        </div>
+                        <div class="cs-activity-item">
+                            <div class="cs-activity-icon-wrap">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#516881" width="32" height="32"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                            </div>
+                            <h4 class="cs-activity-name">クイズ＆ゲーム</h4>
+                            <p class="cs-activity-desc">世界の文化にまつわるクイズやゲームで、笑いながら楽しく国際理解。</p>
+                        </div>
+                        <div class="cs-activity-item">
+                            <div class="cs-activity-icon-wrap">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#516881" width="32" height="32"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                            </div>
+                            <h4 class="cs-activity-name">オンライン世界旅行</h4>
+                            <p class="cs-activity-desc">毎回違う国の文化・言語・食べ物を紹介。画面越しに世界を旅する感覚を。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 料金 -->
+                <div class="cs-about-block">
+                    <div class="cs-block-label">
+                        <span class="cs-block-num">03</span>
+                        <h3 class="cs-block-title">料金</h3>
+                    </div>
+                    <div class="cs-price-table-wrap">
+                        <table class="cs-price-table">
+                            <thead>
+                                <tr>
+                                    <th>プラン</th>
+                                    <th>内容</th>
+                                    <th>料金</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="cs-plan-name">単発参加</td>
+                                    <td>1回のみの参加。気軽にお試しください。</td>
+                                    <td class="cs-plan-price">¥〇〇〇〇<span class="cs-plan-unit"> / 回</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="cs-plan-name">月額プラン</td>
+                                    <td>月に〇回まで参加可能。継続して楽しめます。</td>
+                                    <td class="cs-plan-price">¥〇〇〇〇<span class="cs-plan-unit"> / 月</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="cs-plan-name">ファミリープラン</td>
+                                    <td>保護者＋お子さま1名で参加。親子でお得に。</td>
+                                    <td class="cs-plan-price">¥〇〇〇〇<span class="cs-plan-unit"> / 月</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p class="cs-price-note">※ 料金は予告なく変更となる場合があります。最新情報はお申し込みページをご確認ください。</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 白 → 水色 -->
+        <div class="wave-divider" style="background-color: #fff;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path fill="#9fd9f6" fill-opacity="0.3" d="M0,58 C220,18 460,98 700,58 C940,18 1180,98 1440,58 L1440,120 L0,120 Z"/>
+                <path fill="#9fd9f6" fill-opacity="0.6" d="M0,72 C180,32 420,108 660,72 C900,36 1140,108 1440,72 L1440,120 L0,120 Z"/>
+                <path fill="#9fd9f6" d="M0,88 C140,60 360,110 580,84 C800,58 1020,108 1240,82 C1350,70 1410,92 1440,88 L1440,120 L0,120 Z"/>
+            </svg>
+        </div>
+
+        <!-- ③ 過去の活動紹介（水色） -->
+        <section class="cs-history">
+            <div class="cs-history-inner">
+                <div class="cs-section-head">
+                    <img src="img/mayu.svg" alt="" class="section-icon">
+                    <h2 class="cs-section-title">過去の活動紹介</h2>
+                    <p class="cs-section-sub">これまでに開催したセッションをご紹介します。</p>
+                </div>
+
+                <div class="cs-history-grid">
+                    <div class="cs-history-card">
+                        <div class="cs-history-badge" style="background-color: #fe4c7f;">2026.01</div>
+                        <div class="cs-history-img-placeholder" style="background-color: #fce4ec;">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fe4c7f" width="48" height="48"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/></svg>
+                        </div>
+                        <div class="cs-history-body">
+                            <p class="cs-history-theme">テーマ：インドのお正月</p>
+                            <h3 class="cs-history-title">インドの新年をオンラインで体験！</h3>
+                            <p class="cs-history-desc">インド出身のスタッフが「ポンガル」の伝統行事を紹介。子どもたちが映像や実物を見ながら熱心に質問しました。</p>
+                        </div>
+                    </div>
+                    <div class="cs-history-card">
+                        <div class="cs-history-badge" style="background-color: #30b9bf;">2025.12</div>
+                        <div class="cs-history-img-placeholder" style="background-color: #e0f7fa;">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#30b9bf" width="48" height="48"><path d="M11.5 2C6.81 2 3 5.81 3 10.5S6.81 19 11.5 19h.5v3c4.86-2.34 8-7 8-11.5C20 5.81 16.19 2 11.5 2zm1 14.5h-2v-2h2v2zm0-4h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2h-2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg>
+                        </div>
+                        <div class="cs-history-body">
+                            <p class="cs-history-theme">テーマ：世界のクリスマス</p>
+                            <h3 class="cs-history-title">世界6カ国のクリスマスを比べてみた</h3>
+                            <p class="cs-history-desc">アメリカ・フランス・フィリピン・ケニアなど、国によって違うクリスマスの様子を各国のスタッフが紹介しました。</p>
+                        </div>
+                    </div>
+                    <div class="cs-history-card">
+                        <div class="cs-history-badge" style="background-color: #f87a6d;">2025.11</div>
+                        <div class="cs-history-img-placeholder" style="background-color: #fbe9e7;">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#f87a6d" width="48" height="48"><path d="M18.06 22.99h1.66c.84 0 1.53-.64 1.63-1.46L23 5.05h-5V1h-1.97v4.05h-4.97l.3 2.34c1.71.47 3.31 1.32 4.27 2.26 1.44 1.42 2.43 2.89 2.43 5.29v8.05zM1 21.99V21h15.03v.99c0 .55-.45 1-1.01 1H2.01c-.56 0-1.01-.45-1.01-1zm15.03-7c0-8.17-15.03-8.17-15.03 0h15.03zM1.02 17h15v2h-15z"/></svg>
+                        </div>
+                        <div class="cs-history-body">
+                            <p class="cs-history-theme">テーマ：世界の食文化</p>
+                            <h3 class="cs-history-title">世界のごはん大集合！食べ物クイズ大会</h3>
+                            <p class="cs-history-desc">各国の料理を写真で紹介しながら、どの国の料理かを当てるクイズ大会を実施。大いに盛り上がりました。</p>
+                        </div>
+                    </div>
+                    <div class="cs-history-card">
+                        <div class="cs-history-badge" style="background-color: #516881;">2025.10</div>
+                        <div class="cs-history-img-placeholder" style="background-color: #eceff1;">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#516881" width="48" height="48"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
+                        </div>
+                        <div class="cs-history-body">
+                            <p class="cs-history-theme">テーマ：学校生活の違い</p>
+                            <h3 class="cs-history-title">世界の学校ってどんな感じ？</h3>
+                            <p class="cs-history-desc">アジア・アフリカ・ヨーロッパの学校の様子を比較。制服・給食・放課後の過ごし方などが話題になりました。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 水色 → 白 -->
+        <div class="wave-divider" style="background-color: #9fd9f6;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path fill="#fff" fill-opacity="0.3" d="M0,55 C240,95 480,15 720,55 C960,95 1200,15 1440,55 L1440,120 L0,120 Z"/>
+                <path fill="#fff" fill-opacity="0.6" d="M0,70 C200,105 440,30 680,70 C920,100 1160,35 1440,70 L1440,120 L0,120 Z"/>
+                <path fill="#fff" d="M0,85 C160,108 380,55 600,82 C820,105 1040,56 1260,80 C1360,90 1410,68 1440,85 L1440,120 L0,120 Z"/>
+            </svg>
+        </div>
+
+        <!-- ④ 参加者の声（白） -->
+        <section class="cs-voice">
+            <div class="cs-voice-inner">
+                <div class="cs-section-head">
+                    <img src="img/mayu.svg" alt="" class="section-icon">
+                    <h2 class="cs-section-title">参加者の声</h2>
+                    <p class="cs-section-sub">CocoSalonに参加した方々からのリアルな声をご紹介します。</p>
+                </div>
+
+                <div class="cs-voice-grid">
+                    <div class="cs-voice-card">
+                        <div class="cs-voice-header">
+                            <div class="cs-voice-avatar" style="background-color: #fe4c7f;">A</div>
+                            <div class="cs-voice-info">
+                                <p class="cs-voice-name">Aさん（小学5年生）</p>
+                                <p class="cs-voice-meta">参加3回目</p>
+                            </div>
+                        </div>
+                        <p class="cs-voice-quote">「外国の人と話すのはドキドキしたけど、楽しかった！クイズで1位になれて嬉しかった。また参加したいです！」</p>
+                    </div>
+                    <div class="cs-voice-card">
+                        <div class="cs-voice-header">
+                            <div class="cs-voice-avatar" style="background-color: #30b9bf;">B</div>
+                            <div class="cs-voice-info">
+                                <p class="cs-voice-name">Bさんの保護者</p>
+                                <p class="cs-voice-meta">子ども（中学1年）と参加</p>
+                            </div>
+                        </div>
+                        <p class="cs-voice-quote">「子どもが自分から積極的に発言していて驚きました。英語が苦手でも楽しめる工夫がされていて、親としても安心でした。」</p>
+                    </div>
+                    <div class="cs-voice-card">
+                        <div class="cs-voice-header">
+                            <div class="cs-voice-avatar" style="background-color: #f87a6d;">C</div>
+                            <div class="cs-voice-info">
+                                <p class="cs-voice-name">Cさん（小学3年生）</p>
+                                <p class="cs-voice-meta">参加6回目</p>
+                            </div>
+                        </div>
+                        <p class="cs-voice-quote">「世界に友だちができた気分！毎月テーマが変わるからいつも楽しみにしてる。世界のごはん回が一番好きだった。」</p>
+                    </div>
+                    <div class="cs-voice-card">
+                        <div class="cs-voice-header">
+                            <div class="cs-voice-avatar" style="background-color: #516881;">D</div>
+                            <div class="cs-voice-info">
+                                <p class="cs-voice-name">Dさんの保護者</p>
+                                <p class="cs-voice-meta">親子で参加・継続中</p>
+                            </div>
+                        </div>
+                        <p class="cs-voice-quote">「自宅から参加できるので送り迎えが不要で助かります。子どもが終わった後に『今日はこんな話をしたよ』と教えてくれるのが楽しみです。」</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 白 → 水色 -->
+        <div class="wave-divider" style="background-color: #fff;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path fill="#9fd9f6" fill-opacity="0.3" d="M0,55 C240,15 480,95 720,55 C960,15 1200,95 1440,55 L1440,120 L0,120 Z"/>
+                <path fill="#9fd9f6" fill-opacity="0.6" d="M0,70 C200,30 440,105 680,70 C920,35 1160,100 1440,70 L1440,120 L0,120 Z"/>
+                <path fill="#9fd9f6" d="M0,85 C160,55 380,108 600,82 C820,56 1040,105 1260,80 C1360,68 1410,90 1440,85 L1440,120 L0,120 Z"/>
+            </svg>
+        </div>
+
+        <!-- ⑤ 申し込みリンク（水色） -->
+        <section class="cs-apply">
+            <div class="cs-apply-inner">
+                <img src="img/mayu.svg" alt="" class="section-icon">
+                <h2 class="cs-apply-title">CocoSalonに参加しよう！</h2>
+                <p class="cs-apply-text">
+                    次回の開催は <strong>〇月〇日（〇）〇〇:〇〇〜〇〇:〇〇</strong> です。<br>
+                    定員になり次第、締め切りとなりますのでお早めにお申し込みください。
+                </p>
+
+                <div class="cs-apply-steps">
+                    <div class="cs-apply-step">
+                        <div class="cs-apply-step-num">STEP 1</div>
+                        <p>下のボタンから申し込みフォームへ</p>
+                    </div>
+                    <div class="cs-apply-arrow">▶</div>
+                    <div class="cs-apply-step">
+                        <div class="cs-apply-step-num">STEP 2</div>
+                        <p>必要事項を入力して送信</p>
+                    </div>
+                    <div class="cs-apply-arrow">▶</div>
+                    <div class="cs-apply-step">
+                        <div class="cs-apply-step-num">STEP 3</div>
+                        <p>確認メールを受け取ったら完了！</p>
+                    </div>
+                </div>
+
+                <a href="" class="cs-apply-btn">
+                    <img src="img/mayu-one.svg" alt="">
+                    <span>申し込みはこちら</span>
+                </a>
+
+                <p class="cs-apply-note">
+                    ご不明な点は<a href="index.html#contact">お問い合わせ</a>よりお気軽にご連絡ください。
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 水色 → フッター紺 -->
+    <div class="wave-divider" style="background-color: #9fd9f6;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+            <path fill="#516881" fill-opacity="0.3" d="M0,55 C240,15 480,95 720,55 C960,15 1200,95 1440,55 L1440,120 L0,120 Z"/>
+            <path fill="#516881" fill-opacity="0.6" d="M0,70 C200,30 440,105 680,70 C920,35 1160,100 1440,70 L1440,120 L0,120 Z"/>
+            <path fill="#516881" d="M0,85 C160,55 380,108 600,82 C820,56 1040,105 1260,80 C1360,68 1410,90 1440,85 L1440,120 L0,120 Z"/>
+        </svg>
+    </div>
+
+    <footer id="footer">
+        <div class="footer-inner">
+
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <a href="index.html">
+                        <img src="img/logo.svg" alt="NPOナタデココ">
+                    </a>
+                </div>
+                <nav class="footer-nav">
+                    <ul class="footer-nav-list">
+                        <li><a href="about.html">ナタデココについて</a></li>
+                        <li><a href="activities.html">活動紹介</a></li>
+                        <li><a href="">５つの強み</a></li>
+                        <li><a href="volunteer.html">ボランティア</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="footer-sns">
+                <a href="" class="sns-link" aria-label="Twitter / X">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+                <a href="" class="sns-link" aria-label="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                    </svg>
+                </a>
+                <a href="" class="sns-link" aria-label="Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="footer-copy">
+                <p>© 2026 NPOナタデココ All Rights Reserved.</p>
+            </div>
+
+        </div>
+    </footer>
+
+</body>
+</html>

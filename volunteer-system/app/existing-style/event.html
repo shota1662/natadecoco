@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>イベント情報｜NPOナタデココ</title>
+    <meta name="description" content="NPOナタデココが主催する子ども向けイベント情報をご紹介します。国際交流・文化体験など、ここだけの原体験を届けます。">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="img/favicon.ico.png">
+    <link rel="apple-touch-icon" href="img/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress/min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/event.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+</head>
+
+<body>
+    <div id="splash">
+        <div id="splash-logo">
+            <img src="img/loding.logo.png" alt="" class="fadeUp">
+        </div>
+    </div>
+
+    <header id="header">
+        <div class="top-navi">
+            <ul class="top-navi-list">
+                <li>For Foreigner</li>
+                <li><a href="faq.html">よくある質問</a></li>
+                <li>法人・団体の方へ</li>
+                <li>報道関係の方へ</li>
+            </ul>
+        </div>
+
+        <div class="header-main">
+            <h1 class="logo">
+                <a href="index.html">
+                    <img src="img/logo.svg" alt="NPOナタデココ">
+                </a>
+            </h1>
+
+            <div class="header-right">
+                <nav class="bottom-navi">
+                    <ul class="bottom-navi-list">
+                        <li class="li-top li-about">
+                            <a href="">
+                                <img src="img/mayu.logo.svg" alt="">
+                                <span class="text-overlay">▷ナタデココについて</span>
+                            </a>
+                        </li>
+                        <li class="li-top li-activity">
+                            <a href="activities.html">
+                                <img src="img/dice.logo.svg" alt="">
+                                <span class="text-overlay">▷活動紹介</span>
+                            </a>
+                        </li>
+                        <li class="li-top li-strengh">
+                            <a href="strengths.html">
+                                <img src="img/light.logo.svg" alt="">
+                                <span class="text-overlay">▷５つの強み</span>
+                            </a>
+                        </li>
+                        <li class="li-top li-volunteer">
+                            <a href="">
+                                <img src="img/hands.logo.svg" alt="">
+                                <span class="text-overlay">▷ボランティア</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="header-btn-wrap">
+                    <a href="event.html">
+                        <div class="btn-event btn-event--active">
+                            <span class="event-info">子ども向け<br>イベント情報</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+
+        <!-- ヒーローセクション -->
+        <section class="event-hero">
+            <div class="event-hero-inner">
+                <img src="img/mayu.svg" alt="" class="event-hero-icon">
+                <div class="event-hero-text">
+                    <p class="event-hero-en">EVENTS</p>
+                    <h2 class="event-hero-title">子ども向けイベント情報</h2>
+                    <p class="event-hero-sub">世界と出会う、ここだけの体験。<br>ナタデココのイベントに参加しよう！</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 水色 → 白 -->
+        <div class="wave-divider" style="background-color: #9fd9f6;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path fill="#fff" fill-opacity="0.3" d="M0,55 C240,95 480,15 720,55 C960,95 1200,15 1440,55 L1440,120 L0,120 Z"/>
+                <path fill="#fff" fill-opacity="0.6" d="M0,70 C200,105 440,30 680,70 C920,100 1160,35 1440,70 L1440,120 L0,120 Z"/>
+                <path fill="#fff" d="M0,85 C160,108 380,55 600,82 C820,105 1040,56 1260,80 C1360,90 1410,68 1440,85 L1440,120 L0,120 Z"/>
+            </svg>
+        </div>
+
+        <!-- イベント一覧セクション -->
+        <section class="event-list-section">
+
+            <!-- カテゴリフィルター -->
+            <div class="event-filter">
+                <button class="filter-btn filter-btn--active" data-cat="all">すべて</button>
+                <button class="filter-btn" data-cat="workshop">ワークショップ</button>
+                <button class="filter-btn" data-cat="exchange">文化交流</button>
+                <button class="filter-btn" data-cat="online">オンライン</button>
+                <button class="filter-btn" data-cat="story">お話し会</button>
+            </div>
+
+            <!-- イベントカードグリッド -->
+            <div class="event-grid">
+
+                <!-- Card 1 -->
+                <article class="event-card" data-cat="story">
+                    <div class="event-card-thumb">
+                        <img src="img/class-photo.jpg" alt="世界のおはなし会">
+                        <span class="event-cat-badge badge-story">お話し会</span>
+                        <div class="event-date-badge">
+                            <span class="edb-month">3月</span>
+                            <span class="edb-day">15</span>
+                            <span class="edb-week">土</span>
+                        </div>
+                    </div>
+                    <div class="event-card-body">
+                        <h3 class="event-card-title">世界のおはなし会</h3>
+                        <p class="event-card-location">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                            葛飾区文化センター
+                        </p>
+                        <p class="event-card-desc">世界中の絵本や民話を外国人スタッフが読み聞かせ。異文化の世界観に親しみましょう。対象：3〜8歳</p>
+                        <a href="event-detail.html" class="event-card-btn">
+                            <img src="img/mayu-one.svg" alt="">
+                            <span>詳しくはこちら</span>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="event-card" data-cat="workshop">
+                    <div class="event-card-thumb">
+                        <img src="img/class-photo.jpg" alt="国際交流体験クラス">
+                        <span class="event-cat-badge badge-workshop">ワークショップ</span>
+                        <div class="event-date-badge">
+                            <span class="edb-month">3月</span>
+                            <span class="edb-day">22</span>
+                            <span class="edb-week">土</span>
+                        </div>
+                    </div>
+                    <div class="event-card-body">
+                        <h3 class="event-card-title">国際交流体験クラス</h3>
+                        <p class="event-card-location">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                            渋谷区青少年センター
+                        </p>
+                        <p class="event-card-desc">外国人スタッフと一緒にゲームや工作を楽しむ体験型プログラム。英語力・海外経験一切不要！対象：小学生</p>
+                        <a href="" class="event-card-btn">
+                            <img src="img/mayu-one.svg" alt="">
+                            <span>詳しくはこちら</span>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="event-card" data-cat="online">
+                    <div class="event-card-thumb">
+                        <img src="img/class-photo.jpg" alt="オンライン文化交流サロン">
+                        <span class="event-cat-badge badge-online">オンライン</span>
+                        <div class="event-date-badge">
+                            <span class="edb-month">3月</span>
+                            <span class="edb-day">28</span>
+                            <span class="edb-week">金</span>
+                        </div>
+                    </div>
+                    <div class="event-card-body">
+                        <h3 class="event-card-title">オンライン文化交流サロン</h3>
+                        <p class="event-card-location">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M20 18h-2V8l-6-6H6c-1.1 0-2 .9-2 2v14H2v2h20v-2zM8 9H7V7h1v2zm0 4H7v-2h1v2zm0 4H7v-2h1v2zm5-8h-4V4.5L14.5 9H13z"/></svg>
+                            オンライン（Zoom）
+                        </p>
+                        <p class="event-card-desc">画面越しに世界と繋がろう！CocoSalonのオンライン体験版。自宅から参加できます。対象：小学生〜中学生</p>
+                        <a href="" class="event-card-btn">
+                            <img src="img/mayu-one.svg" alt="">
+                            <span>詳しくはこちら</span>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Card 4 -->
+                <article class="event-card" data-cat="workshop">
+                    <div class="event-card-thumb">
+                        <img src="img/class-photo.jpg" alt="世界の料理を作ろう！">
+                        <span class="event-cat-badge badge-workshop">ワークショップ</span>
+                        <div class="event-date-badge">
+                            <span class="edb-month">4月</span>
+                            <span class="edb-day">5</span>
+                            <span class="edb-week">日</span>
+                        </div>
+                    </div>
+                    <div class="event-card-body">
+                        <h3 class="event-card-title">世界の料理を作ろう！</h3>
+                        <p class="event-card-location">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                            板橋区コミュニティ調理室
+                        </p>
+                        <p class="event-card-desc">外国人スタッフと一緒に各国の料理を作って食べよう！食を通じて異文化を体験します。対象：小学生（保護者同伴可）</p>
+                        <a href="" class="event-card-btn">
+                            <img src="img/mayu-one.svg" alt="">
+                            <span>詳しくはこちら</span>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Card 5 -->
+                <article class="event-card" data-cat="exchange">
+                    <div class="event-card-thumb">
+                        <img src="img/class-photo.jpg" alt="外国語で遊ぼう！">
+                        <span class="event-cat-badge badge-exchange">文化交流</span>
+                        <div class="event-date-badge">
+                            <span class="edb-month">4月</span>
+                            <span class="edb-day">12</span>
+                            <span class="edb-week">土</span>
+                        </div>
+                    </div>
+                    <div class="event-card-body">
+                        <h3 class="event-card-title">外国語で遊ぼう！</h3>
+                        <p class="event-card-location">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                            足立区コミュニティセンター
+                        </p>
+                        <p class="event-card-desc">歌・ダンス・ゲームを通じて外国語に自然に触れるプログラム。楽しみながら世界の言葉を感じよう。対象：4〜10歳</p>
+                        <a href="" class="event-card-btn">
+                            <img src="img/mayu-one.svg" alt="">
+                            <span>詳しくはこちら</span>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Card 6 -->
+                <article class="event-card" data-cat="exchange">
+                    <div class="event-card-thumb">
+                        <img src="img/class-photo.jpg" alt="春の国際交流パーティー">
+                        <span class="event-cat-badge badge-exchange">文化交流</span>
+                        <div class="event-date-badge">
+                            <span class="edb-month">4月</span>
+                            <span class="edb-day">19</span>
+                            <span class="edb-week">土</span>
+                        </div>
+                    </div>
+                    <div class="event-card-body">
+                        <h3 class="event-card-title">春の国際交流パーティー</h3>
+                        <p class="event-card-location">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                            NPOナタデココ事務所
+                        </p>
+                        <p class="event-card-desc">春のお祝いを世界のお友達と一緒に。各国の遊び・音楽・おやつで賑やかに交流しましょう！対象：全年齢</p>
+                        <a href="" class="event-card-btn">
+                            <img src="img/mayu-one.svg" alt="">
+                            <span>詳しくはこちら</span>
+                        </a>
+                    </div>
+                </article>
+
+            </div><!-- /.event-grid -->
+
+            <!-- もっと見るボタン -->
+            <div class="btn-area">
+                <a href="">
+                    <div class="btn-more-info">
+                        <img src="img/mayu-one.svg" alt="">
+                        <span class="btn-letter">もっと見る</span>
+                    </div>
+                </a>
+            </div>
+
+        </section><!-- /.event-list-section -->
+
+    </main>
+
+    <!-- 白 → フッター紺 -->
+    <div class="wave-divider" style="background-color: #fff;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+            <path fill="#516881" fill-opacity="0.3" d="M0,55 C240,15 480,95 720,55 C960,15 1200,95 1440,55 L1440,120 L0,120 Z"/>
+            <path fill="#516881" fill-opacity="0.6" d="M0,70 C200,30 440,105 680,70 C920,35 1160,100 1440,70 L1440,120 L0,120 Z"/>
+            <path fill="#516881" d="M0,85 C160,55 380,108 600,82 C820,56 1040,105 1260,80 C1360,68 1410,90 1440,85 L1440,120 L0,120 Z"/>
+        </svg>
+    </div>
+
+    <footer id="footer">
+        <div class="footer-inner">
+
+            <!-- 上段：ロゴ＋ナビゲーション -->
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <a href="index.html">
+                        <img src="img/logo.svg" alt="NPOナタデココ">
+                    </a>
+                </div>
+                <nav class="footer-nav">
+                    <ul class="footer-nav-list">
+                        <li><a href="">ナタデココについて</a></li>
+                        <li><a href="activities.html">活動紹介</a></li>
+                        <li><a href="">５つの強み</a></li>
+                        <li><a href="">ボランティア</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- 中段：SNSアイコン -->
+            <div class="footer-sns">
+                <a href="" class="sns-link" aria-label="Twitter / X">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+                <a href="" class="sns-link" aria-label="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                    </svg>
+                </a>
+                <a href="" class="sns-link" aria-label="Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- 下段：コピーライト -->
+            <div class="footer-copy">
+                <p>© 2026 NPOナタデココ All Rights Reserved.</p>
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        // カテゴリフィルター
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const eventCards = document.querySelectorAll('.event-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('filter-btn--active'));
+                btn.classList.add('filter-btn--active');
+
+                const cat = btn.dataset.cat;
+                eventCards.forEach(card => {
+                    if (cat === 'all' || card.dataset.cat === cat) {
+                        card.style.display = 'flex';
+                        card.style.opacity = '0';
+                        setTimeout(() => { card.style.opacity = '1'; }, 10);
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

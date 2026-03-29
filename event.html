@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>イベント情報｜NPOナタデココ</title>
+    <meta name="description" content="NPOナタデココが主催する子ども向けイベント情報をご紹介します。国際交流・文化体験など、ここだけの原体験を届けます。">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="img/favicon.ico.png">
+    <link rel="apple-touch-icon" href="img/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress/min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/event.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+</head>
+
+<body>
+    <div id="splash">
+        <div id="splash-logo">
+            <img src="img/loding.logo.png" alt="" class="fadeUp">
+        </div>
+    </div>
+
+    <header id="header">
+    <div class="header-inner">
+        <div class="header-logo">
+            <h1 class="logo">
+                <a href="index.html">
+                    <img src="img/logo.svg" alt="NPOナタデココ">
+                </a>
+            </h1>
+        </div>
+
+        <div class="header-nav-wrap">
+            <div class="header-top-nav">
+                <ul class="top-nav-list">
+                    <li><a href="foreigner.html">Foreigner</a></li>
+                    <li><a href="faq.html">よくある質問</a></li>
+                    <li><a href="">学校・自治体のみなさまへ</a></li>
+                    <li><a href="contact.html">お問い合わせ</a></li>
+                </ul>
+            </div>
+            <nav class="header-bottom-nav">
+                <ul class="bottom-nav-list">
+                    <li class="has-dropdown">
+                        <a href="about.html">ナタデココとは</a>
+                        <div class="mega-menu">
+                            <a href="about.html" class="mega-item">
+                                <div class="mega-img"><img src="img/charactor/1.jpg" alt=""></div>
+                                <div class="mega-body">
+                                    <span class="mega-title">団体概要</span>
+                                    <span class="mega-desc">NPOナタデココの成り立ちと活動について</span>
+                                </div>
+                            </a>
+                            <a href="strengths.html" class="mega-item">
+                                <div class="mega-img"><img src="img/charactor/2.jpg" alt=""></div>
+                                <div class="mega-body">
+                                    <span class="mega-title">５つの強み</span>
+                                    <span class="mega-desc">子どもたちの心に世界地図を届ける</span>
+                                </div>
+                            </a>
+                            <a href="member.html" class="mega-item">
+                                <div class="mega-img"><img src="img/charactor/3.jpg" alt=""></div>
+                                <div class="mega-body">
+                                    <span class="mega-title">メンバー</span>
+                                    <span class="mega-desc">ナタデココを支えるメンバー紹介</span>
+                                </div>
+                                </a>
+                        </div>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="activities.html">活動紹介</a>
+                        <div class="mega-menu mega-menu--col">
+                            <div class="mega-top-row">
+                            <a href="" class="mega-item">
+                                <div class="mega-img"><img src="img/class-photo.jpg" alt=""></div>
+                                <div class="mega-body">
+                                    <span class="mega-title">文化交流教室</span>
+                                    <span class="mega-desc">外国人との対面交流で異文化を体験</span>
+                                </div>
+                            </a>
+                            <a href="cocosalon.html" class="mega-item">
+                                <div class="mega-img"><img src="img/cocosalon.logo.jpg" alt=""></div>
+                                <div class="mega-body">
+                                    <span class="mega-title">CocoSalon</span>
+                                    <span class="mega-desc">オンラインで楽しむ国際交流サロン</span>
+                                </div>
+                            </a>
+                            <a href="kit.html" class="mega-item">
+                                <div class="mega-img"><img src="img/kit.logo.jpg" alt=""></div>
+                                <div class="mega-body">
+                                    <span class="mega-title">文化交流キット</span>
+                                    <span class="mega-desc">先生向けの授業で使える教材キット</span>
+                                </div>
+                            </a>
+                            </div>
+                            <a href="cases.html" class="mega-item mega-item--wide">
+                                <div class="mega-body">
+                                    <span class="mega-title">事例紹介</span>
+                                    <span class="mega-desc">実際にご依頼いただいた学校・団体の活動事例</span>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li><a href="volunteer.html">ボランティア</a></li>
+                    <li><a href="column.html">コラム・ニュース</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <a href="event.html" class="btn-event">
+            <span>イベント情報</span>
+            <span class="btn-event-arrow">→</span>
+        </a>
+
+        <button class="hamburger" aria-label="メニューを開く" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+
+    <div class="mobile-menu">
+        <nav class="mobile-nav">
+            <ul class="mobile-nav-list">
+                <li><a href="about.html">ナタデココとは</a></li>
+                <li><a href="activities.html">活動紹介</a></li>
+                <li><a href="volunteer.html">ボランティア</a></li>
+                <li><a href="column.html">コラム・ニュース</a></li>
+                <li class="mobile-nav-sep"></li>
+                <li><a href="foreigner.html">Foreigner</a></li>
+                <li><a href="faq.html">よくある質問</a></li>
+                <li><a href="">学校・自治体のみなさまへ</a></li>
+                <li><a href="contact.html">お問い合わせ</a></li>
+            </ul>
+            <a href="event.html" class="mobile-event-btn">イベント情報</a>
+        </nav>
+    </div>
+</header>
+
+    <main id="main">
+
+        <!-- ヒーローセクション -->
+        <section class="event-hero">
+            <div class="event-hero-inner">
+                <img src="img/mayu.svg" alt="" class="event-hero-icon">
+                <div class="event-hero-text">
+                    <p class="event-hero-en">EVENTS</p>
+                    <h2 class="event-hero-title">子ども向けイベント情報</h2>
+                    <p class="event-hero-sub">世界と出会う、ここだけの体験。<br>ナタデココのイベントに参加しよう！</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- オレンジ → 白 -->
+        <div class="wave-divider" style="background-color: #fde8d8;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path fill="#fff" fill-opacity="0.3" d="M0,55 C240,95 480,15 720,55 C960,95 1200,15 1440,55 L1440,120 L0,120 Z"/>
+                <path fill="#fff" fill-opacity="0.6" d="M0,70 C200,105 440,30 680,70 C920,100 1160,35 1440,70 L1440,120 L0,120 Z"/>
+                <path fill="#fff" d="M0,85 C160,108 380,55 600,82 C820,105 1040,56 1260,80 C1360,90 1410,68 1440,85 L1440,120 L0,120 Z"/>
+            </svg>
+        </div>
+
+        <!-- イベント一覧セクション -->
+        <section class="event-list-section">
+
+            <!-- カテゴリフィルター -->
+            <div class="event-filter">
+                <button class="filter-btn filter-btn--active" data-cat="all">すべて</button>
+                <button class="filter-btn" data-cat="culture-class">ナタデココ主催</button>
+                <button class="filter-btn" data-cat="visit-class">出張教室</button>
+                <button class="filter-btn" data-cat="collab">コラボイベント</button>
+                <button class="filter-btn" data-cat="cocosalon">CocoSalon</button>
+            </div>
+
+            <!-- イベントカードグリッド -->
+            <div class="event-grid">
+
+                <!-- Card 1 wrapper -->
+                <div class="event-card-wrapper">
+                    <article class="event-card event-card--ticket" data-cat="visit-class">
+                        <div class="ticket-date">
+                            <span class="td-date">
+                                <span class="td-month-num">3</span>
+                                <span class="td-slash">/</span>
+                                <span class="td-day-num">31</span>
+                            </span>
+                            <span class="td-week">火</span>
+                        </div>
+                        <div class="ticket-body">
+                            <div class="ticket-header">
+                                <span class="event-cat-badge badge-visit-class">出張教室</span>
+                                <span class="ticket-desc-inline">10:00〜11:00｜対象：小学生</span>
+                            </div>
+                            <h3 class="ticket-title">「世界を旅する文化交流教室」</h3>
+                            <div class="ticket-footer">
+                                <div class="ticket-footer-left">
+                                    <p class="ticket-location">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                                        愛知県津島市中央児童館
+                                    </p>
+                                    <span class="ticket-fee">参加費：無料</span>
+                                    <div class="ticket-status ticket-status--open">
+                                        <span class="status-dot"></span>
+                                        受付中
+                                    </div>
+                                </div>
+                                <button class="accordion-toggle" data-target="acc-1" aria-expanded="false" aria-label="詳細を開く">
+                                    <svg class="acc-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M7 10l5 5 5-5z"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="ticket-photo">
+                            <img src="img/class-photo.jpg" alt="世界を旅する文化交流教室">
+                        </div>
+                    </article>
+
+                    <!-- Accordion 1 -->
+                    <div class="event-accordion" id="acc-1">
+                        <div class="event-accordion-inner">
+                            <p class="acc-desc">外国人スタッフと一緒に、世界のさまざまな文化を体験しよう！ゲームや工作を通じて、楽しみながら世界と出会えるプログラムです。</p>
+                            <table class="acc-detail-table">
+                                <tbody>
+                                    <tr>
+                                        <th>開催日</th>
+                                        <td>2026年3月31日（火）</td>
+                                    </tr>
+                                    <tr>
+                                        <th>時間</th>
+                                        <td>10:00〜11:00</td>
+                                    </tr>
+                                    <tr>
+                                        <th>会場</th>
+                                        <td>愛知県津島市中央児童館<br><span class="acc-address">〒496-0853 愛知県津島市寺前町3丁目1番地</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th>対象</th>
+                                        <td>小学生</td>
+                                    </tr>
+                                    <tr>
+                                        <th>持ち物</th>
+                                        <td>特になし。動きやすい服装でお越しください</td>
+                                    </tr>
+                                    <tr>
+                                        <th>参加費</th>
+                                        <td><span class="acc-free-badge">無料</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="acc-btns">
+                                <a href="event-form-20260331.html" class="event-card-btn">
+                                    <img src="img/mayu-one.svg" alt="">
+                                    <span>申し込みはこちら</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div><!-- /.event-accordion -->
+                </div><!-- /.event-card-wrapper -->
+
+                <!-- Card 2 wrapper -->
+                <div class="event-card-wrapper">
+                    <article class="event-card event-card--ticket" data-cat="collab">
+                        <div class="ticket-date">
+                            <span class="td-date">
+                                <span class="td-month-num">4</span>
+                                <span class="td-slash">/</span>
+                                <span class="td-day-num">26</span>
+                            </span>
+                            <span class="td-week">日</span>
+                        </div>
+                        <div class="ticket-body">
+                            <div class="ticket-header">
+                                <span class="event-cat-badge badge-collab">コラボイベント</span>
+                                <span class="ticket-desc-inline">対象：子どもたち</span>
+                            </div>
+                            <h3 class="ticket-title">キッズグローバルフェスティバル</h3>
+                            <div class="ticket-footer">
+                                <div class="ticket-footer-left">
+                                    <p class="ticket-location">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                                        JICAちきゅう広場
+                                    </p>
+                                    <span class="ticket-fee">参加費：2,000円〜</span>
+                                    <div class="ticket-status ticket-status--open">
+                                        <span class="status-dot"></span>
+                                        受付中
+                                    </div>
+                                </div>
+                                <button class="accordion-toggle" data-target="acc-2" aria-expanded="false" aria-label="詳細を開く">
+                                    <svg class="acc-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M7 10l5 5 5-5z"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="ticket-photo">
+                            <img src="img/class-photo.jpg" alt="キッズグローバルフェスティバル">
+                        </div>
+                    </article>
+
+                    <!-- Accordion 2 -->
+                    <div class="event-accordion" id="acc-2">
+                        <div class="event-accordion-inner">
+                            <p class="acc-desc">JICAちきゅう広場で開催する子ども向けグローバルフェスティバル。世界各国のブースを巡り、異文化体験を楽しもう！</p>
+                            <table class="acc-detail-table">
+                                <tbody>
+                                    <tr>
+                                        <th>開催日</th>
+                                        <td>2026年4月26日（日）</td>
+                                    </tr>
+                                    <tr>
+                                        <th>時間</th>
+                                        <td>詳細は近日公開予定</td>
+                                    </tr>
+                                    <tr>
+                                        <th>会場</th>
+                                        <td>JICAちきゅう広場</td>
+                                    </tr>
+                                    <tr>
+                                        <th>対象</th>
+                                        <td>子どもたち</td>
+                                    </tr>
+                                    <tr>
+                                        <th>参加費</th>
+                                        <td>2,000円〜</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="acc-btns">
+                                <a href="https://kidsglobalfestival.org/" target="_blank" rel="noopener noreferrer" class="event-card-btn">
+                                    <img src="img/mayu-one.svg" alt="">
+                                    <span>申し込みはこちら</span>
+                                </a>
+                                <p class="acc-external-note">※ ボタンを押すと主催団体の公式サイトに移動します</p>
+                            </div>
+                        </div>
+                    </div><!-- /.event-accordion -->
+                </div><!-- /.event-card-wrapper -->
+
+                <!-- Card 3 wrapper -->
+                <div class="event-card-wrapper">
+                    <article class="event-card event-card--ticket" data-cat="culture-class">
+                        <div class="ticket-date">
+                            <span class="td-date td-date--multi">
+                                <span class="td-multi-line1">5/30</span>
+                                <span class="td-multi-line2">〜31</span>
+                            </span>
+                            <span class="td-week">土・日</span>
+                        </div>
+                        <div class="ticket-body">
+                            <div class="ticket-header">
+                                <span class="event-cat-badge badge-culture-class">ナタデココ主催</span>
+                                <span class="ticket-desc-inline">対象：小学生</span>
+                            </div>
+                            <h3 class="ticket-title">国際交流キャンプ</h3>
+                            <div class="ticket-footer">
+                                <div class="ticket-footer-left">
+                                    <p class="ticket-location">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                                        国立オリンピックセンター（東京都新宿区）
+                                    </p>
+                                    <span class="ticket-fee">参加費：19,800円</span>
+                                    <div class="ticket-status ticket-status--provisional">
+                                        <span class="status-dot status-dot--provisional"></span>
+                                        仮予約受付中
+                                    </div>
+                                </div>
+                                <button class="accordion-toggle" data-target="acc-3" aria-expanded="false" aria-label="詳細を開く">
+                                    <svg class="acc-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M7 10l5 5 5-5z"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="ticket-photo">
+                            <img src="img/class-photo.jpg" alt="国際交流キャンプ">
+                        </div>
+                    </article>
+
+                    <!-- Accordion 3 -->
+                    <div class="event-accordion" id="acc-3">
+                        <div class="event-accordion-inner">
+                            <p class="acc-desc">外国人スタッフや仲間たちと2日間のキャンプで、世界の文化をたっぷり体験しよう！国立オリンピックセンターを舞台に、ゲーム・料理・交流プログラムが盛りだくさんです。</p>
+                            <table class="acc-detail-table">
+                                <tbody>
+                                    <tr>
+                                        <th>開催日</th>
+                                        <td>2026年5月30日（土）〜31日（日）</td>
+                                    </tr>
+                                    <tr>
+                                        <th>時間</th>
+                                        <td>詳細は近日公開予定</td>
+                                    </tr>
+                                    <tr>
+                                        <th>会場</th>
+                                        <td>国立オリンピックセンター<br><span class="acc-address">東京都新宿区</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th>対象</th>
+                                        <td>小学生</td>
+                                    </tr>
+                                    <tr>
+                                        <th>参加費</th>
+                                        <td>19,800円</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="acc-btns">
+                                <a href="event-form-20260530.html" class="event-card-btn">
+                                    <img src="img/mayu-one.svg" alt="">
+                                    <span>仮申し込みはこちら</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div><!-- /.event-accordion -->
+                </div><!-- /.event-card-wrapper -->
+
+                <!-- Card 4 wrapper -->
+                <div class="event-card-wrapper">
+                    <article class="event-card event-card--ticket" data-cat="culture-class">
+                        <div class="ticket-date">
+                            <span class="td-date">
+                                <span class="td-month-num">6</span>
+                                <span class="td-slash">/</span>
+                                <span class="td-day-num">28</span>
+                            </span>
+                            <span class="td-week">日</span>
+                        </div>
+                        <div class="ticket-body">
+                            <div class="ticket-header">
+                                <span class="event-cat-badge badge-culture-class">ナタデココ主催</span>
+                                <span class="ticket-desc-inline">10:30〜11:30｜対象：未就学児〜小4</span>
+                            </div>
+                            <h3 class="ticket-title">子どもたちの文化交流教室</h3>
+                            <div class="ticket-footer">
+                                <div class="ticket-footer-left">
+                                    <p class="ticket-location">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                                        日比谷図書文化館
+                                    </p>
+                                    <span class="ticket-fee">参加費：無料</span>
+                                    <div class="ticket-status ticket-status--upcoming">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+                                        <span class="status-date">5/28</span>受付開始
+                                    </div>
+                                </div>
+                                <button class="accordion-toggle" data-target="acc-4" aria-expanded="false" aria-label="詳細を開く">
+                                    <svg class="acc-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M7 10l5 5 5-5z"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="ticket-photo">
+                            <img src="img/class-photo.jpg" alt="子どもたちの文化交流教室">
+                        </div>
+                    </article>
+
+                    <!-- Accordion 4 -->
+                    <div class="event-accordion" id="acc-4">
+                        <div class="event-accordion-inner">
+                            <p class="acc-desc">外国人スタッフと一緒に、世界のさまざまな文化を楽しく体験しよう！小さなお子さまから楽しめるプログラムです。</p>
+                            <table class="acc-detail-table">
+                                <tbody>
+                                    <tr>
+                                        <th>開催日</th>
+                                        <td>2026年6月28日（日）</td>
+                                    </tr>
+                                    <tr>
+                                        <th>時間</th>
+                                        <td>10:30〜11:30</td>
+                                    </tr>
+                                    <tr>
+                                        <th>会場</th>
+                                        <td>日比谷図書文化館</td>
+                                    </tr>
+                                    <tr>
+                                        <th>対象</th>
+                                        <td>未就学児〜小学4年生</td>
+                                    </tr>
+                                    <tr>
+                                        <th>参加費</th>
+                                        <td><span class="acc-free-badge">無料</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div><!-- /.event-accordion -->
+                </div><!-- /.event-card-wrapper -->
+
+            </div><!-- /.event-grid -->
+
+
+        </section><!-- /.event-list-section -->
+
+        <!-- 白 → オレンジ -->
+        <div class="wave-divider" style="background-color: #fff;">
+            <svg xmlns="http://www.w3.org/2020/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path fill="#fde8d8" fill-opacity="0.3" d="M0,55 C240,15 480,95 720,55 C960,15 1200,95 1440,55 L1440,120 L0,120 Z"/>
+                <path fill="#fde8d8" fill-opacity="0.6" d="M0,70 C200,30 440,105 680,70 C920,35 1160,100 1440,70 L1440,120 L0,120 Z"/>
+                <path fill="#fde8d8" d="M0,85 C160,55 380,108 600,82 C820,56 1040,105 1260,80 C1360,68 1410,90 1440,85 L1440,120 L0,120 Z"/>
+            </svg>
+        </div>
+
+        <!-- 過去のイベントセクション -->
+        <section class="past-events-section">
+
+            <div class="past-events-inner">
+                <div class="past-events-heading">
+                    <img src="img/mayu.svg" alt="" class="past-events-icon">
+                    <div>
+                        <p class="past-events-en">PAST EVENTS</p>
+                        <h2 class="past-events-title">過去のイベント</h2>
+                    </div>
+                </div>
+
+                <!-- 2026年 -->
+                <div class="past-year-group">
+                    <div class="past-year-label">2026</div>
+                    <ul class="past-event-list">
+                        <li class="past-event-item">
+                            <time class="past-event-date">3月31日</time>
+                            <span class="event-cat-badge badge-visit-class">出張教室</span>
+                            <span class="past-event-title">世界を旅する文化交流教室</span>
+                            <span class="past-event-place">愛知県津島市</span>
+                        </li>
+                        <li class="past-event-item">
+                            <time class="past-event-date">3月1日</time>
+                            <span class="event-cat-badge badge-culture-class">ナタデココ主催</span>
+                            <span class="past-event-title">子供たちの文化交流教室</span>
+                            <span class="past-event-place">東京都千代田区</span>
+                        </li>
+                        <li class="past-event-item">
+                            <time class="past-event-date">2月16日</time>
+                            <span class="event-cat-badge badge-visit-class">出張教室</span>
+                            <span class="past-event-title">幼稚園訪問プログラム</span>
+                            <span class="past-event-place">東京都中央区</span>
+                        </li>
+                        <li class="past-event-item">
+                            <time class="past-event-date">1月17日</time>
+                            <span class="event-cat-badge badge-visit-class">出張教室</span>
+                            <span class="past-event-title">小学校訪問プログラム</span>
+                            <span class="past-event-place">東京都葛飾区</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 2025年 -->
+                <div class="past-year-group">
+                    <div class="past-year-label">2025</div>
+                    <ul class="past-event-list">
+                        <li class="past-event-item">
+                            <time class="past-event-date">12月21日</time>
+                            <span class="event-cat-badge badge-cocosalon">CocoSalon</span>
+                            <span class="past-event-title">ナタデココ大クリスマスパーティー！</span>
+                            <span class="past-event-place">東京都新宿区</span>
+                        </li>
+                        <li class="past-event-item">
+                            <time class="past-event-date">12月21日</time>
+                            <span class="event-cat-badge badge-culture-class">ナタデココ主催</span>
+                            <span class="past-event-title">世界のお菓子作りに挑戦しよう！</span>
+                            <span class="past-event-place">東京都新宿区</span>
+                        </li>
+                        <li class="past-event-item">
+                            <time class="past-event-date">12月14日</time>
+                            <span class="event-cat-badge badge-visit-class">出張教室</span>
+                            <span class="past-event-title">クリスマス国際交流祭り</span>
+                            <span class="past-event-place">東京都東大和市</span>
+                        </li>
+                        <li class="past-event-item">
+                            <time class="past-event-date">12月13日</time>
+                            <span class="event-cat-badge badge-visit-class">出張教室</span>
+                            <span class="past-event-title">世界を旅する文化交流教室</span>
+                            <span class="past-event-place">山梨県上野原市</span>
+                        </li>
+                        <li class="past-event-item">
+                            <time class="past-event-date">11月30日</time>
+                            <span class="event-cat-badge badge-visit-class">出張教室</span>
+                            <span class="past-event-title">料理を通じて世界を知ろう！</span>
+                            <span class="past-event-place">三重県桑名市</span>
+                        </li>
+                        <li class="past-event-item">
+                            <time class="past-event-date">11月18日</time>
+                            <span class="event-cat-badge badge-visit-class">出張教室</span>
+                            <span class="past-event-title">幼稚園訪問プログラム</span>
+                            <span class="past-event-place">東京都中央区</span>
+                        </li>
+                        <li class="past-event-item">
+                            <time class="past-event-date">10月12-13日</time>
+                            <span class="event-cat-badge badge-visit-class">出張教室</span>
+                            <span class="past-event-title">国際交流キャンプ</span>
+                            <span class="past-event-place">宮城県登米市</span>
+                        </li>
+                        <li class="past-event-item">
+                            <time class="past-event-date">10月4日</time>
+                            <span class="event-cat-badge badge-visit-class">出張教室</span>
+                            <span class="past-event-title">国際交流×スポーツ大会</span>
+                            <span class="past-event-place">茨城県古河市</span>
+                        </li>
+                        <li class="past-event-item">
+                            <time class="past-event-date">9月21日</time>
+                            <span class="event-cat-badge badge-culture-class">ナタデココ主催</span>
+                            <span class="past-event-title">子供たちの文化交流教室</span>
+                            <span class="past-event-place">東京都千代田区</span>
+                        </li>
+                        <li class="past-event-item">
+                            <time class="past-event-date">9月20日</time>
+                            <span class="event-cat-badge badge-visit-class">出張教室</span>
+                            <span class="past-event-title">小学校訪問プログラム</span>
+                            <span class="past-event-place">東京都葛飾区</span>
+                        </li>
+                        <li class="past-event-item">
+                            <time class="past-event-date">9月15日</time>
+                            <span class="event-cat-badge badge-visit-class">出張教室</span>
+                            <span class="past-event-title">離島×文化交流！</span>
+                            <span class="past-event-place">長崎県壱岐</span>
+                        </li>
+                        <li class="past-event-item">
+                            <time class="past-event-date">8月10日</time>
+                            <span class="event-cat-badge badge-cocosalon">CocoSalon</span>
+                            <span class="past-event-title">ナタデココ交流大BBQパーティー</span>
+                            <span class="past-event-place">葛西臨海公園</span>
+                        </li>
+                        <li class="past-event-item">
+                            <time class="past-event-date">6月15日</time>
+                            <span class="event-cat-badge badge-culture-class">ナタデココ主催</span>
+                            <span class="past-event-title">子供たちの文化交流教室</span>
+                            <span class="past-event-place">東京都千代田区</span>
+                        </li>
+                        <li class="past-event-item">
+                            <time class="past-event-date">6月14日</time>
+                            <span class="event-cat-badge badge-visit-class">出張教室</span>
+                            <span class="past-event-title">小学校訪問プログラム</span>
+                            <span class="past-event-place">東京都葛飾区</span>
+                        </li>
+                        <li class="past-event-item">
+                            <time class="past-event-date">4月27日</time>
+                            <span class="event-cat-badge badge-collab">コラボイベント</span>
+                            <span class="past-event-title">キッズグローバルフェスタ</span>
+                            <span class="past-event-place">東京都新宿区</span>
+                        </li>
+                        <li class="past-event-item">
+                            <time class="past-event-date">3月22日</time>
+                            <span class="event-cat-badge badge-visit-class">出張教室</span>
+                            <span class="past-event-title">多文化共生について語ろう！</span>
+                            <span class="past-event-place">群馬県桐生市</span>
+                        </li>
+                        <li class="past-event-item">
+                            <time class="past-event-date">3月1日</time>
+                            <span class="event-cat-badge badge-visit-class">出張教室</span>
+                            <span class="past-event-title">小学校訪問プログラム</span>
+                            <span class="past-event-place">東京都品川区</span>
+                        </li>
+                        <li class="past-event-item">
+                            <time class="past-event-date">2月23日</time>
+                            <span class="event-cat-badge badge-culture-class">ナタデココ主催</span>
+                            <span class="past-event-title">子供たちの文化交流教室</span>
+                            <span class="past-event-place">東京都千代田区</span>
+                        </li>
+                        <li class="past-event-item">
+                            <time class="past-event-date">1月11日</time>
+                            <span class="event-cat-badge badge-visit-class">出張教室</span>
+                            <span class="past-event-title">小学校訪問プログラム</span>
+                            <span class="past-event-place">東京都新宿区</span>
+                        </li>
+                        <li class="past-event-item">
+                            <time class="past-event-date">1月3日</time>
+                            <span class="event-cat-badge badge-cocosalon">CocoSalon</span>
+                            <span class="past-event-title">ナタデココファミリー初詣</span>
+                            <span class="past-event-place">神奈川県江の島</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 2024年 -->
+                <div class="past-year-group">
+                    <div class="past-year-label">2024</div>
+                    <ul class="past-event-list">
+                        <li class="past-event-item">
+                            <time class="past-event-date">12月22日</time>
+                            <span class="event-cat-badge badge-culture-class">ナタデココ主催</span>
+                            <span class="past-event-title">子供たちの文化交流教室</span>
+                            <span class="past-event-place">東京都千代田区</span>
+                        </li>
+                        <li class="past-event-item">
+                            <time class="past-event-date">12月17日</time>
+                            <span class="event-cat-badge badge-visit-class">出張教室</span>
+                            <span class="past-event-title">小学校訪問プログラム</span>
+                            <span class="past-event-place">東京都葛飾区</span>
+                        </li>
+                        <li class="past-event-item">
+                            <time class="past-event-date">11月24日</time>
+                            <span class="event-cat-badge badge-visit-class">出張教室</span>
+                            <span class="past-event-title">スポーツを通じて文化交流しよう！</span>
+                            <span class="past-event-place">三重県桑名市</span>
+                        </li>
+                        <li class="past-event-item">
+                            <time class="past-event-date">10月6日</time>
+                            <span class="event-cat-badge badge-visit-class">出張教室</span>
+                            <span class="past-event-title">世界を旅する文化交流教室</span>
+                            <span class="past-event-place">山梨県上野原市</span>
+                        </li>
+                        <li class="past-event-item">
+                            <time class="past-event-date">9月29日</time>
+                            <span class="event-cat-badge badge-culture-class">ナタデココ主催</span>
+                            <span class="past-event-title">子供たちの文化交流教室</span>
+                            <span class="past-event-place">東京都千代田区</span>
+                        </li>
+                        <li class="past-event-item">
+                            <time class="past-event-date">8月16日</time>
+                            <span class="event-cat-badge badge-visit-class">出張教室</span>
+                            <span class="past-event-title">世界を旅する文化交流教室</span>
+                            <span class="past-event-place">東京都千代田区</span>
+                        </li>
+                        <li class="past-event-item">
+                            <time class="past-event-date">6月16日</time>
+                            <span class="event-cat-badge badge-culture-class">ナタデココ主催</span>
+                            <span class="past-event-title">子供たちの文化交流教室</span>
+                            <span class="past-event-place">東京都千代田区</span>
+                        </li>
+                        <li class="past-event-item">
+                            <time class="past-event-date">5月11日</time>
+                            <span class="event-cat-badge badge-visit-class">出張教室</span>
+                            <span class="past-event-title">小学校訪問プログラム</span>
+                            <span class="past-event-place">東京都葛飾区</span>
+                        </li>
+                        <li class="past-event-item">
+                            <time class="past-event-date">3月31日</time>
+                            <span class="event-cat-badge badge-culture-class">ナタデココ主催</span>
+                            <span class="past-event-title">子供たちの文化交流教室</span>
+                            <span class="past-event-place">東京都千代田区</span>
+                        </li>
+                        <li class="past-event-item">
+                            <time class="past-event-date">1月28日</time>
+                            <span class="event-cat-badge badge-culture-class">ナタデココ主催</span>
+                            <span class="past-event-title">子供たちの文化交流教室</span>
+                            <span class="past-event-place">東京都千代田区</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </section><!-- /.past-events-section -->
+
+        <!-- オレンジ → フッター紺 -->
+        <div class="wave-divider" style="background-color: #fde8d8;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path fill="#516881" fill-opacity="0.3" d="M0,55 C240,15 480,95 720,55 C960,15 1200,95 1440,55 L1440,120 L0,120 Z"/>
+                <path fill="#516881" fill-opacity="0.6" d="M0,70 C200,30 440,105 680,70 C920,35 1160,100 1440,70 L1440,120 L0,120 Z"/>
+                <path fill="#516881" d="M0,85 C160,55 380,108 600,82 C820,56 1040,105 1260,80 C1360,68 1410,90 1440,85 L1440,120 L0,120 Z"/>
+            </svg>
+        </div>
+
+    </main>
+
+
+    <footer id="footer">
+        <div class="footer-inner">
+
+            <div class="footer-top">
+
+                <!-- Col 1: ロゴ＋キャッチ -->
+                <div class="footer-col footer-col--brand">
+                    <a href="index.html" class="footer-logo">
+                        <img src="img/logo.svg" alt="NPOナタデココ">
+                    </a>
+                    <p class="footer-tagline">子どもたちに、<br>世界地図を。</p>
+                </div>
+
+                <!-- Col 2: サイトマップ -->
+                <div class="footer-col footer-col--nav">
+                    <p class="footer-col-title">Site Map</p>
+                    <ul class="footer-nav-list">
+                        <li><a href="about.html">ナタデココとは</a></li>
+                        <li><a href="activities.html">活動紹介</a></li>
+                        <li><a href="event.html">イベント情報</a></li>
+                        <li><a href="volunteer.html">ボランティア</a></li>
+                        <li><a href="column.html">コラム・ニュース</a></li>
+                        <li><a href="faq.html">よくある質問</a></li>
+                        <li><a href="contact.html">お問い合わせ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: 連絡先＋SNS -->
+                <div class="footer-col footer-col--contact">
+                    <p class="footer-col-title">Access</p>
+                    <address class="footer-address">
+                        〒106-0093<br>
+                        東京都千代田区平河町１－６－１５　USビル８F<br>
+                        <a href="mailto:info@natadecoco.org">info@natadecoco.org</a>
+                    </address>
+                    <div class="footer-sns">
+                        <a href="" class="sns-link" aria-label="Twitter / X">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="" class="sns-link" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                            </svg>
+                        </a>
+                        <a href="" class="sns-link" aria-label="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 下段：リンク＋コピーライト -->
+            <div class="footer-copy">
+                <div class="footer-copy-links">
+                    <a href="privacy.html">プライバシーポリシー</a>
+                </div>
+                <p>© 2026 NPOナタデココ All Rights Reserved.</p>
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        // カテゴリフィルター
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const eventCards = document.querySelectorAll('.event-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('filter-btn--active'));
+                btn.classList.add('filter-btn--active');
+
+                const cat = btn.dataset.cat;
+                eventCards.forEach(card => {
+                    const wrapper = card.closest('.event-card-wrapper');
+                    if (cat === 'all' || card.dataset.cat === cat) {
+                        wrapper.style.display = 'flex';
+                        wrapper.style.opacity = '0';
+                        setTimeout(() => { wrapper.style.opacity = '1'; }, 10);
+                    } else {
+                        wrapper.style.display = 'none';
+                        // アコーディオンを閉じる
+                        const trigger = card.querySelector('.accordion-toggle');
+                        if (trigger) {
+                            const acc = document.getElementById(trigger.dataset.target);
+                            trigger.setAttribute('aria-expanded', 'false');
+                            if (acc) acc.classList.remove('is-open');
+                        }
+                    }
+                });
+            });
+        });
+
+        // アコーディオン（カード全体クリック対応）
+        document.querySelectorAll('.event-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const trigger = card.querySelector('.accordion-toggle');
+                if (!trigger) return;
+                const target = document.getElementById(trigger.dataset.target);
+                const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+                trigger.setAttribute('aria-expanded', String(!isOpen));
+                target.classList.toggle('is-open', !isOpen);
+            });
+        });
+    </script>
+
+</body>
+</html>
