@@ -20,53 +20,47 @@
 
 .jack-flag .fi {
     display: block;
-    width: 56px;
-    height: 42px;
-    border-radius: 5px;
+    width: 44px;
+    height: 33px;
+    border-radius: 4px;
     box-shadow: 0 3px 12px rgba(0, 0, 0, 0.22);
     border: 1px solid rgba(0, 0, 0, 0.07);
 }
 
-/* --- 各フラグの位置と傾き（top-letter 周辺の左エリア） --- */
+/* --- 各フラグの位置と傾き（top-letter 周辺） --- */
 
-/* 日本：左上あたり、少し左に傾く */
 #jf0 {
     left: 23%;
     top: 22%;
     transform: translateY(12px) rotate(-9deg);
 }
 
-/* アメリカ：上部やや右、右に傾く */
 #jf1 {
-    left: 75%;
+    left: 87%;
     top: 17%;
     transform: translateY(12px) rotate(6deg);
 }
 
-/* ブラジル：左中ほど、大きく左傾き */
 #jf2 {
     left: 12%;
     top: 50%;
     transform: translateY(12px) rotate(-13deg);
 }
 
-/* 中国：中央やや右、右傾き */
 #jf3 {
-    left: 76%;
+    left: 88%;
     top: 54%;
     transform: translateY(12px) rotate(8deg);
 }
 
-/* 韓国：下部中央、軽い傾き */
 #jf4 {
     left: 26%;
     top: 70%;
     transform: translateY(12px) rotate(-4deg);
 }
 
-/* フランス：上部中央、右に軽く傾く */
 #jf5 {
-    left: 35%;
+    left: 60%;
     top: 5%;
     transform: translateY(12px) rotate(5deg);
 }

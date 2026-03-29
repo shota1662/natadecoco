@@ -287,7 +287,7 @@ h2 {
     width: 100%;
     flex-direction: row;
     align-items: center;
-    gap: 0;
+    gap: 14px;
     background-color: #f5f9fe;
     border-color: #daeaf7;
     padding: 12px 20px;
@@ -299,7 +299,7 @@ h2 {
     align-items: center;
     gap: 16px;
     padding: 0;
-    width: 100%;
+    flex: 1;
     justify-content: space-between;
 }
 
@@ -316,6 +316,17 @@ h2 {
     font-size: 16px;
     color: #9fd9f6;
     margin-left: 12px;
+    flex-shrink: 0;
+}
+
+.mega-case-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background-color: #fe4c7f;
     flex-shrink: 0;
 }
 
@@ -2238,3 +2249,20 @@ h2 {
         font-size: 15px;
     }
 }
+
+/* ===================================
+   スクロールリビール
+   =================================== */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+.reveal-d1 { transition-delay: 0.10s; }
+.reveal-d2 { transition-delay: 0.20s; }
+.reveal-d3 { transition-delay: 0.30s; }
+.reveal-d4 { transition-delay: 0.40s; }

@@ -1,11 +1,21 @@
-//logoの表示（トップページのみ）
+//logoの表示（トップページのみ・1日1回）
 $(window).on('load', function() {
   var path = window.location.pathname;
   var isTop = path === '/' || path.endsWith('index.html');
 
   if (isTop) {
-    $("#splash").delay(1500).fadeOut('slow');
-    $("#splash-logo").delay(1200).fadeOut('slow');
+    var today = new Date().toDateString();
+    var lastShown = localStorage.getItem('splashShownDate');
+
+    if (lastShown === today) {
+      // 今日すでに表示済み → 即非表示
+      $("#splash").hide();
+    } else {
+      // 初回 or 日付が変わった → 表示して記録
+      localStorage.setItem('splashShownDate', today);
+      $("#splash").delay(1500).fadeOut('slow');
+      $("#splash-logo").delay(1200).fadeOut('slow');
+    }
   } else {
     $("#splash").hide();
   }
@@ -18,6 +28,20 @@ $(window).on('load', function() {
   var path = window.location.pathname;
   var isTop = path === '/' || path.endsWith('index.html');
   if (!isTop) return;
+
+  // jack-flag にランダム国旗を割り当て
+  var jackFlagCodes = [
+    'br','in','ng','mx','au','se','eg','ar','th','ke',
+    'pe','no','ph','tr','za','co','id','fr','de','it',
+    'es','pt','gh','pk','vn','nz','cl','ma','pl','nl'
+  ];
+  function shuffleArr(arr) {
+    return arr.slice().sort(function() { return Math.random() - 0.5; });
+  }
+  var jackPicked = shuffleArr(jackFlagCodes);
+  $('.jack-flag').each(function(i) {
+    $(this).find('.fi').addClass('fi-' + jackPicked[i]);
+  });
 
   // スプラッシュ終了後（約 2200ms）に国旗をじんわり表示
   setTimeout(function() {
@@ -257,4 +281,87 @@ document.addEventListener('click', function(e) {
         const name = author.getAttribute('data-member-link');
         window.location.href = 'member.html#' + encodeURIComponent(name);
     }
+});
+
+// ========================================
+// スクロールリビール（全ページ共通）
+// ========================================
+$(document).ready(function() {
+
+  // --- 単体でフェードインする要素 ---
+  var singleTargets = [
+    '.opening-message',
+    '.our-message-inner',
+    '.achievements',
+    '.contact-inner',
+    '.sch-message-body',
+    '.sch-past-municipalities',
+    '.cases-appeal',
+    '.cases-stats',
+    '.vol-appeal',
+    '.vol-role-columns',
+    '.volunteer-voices',
+  ];
+
+  singleTargets.forEach(function(sel) {
+    document.querySelectorAll(sel).forEach(function(el) {
+      el.classList.add('reveal');
+    });
+  });
+
+  // --- グリッド系カード（親ごとにスタガー） ---
+  var staggerTargets = [
+    // index
+    '.service-card', '.column-card', '.partner-card', '.sponsor-card',
+    // school
+    '.sch-strength-card', '.sch-case-card', '.sch-flow-step',
+    // cases
+    '.case-card', '.cases-stat-item',
+    // event
+    '.event-card',
+    // activities
+    '.act-classroom-card', '.act-kit-card', '.act-other-card',
+    // foreigner
+    '.fgn-activity-card', '.fgn-why-card', '.fgn-voice-card', '.fgn-flow-step',
+    // volunteer
+    '.vol-voice-card', '.vol-activity-card', '.vol-appeal-card', '.vol-flow-step',
+    // kit
+    '.kit-point-card', '.kit-step',
+    // reports / rd
+    '.rd-voice-card', '.rd-staff-card', '.rd-organizer-card', '.rd-related-card', '.rpt-card',
+    // column detail
+    '.cd-related-card', '.cd-voice-box',
+    // lp / m2
+    '.lp-persona-card', '.lp-pricing-card', '.m2-card',
+    // generic
+    '.flow-step', '.form-card', '.cta-card',
+  ];
+
+  var delayClasses = ['reveal-d1','reveal-d2','reveal-d3','reveal-d4'];
+
+  staggerTargets.forEach(function(sel) {
+    // 同じ親コンテナ内でスタガーをリセット
+    var seen = new Map();
+    document.querySelectorAll(sel).forEach(function(el) {
+      var parent = el.parentElement;
+      var idx = seen.has(parent) ? seen.get(parent) : 0;
+      el.classList.add('reveal');
+      if (idx < 4) el.classList.add(delayClasses[idx]);
+      seen.set(parent, idx + 1);
+    });
+  });
+
+  // --- IntersectionObserver で画面内に入ったら表示 ---
+  var revealObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-revealed');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(function(el) {
+    revealObserver.observe(el);
+  });
 });
