@@ -178,7 +178,7 @@
         <!-- フォーム -->
         <section class="contact" id="contact-form-section">
             <div class="contact-inner">
-                <form class="contact-form" action="send.php" method="post">
+                <form class="contact-form" id="contactForm">
 
                     <div class="form-row">
                         <label class="form-label" for="name">お名前<span class="form-required">必須</span></label>
@@ -314,19 +314,40 @@
     </footer>
 
     <script>
-    (function() {
-        var params = new URLSearchParams(window.location.search);
-        if (params.get('sent') === '1') {
-            document.getElementById('contact-form-section').style.display = 'none';
-            var el = document.getElementById('contact-sent-msg');
-            el.style.display = 'flex';
-            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        } else if (params.get('error') === '1') {
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const form = e.target;
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const submitSpan = submitBtn.querySelector('span');
+        submitBtn.disabled = true;
+        submitSpan.textContent = '送信中...';
+
+        try {
+            const res = await fetch('https://formspree.io/f/xkoppgnp', {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            });
+            if (res.ok) {
+                document.getElementById('contact-form-section').style.display = 'none';
+                var el = document.getElementById('contact-sent-msg');
+                el.style.display = 'flex';
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                var el = document.getElementById('contact-error-msg');
+                el.style.display = 'flex';
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                submitBtn.disabled = false;
+                submitSpan.textContent = '送信する';
+            }
+        } catch {
             var el = document.getElementById('contact-error-msg');
             el.style.display = 'flex';
             el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            submitBtn.disabled = false;
+            submitSpan.textContent = '送信する';
         }
-    })();
+    });
     </script>
 </body>
 </html>
