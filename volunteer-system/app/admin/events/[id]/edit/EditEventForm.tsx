@@ -11,6 +11,9 @@ interface EditEventFormProps {
     description: string | null
     location: string | null
     capacity: number | null
+    registration_start: string | null
+    registration_end: string | null
+    result_notification_date: string | null
   }
   dateStr: string
   timeStr: string
@@ -129,6 +132,62 @@ export default function EditEventForm({ event, dateStr, timeStr }: EditEventForm
             defaultValue={timeStr}
           />
         </div>
+      </div>
+
+      {/* 受付期間 */}
+      <div style={{ display: 'flex', gap: '16px', marginBottom: '24px', flexWrap: 'wrap' }}>
+        <div style={{ flex: '1 1 200px' }}>
+          <label
+            htmlFor="registration_start"
+            style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', fontWeight: '700', color: '#516881', marginBottom: '8px' }}
+          >
+            受付開始日時
+            <span style={{ backgroundColor: '#aaa', color: '#fff', fontSize: '10px', fontWeight: 'bold', padding: '2px 7px', borderRadius: '3px' }}>任意</span>
+          </label>
+          <input
+            className="form-input"
+            type="datetime-local"
+            id="registration_start"
+            name="registration_start"
+            defaultValue={event.registration_start ? event.registration_start.slice(0, 16) : ''}
+          />
+        </div>
+        <div style={{ flex: '1 1 200px' }}>
+          <label
+            htmlFor="registration_end"
+            style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', fontWeight: '700', color: '#516881', marginBottom: '8px' }}
+          >
+            受付終了日時
+            <span style={{ backgroundColor: '#aaa', color: '#fff', fontSize: '10px', fontWeight: 'bold', padding: '2px 7px', borderRadius: '3px' }}>任意</span>
+          </label>
+          <input
+            className="form-input"
+            type="datetime-local"
+            id="registration_end"
+            name="registration_end"
+            defaultValue={event.registration_end ? event.registration_end.slice(0, 16) : ''}
+          />
+        </div>
+      </div>
+
+      {/* 結果通達期限 */}
+      <div style={{ marginBottom: '24px' }}>
+        <label
+          htmlFor="result_notification_date"
+          style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', fontWeight: '700', color: '#516881', marginBottom: '8px' }}
+        >
+          結果通達期限
+          <span style={{ backgroundColor: '#aaa', color: '#fff', fontSize: '10px', fontWeight: 'bold', padding: '2px 7px', borderRadius: '3px' }}>任意</span>
+        </label>
+        <input
+          className="form-input"
+          type="datetime-local"
+          id="result_notification_date"
+          name="result_notification_date"
+          defaultValue={event.result_notification_date ? event.result_notification_date.slice(0, 16) : ''}
+          style={{ maxWidth: '280px' }}
+        />
+        <p style={{ fontSize: '12px', color: '#888', margin: '6px 0 0' }}>申込者に結果を通達する期限日時</p>
       </div>
 
       {/* 定員 */}

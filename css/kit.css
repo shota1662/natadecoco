@@ -715,3 +715,40 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* ===================================
+   ヒーロー レスポンシブ
+   =================================== */
+@media (max-width: 860px) {
+    .kit-hero-inner {
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .kit-hero-img {
+        width: 200px;
+        margin: 0 auto;
+    }
+
+    .kit-hero-catch {
+        font-size: 32px;
+    }
+
+    .kit-section-title {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .kit-hero-catch {
+        font-size: 26px;
+    }
+
+    .kit-hero {
+        padding: 50px 20px 40px;
+    }
+
+    .kit-hero-btns {
+        justify-content: center;
+    }
+}

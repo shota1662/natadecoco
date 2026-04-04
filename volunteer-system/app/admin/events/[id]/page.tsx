@@ -2,6 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect, notFound } from 'next/navigation'
 import Link from 'next/link'
 import RemoveParticipantButton from './RemoveParticipantButton'
+import RegistrationStatusSelect from './RegistrationStatusSelect'
 
 interface EventDetailPageProps {
   params: Promise<{ id: string }>
@@ -156,6 +157,7 @@ export default async function AdminEventDetailPage({ params }: EventDetailPagePr
                   <th style={{ textAlign: 'center' }}>日本語力</th>
                   <th style={{ textAlign: 'center' }}>英語力</th>
                   <th>申込日</th>
+                  <th style={{ textAlign: 'center' }}>ステータス</th>
                   <th style={{ textAlign: 'center' }}>操作</th>
                 </tr>
               </thead>
@@ -168,6 +170,7 @@ export default async function AdminEventDetailPage({ params }: EventDetailPagePr
                     japanese_level?: number
                     english_level?: number
                   } | null
+                  const regStatus = ((reg as { status?: string }).status ?? 'applied') as 'applied' | 'selected' | 'rejected'
                   return (
                     <tr key={reg.id}>
                       <td style={{ fontWeight: '600', fontSize: '14px' }}>{p?.full_name ?? '—'}</td>
@@ -185,6 +188,12 @@ export default async function AdminEventDetailPage({ params }: EventDetailPagePr
                       </td>
                       <td style={{ fontSize: '13px', color: '#888' }}>
                         {new Date(reg.registered_at).toLocaleDateString('ja-JP')}
+                      </td>
+                      <td style={{ textAlign: 'center' }}>
+                        <RegistrationStatusSelect
+                          registrationId={reg.id}
+                          currentStatus={regStatus}
+                        />
                       </td>
                       <td style={{ textAlign: 'center' }}>
                         <RemoveParticipantButton

@@ -391,7 +391,19 @@
 
             <h2 style="font-size: 22px; font-weight: bold; color: #333; margin-bottom: 32px; text-align: center;">仮申し込みフォーム</h2>
 
-            <form id="campForm" action="#" novalidate>
+            <!-- 送信完了メッセージ -->
+            <div id="sent-msg" style="display:none; background:#f0fffe; border:2px solid #30b9bf; border-radius:12px; padding:32px 24px; text-align:center; margin-bottom:24px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#30b9bf" width="48" height="48"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5l-4-4 1.41-1.41L10 13.67l6.59-6.59L18 8.5l-8 8z"/></svg>
+                <p style="font-size:18px; font-weight:bold; color:#1a8a8f; margin:12px 0 8px;">仮申し込みを受け付けました</p>
+                <p style="font-size:14px; color:#555; margin:0;">正式受付開始時にご登録のメールアドレスへご案内をお送りします。<br>しばらくお待ちください。</p>
+            </div>
+
+            <!-- エラーメッセージ -->
+            <div id="error-msg" style="display:none; background:#fff0f3; border:2px solid #fe4c7f; border-radius:12px; padding:20px 24px; text-align:center; margin-bottom:24px;">
+                <p style="font-size:14px; color:#c0234a; margin:0;">⚠️ 送信に失敗しました。しばらく経ってから再度お試しください。</p>
+            </div>
+
+            <form id="campForm">
 
                 <!-- ① 保護者の氏名 -->
                 <div class="form-card">
@@ -466,9 +478,33 @@
 </footer>
 
 <script>
-    document.getElementById('campForm').addEventListener('submit', function (e) {
+    document.getElementById('campForm').addEventListener('submit', async function (e) {
         e.preventDefault();
-        alert('仮申し込みを受け付けました。正式受付開始時にご案内メールをお送りします。');
+        const form = e.target;
+        const submitBtn = form.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
+        submitBtn.textContent = '送信中...';
+
+        try {
+            const res = await fetch('https://formspree.io/f/mkoppney', {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            });
+            if (res.ok) {
+                form.style.display = 'none';
+                document.getElementById('sent-msg').style.display = 'block';
+                document.getElementById('sent-msg').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                document.getElementById('error-msg').style.display = 'block';
+                submitBtn.disabled = false;
+                submitBtn.textContent = '仮申し込みを送信する';
+            }
+        } catch {
+            document.getElementById('error-msg').style.display = 'block';
+            submitBtn.disabled = false;
+            submitBtn.textContent = '仮申し込みを送信する';
+        }
     });
 </script>
 

@@ -235,6 +235,16 @@
     .our-message-body p { font-size: 14px; }
 }
 
+@media (max-width: 480px) {
+    .our-message-body {
+        padding: 24px 16px;
+    }
+
+    .msg-flag {
+        display: none;
+    }
+}
+
 /* ===================================================
    パートナー（助成団体）
    =================================================== */

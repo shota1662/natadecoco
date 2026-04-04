@@ -123,7 +123,7 @@ a:hover {
   background-color: #f87a6d;
   border: none;
   border-radius: 25px;
-  box-shadow: 5px 5px #898787;
+  box-shadow: 3px 3px rgba(137,135,135,0.45);
   cursor: pointer;
   font-family: inherit;
   font-weight: bold;

@@ -2,6 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 
+
 export default async function AdminVolunteersPage() {
   const supabase = await createClient()
 
@@ -86,7 +87,12 @@ export default async function AdminVolunteersPage() {
                 {volunteers.map((v) => (
                   <tr key={v.id}>
                     <td>
-                      <span style={{ fontWeight: '600', fontSize: '14px' }}>{v.full_name}</span>
+                      <Link
+                        href={`/admin/volunteers/${v.id}`}
+                        style={{ fontWeight: '600', fontSize: '14px', color: '#30b9bf', textDecoration: 'none' }}
+                      >
+                        {v.full_name}
+                      </Link>
                     </td>
                     <td style={{ fontSize: '13px', color: '#555' }}>{v.email}</td>
                     <td style={{ fontSize: '13px', color: '#555' }}>{v.nationality ?? '—'}</td>

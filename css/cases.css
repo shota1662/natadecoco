@@ -633,3 +633,60 @@
 .cta-form {
     width: 100%;
 }
+
+/* ===================================
+   レスポンシブ
+   =================================== */
+@media (max-width: 768px) {
+    .cases-hero-title {
+        font-size: 36px;
+    }
+
+    .cases-hero-title span {
+        font-size: 26px;
+    }
+
+    .cases-hero-inner {
+        padding: 60px 32px;
+    }
+
+    .case-card,
+    .case-card-reverse {
+        flex-direction: column;
+    }
+
+    .case-photo {
+        width: 100%;
+        min-height: 220px;
+    }
+
+    .case-body {
+        padding: 24px;
+    }
+
+    .cases-appeal-message {
+        padding: 28px 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cases-hero-title {
+        font-size: 26px;
+    }
+
+    .cases-hero-title span {
+        font-size: 20px;
+    }
+
+    .cases-hero-inner {
+        padding: 48px 20px;
+    }
+
+    .voice-card {
+        width: 100%;
+    }
+
+    .cta-title {
+        font-size: 22px;
+    }
+}

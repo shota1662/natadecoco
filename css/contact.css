@@ -265,3 +265,35 @@
     transform: translate(4px, 4px);
     box-shadow: none;
 }
+
+/* ===================================
+   レスポンシブ
+   =================================== */
+@media (max-width: 768px) {
+    .contact-hero-title {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-hero-title {
+        font-size: 22px;
+    }
+
+    .contact-hero-sub {
+        font-size: 14px;
+    }
+
+    .contact-result {
+        padding: 32px 20px;
+        margin: 40px auto 60px;
+    }
+
+    .contact-result-title {
+        font-size: 18px;
+    }
+
+    .contact {
+        padding-bottom: 60px;
+    }
+}

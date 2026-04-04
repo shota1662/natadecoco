@@ -246,24 +246,20 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
           </div>
 
           {events && events.length > 0 ? (
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-                gap: '20px',
-              }}
-            >
-              {events.map((event) => (
-                <EventCard
-                  key={event.id}
-                  event={event}
-                  isRegistered={registeredEventIds.has(event.id)}
-                  participantCount={eventParticipantCounts[event.id] || 0}
-                  registrationId={
-                    myRegistrations?.find((r) => r.event_id === event.id)?.id
-                  }
-                />
-              ))}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              {events.map((event) => {
+                const myReg = myRegistrations?.find((r) => r.event_id === event.id)
+                return (
+                  <EventCard
+                    key={event.id}
+                    event={event}
+                    isRegistered={registeredEventIds.has(event.id)}
+                    participantCount={eventParticipantCounts[event.id] || 0}
+                    registrationId={myReg?.id}
+                    registrationStatus={(myReg as { status?: string } | undefined)?.status as 'applied' | 'selected' | 'rejected' | undefined}
+                  />
+                )
+              })}
             </div>
           ) : (
             <div

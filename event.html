@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress/min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/event.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -169,6 +170,14 @@
 
         <!-- イベント一覧セクション -->
         <section class="event-list-section">
+            <span class="msg-flag msg-flag--l1"><span class="fi"></span></span>
+            <span class="msg-flag msg-flag--l2"><span class="fi"></span></span>
+            <span class="msg-flag msg-flag--l3"><span class="fi"></span></span>
+            <span class="msg-flag msg-flag--l4"><span class="fi"></span></span>
+            <span class="msg-flag msg-flag--r1"><span class="fi"></span></span>
+            <span class="msg-flag msg-flag--r2"><span class="fi"></span></span>
+            <span class="msg-flag msg-flag--r3"><span class="fi"></span></span>
+            <span class="msg-flag msg-flag--r4"><span class="fi"></span></span>
 
             <!-- カテゴリフィルター -->
             <div class="event-filter">
@@ -181,87 +190,6 @@
 
             <!-- イベントカードグリッド -->
             <div class="event-grid">
-
-                <!-- Card 1 wrapper -->
-                <div class="event-card-wrapper">
-                    <article class="event-card event-card--ticket" data-cat="visit-class">
-                        <div class="ticket-date">
-                            <span class="td-date">
-                                <span class="td-month-num">3</span>
-                                <span class="td-slash">/</span>
-                                <span class="td-day-num">31</span>
-                            </span>
-                            <span class="td-week">火</span>
-                        </div>
-                        <div class="ticket-body">
-                            <div class="ticket-header">
-                                <span class="event-cat-badge badge-visit-class">出張教室</span>
-                                <span class="ticket-desc-inline">10:00〜11:00｜対象：小学生</span>
-                            </div>
-                            <h3 class="ticket-title">「世界を旅する文化交流教室」</h3>
-                            <div class="ticket-footer">
-                                <div class="ticket-footer-left">
-                                    <p class="ticket-location">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                                        愛知県津島市中央児童館
-                                    </p>
-                                    <span class="ticket-fee">参加費：無料</span>
-                                    <div class="ticket-status ticket-status--open">
-                                        <span class="status-dot"></span>
-                                        受付中
-                                    </div>
-                                </div>
-                                <button class="accordion-toggle" data-target="acc-1" aria-expanded="false" aria-label="詳細を開く">
-                                    <svg class="acc-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M7 10l5 5 5-5z"/></svg>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="ticket-photo">
-                            <img src="img/class-photo.jpg" alt="世界を旅する文化交流教室">
-                        </div>
-                    </article>
-
-                    <!-- Accordion 1 -->
-                    <div class="event-accordion" id="acc-1">
-                        <div class="event-accordion-inner">
-                            <p class="acc-desc">外国人スタッフと一緒に、世界のさまざまな文化を体験しよう！ゲームや工作を通じて、楽しみながら世界と出会えるプログラムです。</p>
-                            <table class="acc-detail-table">
-                                <tbody>
-                                    <tr>
-                                        <th>開催日</th>
-                                        <td>2026年3月31日（火）</td>
-                                    </tr>
-                                    <tr>
-                                        <th>時間</th>
-                                        <td>10:00〜11:00</td>
-                                    </tr>
-                                    <tr>
-                                        <th>会場</th>
-                                        <td>愛知県津島市中央児童館<br><span class="acc-address">〒496-0853 愛知県津島市寺前町3丁目1番地</span></td>
-                                    </tr>
-                                    <tr>
-                                        <th>対象</th>
-                                        <td>小学生</td>
-                                    </tr>
-                                    <tr>
-                                        <th>持ち物</th>
-                                        <td>特になし。動きやすい服装でお越しください</td>
-                                    </tr>
-                                    <tr>
-                                        <th>参加費</th>
-                                        <td><span class="acc-free-badge">無料</span></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <div class="acc-btns">
-                                <a href="event-form-20260331.html" class="event-card-btn">
-                                    <img src="img/mayu-one.svg" alt="">
-                                    <span>申し込みはこちら</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div><!-- /.event-accordion -->
-                </div><!-- /.event-card-wrapper -->
 
                 <!-- Card 2 wrapper -->
                 <div class="event-card-wrapper">
@@ -287,9 +215,8 @@
                                         JICAちきゅう広場
                                     </p>
                                     <span class="ticket-fee">参加費：2,000円〜</span>
-                                    <div class="ticket-status ticket-status--open">
-                                        <span class="status-dot"></span>
-                                        受付中
+                                    <div class="ticket-status ticket-status--closed">
+                                        受付終了
                                     </div>
                                 </div>
                                 <button class="accordion-toggle" data-target="acc-2" aria-expanded="false" aria-label="詳細を開く">
@@ -356,7 +283,7 @@
                                 <span class="event-cat-badge badge-culture-class">ナタデココ主催</span>
                                 <span class="ticket-desc-inline">対象：小学生</span>
                             </div>
-                            <h3 class="ticket-title">国際交流キャンプ</h3>
+                            <h3 class="ticket-title">世界探検キャンプ</h3>
                             <div class="ticket-footer">
                                 <div class="ticket-footer-left">
                                     <p class="ticket-location">
@@ -375,7 +302,7 @@
                             </div>
                         </div>
                         <div class="ticket-photo">
-                            <img src="img/class-photo.jpg" alt="国際交流キャンプ">
+                            <img src="img/class-photo.jpg" alt="世界探検キャンプ">
                         </div>
                     </article>
 
@@ -383,6 +310,14 @@
                     <div class="event-accordion" id="acc-3">
                         <div class="event-accordion-inner">
                             <p class="acc-desc">外国人スタッフや仲間たちと2日間のキャンプで、世界の文化をたっぷり体験しよう！国立オリンピックセンターを舞台に、ゲーム・料理・交流プログラムが盛りだくさんです。</p>
+                            <div class="acc-benefits">
+                                <p class="acc-benefits-title">このキャンプで得られること</p>
+                                <ul class="acc-benefits-list">
+                                    <li>世界への一歩を踏み出す勇気</li>
+                                    <li>自分から外国人に話しかける力</li>
+                                    <li>新しい出会い、新しい友達</li>
+                                </ul>
+                            </div>
                             <table class="acc-detail-table">
                                 <tbody>
                                     <tr>
@@ -407,6 +342,10 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <div class="acc-gift-banner">
+                                <span class="acc-gift-icon">🎁</span>
+                                <p class="acc-gift-text"><span class="acc-gift-period">4/5〜4/12</span>にお申込みいただいた方に<br>オリジナル缶バッジ＆世界地図をプレゼント！</p>
+                            </div>
                             <div class="acc-btns">
                                 <a href="event-form-20260530.html" class="event-card-btn">
                                     <img src="img/mayu-one.svg" alt="">
@@ -422,16 +361,16 @@
                     <article class="event-card event-card--ticket" data-cat="culture-class">
                         <div class="ticket-date">
                             <span class="td-date">
-                                <span class="td-month-num">6</span>
+                                <span class="td-month-num">7</span>
                                 <span class="td-slash">/</span>
-                                <span class="td-day-num">28</span>
+                                <span class="td-day-num">18</span>
                             </span>
-                            <span class="td-week">日</span>
+                            <span class="td-week">土</span>
                         </div>
                         <div class="ticket-body">
                             <div class="ticket-header">
                                 <span class="event-cat-badge badge-culture-class">ナタデココ主催</span>
-                                <span class="ticket-desc-inline">10:30〜11:30｜対象：未就学児〜小4</span>
+                                <span class="ticket-desc-inline">対象：未就学児〜小4</span>
                             </div>
                             <h3 class="ticket-title">子どもたちの文化交流教室</h3>
                             <div class="ticket-footer">
@@ -464,11 +403,11 @@
                                 <tbody>
                                     <tr>
                                         <th>開催日</th>
-                                        <td>2026年6月28日（日）</td>
+                                        <td>2026年7月18日（土）</td>
                                     </tr>
                                     <tr>
                                         <th>時間</th>
-                                        <td>10:30〜11:30</td>
+                                        <td>未定</td>
                                     </tr>
                                     <tr>
                                         <th>会場</th>
@@ -588,7 +527,7 @@
                         <li class="past-event-item">
                             <time class="past-event-date">10月12-13日</time>
                             <span class="event-cat-badge badge-visit-class">出張教室</span>
-                            <span class="past-event-title">国際交流キャンプ</span>
+                            <span class="past-event-title">世界探検キャンプ</span>
                             <span class="past-event-place">宮城県登米市</span>
                         </li>
                         <li class="past-event-item">

@@ -29,31 +29,21 @@ export async function signIn(
   redirect('/dashboard')
 }
 
-// 新規登録
-export async function signUp(
+// 新規登録 Step 1: メール・パスワード
+export async function signUpStep1(
   _prevState: AuthState,
   formData: FormData
 ): Promise<AuthState> {
   const supabase = await createClient()
 
-  // フォームデータの取得
   const email = formData.get('email') as string
   const password = formData.get('password') as string
-  const fullName = (formData.get('full_name') as string)?.trim() || ''
-  const nationality = (formData.get('nationality') as string) || null
-  const birthday = (formData.get('birthday') as string) || null
 
-  // ① Supabase Auth にユーザーを作成
+  // Supabase Auth にユーザーを作成
   const { data: authData, error: authError } = await supabase.auth.signUp({
     email,
     password,
     options: {
-      // raw_user_meta_data に保存（トリガーのフォールバック用）
-      data: {
-        full_name: fullName,
-        nationality,
-        birthday,
-      },
       emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/auth/callback`,
     },
   })
@@ -66,61 +56,100 @@ export async function signUp(
     return { error: 'ユーザーの作成に失敗しました。再度お試しください。' }
   }
 
-  // メール列挙防止チェック:
-  // Supabase のメール確認が有効なとき、既存メールでサインアップすると
-  // auth.users には挿入されないまま偽のユーザーオブジェクト（identities が空）が返される。
-  // その偽の user.id で profiles に insert すると FK 制約違反になるため事前に検出する。
+  // メール列挙防止チェック
   if (!authData.user.identities || authData.user.identities.length === 0) {
     return { error: 'このメールアドレスはすでに登録されています。ログインページからサインインしてください。' }
   }
 
-  // ② profiles テーブルに直接 upsert（管理者クライアントで RLS をバイパス）
-  //    トリガーが先に実行した場合は ON CONFLICT で上書き更新する
+  // profiles テーブルに初期レコードを作成（管理者クライアントで RLS をバイパス）
   const adminClient = createAdminClient()
 
   if (adminClient) {
-    // Service Role Key がある場合（推奨）: RLS を完全バイパス
     const { error: profileError } = await adminClient.from('profiles').upsert(
-      {
-        id: authData.user.id,
-        email,
-        full_name: fullName,
-        nationality,
-        birthday: birthday || null,
-      },
+      { id: authData.user.id, email },
       { onConflict: 'id' }
     )
-
     if (profileError) {
-      console.error('[signUp] Profile upsert error (admin):', profileError.message)
-      // プロフィール作成に失敗しても auth ユーザーは作成済みのため続行
-      // ダッシュボードに遷移後にトリガーが作成した場合はそちらを使う
+      console.error('[signUpStep1] Profile upsert error (admin):', profileError.message)
     }
   } else {
-    // Service Role Key がない場合: 通常クライアントで試みる
-    // （メール確認なし＆セッションあり の場合に成功する可能性あり）
     const { error: profileError } = await supabase.from('profiles').upsert(
-      {
-        id: authData.user.id,
-        email,
-        full_name: fullName,
-        nationality,
-        birthday: birthday || null,
-      },
+      { id: authData.user.id, email },
       { onConflict: 'id' }
     )
-
     if (profileError) {
-      console.error('[signUp] Profile upsert error (anon):', profileError.message)
-      console.warn(
-        '[signUp] SUPABASE_SERVICE_ROLE_KEY が未設定です。' +
-        '.env.local に追加することでプロフィール作成が確実になります。'
-      )
+      console.error('[signUpStep1] Profile upsert error (anon):', profileError.message)
     }
+  }
+
+  redirect('/register/details')
+}
+
+// 新規登録 Step 2: 詳細情報
+export async function signUpComplete(
+  _prevState: AuthState,
+  formData: FormData
+): Promise<AuthState> {
+  const supabase = await createClient()
+
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) {
+    redirect('/register')
+  }
+
+  const fullName = (formData.get('full_name') as string)?.trim() || ''
+  const birthday = (formData.get('birthday') as string) || null
+  const nationality = (formData.get('nationality') as string) || null
+  const prefecture = (formData.get('prefecture') as string) || null
+  const occupation = (formData.get('occupation') as string)?.trim() || null
+  const skills = (formData.get('skills') as string)?.trim() || null
+  const englishLevelStr = formData.get('english_level') as string
+  const japaneseLevelStr = formData.get('japanese_level') as string
+  const englishLevel = englishLevelStr ? parseInt(englishLevelStr, 10) : null
+  const japaneseLevel = japaneseLevelStr ? parseInt(japaneseLevelStr, 10) : null
+  const address = (formData.get('address') as string)?.trim() || null
+  const nearestStation = (formData.get('nearest_station') as string)?.trim() || null
+  const bankName = (formData.get('bank_name') as string)?.trim() || null
+  const bankBranch = (formData.get('bank_branch') as string)?.trim() || null
+  const bankAccountNumber = (formData.get('bank_account_number') as string)?.trim() || null
+  const bankAccountHolder = (formData.get('bank_account_holder') as string)?.trim() || null
+  const phone = (formData.get('phone') as string)?.trim() || null
+
+  const { error } = await supabase
+    .from('profiles')
+    .update({
+      full_name: fullName,
+      birthday: birthday || null,
+      nationality,
+      prefecture,
+      occupation,
+      skills,
+      english_level: englishLevel,
+      japanese_level: japaneseLevel,
+      address,
+      nearest_station: nearestStation,
+      bank_name: bankName,
+      bank_branch: bankBranch,
+      bank_account_number: bankAccountNumber,
+      bank_account_holder: bankAccountHolder,
+      phone,
+    })
+    .eq('id', user.id)
+
+  if (error) {
+    return { error: 'プロフィールの更新に失敗しました。再度お試しください。' }
   }
 
   revalidatePath('/', 'layout')
   redirect('/dashboard?message=' + encodeURIComponent('登録が完了しました！'))
+}
+
+// 新規登録（旧: 後方互換用に残す）
+export async function signUp(
+  _prevState: AuthState,
+  formData: FormData
+): Promise<AuthState> {
+  return signUpStep1(_prevState, formData)
 }
 
 // ログアウト

@@ -34,9 +34,15 @@ export async function proxy(request: NextRequest) {
   )
 
   // セッションを更新（getUser()を呼ぶことでセッションがリフレッシュされる）
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  // Supabase が一時的に接続不能な場合もページを表示できるよう try/catch で保護
+  let user: import('@supabase/supabase-js').User | null = null
+  try {
+    const { data } = await supabase.auth.getUser()
+    user = data.user
+  } catch {
+    // Supabase への接続失敗時は未ログイン状態として扱い続行
+    return NextResponse.next({ request })
+  }
 
   const pathname = request.nextUrl.pathname
 

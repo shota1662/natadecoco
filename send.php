@@ -4,7 +4,7 @@
 // ============================================================
 
 // ① 受信先メールアドレス（実際のアドレスに変更してください）
-$to = 'info@example.com';
+$to = 'info@natadecoco.org';
 
 // ② POSTメソッド以外はトップへ
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -81,7 +81,7 @@ $body .= "【お問い合わせ内容】\n" . $message . "\n\n";
 $body .= "======================================\n";
 $body .= "送信日時: " . date('Y-m-d H:i:s') . "\n";
 
-$headers  = "From: noreply@example.com\r\n";
+$headers  = "From: info@natadecoco.org\r\n";
 $headers .= "Reply-To: " . $email . "\r\n";
 $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
@@ -107,9 +107,9 @@ $auto_body .= "--------------------------------------\n\n";
 $auto_body .= "担当者より3営業日以内にご連絡いたします。\n";
 $auto_body .= "しばらくお待ちくださいますようお願い申し上げます。\n\n";
 $auto_body .= "NPOナタデココ\n";
-$auto_body .= "https://example.com\n";   // ← サイトURLに変更してください
+$auto_body .= "https://natadecoco.org\n";
 
-$auto_headers  = "From: info@example.com\r\n";   // ← 実際の送信元アドレスに変更
+$auto_headers  = "From: info@natadecoco.org\r\n";
 $auto_headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
 mb_send_mail($email, $auto_subject, $auto_body, $auto_headers);

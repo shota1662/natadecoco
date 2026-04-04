@@ -1874,6 +1874,13 @@ h2 {
 /* ===================================
    レスポンシブ：ボランティア募集セクション
    =================================== */
+@media (max-width: 700px) {
+    .volunteer-points {
+        flex-direction: column;
+        gap: 16px;
+    }
+}
+
 @media (max-width: 600px) {
     .volunteer-lead {
         font-size: 14px;

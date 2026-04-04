@@ -282,3 +282,57 @@
     font-weight: bold;
     border-bottom: 1px solid #516881;
 }
+
+/* ===================================
+   レスポンシブ
+   =================================== */
+@media (max-width: 768px) {
+    .faq-hero {
+        padding: 60px 20px 44px;
+    }
+
+    .faq-hero-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .faq-hero-title {
+        font-size: 28px;
+    }
+
+    .faq-section {
+        padding: 60px 20px 80px;
+    }
+
+    .faq-section-title {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .faq-hero-icon {
+        width: 80px;
+    }
+
+    .faq-hero-title {
+        font-size: 22px;
+    }
+
+    .faq-section-title {
+        font-size: 22px;
+    }
+
+    .faq-question {
+        padding: 16px 12px;
+        font-size: 14px;
+    }
+
+    .faq-answer-inner {
+        padding: 0 12px 20px 12px;
+    }
+
+    .faq-contact-cta {
+        padding: 36px 16px;
+    }
+}

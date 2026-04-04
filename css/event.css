@@ -53,6 +53,79 @@
     width: 100%;
     background-color: #fff;
     padding: 70px 20px 100px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 国旗共通 */
+.event-list-section .msg-flag {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+}
+
+.event-list-section .msg-flag .fi {
+    display: block;
+    width: 52px;
+    height: 39px;
+    border-radius: 5px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+.event-list-section .msg-flag--l1 .fi { transform: rotate(-10deg); }
+.event-list-section .msg-flag--l2 .fi { transform: rotate(-5deg);  }
+.event-list-section .msg-flag--l3 .fi { transform: rotate(-13deg); }
+.event-list-section .msg-flag--l4 .fi { transform: rotate(-7deg);  }
+.event-list-section .msg-flag--r1 .fi { transform: rotate(9deg);   }
+.event-list-section .msg-flag--r2 .fi { transform: rotate(5deg);   }
+.event-list-section .msg-flag--r3 .fi { transform: rotate(12deg);  }
+.event-list-section .msg-flag--r4 .fi { transform: rotate(4deg);   }
+
+@keyframes flagFloat {
+    0%   { transform: translateY(0px); }
+    50%  { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.event-list-section .msg-flag.is-visible {
+    opacity: 1;
+    animation: flagFloat 4s ease-in-out infinite;
+}
+
+.event-list-section .msg-flag--l1 { left: 3%;  top: 8%;  transition-delay: 0s;    }
+.event-list-section .msg-flag--l2 { left: 6%;  top: 32%; transition-delay: 0.15s; }
+.event-list-section .msg-flag--l3 { left: 2%;  top: 58%; transition-delay: 0.3s;  }
+.event-list-section .msg-flag--l4 { left: 7%;  top: 80%; transition-delay: 0.45s; }
+.event-list-section .msg-flag--r1 { right: 3%;  top: 12%; transition-delay: 0.1s;  }
+.event-list-section .msg-flag--r2 { right: 7%;  top: 38%; transition-delay: 0.25s; }
+.event-list-section .msg-flag--r3 { right: 2%;  top: 62%; transition-delay: 0.4s;  }
+.event-list-section .msg-flag--r4 { right: 6%;  top: 84%; transition-delay: 0.55s; }
+
+.event-list-section .msg-flag--l1.is-visible { animation-delay: 0s;   }
+.event-list-section .msg-flag--l2.is-visible { animation-delay: 0.5s; }
+.event-list-section .msg-flag--l3.is-visible { animation-delay: 1.0s; }
+.event-list-section .msg-flag--l4.is-visible { animation-delay: 0.3s; }
+.event-list-section .msg-flag--r1.is-visible { animation-delay: 0.7s; }
+.event-list-section .msg-flag--r2.is-visible { animation-delay: 1.2s; }
+.event-list-section .msg-flag--r3.is-visible { animation-delay: 0.4s; }
+.event-list-section .msg-flag--r4.is-visible { animation-delay: 0.9s; }
+
+@media (max-width: 768px) {
+    .event-list-section .msg-flag .fi { width: 36px; height: 27px; }
+    .event-list-section .msg-flag--l1,
+    .event-list-section .msg-flag--l2,
+    .event-list-section .msg-flag--l3,
+    .event-list-section .msg-flag--l4 { left: 0; }
+    .event-list-section .msg-flag--r1,
+    .event-list-section .msg-flag--r2,
+    .event-list-section .msg-flag--r3,
+    .event-list-section .msg-flag--r4 { right: 0; }
+}
+
+@media (max-width: 480px) {
+    .event-list-section .msg-flag { display: none; }
 }
 
 /* カテゴリフィルター */
@@ -703,6 +776,12 @@
     text-decoration-color: #bbb;
 }
 
+.ticket-status--closed {
+    background-color: #f2f2f2;
+    color: #999;
+    border: 1.5px solid #ccc;
+}
+
 /* ===================================
    チケットカード：位置指定（ノッチ用）
    =================================== */
@@ -744,6 +823,47 @@
     margin-bottom: 20px;
 }
 
+.acc-benefits {
+    background-color: #f0f8ff;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+}
+
+.acc-benefits-title {
+    font-size: 13px;
+    font-weight: bold;
+    color: #516881;
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+}
+
+.acc-benefits-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.acc-benefits-list li {
+    font-size: 14px;
+    color: #1e3a5a;
+    line-height: 1.6;
+    padding-left: 22px;
+    position: relative;
+}
+
+.acc-benefits-list li::before {
+    content: "✦";
+    position: absolute;
+    left: 0;
+    color: #9fd9f6;
+    font-size: 11px;
+    top: 3px;
+}
+
 .acc-detail-table {
     width: 100%;
     border-collapse: collapse;
@@ -783,6 +903,34 @@
     font-weight: bold;
     padding: 3px 14px;
     border-radius: 10px;
+}
+
+.acc-gift-banner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #fff8e1, #fff3cd);
+    border: 1.5px dashed #f4b942;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 16px;
+}
+
+.acc-gift-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+}
+
+.acc-gift-text {
+    font-size: 14px;
+    color: #7a5500;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.acc-gift-period {
+    font-weight: bold;
+    color: #e07b00;
 }
 
 .acc-btns {
@@ -842,5 +990,34 @@
 
     .acc-detail-table th {
         width: 72px;
+    }
+}
+
+/* ===================================
+   ヒーロー レスポンシブ
+   =================================== */
+@media (max-width: 768px) {
+    .event-hero-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .event-hero-icon {
+        width: 72px;
+    }
+
+    .event-hero-title {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .event-hero-title {
+        font-size: 22px;
+    }
+
+    .event-hero {
+        padding: 48px 20px 32px;
     }
 }

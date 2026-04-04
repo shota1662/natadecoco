@@ -242,7 +242,7 @@ $(document).ready(function() {
     });
   }, { threshold: 0.2 });
 
-  var section = document.querySelector('.our-message');
+  var section = document.querySelector('.our-message') || document.querySelector('.event-list-section');
   if (section) observer.observe(section);
 });
 

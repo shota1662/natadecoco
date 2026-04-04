@@ -454,3 +454,45 @@
     box-shadow: none;
     transform: translate(3px, 3px);
 }
+
+/* ===================================
+   レスポンシブ
+   =================================== */
+@media (max-width: 768px) {
+    .rpt-hero-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .rpt-hero-icon {
+        width: 72px;
+    }
+
+    .rpt-hero-title {
+        font-size: 28px;
+    }
+
+    #rpt-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .rpt-filter-panel {
+        padding: 24px 20px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .rpt-hero-title {
+        font-size: 22px;
+    }
+
+    #rpt-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .rpt-filter-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

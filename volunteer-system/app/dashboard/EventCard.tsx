@@ -9,6 +9,35 @@ interface EventCardProps {
   isRegistered: boolean
   participantCount: number
   registrationId?: string
+  registrationStatus?: 'applied' | 'selected' | 'rejected'
+}
+
+function getReceptionStatus(event: Event) {
+  const now = new Date()
+  const start = event.registration_start ? new Date(event.registration_start) : null
+  const end = event.registration_end ? new Date(event.registration_end) : null
+
+  if (start && start > now) {
+    const m = (start.getMonth() + 1).toString().padStart(2, '0')
+    const d = start.getDate().toString().padStart(2, '0')
+    return { label: `${m}/${d} 受付開始`, type: 'upcoming' as const }
+  }
+  if (end && end < now) {
+    return { label: '受付終了', type: 'closed' as const }
+  }
+  return { label: '募集受付中', type: 'open' as const }
+}
+
+const RECEPTION_STYLE = {
+  upcoming: { color: '#c47b1a', bg: '#fff8f0', border: '#f4a44a' },
+  open:     { color: '#1a8a8f', bg: '#f0fffe', border: '#30b9bf' },
+  closed:   { color: '#888',    bg: '#f5f5f5', border: '#ccc' },
+}
+
+const STATUS_STYLE = {
+  applied:  { label: '申込済み', color: '#516881', bg: '#f0f4f8', border: '#9fb8cc' },
+  selected: { label: '当選',     color: '#1a8a8f', bg: '#f0fffe', border: '#30b9bf' },
+  rejected: { label: '落選',     color: '#c0234a', bg: '#fff0f3', border: '#fe4c7f' },
 }
 
 export default function EventCard({
@@ -16,6 +45,7 @@ export default function EventCard({
   isRegistered,
   participantCount,
   registrationId,
+  registrationStatus,
 }: EventCardProps) {
   const [loading, setLoading] = useState(false)
   const [registered, setRegistered] = useState(isRegistered)
@@ -26,8 +56,11 @@ export default function EventCard({
   const [wantsHonorarium, setWantsHonorarium] = useState(false)
 
   const eventDate = new Date(event.event_date)
-  const isPast = eventDate < new Date()
   const isFull = event.capacity !== null && participantCount >= event.capacity
+  const reception = getReceptionStatus(event)
+  const canApply = reception.type === 'open' && !registered && !isFull
+  const appStatus = registered ? (registrationStatus ?? 'applied') : null
+  const appStyle = appStatus ? STATUS_STYLE[appStatus] : null
 
   const handleRegister = async () => {
     setLoading(true)
@@ -56,246 +89,203 @@ export default function EventCard({
     setLoading(false)
   }
 
+  const receptionStyle = RECEPTION_STYLE[reception.type]
+
   return (
     <div
       style={{
         backgroundColor: '#fff',
-        borderRadius: '16px',
-        boxShadow: '5px 5px 0 rgba(81,104,129,0.2)',
+        borderRadius: '14px',
+        boxShadow: '3px 3px rgba(81,104,129,0.12)',
         overflow: 'hidden',
         display: 'flex',
-        flexDirection: 'column',
-        transition: 'transform 0.2s, box-shadow 0.2s',
+        borderLeft: `5px solid ${receptionStyle.border}`,
       }}
     >
-      {/* カラーバー */}
       <div
         style={{
-          height: '6px',
-          backgroundColor: registered ? '#30b9bf' : isPast ? '#aaa' : '#fe4c7f',
+          flex: 1,
+          padding: '16px 20px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '16px',
+          flexWrap: 'wrap',
         }}
-      />
-
-      <div style={{ padding: '20px', flex: 1, display: 'flex', flexDirection: 'column' }}>
-        {/* ステータスバッジ */}
-        <div style={{ display: 'flex', gap: '8px', marginBottom: '12px', flexWrap: 'wrap' }}>
-          {registered && <span className="badge-teal">申込済み</span>}
-          {isFull && !registered && <span className="badge-primary">満員</span>}
-          {isPast && <span style={{ backgroundColor: '#aaa', color: '#fff', fontSize: '11px', fontWeight: 'bold', padding: '3px 10px', borderRadius: '3px' }}>終了</span>}
+      >
+        {/* 受付状況バッジ */}
+        <div style={{ flexShrink: 0 }}>
+          <span
+            style={{
+              display: 'inline-block',
+              padding: '4px 10px',
+              borderRadius: '6px',
+              border: `1.5px solid ${receptionStyle.border}`,
+              backgroundColor: receptionStyle.bg,
+              color: receptionStyle.color,
+              fontSize: '12px',
+              fontWeight: '700',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {reception.label}
+          </span>
         </div>
 
-        {/* タイトル */}
-        <h3
-          style={{
-            fontSize: '17px',
-            fontWeight: '700',
-            color: '#333',
-            margin: '0 0 12px',
-            lineHeight: 1.4,
-          }}
-        >
-          {event.title}
-        </h3>
+        {/* タイトル・詳細 */}
+        <div style={{ flex: 1, minWidth: '180px' }}>
+          <p style={{ fontSize: '15px', fontWeight: '700', color: '#333', margin: '0 0 4px', lineHeight: 1.4 }}>
+            {event.title}
+          </p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', fontSize: '12px', color: '#666' }}>
+            <span>
+              📅{' '}
+              {eventDate.toLocaleDateString('ja-JP', {
+                year: 'numeric', month: 'short', day: 'numeric', weekday: 'short',
+              })}
+              {' '}
+              {eventDate.toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' })}
+            </span>
+            {event.location && <span>📍 {event.location}</span>}
+            <span>👥 {participantCount}名{event.capacity ? ` / ${event.capacity}名` : ''}</span>
+            {event.result_notification_date && (
+              <span>
+                📋 結果通達:{' '}
+                {new Date(event.result_notification_date).toLocaleDateString('ja-JP', {
+                  month: 'short', day: 'numeric',
+                })}まで
+              </span>
+            )}
+          </div>
+        </div>
 
-        {/* 詳細情報 */}
-        <div style={{ fontSize: '13px', color: '#666', lineHeight: 2, flex: 1 }}>
-          <div>
-            📅{' '}
-            {eventDate.toLocaleDateString('ja-JP', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-              weekday: 'short',
-              hour: '2-digit',
-              minute: '2-digit',
-            })}
-          </div>
-          {event.location && <div>📍 {event.location}</div>}
-          <div>
-            👥 参加者: {participantCount}名
-            {event.capacity && ` / ${event.capacity}名`}
-          </div>
-          {event.description && (
-            <p
+        {/* 申込ステータス＆ボタン */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexShrink: 0 }}>
+          {appStyle && (
+            <span
               style={{
-                fontSize: '13px',
-                color: '#888',
-                margin: '8px 0 0',
-                lineHeight: 1.7,
-                display: '-webkit-box',
-                WebkitLineClamp: 3,
-                WebkitBoxOrient: 'vertical',
-                overflow: 'hidden',
+                padding: '4px 12px',
+                borderRadius: '6px',
+                border: `1.5px solid ${appStyle.border}`,
+                backgroundColor: appStyle.bg,
+                color: appStyle.color,
+                fontSize: '12px',
+                fontWeight: '700',
+                whiteSpace: 'nowrap',
               }}
             >
-              {event.description}
-            </p>
+              {appStyle.label}
+            </span>
           )}
-        </div>
 
-        {/* エラー表示 */}
-        {error && (
-          <p style={{ fontSize: '12px', color: '#fe4c7f', margin: '8px 0 0' }}>⚠️ {error}</p>
-        )}
+          {isFull && !registered && (
+            <span style={{ fontSize: '12px', color: '#888', fontWeight: '700' }}>満員</span>
+          )}
 
-        {/* ボタン */}
-        {!isPast && (
-          <div style={{ marginTop: '16px' }}>
-            {registered ? (
+          {error && (
+            <span style={{ fontSize: '12px', color: '#fe4c7f' }}>⚠️ {error}</span>
+          )}
+
+          {registered ? (
+            appStatus === 'applied' && (
               <button
                 onClick={handleCancel}
                 disabled={loading}
                 style={{
-                  width: '100%',
-                  padding: '10px',
+                  padding: '7px 16px',
                   backgroundColor: '#f7fbfe',
-                  border: '2px solid #d9eaf4',
-                  borderRadius: '10px',
-                  fontSize: '14px',
+                  border: '1.5px solid #d9eaf4',
+                  borderRadius: '8px',
+                  fontSize: '13px',
                   color: '#516881',
                   cursor: loading ? 'not-allowed' : 'pointer',
                   fontFamily: 'inherit',
                   fontWeight: '700',
-                  transition: 'all 0.2s',
+                  whiteSpace: 'nowrap',
                 }}
               >
-                {loading ? '処理中...' : '申し込みをキャンセル'}
+                {loading ? '処理中...' : 'キャンセル'}
               </button>
-            ) : (
-              <button
-                onClick={() => setShowModal(true)}
-                disabled={loading || isFull}
-                className={isFull ? '' : 'btn-coral'}
-                style={{
-                  width: '100%',
-                  padding: '10px',
-                  borderRadius: '10px',
-                  fontSize: '14px',
-                  cursor: loading || isFull ? 'not-allowed' : 'pointer',
-                  fontFamily: 'inherit',
-                  fontWeight: '700',
-                  height: 'auto',
-                  opacity: isFull ? 0.5 : 1,
-                  ...(isFull
-                    ? {
-                        backgroundColor: '#f0f0f0',
-                        border: '2px solid #ddd',
-                        color: '#888',
-                        boxShadow: 'none',
-                      }
-                    : {}),
-                }}
-              >
-                {loading ? '処理中...' : isFull ? '満員のため申し込み不可' : '申し込む'}
-              </button>
-            )}
-          </div>
-        )}
+            )
+          ) : canApply ? (
+            <button
+              onClick={() => setShowModal(true)}
+              disabled={loading}
+              className="btn-coral"
+              style={{
+                padding: '7px 20px',
+                borderRadius: '8px',
+                fontSize: '13px',
+                cursor: loading ? 'not-allowed' : 'pointer',
+                fontFamily: 'inherit',
+                fontWeight: '700',
+                height: 'auto',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {loading ? '処理中...' : '申し込む'}
+            </button>
+          ) : reception.type === 'closed' ? null : null}
+        </div>
       </div>
 
       {/* 申し込み確認モーダル */}
       {showModal && (
         <div
           style={{
-            position: 'fixed',
-            inset: 0,
-            backgroundColor: 'rgba(0,0,0,0.4)',
-            zIndex: 1000,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '20px',
+            position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.4)',
+            zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px',
           }}
           onClick={() => setShowModal(false)}
         >
           <div
             style={{
-              backgroundColor: '#fff',
-              borderRadius: '16px',
+              backgroundColor: '#fff', borderRadius: '16px',
               boxShadow: '8px 8px 0 rgba(81,104,129,0.2)',
-              padding: '28px 28px 24px',
-              maxWidth: '420px',
-              width: '100%',
+              padding: '28px 28px 24px', maxWidth: '420px', width: '100%',
             }}
             onClick={(e) => e.stopPropagation()}
           >
             <h3 style={{ fontSize: '18px', fontWeight: '700', color: '#333', margin: '0 0 6px' }}>
               イベント申し込み確認
             </h3>
-            <p style={{ fontSize: '14px', color: '#888', margin: '0 0 20px' }}>
-              {event.title}
-            </p>
+            <p style={{ fontSize: '14px', color: '#888', margin: '0 0 20px' }}>{event.title}</p>
 
             <p style={{ fontSize: '14px', fontWeight: '700', color: '#516881', margin: '0 0 12px' }}>
               受け取りを希望する項目を選択してください
             </p>
 
-            <label
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '10px',
-                padding: '12px 14px',
-                borderRadius: '10px',
-                border: `2px solid ${wantsTransportFee ? '#30b9bf' : '#e0e0e0'}`,
-                backgroundColor: wantsTransportFee ? '#f0fffe' : '#fafafa',
-                cursor: 'pointer',
-                marginBottom: '10px',
-                transition: 'all 0.15s',
-              }}
-            >
-              <input
-                type="checkbox"
-                checked={wantsTransportFee}
-                onChange={(e) => setWantsTransportFee(e.target.checked)}
-                style={{ width: '18px', height: '18px', accentColor: '#30b9bf', cursor: 'pointer' }}
-              />
-              <div>
-                <span style={{ fontSize: '14px', fontWeight: '700', color: '#333' }}>交通費</span>
-                <span style={{ fontSize: '12px', color: '#888', marginLeft: '8px' }}>の受け取りを希望する</span>
-              </div>
-            </label>
+            {[
+              { label: '交通費', state: wantsTransportFee, setState: setWantsTransportFee },
+              { label: '謝金',   state: wantsHonorarium,  setState: setWantsHonorarium },
+            ].map(({ label, state, setState }) => (
+              <label
+                key={label}
+                style={{
+                  display: 'flex', alignItems: 'center', gap: '10px',
+                  padding: '12px 14px', borderRadius: '10px',
+                  border: `2px solid ${state ? '#30b9bf' : '#e0e0e0'}`,
+                  backgroundColor: state ? '#f0fffe' : '#fafafa',
+                  cursor: 'pointer', marginBottom: '10px', transition: 'all 0.15s',
+                }}
+              >
+                <input
+                  type="checkbox" checked={state}
+                  onChange={(e) => setState(e.target.checked)}
+                  style={{ width: '18px', height: '18px', accentColor: '#30b9bf', cursor: 'pointer' }}
+                />
+                <span style={{ fontSize: '14px', fontWeight: '700', color: '#333' }}>{label}</span>
+                <span style={{ fontSize: '12px', color: '#888' }}>の受け取りを希望する</span>
+              </label>
+            ))}
 
-            <label
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '10px',
-                padding: '12px 14px',
-                borderRadius: '10px',
-                border: `2px solid ${wantsHonorarium ? '#30b9bf' : '#e0e0e0'}`,
-                backgroundColor: wantsHonorarium ? '#f0fffe' : '#fafafa',
-                cursor: 'pointer',
-                marginBottom: '24px',
-                transition: 'all 0.15s',
-              }}
-            >
-              <input
-                type="checkbox"
-                checked={wantsHonorarium}
-                onChange={(e) => setWantsHonorarium(e.target.checked)}
-                style={{ width: '18px', height: '18px', accentColor: '#30b9bf', cursor: 'pointer' }}
-              />
-              <div>
-                <span style={{ fontSize: '14px', fontWeight: '700', color: '#333' }}>謝金</span>
-                <span style={{ fontSize: '12px', color: '#888', marginLeft: '8px' }}>の受け取りを希望する</span>
-              </div>
-            </label>
-
-            <div style={{ display: 'flex', gap: '10px' }}>
+            <div style={{ display: 'flex', gap: '10px', marginTop: '14px' }}>
               <button
                 onClick={() => setShowModal(false)}
                 style={{
-                  flex: 1,
-                  padding: '10px',
-                  backgroundColor: '#f7fbfe',
-                  border: '2px solid #d9eaf4',
-                  borderRadius: '10px',
-                  fontSize: '14px',
-                  color: '#516881',
-                  cursor: 'pointer',
-                  fontFamily: 'inherit',
-                  fontWeight: '700',
+                  flex: 1, padding: '10px', backgroundColor: '#f7fbfe',
+                  border: '2px solid #d9eaf4', borderRadius: '10px',
+                  fontSize: '14px', color: '#516881', cursor: 'pointer',
+                  fontFamily: 'inherit', fontWeight: '700',
                 }}
               >
                 キャンセル
@@ -305,14 +295,9 @@ export default function EventCard({
                 disabled={loading}
                 className="btn-coral"
                 style={{
-                  flex: 1,
-                  padding: '10px',
-                  borderRadius: '10px',
-                  fontSize: '14px',
-                  cursor: loading ? 'not-allowed' : 'pointer',
-                  fontFamily: 'inherit',
-                  fontWeight: '700',
-                  height: 'auto',
+                  flex: 1, padding: '10px', borderRadius: '10px',
+                  fontSize: '14px', cursor: loading ? 'not-allowed' : 'pointer',
+                  fontFamily: 'inherit', fontWeight: '700', height: 'auto',
                 }}
               >
                 {loading ? '処理中...' : '申し込む'}

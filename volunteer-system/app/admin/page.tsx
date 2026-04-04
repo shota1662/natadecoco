@@ -174,6 +174,13 @@ export default async function AdminPage() {
                 color: '#f87a6d',
                 icon: '👥',
               },
+              {
+                href: '/admin/email-templates',
+                label: 'メールテンプレート',
+                desc: '当選・落選メールの文面編集',
+                color: '#a78bfa',
+                icon: '✉️',
+              },
             ].map((link) => (
               <Link
                 key={link.href}

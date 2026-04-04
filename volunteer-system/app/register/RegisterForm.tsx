@@ -2,21 +2,7 @@
 
 import { useActionState } from 'react'
 import Link from 'next/link'
-import { signUp, type AuthState } from '@/app/auth/actions'
-
-const NATIONALITIES = [
-  '日本', 'アメリカ', 'イギリス', 'カナダ', 'オーストラリア', 'ニュージーランド',
-  '中国', '韓国', '台湾', 'フィリピン', 'インドネシア', 'タイ', 'ベトナム',
-  'インド', 'ブラジル', 'フランス', 'ドイツ', 'スペイン', 'イタリア', 'その他',
-]
-
-const LANGUAGE_LEVELS = [
-  { value: 1, label: '1 - 初級（ほぼ話せない）' },
-  { value: 2, label: '2 - 基礎（日常会話の一部）' },
-  { value: 3, label: '3 - 中級（日常会話ができる）' },
-  { value: 4, label: '4 - 上級（仕事で使えるレベル）' },
-  { value: 5, label: '5 - ネイティブレベル' },
-]
+import { signUpStep1, type AuthState } from '@/app/auth/actions'
 
 const labelStyle = {
   display: 'flex' as const,
@@ -28,27 +14,8 @@ const labelStyle = {
   marginBottom: '8px',
 }
 
-const optionalBadge = {
-  backgroundColor: '#aaa',
-  color: '#fff',
-  fontSize: '10px',
-  fontWeight: 'bold' as const,
-  padding: '2px 7px',
-  borderRadius: '3px',
-}
-
-const selectArrow = {
-  position: 'absolute' as const,
-  right: '16px',
-  top: '50%',
-  transform: 'translateY(-50%)',
-  color: '#9fd9f6',
-  fontSize: '18px',
-  pointerEvents: 'none' as const,
-}
-
 export default function RegisterForm() {
-  const [state, formAction, isPending] = useActionState<AuthState, FormData>(signUp, null)
+  const [state, formAction, isPending] = useActionState<AuthState, FormData>(signUpStep1, null)
 
   return (
     <div
@@ -68,6 +35,49 @@ export default function RegisterForm() {
           margin: '0 auto',
         }}
       >
+        {/* ステップインジケーター */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '36px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <div
+              style={{
+                width: '32px',
+                height: '32px',
+                borderRadius: '50%',
+                backgroundColor: '#fe4c7f',
+                color: '#fff',
+                fontSize: '14px',
+                fontWeight: '700',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              1
+            </div>
+            <span style={{ fontSize: '13px', fontWeight: '700', color: '#fe4c7f' }}>アカウント作成</span>
+          </div>
+          <div style={{ width: '40px', height: '2px', backgroundColor: '#dde5ee' }} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <div
+              style={{
+                width: '32px',
+                height: '32px',
+                borderRadius: '50%',
+                backgroundColor: '#dde5ee',
+                color: '#aaa',
+                fontSize: '14px',
+                fontWeight: '700',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              2
+            </div>
+            <span style={{ fontSize: '13px', fontWeight: '700', color: '#aaa' }}>詳細情報</span>
+          </div>
+        </div>
+
         {/* タイトル */}
         <div style={{ textAlign: 'center', marginBottom: '36px' }}>
           <div
@@ -89,7 +99,7 @@ export default function RegisterForm() {
             ボランティア登録
           </h1>
           <p style={{ fontSize: '14px', color: '#888', margin: 0, lineHeight: 1.8 }}>
-            必要事項を入力して、ボランティアとして登録してください。
+            まずはメールアドレスとパスワードを設定してください。
           </p>
         </div>
 
@@ -111,23 +121,6 @@ export default function RegisterForm() {
         )}
 
         <form action={formAction}>
-          {/* 氏名 */}
-          <div style={{ marginBottom: '24px' }}>
-            <label htmlFor="full_name" style={labelStyle}>
-              氏名
-              <span className="badge-pink" style={{ fontSize: '10px', padding: '2px 7px' }}>必須</span>
-            </label>
-            <input
-              className="form-input"
-              type="text"
-              id="full_name"
-              name="full_name"
-              placeholder="例）山田 太郎"
-              required
-              disabled={isPending}
-            />
-          </div>
-
           {/* メールアドレス */}
           <div style={{ marginBottom: '24px' }}>
             <label htmlFor="email" style={labelStyle}>
@@ -147,7 +140,7 @@ export default function RegisterForm() {
           </div>
 
           {/* パスワード */}
-          <div style={{ marginBottom: '24px' }}>
+          <div style={{ marginBottom: '36px' }}>
             <label htmlFor="password" style={labelStyle}>
               パスワード
               <span className="badge-pink" style={{ fontSize: '10px', padding: '2px 7px' }}>必須</span>
@@ -168,44 +161,6 @@ export default function RegisterForm() {
             </p>
           </div>
 
-          {/* 国籍 */}
-          <div style={{ marginBottom: '24px' }}>
-            <label htmlFor="nationality" style={labelStyle}>
-              国籍
-              <span style={optionalBadge}>任意</span>
-            </label>
-            <div style={{ position: 'relative' }}>
-              <select
-                className="form-select"
-                id="nationality"
-                name="nationality"
-                style={{ paddingRight: '40px' }}
-                disabled={isPending}
-              >
-                <option value="">選択してください</option>
-                {NATIONALITIES.map((nat) => (
-                  <option key={nat} value={nat}>{nat}</option>
-                ))}
-              </select>
-              <span style={selectArrow}>▾</span>
-            </div>
-          </div>
-
-          {/* 生年月日 */}
-          <div style={{ marginBottom: '36px' }}>
-            <label htmlFor="birthday" style={labelStyle}>
-              生年月日
-              <span style={optionalBadge}>任意</span>
-            </label>
-            <input
-              className="form-input"
-              type="date"
-              id="birthday"
-              name="birthday"
-              disabled={isPending}
-            />
-          </div>
-
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <button
               type="submit"
@@ -220,7 +175,7 @@ export default function RegisterForm() {
                 cursor: isPending ? 'not-allowed' : 'pointer',
               }}
             >
-              {isPending ? '登録中...' : '登録する'}
+              {isPending ? '処理中...' : '次へ →'}
             </button>
           </div>
         </form>

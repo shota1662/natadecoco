@@ -452,3 +452,68 @@
     color: #516881;
     opacity: 1;
 }
+
+/* ===================================
+   レスポンシブ
+   =================================== */
+@media (max-width: 860px) {
+    .ed-hero-content {
+        flex-direction: column;
+        gap: 28px;
+    }
+
+    .ed-hero-right {
+        width: 100%;
+    }
+
+    .ed-hero-img {
+        height: 220px;
+    }
+
+    .ed-info-inner {
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .ed-info-right {
+        width: 100%;
+    }
+
+    .ed-map-wrap {
+        height: 240px;
+    }
+}
+
+@media (max-width: 600px) {
+    .ed-hero-title {
+        font-size: 28px;
+    }
+
+    .ed-gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .ed-gallery-main {
+        grid-column: 1 / 3;
+        height: 180px;
+    }
+
+    .ed-apply-title {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ed-hero-title {
+        font-size: 22px;
+    }
+
+    .ed-gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ed-gallery-main {
+        grid-column: auto;
+        height: 200px;
+    }
+}

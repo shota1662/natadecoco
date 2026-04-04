@@ -659,9 +659,123 @@
     color: #9fd9f6;
 }
 
+/* ===================================
+   レスポンシブ
+   =================================== */
+@media (max-width: 768px) {
+    .abt-hero-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .abt-hero-title {
+        font-size: 26px;
+    }
+
+    .abt-section-title {
+        font-size: 26px;
+    }
+
+    .abt-mission-body {
+        flex-direction: column;
+    }
+
+    .abt-mission-photo {
+        width: 100%;
+    }
+
+    .abt-mission-photo img {
+        height: 220px;
+    }
+
+    .catch-main {
+        font-size: 32px;
+    }
+
+    .abt-timeline {
+        padding-left: 80px;
+    }
+
+    .abt-timeline::before {
+        left: 60px;
+    }
+
+    .abt-timeline-year {
+        left: -80px;
+        width: 60px;
+        font-size: 18px;
+    }
+
+    .abt-recommend-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 640px) {
     .abt-simple-links {
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .abt-hero-icon {
+        width: 72px;
+    }
+
+    .abt-hero-title {
+        font-size: 22px;
+    }
+
+    .abt-section-title {
+        font-size: 20px;
+    }
+
+    .catch-main {
+        font-size: 26px;
+    }
+
+    .abt-timeline {
+        padding-left: 60px;
+    }
+
+    .abt-timeline::before {
+        left: 44px;
+    }
+
+    .abt-timeline-year {
+        left: -60px;
+        width: 44px;
+        font-size: 15px;
+    }
+
+    .abt-table th,
+    .abt-table td {
+        display: block;
+        width: auto;
+    }
+
+    .abt-table th {
+        padding-bottom: 4px;
+        border-bottom: none;
+    }
+
+    .abt-table td {
+        padding-top: 0;
+        padding-left: 24px;
+    }
+
+    .abt-member-card {
+        width: calc(50% - 10px);
+        min-width: 140px;
+    }
+
+    .abt-member-card--large {
+        width: 100%;
+    }
+
+    .abt-simple-links {
+        grid-template-columns: 1fr;
     }
 }
 

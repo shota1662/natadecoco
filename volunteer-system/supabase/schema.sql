@@ -8,45 +8,80 @@
 -- 1. プロフィールテーブル (auth.users を拡張)
 -- ============================================================
 CREATE TABLE IF NOT EXISTS public.profiles (
-  id            UUID        REFERENCES auth.users(id) ON DELETE CASCADE PRIMARY KEY,
-  full_name     TEXT        NOT NULL DEFAULT '',
-  email         TEXT        NOT NULL DEFAULT '',
-  phone         TEXT,
-  nationality   TEXT,
-  birthday      DATE,
-  japanese_level SMALLINT   CHECK (japanese_level BETWEEN 1 AND 5),
-  english_level  SMALLINT   CHECK (english_level BETWEEN 1 AND 5),
-  role          TEXT        NOT NULL DEFAULT 'volunteer'
-                            CHECK (role IN ('volunteer', 'admin')),
-  created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  updated_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()
+  id                  UUID        REFERENCES auth.users(id) ON DELETE CASCADE PRIMARY KEY,
+  full_name           TEXT        NOT NULL DEFAULT '',
+  email               TEXT        NOT NULL DEFAULT '',
+  phone               TEXT,
+  nationality         TEXT,
+  birthday            DATE,
+  prefecture          TEXT,
+  occupation          TEXT,
+  skills              TEXT,
+  japanese_level      SMALLINT    CHECK (japanese_level BETWEEN 1 AND 5),
+  english_level       SMALLINT    CHECK (english_level BETWEEN 1 AND 5),
+  role                TEXT        NOT NULL DEFAULT 'volunteer'
+                                  CHECK (role IN ('volunteer', 'admin')),
+  address             TEXT,
+  nearest_station     TEXT,
+  bank_name           TEXT,
+  bank_branch         TEXT,
+  bank_account_number TEXT,
+  bank_account_holder TEXT,
+  created_at          TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at          TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+
+-- 既存DBへの追加カラム（初回実行後に必要な場合）
+ALTER TABLE public.profiles ADD COLUMN IF NOT EXISTS prefecture          TEXT;
+ALTER TABLE public.profiles ADD COLUMN IF NOT EXISTS occupation          TEXT;
+ALTER TABLE public.profiles ADD COLUMN IF NOT EXISTS skills              TEXT;
+ALTER TABLE public.profiles ADD COLUMN IF NOT EXISTS address             TEXT;
+ALTER TABLE public.profiles ADD COLUMN IF NOT EXISTS nearest_station     TEXT;
+ALTER TABLE public.profiles ADD COLUMN IF NOT EXISTS bank_name           TEXT;
+ALTER TABLE public.profiles ADD COLUMN IF NOT EXISTS bank_branch         TEXT;
+ALTER TABLE public.profiles ADD COLUMN IF NOT EXISTS bank_account_number TEXT;
+ALTER TABLE public.profiles ADD COLUMN IF NOT EXISTS bank_account_holder TEXT;
 
 -- ============================================================
 -- 2. イベントテーブル
 -- ============================================================
 CREATE TABLE IF NOT EXISTS public.events (
-  id          UUID        DEFAULT gen_random_uuid() PRIMARY KEY,
-  title       TEXT        NOT NULL,
-  description TEXT,
-  location    TEXT,
-  event_date  TIMESTAMPTZ NOT NULL,
-  capacity    INT         CHECK (capacity > 0),
-  created_by  UUID        REFERENCES public.profiles(id) ON DELETE SET NULL,
-  created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  updated_at  TIMESTAMPTZ NOT NULL DEFAULT NOW()
+  id                       UUID        DEFAULT gen_random_uuid() PRIMARY KEY,
+  title                    TEXT        NOT NULL,
+  description              TEXT,
+  location                 TEXT,
+  event_date               TIMESTAMPTZ NOT NULL,
+  registration_start       TIMESTAMPTZ,
+  registration_end         TIMESTAMPTZ,
+  result_notification_date TIMESTAMPTZ,
+  capacity                 INT         CHECK (capacity > 0),
+  created_by               UUID        REFERENCES public.profiles(id) ON DELETE SET NULL,
+  created_at               TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at               TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+
+ALTER TABLE public.events ADD COLUMN IF NOT EXISTS registration_start       TIMESTAMPTZ;
+ALTER TABLE public.events ADD COLUMN IF NOT EXISTS registration_end         TIMESTAMPTZ;
+ALTER TABLE public.events ADD COLUMN IF NOT EXISTS result_notification_date TIMESTAMPTZ;
 
 -- ============================================================
 -- 3. イベント参加登録テーブル
 -- ============================================================
 CREATE TABLE IF NOT EXISTS public.event_registrations (
-  id              UUID        DEFAULT gen_random_uuid() PRIMARY KEY,
-  event_id        UUID        NOT NULL REFERENCES public.events(id) ON DELETE CASCADE,
-  user_id         UUID        NOT NULL REFERENCES public.profiles(id) ON DELETE CASCADE,
-  registered_at   TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  id                  UUID        DEFAULT gen_random_uuid() PRIMARY KEY,
+  event_id            UUID        NOT NULL REFERENCES public.events(id) ON DELETE CASCADE,
+  user_id             UUID        NOT NULL REFERENCES public.profiles(id) ON DELETE CASCADE,
+  registered_at       TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  status              TEXT        NOT NULL DEFAULT 'applied'
+                                  CHECK (status IN ('applied', 'selected', 'rejected')),
+  wants_transport_fee BOOLEAN     DEFAULT false,
+  wants_honorarium    BOOLEAN     DEFAULT false,
   UNIQUE (event_id, user_id)
 );
+
+ALTER TABLE public.event_registrations ADD COLUMN IF NOT EXISTS status TEXT NOT NULL DEFAULT 'applied' CHECK (status IN ('applied', 'selected', 'rejected'));
+ALTER TABLE public.event_registrations ADD COLUMN IF NOT EXISTS wants_transport_fee BOOLEAN DEFAULT false;
+ALTER TABLE public.event_registrations ADD COLUMN IF NOT EXISTS wants_honorarium    BOOLEAN DEFAULT false;
 
 -- ============================================================
 -- 4. 管理者ロール確認ヘルパー関数
@@ -244,13 +279,48 @@ CREATE POLICY "admin_select_all_registrations" ON public.event_registrations
   FOR SELECT
   USING (public.get_user_role(auth.uid()) = 'admin');
 
+-- 管理者はステータスを更新可能
+CREATE POLICY "admin_update_any_registration" ON public.event_registrations
+  FOR UPDATE
+  USING (public.get_user_role(auth.uid()) = 'admin');
+
 -- 管理者は任意の参加登録を削除（参加者の取り消し）
 CREATE POLICY "admin_delete_any_registration" ON public.event_registrations
   FOR DELETE
   USING (public.get_user_role(auth.uid()) = 'admin');
 
 -- ============================================================
--- 11. インデックス（パフォーマンス向上）
+-- 11. メールテンプレートテーブル
+-- ============================================================
+CREATE TABLE IF NOT EXISTS public.email_templates (
+  id         TEXT        PRIMARY KEY,  -- 'selected' | 'rejected'
+  subject    TEXT        NOT NULL,
+  body_html  TEXT        NOT NULL,
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+ALTER TABLE public.email_templates ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "admin_manage_email_templates" ON public.email_templates;
+CREATE POLICY "admin_manage_email_templates" ON public.email_templates
+  USING (public.get_user_role(auth.uid()) = 'admin');
+
+-- 初期テンプレートデータ
+INSERT INTO public.email_templates (id, subject, body_html) VALUES
+(
+  'selected',
+  '【当選通知】{{event_title}}への参加が確定しました',
+  '<p>{{name}} 様</p><p>この度は「{{event_title}}」にお申し込みいただきありがとうございます。</p><p>選考の結果、<strong>参加が確定</strong>しました。当日のご参加をお待ちしております。</p><p>ご不明な点はお気軽にお問い合わせください。</p><br><p>NPOナタデココ<br>https://natadecoco.org</p>'
+),
+(
+  'rejected',
+  '【選考結果】{{event_title}}の選考結果についてお知らせ',
+  '<p>{{name}} 様</p><p>この度は「{{event_title}}」にお申し込みいただきありがとうございます。</p><p>誠に恐れながら、今回は定員の関係で<strong>ご参加いただくことが叶いませんでした</strong>。</p><p>またの機会にぜひご参加ください。</p><br><p>NPOナタデココ<br>https://natadecoco.org</p>'
+)
+ON CONFLICT (id) DO NOTHING;
+
+-- ============================================================
+-- 12. インデックス（パフォーマンス向上）
 -- ============================================================
 CREATE INDEX IF NOT EXISTS idx_profiles_role ON public.profiles(role);
 CREATE INDEX IF NOT EXISTS idx_events_event_date ON public.events(event_date);
@@ -258,7 +328,7 @@ CREATE INDEX IF NOT EXISTS idx_event_registrations_event_id ON public.event_regi
 CREATE INDEX IF NOT EXISTS idx_event_registrations_user_id ON public.event_registrations(user_id);
 
 -- ============================================================
--- 12. 最初の管理者アカウントを設定する方法
+-- 13. 最初の管理者アカウントを設定する方法
 -- ============================================================
 -- ① Supabase Auth でメール登録してアカウントを作成する
 -- ② 以下のSQLで管理者権限を付与する（メールアドレスを変更してください）:

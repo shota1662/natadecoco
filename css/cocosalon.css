@@ -611,3 +611,56 @@
 .cs-apply-note a:hover {
     opacity: 0.75;
 }
+
+/* ===================================
+   レスポンシブ
+   =================================== */
+@media (max-width: 768px) {
+    .cs-hero {
+        padding: 60px 20px 40px;
+    }
+
+    .cs-hero-title {
+        font-size: 36px;
+    }
+
+    .cs-section-title {
+        font-size: 28px;
+    }
+
+    .cs-activity-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cs-history-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cs-voice-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cs-apply-title {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cs-hero-title {
+        font-size: 26px;
+    }
+
+    .cs-section-title {
+        font-size: 22px;
+    }
+
+    .cs-apply-btn {
+        width: 260px;
+        height: 54px;
+        font-size: 15px;
+    }
+
+    .cs-apply-title {
+        font-size: 22px;
+    }
+}
