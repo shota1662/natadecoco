@@ -248,7 +248,7 @@
     font-weight: 700;
     color: #333;
     cursor: pointer;
-    box-shadow: 4px 4px #898787;
+    box-shadow: 1px 1px #898787;
     transition: transform 0.1s, box-shadow 0.1s;
 }
 
@@ -258,7 +258,7 @@
 
 .btn-submit:hover {
     transform: translate(2px, 2px);
-    box-shadow: 2px 2px #898787;
+    box-shadow: 1px 1px #898787;
 }
 
 .btn-submit:active {

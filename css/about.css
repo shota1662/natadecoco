@@ -745,8 +745,16 @@
 
     .abt-timeline-year {
         left: -60px;
-        width: 44px;
+        width: 38px;
         font-size: 15px;
+    }
+
+    .abt-timeline-dot {
+        left: -16px;
+    }
+
+    .abt-timeline-dot--latest {
+        left: -18px;
     }
 
     .abt-table th,
@@ -845,13 +853,25 @@
 @media (max-width: 640px) {
     .abt-media-item {
         flex-wrap: wrap;
-        gap: 6px;
+        gap: 4px 12px;
+        padding: 14px 0;
+    }
+    .abt-media-date {
+        width: 90px;
     }
     .abt-media-outlet {
         width: auto;
+        flex: 1;
     }
     .abt-media-title {
+        flex: none;
         width: 100%;
+        font-size: 13px;
+    }
+    .abt-media-link {
+        flex: none;
+        width: 100%;
+        text-align: right;
     }
 }
 

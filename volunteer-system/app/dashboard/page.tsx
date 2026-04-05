@@ -28,14 +28,21 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
     .eq('id', user.id)
     .single()
 
-  // 今後のイベント一覧（開催日が未来のもの）
-  const { data: events } = await supabase
+  // 初回ログイン：プロフィール未入力の場合は詳細入力画面へ
+  if (!profile?.full_name) {
+    redirect('/register/details')
+  }
+
+  const now = new Date().toISOString()
+
+  // 今後のイベント一覧
+  const { data: futureEvents } = await supabase
     .from('events')
     .select('*')
-    .gte('event_date', new Date().toISOString())
+    .gte('event_date', now)
     .order('event_date', { ascending: true })
 
-  // 自分の参加登録一覧
+  // 自分の参加登録（全期間）
   const { data: myRegistrations } = await supabase
     .from('event_registrations')
     .select('*, events(*)')
@@ -44,13 +51,29 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
 
   const registeredEventIds = new Set(myRegistrations?.map((r) => r.event_id) || [])
 
+  // ① 参加予定のイベント：未来のイベントかつ当選済み（selected）
+  const upcomingRegistrations = (myRegistrations || []).filter((r) => {
+    const ev = r.events as { event_date: string } | null
+    return ev && new Date(ev.event_date) >= new Date() && (r as { status?: string }).status === 'selected'
+  })
+
+  // ② 参加受付中のイベント：未来のイベントのうち、未申込・申込中・落選
+  const selectedEventIds = new Set(upcomingRegistrations.map((r) => r.event_id))
+  const openEvents = (futureEvents || []).filter((e) => !selectedEventIds.has(e.id))
+
+  // ③ 過去参加したイベント：過去のイベントかつ申込済み
+  const pastRegistrations = (myRegistrations || []).filter((r) => {
+    const ev = r.events as { event_date: string } | null
+    return ev && new Date(ev.event_date) < new Date()
+  })
+
   // 各イベントの参加者数
   const eventParticipantCounts: Record<string, number> = {}
-  if (events && events.length > 0) {
+  if (futureEvents && futureEvents.length > 0) {
     const { data: counts } = await supabase
       .from('event_registrations')
       .select('event_id')
-      .in('event_id', events.map((e) => e.id))
+      .in('event_id', futureEvents.map((e) => e.id))
 
     counts?.forEach((r) => {
       eventParticipantCounts[r.event_id] = (eventParticipantCounts[r.event_id] || 0) + 1
@@ -96,7 +119,7 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
                 ようこそ、{profile?.full_name || user.email} さん！
               </h1>
               <p style={{ fontSize: '14px', color: '#888', margin: 0 }}>
-                ボランティア活動のダッシュボードです
+                ボランティア活動のマイページです
               </p>
             </div>
           </div>
@@ -161,61 +184,41 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
                     </div>
                   </div>
                 )}
+                {/* 謝金・交通費情報登録 */}
                 <div style={{ flex: '1 1 100%', borderTop: '1px solid #e8f0f7', paddingTop: '16px', marginTop: '4px' }}>
-                  <p style={{ fontSize: '12px', color: '#888', margin: '0 0 8px' }}>謝金・交通費振込のための情報登録</p>
-                  {profile.bank_name && profile.bank_branch && profile.bank_account_number && profile.bank_account_holder && profile.address && profile.nearest_station ? (
-                    <span
-                      style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '5px',
-                        backgroundColor: '#f0fffe',
-                        border: '1.5px solid #30b9bf',
-                        borderRadius: '6px',
-                        padding: '4px 12px',
-                        fontSize: '13px',
-                        fontWeight: '700',
-                        color: '#1a8a8f',
-                      }}
-                    >
-                      ✓ 完了
-                    </span>
-                  ) : (
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
-                      <span
-                        style={{
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          gap: '5px',
-                          backgroundColor: '#fff8f0',
-                          border: '1.5px solid #f4a44a',
-                          borderRadius: '6px',
-                          padding: '4px 12px',
-                          fontSize: '13px',
-                          fontWeight: '700',
-                          color: '#c47b1a',
-                        }}
-                      >
-                        ! 未完了
-                      </span>
-                      <Link
-                        href="/profile"
-                        style={{ fontSize: '12px', color: '#30b9bf', textDecoration: 'underline' }}
-                      >
-                        プロフィール編集から登録する
-                      </Link>
-                    </div>
-                  )}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+                      <p style={{ fontSize: '12px', color: '#888', margin: 0 }}>謝金・交通費振込のための情報登録</p>
+                      {profile.bank_name && profile.bank_branch && profile.bank_account_number && profile.bank_account_holder && profile.address && profile.nearest_station ? (
+                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', backgroundColor: '#f0fffe', border: '1.5px solid #30b9bf', borderRadius: '6px', padding: '4px 12px', fontSize: '13px', fontWeight: '700', color: '#1a8a8f' }}>
+                          ✓ 完了
+                        </span>
+                      ) : (
+                        <>
+                          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', backgroundColor: '#fff8f0', border: '1.5px solid #f4a44a', borderRadius: '6px', padding: '4px 12px', fontSize: '13px', fontWeight: '700', color: '#c47b1a' }}>
+                            ! 未完了
+                          </span>
+                          <Link href="/profile" style={{ fontSize: '12px', color: '#30b9bf', textDecoration: 'underline' }}>
+                            プロフィール編集から登録する
+                          </Link>
+                        </>
+                      )}
+                  </div>
                 </div>
 
-                <div style={{ marginLeft: 'auto', alignSelf: 'flex-end' }}>
-                  <Link
-                    href="/profile"
-                    className="btn-teal"
-                    style={{ padding: '10px 20px', height: 'auto', width: 'auto', fontSize: '13px' }}
-                  >
-                    プロフィール編集
-                  </Link>
+                {/* ボランティア説明会参加 */}
+                <div style={{ flex: '1 1 100%', borderTop: '1px solid #e8f0f7', paddingTop: '16px', marginTop: '4px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+                    <p style={{ fontSize: '12px', color: '#888', margin: 0 }}>ボランティア説明会参加</p>
+                    {profile.orientation_attended ? (
+                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', backgroundColor: '#f0fffe', border: '1.5px solid #30b9bf', borderRadius: '6px', padding: '4px 12px', fontSize: '13px', fontWeight: '700', color: '#1a8a8f' }}>
+                        ✓ 参加済み
+                      </span>
+                    ) : (
+                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', backgroundColor: '#fff8f0', border: '1.5px solid #f4a44a', borderRadius: '6px', padding: '4px 12px', fontSize: '13px', fontWeight: '700', color: '#c47b1a' }}>
+                        ! 未参加
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -226,54 +229,38 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
 
       <WaveDivider fromColor="#d9eaf4" toColor="#9fd9f6" />
 
-      {/* イベント一覧 */}
+      {/* ① 参加予定のイベント */}
       <section style={{ backgroundColor: '#9fd9f6', padding: '60px 20px' }}>
         <div style={{ maxWidth: '960px', margin: '0 auto' }}>
-          <div className="section-title" style={{ marginBottom: '32px' }}>
-            <h2
-              style={{
-                fontSize: '26px',
-                fontWeight: '700',
-                color: '#516881',
-                margin: '0 0 8px',
-              }}
-            >
-              参加可能なイベント
+          <div style={{ marginBottom: '28px' }}>
+            <h2 style={{ fontSize: '22px', fontWeight: '700', color: '#516881', margin: '0 0 6px' }}>
+              ① 参加予定のイベント
             </h2>
-            <p style={{ fontSize: '14px', color: '#516881', margin: 0 }}>
-              興味のあるイベントに申し込みましょう
+            <p style={{ fontSize: '13px', color: '#516881', margin: 0 }}>
+              今後参加予定の説明会やイベントです
             </p>
           </div>
 
-          {events && events.length > 0 ? (
+          {upcomingRegistrations.length > 0 ? (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              {events.map((event) => {
-                const myReg = myRegistrations?.find((r) => r.event_id === event.id)
+              {upcomingRegistrations.map((reg) => {
+                const ev = reg.events as Parameters<typeof EventCard>[0]['event'] | null
+                if (!ev) return null
                 return (
                   <EventCard
-                    key={event.id}
-                    event={event}
-                    isRegistered={registeredEventIds.has(event.id)}
-                    participantCount={eventParticipantCounts[event.id] || 0}
-                    registrationId={myReg?.id}
-                    registrationStatus={(myReg as { status?: string } | undefined)?.status as 'applied' | 'selected' | 'rejected' | undefined}
+                    key={reg.id}
+                    event={ev}
+                    isRegistered={true}
+                    participantCount={eventParticipantCounts[ev.id] || 0}
+                    registrationId={reg.id}
+                    registrationStatus={(reg as { status?: string }).status as 'applied' | 'selected' | 'rejected' | undefined}
                   />
                 )
               })}
             </div>
           ) : (
-            <div
-              style={{
-                textAlign: 'center',
-                padding: '60px 20px',
-                backgroundColor: '#fff',
-                borderRadius: '16px',
-                boxShadow: '5px 5px 0 rgba(81,104,129,0.15)',
-              }}
-            >
-              <p style={{ fontSize: '16px', color: '#888', margin: 0 }}>
-                現在、参加可能なイベントはありません
-              </p>
+            <div style={{ textAlign: 'center', padding: '40px 20px', backgroundColor: '#fff', borderRadius: '16px' }}>
+              <p style={{ fontSize: '15px', color: '#888', margin: 0 }}>参加予定のイベントはありません</p>
             </div>
           )}
         </div>
@@ -281,28 +268,54 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
 
       <WaveDivider fromColor="#9fd9f6" toColor="#fff" />
 
-      {/* 参加履歴 */}
+      {/* ② 参加受付中のイベント */}
       <section style={{ backgroundColor: '#fff', padding: '60px 20px' }}>
         <div style={{ maxWidth: '960px', margin: '0 auto' }}>
-          <div className="section-title" style={{ marginBottom: '32px' }}>
-            <h2
-              style={{
-                fontSize: '26px',
-                fontWeight: '700',
-                color: '#516881',
-                margin: '0 0 8px',
-              }}
-            >
-              参加履歴
+          <div style={{ marginBottom: '28px' }}>
+            <h2 style={{ fontSize: '22px', fontWeight: '700', color: '#516881', margin: '0 0 6px' }}>
+              ② 参加受付中のイベント
             </h2>
-            <p style={{ fontSize: '14px', color: '#888', margin: 0 }}>
-              申し込んだイベントの一覧です
+            <p style={{ fontSize: '13px', color: '#888', margin: 0 }}>
+              興味のあるイベントに申し込みましょう
             </p>
           </div>
 
-          {myRegistrations && myRegistrations.length > 0 ? (
+          {openEvents.length > 0 ? (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              {myRegistrations.map((registration) => (
+              {openEvents.map((event) => (
+                <EventCard
+                  key={event.id}
+                  event={event}
+                  isRegistered={false}
+                  participantCount={eventParticipantCounts[event.id] || 0}
+                />
+              ))}
+            </div>
+          ) : (
+            <div style={{ textAlign: 'center', padding: '40px 20px', backgroundColor: '#f7fbfe', borderRadius: '16px', border: '2px solid #d9eaf4' }}>
+              <p style={{ fontSize: '15px', color: '#888', margin: 0 }}>現在受付中のイベントはありません</p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      <WaveDivider fromColor="#fff" toColor="#f7fbfe" />
+
+      {/* ③ 過去参加したイベント */}
+      <section style={{ backgroundColor: '#f7fbfe', padding: '60px 20px' }}>
+        <div style={{ maxWidth: '960px', margin: '0 auto' }}>
+          <div style={{ marginBottom: '28px' }}>
+            <h2 style={{ fontSize: '22px', fontWeight: '700', color: '#516881', margin: '0 0 6px' }}>
+              ③ 過去参加したイベント
+            </h2>
+            <p style={{ fontSize: '13px', color: '#888', margin: 0 }}>
+              これまでに参加したイベントの履歴です
+            </p>
+          </div>
+
+          {pastRegistrations.length > 0 ? (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              {pastRegistrations.map((registration) => (
                 <RegistrationCard
                   key={registration.id}
                   registration={registration}
@@ -310,21 +323,8 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
               ))}
             </div>
           ) : (
-            <div
-              style={{
-                textAlign: 'center',
-                padding: '60px 20px',
-                backgroundColor: '#f7fbfe',
-                borderRadius: '16px',
-                border: '2px solid #d9eaf4',
-              }}
-            >
-              <p style={{ fontSize: '16px', color: '#888', margin: '0 0 8px' }}>
-                まだイベントに申し込んでいません
-              </p>
-              <p style={{ fontSize: '13px', color: '#aaa', margin: 0 }}>
-                上のイベント一覧から申し込みましょう！
-              </p>
+            <div style={{ textAlign: 'center', padding: '40px 20px', backgroundColor: '#fff', borderRadius: '16px', border: '2px solid #e5e7eb' }}>
+              <p style={{ fontSize: '15px', color: '#888', margin: 0 }}>過去の参加履歴はありません</p>
             </div>
           )}
         </div>

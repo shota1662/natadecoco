@@ -44,7 +44,7 @@ export async function signUpStep1(
     email,
     password,
     options: {
-      emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/auth/callback`,
+      emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/auth/callback?next=/register/details`,
     },
   })
 
@@ -82,7 +82,7 @@ export async function signUpStep1(
     }
   }
 
-  redirect('/register/details')
+  redirect('/register/check-email')
 }
 
 // 新規登録 Step 2: 詳細情報
@@ -141,7 +141,7 @@ export async function signUpComplete(
   }
 
   revalidatePath('/', 'layout')
-  redirect('/dashboard?message=' + encodeURIComponent('登録が完了しました！'))
+  redirect('/register/orientation')
 }
 
 // 新規登録（旧: 後方互換用に残す）
@@ -150,6 +150,31 @@ export async function signUp(
   formData: FormData
 ): Promise<AuthState> {
   return signUpStep1(_prevState, formData)
+}
+
+// 説明会申込み
+export async function registerOrientation(
+  _prevState: AuthState,
+  formData: FormData
+): Promise<AuthState> {
+  const supabase = await createClient()
+
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) {
+    redirect('/login')
+  }
+
+  const orientationDate = formData.get('orientation_date') as string | null
+
+  if (orientationDate) {
+    await supabase
+      .from('profiles')
+      .update({ orientation_date: orientationDate })
+      .eq('id', user.id)
+  }
+
+  revalidatePath('/', 'layout')
+  redirect('/dashboard?message=' + encodeURIComponent('登録が完了しました！ようこそナタデココへ🎉'))
 }
 
 // ログアウト

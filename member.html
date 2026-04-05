@@ -290,18 +290,28 @@
             gap: 6px;
             flex-shrink: 0;
         }
+        .m2-modal-badge-fields {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+
         .m2-modal-badge {
             display: inline-block;
             font-size: 0.7rem;
             font-weight: 700;
             padding: 3px 12px;
             border-radius: 12px;
-            margin-bottom: 3px;
+            margin-bottom: 0;
+            flex-shrink: 0;
         }
         .m2-modal-name {
             font-size: 1.55rem;
             font-weight: 700;
             color: #2a3e4f;
+            margin-bottom: 4px;
         }
         .m2-modal-message {
             font-size: 1.05rem;
@@ -328,6 +338,29 @@
         @media (max-width: 640px) {
             .m2-modal-body { grid-template-columns: 1fr; }
             .m2-modal-profile { border-right: none !important; border-bottom: 1px solid #e2ecf5; }
+
+            .m2-modal-header {
+                flex-wrap: wrap;
+                padding: 14px 16px 12px;
+                gap: 12px;
+            }
+            .m2-modal-header-info {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+                width: 100%;
+            }
+            .m2-modal-header-right {
+                align-items: flex-start;
+                width: 100%;
+            }
+            .m2-modal-message {
+                font-size: 0.9rem;
+                text-align: left;
+            }
+            .m2-modal-name {
+                font-size: 1.25rem;
+            }
         }
 
         /* プロフィールパネル */
@@ -550,6 +583,66 @@
             color: #9fb3c8;
         }
 
+        .m2-foreign-join {
+            margin-top: 32px;
+            text-align: center;
+        }
+
+        .m2-foreign-join-btn {
+            display: inline-block;
+            padding: 14px 40px;
+            background: linear-gradient(135deg, #30b9bf, #9fd9f6);
+            color: #fff;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 50px;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            box-shadow: 0 4px 16px rgba(48, 185, 191, 0.35);
+            transition: opacity 0.2s;
+        }
+
+        .m2-foreign-join-btn:hover {
+            opacity: 0.85;
+        }
+
+        .m2-foreign-intro {
+            font-size: 14px;
+            color: #516881;
+            font-weight: bold;
+            margin: 8px 0 16px;
+            letter-spacing: 0.03em;
+        }
+
+        /* 外国人メンバー 国旗グリッド */
+        .m2-foreign-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, 68px);
+            gap: 16px 8px;
+            margin-top: 4px;
+        }
+        .m2-foreign-item {
+            width: 68px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        .m2-foreign-item .fi {
+            width: 36px;
+            height: 27px;
+            border-radius: 3px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+            flex-shrink: 0;
+        }
+        .m2-foreign-name {
+            font-size: 0.68rem;
+            color: #516881;
+            text-align: center;
+            line-height: 1.3;
+            word-break: keep-all;
+        }
+
         /* Q&Aパネル（右側） */
         .m2-modal-qa {
             padding: 22px 24px;
@@ -593,7 +686,7 @@
 <body>
     <div id="splash">
         <div id="splash-logo">
-            <img src="img/loding.logo.png" alt="" class="fadeUp">
+            <img src="img/logo.png" alt="" class="fadeUp">
         </div>
     </div>
 
@@ -610,10 +703,11 @@
         <div class="header-nav-wrap">
             <div class="header-top-nav">
                 <ul class="top-nav-list">
-                    <li><a href="foreigner.html">Foreigner</a></li>
-                    <li><a href="faq.html">よくある質問</a></li>
-                    <li><a href="school.html">学校・自治体のみなさまへ</a></li>
+                                        <li><a href="faq.html">よくある質問</a></li>
                     <li><a href="contact.html">お問い合わせ</a></li>
+                    
+                    <li><a href="school.html">学校・自治体のみなさまへ</a></li>
+                    
                 </ul>
             </div>
             <nav class="header-bottom-nav">
@@ -622,21 +716,21 @@
                         <a href="about.html">ナタデココとは</a>
                         <div class="mega-menu">
                             <a href="about.html" class="mega-item">
-                                <div class="mega-img"><img src="img/charactor/1.jpg" alt=""></div>
+                                <div class="mega-img"><img src="img/logo/1.jpg" alt=""></div>
                                 <div class="mega-body">
                                     <span class="mega-title">団体概要</span>
                                     <span class="mega-desc">NPOナタデココの成り立ちと活動について</span>
                                 </div>
                             </a>
                             <a href="strengths.html" class="mega-item">
-                                <div class="mega-img"><img src="img/charactor/2.jpg" alt=""></div>
+                                <div class="mega-img"><img src="img/logo/2.jpg" alt=""></div>
                                 <div class="mega-body">
                                     <span class="mega-title">５つの強み</span>
-                                    <span class="mega-desc">子どもたちの心に世界地図を届ける</span>
+                                    <span class="mega-desc">NPO法人ナタデココ届ける</span>
                                 </div>
                             </a>
                             <a href="member.html" class="mega-item">
-                                <div class="mega-img"><img src="img/charactor/3.jpg" alt=""></div>
+                                <div class="mega-img"><img src="img/logo/3.jpg" alt=""></div>
                                 <div class="mega-body">
                                     <span class="mega-title">メンバー</span>
                                     <span class="mega-desc">ナタデココを支えるメンバー紹介</span>
@@ -649,21 +743,21 @@
                         <div class="mega-menu mega-menu--col">
                             <div class="mega-top-row">
                             <a href="" class="mega-item">
-                                <div class="mega-img"><img src="img/charactor/4.png" alt=""></div>
+                                <div class="mega-img"><img src="img/logo/4.png" alt=""></div>
                                 <div class="mega-body">
                                     <span class="mega-title">文化交流教室</span>
                                     <span class="mega-desc">外国人との対面交流で異文化を体験</span>
                                 </div>
                             </a>
                             <a href="cocosalon.html" class="mega-item">
-                                <div class="mega-img"><img src="img/charactor/5.png" alt=""></div>
+                                <div class="mega-img"><img src="img/logo/5.png" alt=""></div>
                                 <div class="mega-body">
                                     <span class="mega-title">CocoSalon</span>
                                     <span class="mega-desc">オンラインで楽しむ国際交流サロン</span>
                                 </div>
                             </a>
                             <a href="kit.html" class="mega-item">
-                                <div class="mega-img"><img src="img/charactor/6.png" alt=""></div>
+                                <div class="mega-img"><img src="img/logo/6.png" alt=""></div>
                                 <div class="mega-body">
                                     <span class="mega-title">文化交流キット</span>
                                     <span class="mega-desc">先生向けの授業で使える教材キット</span>
@@ -702,15 +796,31 @@
     <div class="mobile-menu">
         <nav class="mobile-nav">
             <ul class="mobile-nav-list">
-                <li><a href="about.html">ナタデココとは</a></li>
-                <li><a href="activities.html">活動紹介</a></li>
+                <li class="mobile-has-sub"><a href="about.html">ナタデココとは<span class="mobile-sub-arrow">▼</span></a>
+                            <ul class="mobile-nav-sub">
+                                <li><a href="about.html">団体概要</a></li>
+                                <li><a href="strengths.html">５つの強み</a></li>
+                                <li><a href="member.html">メンバー</a></li>
+                            </ul>
+                        </li>
+                        <li class="mobile-has-sub"><a href="activities.html">活動紹介<span class="mobile-sub-arrow">▼</span></a>
+                            <ul class="mobile-nav-sub">
+                                <li><a href="activities.html">文化交流教室</a></li>
+                                <li><a href="cocosalon.html">CocoSalon</a></li>
+                                <li><a href="kit.html">文化交流キット</a></li>                            </ul>
+                        </li>
+                
+                
                 <li><a href="volunteer.html">ボランティア</a></li>
                 <li><a href="column.html">コラム・ニュース</a></li>
-                <li class="mobile-nav-sep"></li>
-                <li><a href="foreigner.html">Foreigner</a></li>
                 <li><a href="faq.html">よくある質問</a></li>
-                <li><a href="school.html">学校・自治体のみなさまへ</a></li>
                 <li><a href="contact.html">お問い合わせ</a></li>
+                <li class="mobile-nav-sep"></li>
+                                    <li><a href="faq.html">よくある質問</a></li>
+                    <li><a href="contact.html">お問い合わせ</a></li>
+                
+                <li><a href="school.html">学校・自治体のみなさまへ</a></li>
+                
             </ul>
             <a href="event.html" class="mobile-event-btn">イベント情報</a>
         </nav>
@@ -726,8 +836,7 @@
                     <p class="abt-hero-en">MEMBER</p>
                     <h2 class="abt-hero-title">メンバー紹介</h2>
                     <p class="abt-hero-sub">
-                        ナタデココを支えるスタッフ・外国人メンバーをご紹介します。<br>
-                        カードをクリックすると世界地図でメンバーの足跡が見られます。
+                        ナタデココを支えるスタッフ・外国人メンバーをご紹介します。
                     </p>
                 </div>
             </div>
@@ -746,13 +855,6 @@
         <section class="m2-section">
             <div class="m2-inner">
 
-                <div class="m2-section-head">
-                    <img src="img/mayu.svg" alt="" class="section-icon" style="display:block;margin:0 auto 12px;">
-                    <span class="m2-section-label">MEMBER</span>
-                    <h2 class="m2-section-title">メンバー紹介</h2>
-                    <p class="m2-section-sub">ナタデココを支えるスタッフ・外国人メンバーをご紹介します。<br>カードをクリックすると詳細プロフィールを確認できます。</p>
-                </div>
-
                 <!-- 役員 -->
                 <h3 class="m2-group-title">役員</h3>
                 <div class="m2-grid" id="gridStaff"></div>
@@ -761,14 +863,60 @@
                 <h3 class="m2-group-title">事務局</h3>
                 <div class="m2-grid" id="gridJpStaff"></div>
 
-                <!-- 外国人スタッフ -->
-                <h3 class="m2-group-title">外国人スタッフ（一部紹介）</h3>
-                <div class="m2-grid" id="gridForeign"></div>
-
-                <p class="m2-note">
-                    ※ 現在20か国以上の外国人スタッフが在籍しています。<br>
-                    ご希望の国・テーマに応じてスタッフを選ぶことができます。
-                </p>
+                <!-- 外国人メンバー -->
+                <h3 class="m2-group-title">外国人メンバー</h3>
+                <p class="m2-foreign-intro">45か国以上の外国人メンバーが参加しています</p>
+                <div class="m2-foreign-grid">
+                    <div class="m2-foreign-item"><span class="fi fi-cn"></span><span class="m2-foreign-name">中国</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-mn"></span><span class="m2-foreign-name">モンゴル</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-hk"></span><span class="m2-foreign-name">香港</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-ph"></span><span class="m2-foreign-name">フィリピン</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-vn"></span><span class="m2-foreign-name">ベトナム</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-th"></span><span class="m2-foreign-name">タイ</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-my"></span><span class="m2-foreign-name">マレーシア</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-mm"></span><span class="m2-foreign-name">ミャンマー</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-id"></span><span class="m2-foreign-name">インドネシア</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-bt"></span><span class="m2-foreign-name">ブータン</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-au"></span><span class="m2-foreign-name">オーストラリア</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-in"></span><span class="m2-foreign-name">インド</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-lk"></span><span class="m2-foreign-name">スリランカ</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-bd"></span><span class="m2-foreign-name">バングラデシュ</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-np"></span><span class="m2-foreign-name">ネパール</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-ru"></span><span class="m2-foreign-name">ロシア</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-us"></span><span class="m2-foreign-name">米国</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-ca"></span><span class="m2-foreign-name">カナダ</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-mx"></span><span class="m2-foreign-name">メキシコ</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-br"></span><span class="m2-foreign-name">ブラジル</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-cu"></span><span class="m2-foreign-name">キューバ</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-cr"></span><span class="m2-foreign-name">コスタリカ</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-jm"></span><span class="m2-foreign-name">ジャマイカ</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-pe"></span><span class="m2-foreign-name">ペルー</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-cl"></span><span class="m2-foreign-name">チリ</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-ie"></span><span class="m2-foreign-name">アイルランド</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-it"></span><span class="m2-foreign-name">イタリア</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-ua"></span><span class="m2-foreign-name">ウクライナ</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-uz"></span><span class="m2-foreign-name">ウズベキスタン</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-kz"></span><span class="m2-foreign-name">カザフスタン</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-se"></span><span class="m2-foreign-name">スウェーデン</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-es"></span><span class="m2-foreign-name">スペイン</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-fr"></span><span class="m2-foreign-name">フランス</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-de"></span><span class="m2-foreign-name">ドイツ</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-dk"></span><span class="m2-foreign-name">デンマーク</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-ir"></span><span class="m2-foreign-name">イラン</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-tr"></span><span class="m2-foreign-name">トルコ</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-eg"></span><span class="m2-foreign-name">エジプト</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-gh"></span><span class="m2-foreign-name">ガーナ</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-ke"></span><span class="m2-foreign-name">ケニア</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-zw"></span><span class="m2-foreign-name">ジンバブエ</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-sc"></span><span class="m2-foreign-name">セーシェル</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-sn"></span><span class="m2-foreign-name">セネガル</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-tn"></span><span class="m2-foreign-name">チュニジア</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-mu"></span><span class="m2-foreign-name">モーリシャス</span></div>
+                    <div class="m2-foreign-item"><span class="fi fi-rw"></span><span class="m2-foreign-name">ルワンダ</span></div>
+                </div>
+                <div class="m2-foreign-join">
+                    <a href="volunteer.html" class="m2-foreign-join-btn">仲間に加わる →</a>
+                </div>
             </div>
         </section>
 
@@ -791,17 +939,40 @@
                 <!-- Col 1: ロゴ＋キャッチ -->
                 <div class="footer-col footer-col--brand">
                     <a href="index.html" class="footer-logo">
-                        <img src="img/logo.svg" alt="NPOナタデココ">
+                        <img src="img/logo.png" alt="NPOナタデココ">
                     </a>
-                    <p class="footer-tagline">子どもたちに、<br>世界地図を。</p>
+                    <p class="footer-tagline">NPO法人ナタデココ</p>
                 </div>
 
                 <!-- Col 2: サイトマップ -->
                 <div class="footer-col footer-col--nav">
                     <p class="footer-col-title">Site Map</p>
                     <ul class="footer-nav-list">
-                        <li><a href="about.html">ナタデココとは</a></li>
-                        <li><a href="activities.html">活動紹介</a></li>
+                        <li class="mobile-has-sub"><a href="about.html">ナタデココとは<span class="mobile-sub-arrow">▼</span></a>
+                            <ul class="footer-nav-sub">
+                                <li><a href="about.html">団体概要</a></li>
+                                <li><a href="strengths.html">５つの強み</a></li>
+                                <li><a href="member.html">メンバー</a></li>
+                            </ul>
+                        </li>
+                        <li class="mobile-has-sub"><a href="activities.html">活動紹介<span class="mobile-sub-arrow">▼</span></a>
+                            <ul class="footer-nav-sub">
+                                <li><a href="activities.html">文化交流教室</a></li>
+                                <li><a href="cocosalon.html">CocoSalon</a></li>
+                                <li><a href="kit.html">文化交流キット</a></li>                            </ul>
+                        </li>
+                        
+                        
+                        
+                        
+                        
+                    </ul>
+                </div>
+
+                                <!-- Col 3: その他リンク -->
+                <div class="footer-col footer-col--nav2">
+                    
+                    <ul class="footer-nav-list">
                         <li><a href="event.html">イベント情報</a></li>
                         <li><a href="volunteer.html">ボランティア</a></li>
                         <li><a href="column.html">コラム・ニュース</a></li>
@@ -810,7 +981,7 @@
                     </ul>
                 </div>
 
-                <!-- Col 3: 連絡先＋SNS -->
+<!-- Col 4: 連絡先＋SNS -->
                 <div class="footer-col footer-col--contact">
                     <p class="footer-col-title">Access</p>
                     <address class="footer-address">
@@ -859,9 +1030,11 @@
                 <div class="m2-modal-emoji" id="modalEmoji"></div>
                 <div class="m2-modal-header-info">
                     <div class="m2-modal-header-left">
-                        <div class="m2-modal-badge" id="modalBadge"></div>
                         <div class="m2-modal-name" id="modalName"></div>
-                        <div id="modalFields"></div>
+                        <div class="m2-modal-badge-fields">
+                            <div class="m2-modal-badge" id="modalBadge"></div>
+                            <div id="modalFields"></div>
+                        </div>
                         <div class="m2-modal-name-en" id="modalNameEn"></div>
                         <div class="m2-modal-cflag"   id="modalFlag"></div>
                     </div>
@@ -923,6 +1096,34 @@
             }
         },
         {
+            id: 23, group: "staff",
+            name: "Seira", nameEn: "",
+            bio: "埼玉県出身。国際教育系スタートアップ勤務。",
+            countryCounts: { lived: 0, visited: 26 },
+            education: [],
+            qualification: [],
+            sns: { instagram: "", x: "" },
+            qa: [
+                { q: "ナタデコに加わったきっかけは？", a: "私自身が海外の人たちとの共創・交流を通じて、見える世界が変わり、より面白い人生になったので、大好きな子どもたちの人生にも、「面白い」が増えたら良いなと思ってナタデコをはじめました。また、純粋に自分自身も違いの響き合いを楽しめる人でありたいという思いもあり、ナタデコを続けています。" },
+                { q: "思い出深い異文化体験は？", a: "大学生の時に初めて一人でフィリピンに行った時、ショッピングモールのお土産屋さんの店員さんが、仕事中に、おそらく売り物の（？）マイクを使ってカラオケをしている姿を見た時に、とっても衝撃を受けました。笑 日本の常識なんて、世界では全然違うんだなと、そして、もっと私は自由でも良いのかもしれない。もっと色々なことを肩の力を抜いて、楽しんでも良いのかもしれない、そんな思いをその後海外ではたくさん実感することになるのですが、その始まりはこのフィリピンでの経験でした。" },
+                { q: "ナタデコに関心のある方へのメッセージ", a: "とにかくアットホームで、温かいメンバーばかりです。いつでも新しい仲間をお待ちしております！" }
+            ],
+            emoji: "🌱", photoUrl: "img/member-photo/seira.jpg",
+            role: "副代表", roleBadge: "badge-director",
+            occupation: "国際教育系スタートアップ",
+            hometown: "埼玉県",
+            hobby: "美味しいご飯を仲間と共に食べること",
+            expertise: "団体開発",
+            fields: ["パートナー団体", "イベントPM", "3×3プロジェクト"],
+            message: "違いの響き合いを楽しめる世界に",
+            isExpert: true,
+            countries: {
+                origin:   ["JP"],
+                lived:    [],
+                visited:  ["JO","PS","IL","KE","ZA","DE","ES","FR","IT","NL","VA","CZ","PL","FI","IN","NP","BN","MY","ID","PH","KH","TH","MM","KR","TW","AU"]
+            }
+        },
+        {
             id: 4, group: "staff",
             name: "Tomo", nameEn: "",
             bio: "神奈川県出身。国際関係。タイ・インドネシア・ラオス・カナダ在住経験あり。",
@@ -948,6 +1149,62 @@
                 origin:   ["JP"],
                 lived:    ["TH","ID","LA","CA"],
                 visited:  ["FR","BE","VA","IT","CN","TW","KR","US","MM","VN","KH","MY","SG","PH","IN","LK","MV"]
+            }
+        },
+        {
+            id: 16, group: "staff",
+            name: "Izumi", nameEn: "",
+            bio: "宮城県出身。IT企業勤務。国際交流事業での共同生活経験を活かし活動中。",
+            countryCounts: { lived: 0, visited: 15 },
+            education: ["テンプル大学", "オレンジコーストカレッジ"],
+            qualification: [],
+            sns: { instagram: "", x: "" },
+            qa: [
+                { q: "ナタデココに加わったきっかけは？", a: "自身の視野を広げたいという考えと、微力ながら社会貢献したいという想いからナタデココに加入しました。現在は自分たちで企画したイベントを通じて、子どもたちや外国人ボランティアの方々に喜んでもらえることに喜びと達成感を感じています。" },
+                { q: "思い出深い異文化体験は？", a: "学生時代に参加した国際交流事業で、東南アジアの若者たちと約2ヶ月間共同生活をしたことが一番の思い出です。同じアジア圏でも、文化や習慣、宗教観などが国によって全く異なることを肌で感じ、その違いを学ぶプロセスが非常に刺激的で楽しかったです。" },
+                { q: "ナタデココに関心のある方へのメッセージ", a: "子どもが好きな方、世界のことをもっと知りたい方、自分の視野を広げたい方など大歓迎です！ぜひ一緒に活動しましょう！" }
+            ],
+            emoji: "💻", photoUrl: "img/member-photo/Izumi.jpg",
+            role: "副代表", roleBadge: "badge-director",
+            occupation: "IT企業勤務",
+            hometown: "宮城県",
+            hobby: "お笑い、食べ歩き",
+            expertise: "IT",
+            fields: ["CocoSalon", "イベントPM"],
+            message: "世界と子どもたちとの架け橋になりたい",
+            isExpert: true,
+            countries: {
+                origin:   ["JP"],
+                lived:    [],
+                visited:  ["KR","TW","ID","PH","MY","MM","VN","BN","KH","TH","AU","US","GB","IT","DE"]
+            }
+        },
+        {
+            id: 22, group: "staff",
+            name: "Leo", nameEn: "",
+            bio: "東京都出身。JICA海外協力隊（26年度1次隊・チュニジア）。マレーシア在住経験あり。",
+            countryCounts: { lived: 1, visited: 17 },
+            education: ["青山学院大学", "アジア経済研究所開発スクール修了"],
+            qualification: [],
+            sns: { instagram: "https://www.instagram.com/leofromjapan/", x: "", youtube: "https://www.youtube.com/@jpn_leo" },
+            qa: [
+                { q: "ナタデコに加わったきっかけは？", a: "私は、子どもたちに異文化と出会うきっかけを届けたいと思い、NPOナタデコに加わりました。これまで私は、海外ボランティアやマレーシア留学、難民支援の活動などを通して、自分とは異なる背景を持つ人と出会うことの大切さを実感してきました。そうした経験の中で、世界を知ることは、単に知識を増やすだけでなく、相手を理解しようとする姿勢や、自分の視野を広げることにつながると感じています。ナタデコの活動は、子どもたちが外国出身の方々と直接交流しながら、楽しく自然に異文化への興味を深められる点に大きな魅力があると感じました。子どもたちが「世界って面白そう」「もっと知ってみたい」と思えるきっかけをつくりたい。そして、将来の選択肢や価値観を少しでも広げるお手伝いがしたいと思いました。" },
+                { q: "思い出深い異文化体験は？", a: "私にとって忘れられない異文化体験の原点は、幼稚園の頃に叔父から聞いたアラブ首長国連邦の話です。叔父は、砂漠の国であるアラブ首長国連邦にスケートリンクやスキー場があると教えてくれました。幼い私にとって、それは信じがたい話でした。暑い国に氷の世界があるなんて、本当にそんなことができるのか、一体どんな場所なのかと、強く心を揺さぶられたのを覚えています。そのとき私は、日本の外には、自分の想像をはるかに超える世界が広がっているのかもしれないと初めて感じました。そしてその驚きが、海外への興味の始まりになりました。それから約20年後、実際にアラブ首長国連邦を訪れる機会がありました。ショッピングモールの中にあるスケートリンクをこの目で見た瞬間、幼い頃に聞いた話が鮮明によみがえり、とても感慨深い気持ちになりました。子どもの頃に抱いた純粋な好奇心が、時を経て現実の体験につながったことに、不思議な縁のようなものも感じました。" },
+                { q: "ナタデコに関心のある方へのメッセージ", a: "ナタデコに関心を持ってくださってありがとうございます。子どもの頃の出会いや体験は、その後の価値観や世界の見え方を大きく変えることがあると思っています。だからこそ、私たちは子どもたちに異文化と出会う機会を届けたいと考えています。ナタデコには、そんな思いに共感し、それぞれの形で力を持ち寄る仲間が集まっています。少しでも「いいな」と思ってくださった方と、一緒に活動できたらとても嬉しいです。" }
+            ],
+            emoji: "🌍", photoUrl: "img/member-photo/leo.jpg",
+            role: "役員", roleBadge: "badge-director",
+            occupation: "JICA海外協力隊（26年度1次隊・チュニジア）",
+            hometown: "東京都",
+            hobby: "旅行・語学勉強・コナン1巻を旅行先の言語で買う",
+            expertise: "広報・SNS",
+            fields: ["広報・SNS", "3×3プロジェクト", "イベントPM"],
+            message: "みんなちがって みんないい",
+            isExpert: true,
+            countries: {
+                origin:   ["JP"],
+                lived:    ["MY"],
+                visited:  ["US","NZ","VN","TW","PH","KR","SG","MY","TH","LA","CN","IN","AE","MO","HK","LK","ID"]
             }
         },
         {
@@ -1032,148 +1289,6 @@
                 origin:   ["JP"],
                 lived:    ["US"],
                 visited:  ["AU","US"]
-            }
-        },
-        {
-            id: 5, group: "foreign",
-            name: "Maria", nameEn: "Maria",
-            emoji: "💃", role: "外国人スタッフ", roleBadge: "badge-foreigner",
-            flag: "🇵🇭", country: "フィリピン",
-            occupation: "ダンスインストラクター",
-            hometown: "マニラ",
-            hobby: "ダンス・料理",
-            expertise: "文化交流・ダンス",
-            fields: ["プログラム開発", "ダンス"],
-            message: "フィリピンの文化で子どもたちを笑顔に！",
-            isExpert: false,
-            countries: {
-                origin:   ["PH"],
-                lived:    ["JP"],
-                visited:  ["US", "SG", "MY", "TH", "KR"],
-                wishlist: ["FR", "IT", "BR"]
-            }
-        },
-        {
-            id: 6, group: "foreign",
-            name: "Raj", nameEn: "Raj",
-            emoji: "🏔️", role: "外国人スタッフ", roleBadge: "badge-foreigner",
-            flag: "🇳🇵", country: "ネパール",
-            occupation: "大学院生（国際開発）",
-            hometown: "カトマンズ",
-            hobby: "登山・写真",
-            expertise: "学術研究",
-            fields: ["プログラム開発", "教育"],
-            message: "ヒマラヤの雄大さを子どもたちと分かち合いたい",
-            isExpert: true,
-            countries: {
-                origin:   ["NP"],
-                lived:    ["JP", "IN"],
-                visited:  ["US", "CN", "TH", "SG", "DE"],
-                wishlist: ["IS", "NO", "PE"]
-            }
-        },
-        {
-            id: 7, group: "foreign",
-            name: "Ana", nameEn: "Ana",
-            emoji: "🌸", role: "外国人スタッフ", roleBadge: "badge-foreigner",
-            flag: "🇧🇷", country: "ブラジル",
-            occupation: "音楽・ダンス講師",
-            hometown: "リオデジャネイロ",
-            hobby: "サンバ・料理",
-            expertise: "音楽・スポーツ",
-            fields: ["プログラム開発", "音楽", "スポーツ"],
-            message: "サンバのリズムで世界を一つに！",
-            isExpert: false,
-            countries: {
-                origin:   ["BR"],
-                lived:    ["JP", "US"],
-                visited:  ["AR", "CL", "PE", "CO", "ES", "PT", "FR"],
-                wishlist: ["NG", "ZA", "AU"]
-            }
-        },
-        {
-            id: 8, group: "foreign",
-            name: "David", nameEn: "David",
-            emoji: "🌍", role: "外国人スタッフ", roleBadge: "badge-foreigner",
-            flag: "🇺🇬", country: "ウガンダ",
-            occupation: "国際開発研究者",
-            hometown: "カンパラ",
-            hobby: "サッカー・読書",
-            expertise: "国際開発・SDGs",
-            fields: ["プログラム開発", "SDGs"],
-            message: "アフリカの現状を伝え、共に考える機会を作りたい",
-            isExpert: true,
-            countries: {
-                origin:   ["UG"],
-                lived:    ["JP", "GB", "KE"],
-                visited:  ["US", "DE", "FR", "RW", "TZ", "ET", "GH", "ZA"],
-                wishlist: ["BR", "AU", "CN"]
-            }
-        },
-        {
-            id: 9, group: "foreign",
-            name: "Lukas", nameEn: "Lukas",
-            emoji: "🏰", role: "外国人スタッフ", roleBadge: "badge-foreigner",
-            flag: "🇩🇪", country: "ドイツ",
-            occupation: "日本語教師",
-            hometown: "ベルリン",
-            hobby: "料理・サイクリング",
-            expertise: "異文化比較",
-            fields: ["プログラム開発", "語学"],
-            message: "文化の違いを楽しむことが国際理解の第一歩！",
-            isExpert: false,
-            countries: {
-                origin:   ["DE"],
-                lived:    ["JP", "US", "FR"],
-                visited:  ["GB", "IT", "ES", "PL", "CZ", "AT", "CH", "KR", "TH"],
-                wishlist: ["MX", "IN", "IS"]
-            }
-        },
-        {
-            id: 10, group: "foreign",
-            name: "Nook", nameEn: "Nook",
-            emoji: "🌺", role: "外国人スタッフ", roleBadge: "badge-foreigner",
-            flag: "🇹🇭", country: "タイ",
-            occupation: "古典舞踊家",
-            hometown: "バンコク",
-            hobby: "タイ古典舞踊・料理",
-            expertise: "伝統文化・ダンス",
-            fields: ["プログラム開発", "ダンス"],
-            message: "タイの伝統文化を子どもたちと一緒に楽しみたい！",
-            isExpert: false,
-            countries: {
-                origin:   ["TH"],
-                lived:    ["JP"],
-                visited:  ["SG", "MY", "VN", "KH", "MM", "CN", "KR", "US"],
-                wishlist: ["IN", "IT", "TR"]
-            }
-        },
-        {
-            id: 16, group: "staff",
-            name: "Izumi", nameEn: "",
-            bio: "宮城県出身。IT企業勤務。国際交流事業での共同生活経験を活かし活動中。",
-            countryCounts: { lived: 0, visited: 15 },
-            education: ["テンプル大学", "オレンジコーストカレッジ"],
-            qualification: [],
-            sns: { instagram: "", x: "" },
-            qa: [
-                { q: "ナタデココに加わったきっかけは？", a: "自身の視野を広げたいという考えと、微力ながら社会貢献したいという想いからナタデココに加入しました。現在は自分たちで企画したイベントを通じて、子どもたちや外国人ボランティアの方々に喜んでもらえることに喜びと達成感を感じています。" },
-                { q: "思い出深い異文化体験は？", a: "学生時代に参加した国際交流事業で、東南アジアの若者たちと約2ヶ月間共同生活をしたことが一番の思い出です。同じアジア圏でも、文化や習慣、宗教観などが国によって全く異なることを肌で感じ、その違いを学ぶプロセスが非常に刺激的で楽しかったです。" },
-                { q: "ナタデココに関心のある方へのメッセージ", a: "子どもが好きな方、世界のことをもっと知りたい方、自分の視野を広げたい方など大歓迎です！ぜひ一緒に活動しましょう！" }
-            ],
-            emoji: "💻", photoUrl: "img/member-photo/Izumi.jpg",
-            role: "副代表", roleBadge: "badge-director",
-            occupation: "IT企業勤務",
-            hometown: "宮城県",
-            hobby: "お笑い、食べ歩き",
-            expertise: "IT",
-            fields: ["CocoSalon", "イベントPM"],
-            message: "世界と子どもたちとの架け橋になりたい",
-            isExpert: true,
-            countries: {
-                origin:   ["JP"],
-                lived:    [],
-                visited:  ["KR","TW","ID","PH","MY","MM","VN","BN","KH","TH","AU","US","GB","IT","DE"]
             }
         },
         {
@@ -1315,7 +1430,8 @@
         VA:"バチカン", DZ:"アルジェリア", BF:"ブルキナファソ", CI:"コートジボワール",
         MR:"モーリタニア", MA:"モロッコ", NE:"ニジェール", ML:"マリ",
         HK:"香港", JO:"ヨルダン", LA:"ラオス", QA:"カタール", UZ:"ウズベキスタン",
-        LK:"スリランカ", MV:"モルディブ"
+        LK:"スリランカ", MV:"モルディブ",
+        MO:"マカオ", PS:"パレスチナ"
     };
 
     /* ===================================================
@@ -1324,7 +1440,7 @@
     function badgeLabel(m) {
         const map = {
             "badge-president": "代表理事",
-            "badge-director":  "理事",
+            "badge-director":  "副代表",
             "badge-staff":     "事務局長",
             "badge-foreigner": "外国人スタッフ"
         };
@@ -1360,15 +1476,15 @@
 
     const staffGrid   = document.getElementById('gridStaff');
     const jpGrid      = document.getElementById('gridJpStaff');
-    const foreignGrid = document.getElementById('gridForeign');
-
-    const gridMap = { staff: staffGrid, jp: jpGrid, foreign: foreignGrid };
+    const gridMap = { staff: staffGrid, jp: jpGrid };
 
     members.forEach(m => {
+        const grid = gridMap[m.group];
+        if (!grid) return;
         const el = document.createElement('div');
         el.style.display = 'contents';
         el.innerHTML = buildCard(m);
-        (gridMap[m.group] || foreignGrid).appendChild(el.firstElementChild);
+        grid.appendChild(el.firstElementChild);
     });
 
     /* ===================================================
@@ -1434,10 +1550,12 @@
 
         const igSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>`;
         const xSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`;
+        const ytSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>`;
         document.getElementById('modalSns').innerHTML = (m.sns)
             ? `<div class="m2-sns">
                 ${m.sns.instagram ? `<a class="m2-sns-link" href="${m.sns.instagram}" target="_blank" rel="noopener" aria-label="Instagram">${igSVG}</a>` : `<span class="m2-sns-nolnk" title="Instagramは準備中">${igSVG}</span>`}
                 ${m.sns.x ? `<a class="m2-sns-link" href="${m.sns.x}" target="_blank" rel="noopener" aria-label="X">${xSVG}</a>` : `<span class="m2-sns-nolnk" title="Xは準備中">${xSVG}</span>`}
+                ${m.sns.youtube ? `<a class="m2-sns-link" href="${m.sns.youtube}" target="_blank" rel="noopener" aria-label="YouTube">${ytSVG}</a>` : ''}
                </div>`
             : '';
         profileEl.innerHTML = `

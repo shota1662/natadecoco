@@ -25,11 +25,11 @@ export default function RegisterForm() {
       }}
     >
       <div
+        className="register-card"
         style={{
           backgroundColor: '#fff',
           borderRadius: '20px',
-          boxShadow: '8px 8px 0 rgba(81,104,129,0.15)',
-          padding: '48px 40px',
+          boxShadow: '2px 2px 0 rgba(81,104,129,0.15)',
           width: '100%',
           maxWidth: '600px',
           margin: '0 auto',
@@ -38,43 +38,18 @@ export default function RegisterForm() {
         {/* ステップインジケーター */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '36px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <div
-              style={{
-                width: '32px',
-                height: '32px',
-                borderRadius: '50%',
-                backgroundColor: '#fe4c7f',
-                color: '#fff',
-                fontSize: '14px',
-                fontWeight: '700',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              1
-            </div>
-            <span style={{ fontSize: '13px', fontWeight: '700', color: '#fe4c7f' }}>アカウント作成</span>
+            <div style={{ width: '32px', height: '32px', borderRadius: '50%', backgroundColor: '#fe4c7f', color: '#fff', fontSize: '14px', fontWeight: '700', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>1</div>
+            <span className="register-step-label" style={{ color: '#fe4c7f' }}>アカウント作成</span>
           </div>
-          <div style={{ width: '40px', height: '2px', backgroundColor: '#dde5ee' }} />
+          <div style={{ width: '32px', height: '2px', backgroundColor: '#dde5ee' }} />
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <div
-              style={{
-                width: '32px',
-                height: '32px',
-                borderRadius: '50%',
-                backgroundColor: '#dde5ee',
-                color: '#aaa',
-                fontSize: '14px',
-                fontWeight: '700',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              2
-            </div>
-            <span style={{ fontSize: '13px', fontWeight: '700', color: '#aaa' }}>詳細情報</span>
+            <div style={{ width: '32px', height: '32px', borderRadius: '50%', backgroundColor: '#dde5ee', color: '#aaa', fontSize: '14px', fontWeight: '700', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>2</div>
+            <span className="register-step-label" style={{ color: '#aaa' }}>詳細情報</span>
+          </div>
+          <div style={{ width: '32px', height: '2px', backgroundColor: '#dde5ee' }} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <div style={{ width: '32px', height: '32px', borderRadius: '50%', backgroundColor: '#dde5ee', color: '#aaa', fontSize: '14px', fontWeight: '700', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>3</div>
+            <span className="register-step-label" style={{ color: '#aaa' }}>説明会申込み</span>
           </div>
         </div>
 

@@ -20,7 +20,7 @@
 }
 
 .vol-hero-photo {
-    width: 440px;
+    width: 480px;
     flex-shrink: 0;
     border-radius: 28px;
     overflow: hidden;
@@ -41,7 +41,7 @@
     background-color: #f5f29f;
     border-radius: 30px;
     padding: 12px 28px 12px 8px;
-    box-shadow: 4px 4px #898787;
+    box-shadow: 2px 2px #898787;
     transition: transform 0.1s, box-shadow 0.1s;
     color: #333;
     font-size: 15px;
@@ -160,90 +160,44 @@
     overflow: hidden;
 }
 
-.vol-gallery-grid {
+.vol-gallery-random {
     display: flex;
-    height: 380px;
-    gap: 4px;
+    justify-content: center;
+    gap: 16px;
+    padding: 40px 20px;
+    max-width: 860px;
+    margin: 0 auto;
 }
 
-.vol-gallery-main {
-    flex: 2;
-    overflow: hidden;
-    position: relative;
-}
-
-.vol-gallery-main img {
-    width: 100%;
-    height: 100%;
+.vol-gallery-photo {
+    width: calc(33.333% - 12px);
+    max-width: 260px;
+    height: 200px;
     object-fit: cover;
-    display: block;
-    transition: transform 0.5s ease;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(81, 104, 129, 0.15);
 }
 
-.vol-gallery-main:hover img { transform: scale(1.04); }
-
-.vol-gallery-sub {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+@media (max-width: 640px) {
+    .vol-gallery-random {
+        gap: 10px;
+        padding: 28px 16px;
+    }
+    .vol-gallery-photo {
+        height: 140px;
+    }
 }
 
-.vol-gallery-item {
-    flex: 1;
-    overflow: hidden;
-    position: relative;
-}
-
-.vol-gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.5s ease;
-}
-
-.vol-gallery-item:hover img { transform: scale(1.06); }
-
-.vol-gallery-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 32px 20px 18px;
-    background: linear-gradient(transparent, rgba(30, 58, 90, 0.65));
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    pointer-events: none;
-}
-
-.vol-gallery-stat {
-    font-size: 32px;
-    font-weight: 900;
-    color: #fff;
-    line-height: 1;
-    font-family: 'Roboto', sans-serif;
-    letter-spacing: -0.02em;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-}
-
-.vol-gallery-label {
-    font-size: 11px;
-    font-weight: 700;
-    color: rgba(255, 255, 255, 0.85);
-    letter-spacing: 0.08em;
-}
-
-@media (max-width: 700px) {
-    .vol-gallery-grid { height: 260px; }
-    .vol-gallery-stat { font-size: 24px; }
-}
-@media (max-width: 480px) {
-    .vol-gallery-grid { flex-direction: column; height: auto; }
-    .vol-gallery-main { height: 200px; flex: none; }
-    .vol-gallery-sub { flex-direction: row; }
-    .vol-gallery-item { height: 120px; flex: 1; }
+@media (max-width: 400px) {
+    .vol-gallery-random {
+        flex-direction: column;
+        align-items: center;
+    }
+    .vol-gallery-photo {
+        width: 100%;
+        max-width: 320px;
+        height: 180px;
+    }
 }
 
 /* ===================================
@@ -259,12 +213,6 @@
     overflow: hidden;
     padding: 0 !important;
     box-shadow: 5px 5px 0 rgba(81, 104, 129, 0.18);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.vol-activity-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 5px 11px 0 rgba(81, 104, 129, 0.18);
 }
 
 .vol-act-photo {
@@ -279,10 +227,8 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.4s ease;
 }
 
-.vol-activity-card:hover .vol-act-photo img { transform: scale(1.06); }
 
 .vol-act-icon-badge {
     position: absolute;
@@ -321,6 +267,7 @@
     .vol-activity-grid { grid-template-columns: 1fr !important; }
 }
 
+
 /* ===================================
    ④ 先輩の声 — 顔写真付き
    =================================== */
@@ -328,6 +275,16 @@
     flex-shrink: 0;
     width: 72px;
     height: 72px;
+}
+
+.vol-voice-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
 }
 
 .vol-voice-img {
@@ -355,6 +312,11 @@
 
 .vol-req-layout .vol-req-table-wrap {
     flex: 1;
+}
+
+.vol-req-table-wrap--full {
+    flex: none;
+    width: 100%;
 }
 
 .vol-req-photo-panel {
@@ -434,6 +396,20 @@
 @media (max-width: 560px) {
     .vol-req-photo-panel { flex-direction: column; }
     .vol-req-photo-img { width: 100%; height: 160px; }
+    .vol-req-table th {
+        display: block;
+        width: 100%;
+        white-space: normal;
+        padding: 14px 20px 6px;
+    }
+    .vol-req-table td {
+        display: block;
+        width: 100%;
+        padding: 6px 20px 16px;
+    }
+    .vol-req-table tbody tr {
+        display: block;
+    }
 }
 
 /* ===================================
@@ -567,6 +543,18 @@
     gap: 24px;
 }
 
+@media (max-width: 640px) {
+    .vol-appeal-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 400px) {
+    .vol-appeal-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 .vol-appeal-card {
     background-color: #f7fbfe;
     border-radius: 20px;
@@ -646,11 +634,6 @@
     text-align: center;
     box-shadow: 4px 4px 0 rgba(81, 104, 129, 0.15);
     transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.vol-activity-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 4px 9px 0 rgba(81, 104, 129, 0.15);
 }
 
 .vol-activity-icon {
@@ -881,6 +864,107 @@
     flex-shrink: 0;
 }
 
+/* 縦並びSTEP */
+.vol-flow-steps--vertical {
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 680px;
+    margin: 0 auto 70px;
+}
+
+.vol-flow-step-v {
+    background-color: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 3px 3px 0 rgba(81, 104, 129, 0.15);
+}
+
+.vol-flow-step-v-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 24px;
+    background-color: #f7fbfe;
+    border-bottom: 1px solid #e0f0f8;
+}
+
+.vol-flow-num-v {
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 0.08em;
+    padding: 5px 14px;
+    border-radius: 20px;
+    flex-shrink: 0;
+}
+
+.vol-flow-title-v {
+    font-size: 17px;
+    font-weight: bold;
+    color: #516881;
+    margin: 0;
+}
+
+.vol-flow-step-v-body {
+    padding: 20px 24px;
+}
+
+.vol-flow-text-v {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.9;
+    margin: 0;
+}
+
+.vol-flow-schedule {
+    margin-top: 16px;
+    background-color: #f0faff;
+    border-radius: 10px;
+    padding: 16px 20px;
+}
+
+.vol-flow-schedule-head {
+    font-size: 13px;
+    font-weight: bold;
+    color: #516881;
+    margin: 0 0 10px;
+}
+
+.vol-flow-schedule-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px;
+}
+
+.vol-flow-schedule-list li {
+    font-size: 13px;
+    color: #444;
+    line-height: 1.8;
+    padding-left: 14px;
+    position: relative;
+}
+
+.vol-flow-schedule-list li::before {
+    content: '・';
+    position: absolute;
+    left: 0;
+    color: #30b9bf;
+}
+
+.vol-flow-schedule-note {
+    font-size: 12px;
+    color: #888;
+    margin: 0;
+    line-height: 1.7;
+}
+
+.vol-flow-arrow-v {
+    text-align: center;
+    color: #9fd9f6;
+    font-size: 20px;
+    padding: 8px 0;
+}
+
 /* フォトストリップ（応募の流れ） */
 .vol-flow-photostrip {
     display: grid;
@@ -939,7 +1023,7 @@
     background-color: #f5f29f;
     border-radius: 30px;
     padding: 14px 32px 14px 8px;
-    box-shadow: 5px 5px #898787;
+    box-shadow: 2px 2px #898787;
     transition: transform 0.1s, box-shadow 0.1s;
     color: #333;
     font-size: 16px;

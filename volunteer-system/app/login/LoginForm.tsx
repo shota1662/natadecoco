@@ -22,7 +22,7 @@ export default function LoginForm({ message }: { message?: string }) {
         style={{
           backgroundColor: '#fff',
           borderRadius: '20px',
-          boxShadow: '8px 8px 0 rgba(81,104,129,0.15)',
+          boxShadow: '2px 2px 0 rgba(81,104,129,0.15)',
           padding: '48px 40px',
           width: '100%',
           maxWidth: '480px',

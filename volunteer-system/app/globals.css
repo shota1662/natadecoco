@@ -99,7 +99,7 @@ a:hover {
   width: 260px;
   height: 54px;
   border-radius: 27px;
-  box-shadow: 5px 5px #898787;
+  box-shadow: 2px 2px #898787;
   cursor: pointer;
   font-size: 15px;
   font-family: inherit;
@@ -112,7 +112,7 @@ a:hover {
 
 .btn-primary:hover {
   box-shadow: none;
-  transform: translate(5px, 5px);
+  transform: translate(2px, 2px);
   opacity: 1;
 }
 
@@ -123,7 +123,7 @@ a:hover {
   background-color: #f87a6d;
   border: none;
   border-radius: 25px;
-  box-shadow: 3px 3px rgba(137,135,135,0.45);
+  box-shadow: 2px 2px rgba(137,135,135,0.45);
   cursor: pointer;
   font-family: inherit;
   font-weight: bold;
@@ -135,7 +135,7 @@ a:hover {
 
 .btn-coral:hover {
   box-shadow: none;
-  transform: translate(5px, 5px);
+  transform: translate(2px, 2px);
   opacity: 1;
   color: #fff;
 }
@@ -147,7 +147,7 @@ a:hover {
   background-color: #30b9bf;
   border: none;
   border-radius: 25px;
-  box-shadow: 5px 5px #898787;
+  box-shadow: 2px 2px #898787;
   cursor: pointer;
   font-family: inherit;
   font-weight: bold;
@@ -159,7 +159,7 @@ a:hover {
 
 .btn-teal:hover {
   box-shadow: none;
-  transform: translate(5px, 5px);
+  transform: translate(2px, 2px);
   opacity: 1;
   color: #fff;
 }
@@ -171,7 +171,7 @@ a:hover {
   background-color: #fe4c7f;
   border: none;
   border-radius: 25px;
-  box-shadow: 5px 5px #898787;
+  box-shadow: 2px 2px #898787;
   cursor: pointer;
   font-family: inherit;
   font-weight: bold;
@@ -183,7 +183,7 @@ a:hover {
 
 .btn-pink:hover {
   box-shadow: none;
-  transform: translate(5px, 5px);
+  transform: translate(2px, 2px);
   opacity: 1;
   color: #fff;
 }
@@ -220,13 +220,13 @@ a:hover {
 .card {
   background-color: #fff;
   border-radius: 14px;
-  box-shadow: 5px 5px 0 rgba(81, 104, 129, 0.2);
+  box-shadow: 2px 2px 0 rgba(81, 104, 129, 0.2);
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .card:hover {
   transform: translateY(-3px);
-  box-shadow: 5px 8px 0 rgba(81, 104, 129, 0.2);
+  box-shadow: 2px 5px 0 rgba(81, 104, 129, 0.2);
 }
 
 /* ===================================
@@ -291,4 +291,25 @@ a:hover {
 
 .data-table tr:hover td {
   background-color: #f7fbfe;
+}
+
+/* ===================================
+   登録フォーム レスポンシブ
+   =================================== */
+.register-card {
+  padding: 48px 40px;
+}
+
+.register-step-label {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+@media (max-width: 520px) {
+  .register-card {
+    padding: 32px 20px;
+  }
+  .register-step-label {
+    display: none;
+  }
 }

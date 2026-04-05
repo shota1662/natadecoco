@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect, notFound } from 'next/navigation'
 import Link from 'next/link'
+import { updateOrientationAttended } from '@/app/admin/actions'
 
 interface Props {
   params: Promise<{ id: string }>
@@ -79,6 +80,48 @@ export default async function VolunteerDetailPage({ params }: Props) {
                 value={v.english_level ? `${v.english_level} / 5（${levelLabels[v.english_level]}）` : null}
               />
             </dl>
+          </div>
+        </div>
+
+        {/* 説明会参加状況 */}
+        <div style={{ backgroundColor: '#fff', borderRadius: '16px', boxShadow: '5px 5px 0 rgba(81,104,129,0.15)', overflow: 'hidden', marginBottom: '24px' }}>
+          <div style={{ height: '6px', backgroundColor: '#30b9bf' }} />
+          <div style={{ padding: '28px 32px' }}>
+            <h2 style={{ fontSize: '18px', fontWeight: '700', color: '#516881', margin: '0 0 20px' }}>ボランティア説明会参加</h2>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>
+              {v.orientation_attended ? (
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', backgroundColor: '#f0fffe', border: '1.5px solid #30b9bf', borderRadius: '6px', padding: '6px 16px', fontSize: '14px', fontWeight: '700', color: '#1a8a8f' }}>
+                  ✓ 参加済み
+                </span>
+              ) : (
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', backgroundColor: '#fff8f0', border: '1.5px solid #f4a44a', borderRadius: '6px', padding: '6px 16px', fontSize: '14px', fontWeight: '700', color: '#c47b1a' }}>
+                  ! 未参加
+                </span>
+              )}
+              <form
+                action={async () => {
+                  'use server'
+                  await updateOrientationAttended(v.id, !v.orientation_attended)
+                }}
+              >
+                <button
+                  type="submit"
+                  style={{
+                    padding: '8px 20px',
+                    borderRadius: '8px',
+                    border: '1.5px solid #516881',
+                    backgroundColor: '#fff',
+                    color: '#516881',
+                    fontSize: '13px',
+                    fontWeight: '700',
+                    cursor: 'pointer',
+                    fontFamily: 'inherit',
+                  }}
+                >
+                  {v.orientation_attended ? '未参加に変更' : '参加済みに変更'}
+                </button>
+              </form>
+            </div>
           </div>
         </div>
 

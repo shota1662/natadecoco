@@ -500,6 +500,56 @@ h2 {
     color: #666;
 }
 
+.mobile-nav-sub {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.mobile-nav-sub.is-open {
+    max-height: 200px;
+    padding: 4px 0 10px 0;
+}
+
+.mobile-has-sub > a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mobile-sub-arrow {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    font-size: 10px;
+    color: #9fd9f6;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.mobile-has-sub.is-open > a .mobile-sub-arrow {
+    transform: rotate(180deg);
+}
+
+.mobile-nav-sub li a {
+    display: inline-block;
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #516881;
+    background: #f0f7fb;
+    border-radius: 20px;
+    border: 1px solid #9fd9f6;
+}
+
 .mobile-event-btn {
     display: block;
     margin-top: 20px;
@@ -589,23 +639,11 @@ h2 {
     max-width: 1100px;
     margin: 0 auto;
     display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.ht-viewport {
-    flex: 1;
-    overflow: hidden;
-}
-
-.ht-track {
-    display: flex;
-    gap: 60px;
-    transition: transform 0.35s ease;
+    gap: 20px;
 }
 
 .ht-banner {
-    flex-shrink: 0;
+    flex: 1;
     border-radius: 12px;
     overflow: hidden;
     display: block;
@@ -624,62 +662,9 @@ h2 {
     display: block;
 }
 
-/* 矢印ボタン */
-.ht-btn {
-    flex-shrink: 0;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 2px solid #9fd9f6;
-    background-color: #fff;
-    color: #516881;
-    font-size: 16px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.2s, color 0.2s;
-}
-
-.ht-btn:hover {
-    background-color: #516881;
-    color: #fff;
-}
-
-.ht-btn:disabled {
-    opacity: 0.3;
-    cursor: default;
-}
-
-/* ドット */
-.ht-dots-wrap {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 14px;
-}
-
-.ht-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    border: none;
-    background-color: #c8e8f5;
-    cursor: pointer;
-    padding: 0;
-    transition: background-color 0.2s, transform 0.2s;
-}
-
-.ht-dot.is-active {
-    background-color: #516881;
-    transform: scale(1.35);
-}
-
 @media (max-width: 700px) {
-    .ht-btn {
-        width: 32px;
-        height: 32px;
-        font-size: 13px;
+    .hot-topics-inner {
+        flex-direction: column;
     }
 }
 
@@ -713,7 +698,7 @@ h2 {
     width: 760px;
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 5px 5px #898787;
+    box-shadow: 2px 2px #898787;
     padding: 50px;
 }
 
@@ -1072,7 +1057,7 @@ h2 {
     width: 250px;
     height: 50px;
     border-radius: 25px;
-    box-shadow: 3px 3px #898787;
+    box-shadow: 2px 2px #898787;
     transition: all 0.1s;
     position: relative;
     overflow: hidden;
@@ -1080,7 +1065,7 @@ h2 {
 
 .btn-more-info:hover {
     box-shadow: none;
-    transform: translate(3px, 3px);
+    transform: translate(2px, 2px);
 }
 
 .btn-more-info img {
@@ -1538,7 +1523,7 @@ h2 {
     width: 260px;
     height: 54px;
     border-radius: 27px;
-    box-shadow: 3px 3px #898787;
+    box-shadow: 2px 2px #898787;
     cursor: pointer;
     font-size: 15px;
     font-family: inherit;
@@ -1555,7 +1540,7 @@ h2 {
 
 .btn-submit:hover {
     box-shadow: none;
-    transform: translate(3px, 3px);
+    transform: translate(2px, 2px);
 }
 
 /* ===================================
@@ -1586,6 +1571,10 @@ h2 {
 }
 
 .footer-col--nav {
+    flex: 0 0 180px;
+}
+
+.footer-col--nav2 {
     flex: 1;
 }
 
@@ -1600,7 +1589,7 @@ h2 {
 
 .footer-logo img {
     width: 140px;
-    filter: brightness(0) invert(1);
+    height: auto;
 }
 
 .footer-tagline {
@@ -1636,6 +1625,23 @@ h2 {
 .footer-nav-list li a:hover {
     color: #9fd9f6;
     opacity: 1;
+}
+
+.footer-nav-sub {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 6px 0 0 12px;
+    padding: 0;
+}
+
+.footer-nav-sub li a {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 12px;
+}
+
+.footer-nav-sub li a::before {
+    content: "– ";
 }
 
 .footer-address {
@@ -1736,23 +1742,26 @@ h2 {
    レスポンシブ：ヒーローエリア (top-area)
    =================================== */
 @media (max-width: 900px) {
+    .hot-topics {
+        display: none;
+    }
+
     .top-area {
         flex-direction: column;
         padding: 0 0 40px;
     }
 
     .top-photo {
+        order: -1;
         width: 100%;
         max-width: 100%;
-        border-radius: 0 0 30px 30px;
+        border-radius: 30px;
         border-width: 6px;
         height: 260px;
     }
 
     .top-letter {
-        width: 100%;
-        padding: 24px 24px 20px;
-        text-align: center;
+        display: none;
     }
 }
 
@@ -1776,7 +1785,7 @@ h2 {
     .news-list {
         width: calc(100% - 32px);
         padding: 20px 16px;
-        box-shadow: 3px 3px #898787;
+        box-shadow: 2px 2px #898787;
     }
 
     .news-item {
@@ -1837,8 +1846,7 @@ h2 {
     }
 
     .service-card-illust {
-        width: 90px;
-        height: auto;
+        display: none;
     }
 
     .service-bg-number {
@@ -1964,7 +1972,11 @@ h2 {
     }
     .footer-col--nav {
         flex: 1;
-        min-width: 160px;
+        min-width: 140px;
+    }
+    .footer-col--nav2 {
+        flex: 1;
+        min-width: 140px;
     }
     .footer-col--contact {
         flex: 1;
@@ -1982,6 +1994,7 @@ h2 {
         padding-bottom: 32px;
     }
     .footer-col--nav,
+    .footer-col--nav2,
     .footer-col--contact {
         flex: 0 0 100%;
     }
@@ -2039,14 +2052,14 @@ h2 {
     background-color: #fff;
     border-radius: 14px;
     overflow: hidden;
-    box-shadow: 5px 5px #898787;
+    box-shadow: 2px 2px #898787;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .column-card:hover {
     transform: translateY(-4px);
-    box-shadow: 5px 9px #898787;
+    box-shadow: 3px 5px #898787;
 }
 
 /* カテゴリ別シャドウ */

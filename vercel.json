@@ -1,0 +1,5 @@
+{
+  "redirects": [
+    { "source": "/foreigner.html", "destination": "/", "permanent": false }
+  ]
+}

@@ -110,18 +110,12 @@ export async function updateEvent(
   redirect('/admin/events?success=' + encodeURIComponent('イベントを更新しました'))
 }
 
+// ステータス更新のみ（メール送信なし）
 export async function updateRegistrationStatus(
   registrationId: string,
   status: 'applied' | 'selected' | 'rejected'
 ) {
   const { supabase } = await checkAdmin()
-
-  // 登録情報・プロフィール・イベントを取得
-  const { data: reg } = await supabase
-    .from('event_registrations')
-    .select('*, profiles(*), events(*)')
-    .eq('id', registrationId)
-    .single()
 
   const { error } = await supabase
     .from('event_registrations')
@@ -132,32 +126,56 @@ export async function updateRegistrationStatus(
     return { error: error.message }
   }
 
-  // メール通知（当選・落選時のみ）
-  if (reg && (status === 'selected' || status === 'rejected')) {
-    const profile = reg.profiles as { email?: string; full_name?: string } | null
-    const event = reg.events as { title?: string } | null
-    if (profile?.email && event?.title) {
-      const { data: tmpl } = await supabase
-        .from('email_templates')
-        .select('subject, body_html')
-        .eq('id', status)
-        .single()
-      if (tmpl) {
-        const name = profile.full_name ?? ''
-        const title = event.title
-        const subject = tmpl.subject.replace(/\{\{name\}\}/g, name).replace(/\{\{event_title\}\}/g, title)
-        const html = tmpl.body_html.replace(/\{\{name\}\}/g, name).replace(/\{\{event_title\}\}/g, title)
-        await resend.emails.send({
-          from: 'NPOナタデココ <info@natadecoco.org>',
-          to: profile.email,
-          subject,
-          html,
-        })
-      }
-    }
+  revalidatePath('/admin/events', 'page')
+  return { success: true }
+}
+
+// メール送信のみ（ステータス確定後に管理者が手動実行）
+export async function sendStatusEmail(registrationId: string) {
+  const { supabase } = await checkAdmin()
+
+  const { data: reg } = await supabase
+    .from('event_registrations')
+    .select('*, profiles(*), events(*)')
+    .eq('id', registrationId)
+    .single()
+
+  if (!reg) return { error: '登録情報が見つかりません' }
+
+  const status = reg.status as string
+  if (status !== 'selected' && status !== 'rejected') {
+    return { error: '当選または落選のステータスのみメール送信できます' }
   }
 
-  revalidatePath('/admin/events', 'page')
+  const profile = reg.profiles as { email?: string; full_name?: string } | null
+  const event = reg.events as { title?: string } | null
+
+  if (!profile?.email || !event?.title) {
+    return { error: 'メールアドレスまたはイベント情報が不足しています' }
+  }
+
+  const { data: tmpl } = await supabase
+    .from('email_templates')
+    .select('subject, body_html')
+    .eq('id', status)
+    .single()
+
+  if (!tmpl) return { error: 'メールテンプレートが見つかりません' }
+
+  const name = profile.full_name ?? ''
+  const title = event.title
+  const subject = tmpl.subject.replace(/\{\{name\}\}/g, name).replace(/\{\{event_title\}\}/g, title)
+  const html = tmpl.body_html.replace(/\{\{name\}\}/g, name).replace(/\{\{event_title\}\}/g, title)
+
+  const { error: mailError } = await resend.emails.send({
+    from: 'NPOナタデココ <info@natadecoco.org>',
+    to: profile.email,
+    subject,
+    html,
+  })
+
+  if (mailError) return { error: mailError.message }
+
   return { success: true }
 }
 
@@ -195,6 +213,22 @@ export async function updateEmailTemplate(
 
   revalidatePath('/admin/email-templates')
   return null
+}
+
+export async function updateOrientationAttended(volunteerId: string, attended: boolean) {
+  const { supabase } = await checkAdmin()
+
+  const { error } = await supabase
+    .from('profiles')
+    .update({ orientation_attended: attended })
+    .eq('id', volunteerId)
+
+  if (error) {
+    return { error: error.message }
+  }
+
+  revalidatePath(`/admin/volunteers/${volunteerId}`)
+  return { success: true }
 }
 
 export async function removeParticipant(registrationId: string) {

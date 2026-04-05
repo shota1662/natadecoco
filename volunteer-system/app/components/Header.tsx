@@ -136,7 +136,7 @@ export default async function Header() {
                       transition: 'color 0.2s',
                     }}
                   >
-                    ダッシュボード
+                    マイページ
                   </Link>
                 </li>
                 <li>
@@ -149,7 +149,7 @@ export default async function Header() {
                       transition: 'color 0.2s',
                     }}
                   >
-                    プロフィール
+                    プロフィールを編集
                   </Link>
                 </li>
                 {isAdmin && (

@@ -109,67 +109,6 @@ $(document).ready(function () {
     init();
 });
 
-// ========================================
-// ホットトピックスライダー
-// ========================================
-$(document).ready(function () {
-    var HT_GAP = 60;
-    var htPos = 0;
-    var $htTrack = $('#htTrack');
-    if ($htTrack.length === 0) return;
-
-    var $banners = $htTrack.find('.ht-banner');
-    var bannerCount = $banners.length;
-    var $htDots = $('#htDots .ht-dot');
-
-    function getHtVisible() {
-        var w = $(window).width();
-        if (w < 600) return 1;
-        if (w < 900) return 2;
-        return 3;
-    }
-
-    function getBannerWidth() {
-        var visible = getHtVisible();
-        var gap = visible === 1 ? 0 : HT_GAP;
-        var vpWidth = $('.ht-viewport').width();
-        return (vpWidth - (visible - 1) * gap) / visible;
-    }
-
-    function updateBannerWidths() {
-        var bw = getBannerWidth();
-        $banners.css({ 'width': bw + 'px', 'flex-shrink': '0' });
-        var gap = getHtVisible() === 1 ? 0 : HT_GAP;
-        $htTrack.css('gap', gap + 'px');
-    }
-
-    function htMoveTo(newPos) {
-        var htMax = Math.max(0, bannerCount - getHtVisible());
-        htPos = Math.max(0, Math.min(newPos, htMax));
-        var gap = getHtVisible() === 1 ? 0 : HT_GAP;
-        var step = getBannerWidth() + gap;
-        $htTrack.css('transform', 'translateX(-' + (htPos * step) + 'px)');
-        $htDots.removeClass('is-active').eq(htPos).addClass('is-active');
-        $('.ht-prev-btn').prop('disabled', htPos === 0);
-        $('.ht-next-btn').prop('disabled', htPos === htMax);
-    }
-
-    function htInit() {
-        htPos = Math.min(htPos, bannerCount - getHtVisible());
-        updateBannerWidths();
-        htMoveTo(htPos);
-    }
-
-    $('.ht-prev-btn').on('click', function () { htMoveTo(htPos - 1); });
-    $('.ht-next-btn').on('click', function () { htMoveTo(htPos + 1); });
-
-    $htDots.each(function (i) {
-        $(this).on('click', function () { htMoveTo(i); });
-    });
-
-    $(window).on('resize', function () { htInit(); });
-    htInit();
-});
 
 // ========================================
 // 実績カウントアップ
@@ -264,11 +203,27 @@ $(document).ready(function() {
     $('.mobile-menu').toggleClass('is-open');
   });
 
+  // サブメニューアコーディオン
+  $('.mobile-has-sub > a').on('click', function(e) {
+    e.preventDefault();
+    var $li = $(this).parent();
+    var $sub = $li.find('> .mobile-nav-sub');
+    var isOpen = $li.hasClass('is-open');
+    // 他のサブメニューを閉じる
+    $('.mobile-has-sub').not($li).removeClass('is-open')
+      .find('> .mobile-nav-sub').removeClass('is-open');
+    // トグル
+    $li.toggleClass('is-open', !isOpen);
+    $sub.toggleClass('is-open', !isOpen);
+  });
+
   // メニュー外クリックで閉じる
   $(document).on('click', function(e) {
     if (!$(e.target).closest('#header').length) {
       $('.hamburger').removeClass('is-open').attr('aria-expanded', 'false');
       $('.mobile-menu').removeClass('is-open');
+      $('.mobile-has-sub').removeClass('is-open')
+        .find('> .mobile-nav-sub').removeClass('is-open');
     }
   });
 });

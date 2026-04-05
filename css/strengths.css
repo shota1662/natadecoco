@@ -17,6 +17,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
 
 .st-hero-icon {
@@ -26,6 +27,13 @@
 
 .st-hero-text {
     text-align: center;
+}
+
+.st-hero-chara {
+    position: absolute;
+    left: 80px;
+    bottom: 0;
+    width: 154px;
 }
 
 .st-hero-en {
@@ -124,6 +132,17 @@
         padding: 60px 20px 40px;
     }
 
+    .st-hero-chara {
+        position: static;
+        width: 100px;
+        margin-bottom: 8px;
+    }
+
+    .st-hero-title-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
     .st-hero-title {
         font-size: 36px;
     }
@@ -152,5 +171,298 @@
 
     .st-item-title {
         font-size: 20px;
+    }
+}
+
+/* ===================================
+   ネットワーク統計バナー
+   =================================== */
+.st-network-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    background: linear-gradient(135deg, #f0faff 0%, #fff5f8 100%);
+    border-radius: 20px;
+    padding: 36px 48px;
+    margin-top: 32px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 大きな装飾円 */
+.st-network-stats::before {
+    content: '';
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: rgba(159, 217, 246, 0.3);
+    top: -40px;
+    right: 50px;
+}
+
+.st-network-stats::after {
+    content: '';
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: rgba(254, 76, 127, 0.18);
+    bottom: -25px;
+    left: 40px;
+}
+
+.st-network-stat {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    padding: 0 40px;
+}
+
+.st-network-stat-num {
+    display: block;
+    font-size: 58px;
+    font-weight: bold;
+    line-height: 1;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: -0.02em;
+}
+
+.st-network-stat--countries .st-network-stat-num {
+    color: #30b9bf;
+}
+
+.st-network-stat--members .st-network-stat-num {
+    color: #fe4c7f;
+}
+
+.st-network-stat-unit {
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 0.02em;
+}
+
+.st-network-stat-label {
+    display: block;
+    font-size: 13px;
+    color: #888;
+    margin-top: 8px;
+    letter-spacing: 0.05em;
+}
+
+.st-network-stat-sep {
+    width: 1px;
+    height: 64px;
+    background: #d9eaf4;
+    flex-shrink: 0;
+}
+
+/* 03用カラーバリエーション（パープル・ティール） */
+.st-network-stats--purple {
+    background: linear-gradient(135deg, #f5f0ff 0%, #f0f9ff 100%);
+    align-items: flex-start;
+    gap: 0;
+    padding: 32px 40px;
+}
+
+.st-network-stats--purple::before {
+    background: rgba(160, 120, 240, 0.2);
+    width: 110px;
+    height: 110px;
+    top: -30px;
+    right: 80px;
+    left: auto;
+}
+
+.st-network-stats--purple::after {
+    background: rgba(48, 185, 191, 0.18);
+    bottom: -20px;
+    right: auto;
+    left: 60px;
+}
+
+.st-tags-block {
+    flex: 1;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.st-tags-block--lang {
+    border-left: 1px solid #ddd8f5;
+}
+
+.st-tags-heading {
+    font-size: 11px;
+    font-weight: bold;
+    color: #aaa;
+    letter-spacing: 0.12em;
+    margin: 0 0 12px;
+}
+
+.st-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.st-tag {
+    font-size: 12px;
+    color: #7b5ea7;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1.5px solid #c5aee8;
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-weight: bold;
+    line-height: 1.4;
+}
+
+.st-tag--lang {
+    color: #30b9bf;
+    border-color: #9fd9f6;
+}
+
+@media (max-width: 640px) {
+    .st-network-stats--purple {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .st-tags-block--lang {
+        border-left: none;
+        border-top: 1px solid #ddd8f5;
+        padding-top: 20px;
+    }
+}
+
+/* 05用カラーバリエーション（インディゴ・ティール） */
+.st-network-stats--navy {
+    background: linear-gradient(135deg, #f0f4ff 0%, #f0faff 100%);
+}
+
+.st-network-stats--navy::before {
+    background: rgba(80, 120, 220, 0.2);
+    width: 120px;
+    height: 120px;
+    top: -35px;
+    left: 60px;
+    right: auto;
+}
+
+.st-network-stats--navy::after {
+    background: rgba(48, 185, 191, 0.2);
+    bottom: -20px;
+    right: 50px;
+    left: auto;
+}
+
+.st-check-mark--navy {
+    color: #5078dc;
+}
+
+@media (max-width: 480px) {
+    .st-network-stats--navy .st-network-stat {
+        padding: 0 12px;
+    }
+}
+
+/* 04用カラーバリエーション（オレンジ・ゴールド） */
+.st-network-stats--warm {
+    background: linear-gradient(135deg, #fffbf0 0%, #fff8f0 100%);
+}
+
+.st-network-stats--warm::before {
+    background: rgba(255, 190, 60, 0.25);
+    width: 120px;
+    height: 120px;
+    top: -35px;
+    right: 60px;
+    left: auto;
+}
+
+.st-network-stats--warm::after {
+    background: rgba(255, 140, 60, 0.18);
+    bottom: -20px;
+    left: 50px;
+    right: auto;
+}
+
+.st-network-stat--check {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.st-check-mark {
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 1;
+    color: #f5a623;
+}
+
+.st-check-text {
+    font-size: 16px;
+    font-weight: bold;
+    color: #516881;
+    text-align: center;
+    line-height: 1.5;
+    letter-spacing: 0.03em;
+}
+
+@media (max-width: 480px) {
+    .st-network-stats--warm .st-network-stat {
+        padding: 0 12px;
+    }
+
+    .st-check-text {
+        font-size: 14px;
+    }
+}
+
+/* 02用カラーバリエーション（黄緑・オレンジ） */
+.st-network-stats--green {
+    background: linear-gradient(135deg, #f2fbf5 0%, #fffbf0 100%);
+}
+
+.st-network-stats--green::before {
+    background: rgba(100, 210, 140, 0.25);
+    top: -35px;
+    left: 50px;
+    right: auto;
+}
+
+.st-network-stats--green::after {
+    background: rgba(255, 180, 60, 0.2);
+    bottom: -20px;
+    right: 40px;
+    left: auto;
+}
+
+.st-network-stat--programs .st-network-stat-num {
+    color: #3dba72;
+}
+
+.st-network-stat--participants .st-network-stat-num {
+    color: #f5a623;
+}
+
+@media (max-width: 480px) {
+    .st-network-stats {
+        padding: 28px 20px;
+        gap: 0;
+    }
+
+    .st-network-stat {
+        padding: 0 20px;
+    }
+
+    .st-network-stat-num {
+        font-size: 40px;
+    }
+
+    .st-network-stat-unit {
+        font-size: 15px;
     }
 }
