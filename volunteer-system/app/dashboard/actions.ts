@@ -36,6 +36,22 @@ export async function registerForEvent(
   return { success: true }
 }
 
+export async function saveOrientationDate(date: string) {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) return { error: 'ログインが必要です' }
+
+  const { error } = await supabase
+    .from('profiles')
+    .update({ orientation_date: date || null })
+    .eq('id', user.id)
+
+  if (error) return { error: error.message }
+
+  revalidatePath('/dashboard')
+  return { success: true }
+}
+
 export async function cancelRegistration(registrationId: string) {
   const supabase = await createClient()
 

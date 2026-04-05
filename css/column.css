@@ -156,6 +156,10 @@
 }
 
 @media (max-width: 600px) {
+    .col-hero {
+        padding: 40px 20px 32px;
+    }
+
     .col-hero-inner {
         flex-direction: column;
         gap: 20px;
@@ -163,14 +167,22 @@
     }
 
     .col-hero-icon {
-        width: 72px;
+        width: 64px;
     }
 
     .col-hero-title {
-        font-size: 28px;
+        font-size: 26px;
+    }
+
+    .col-hero-sub {
+        font-size: 13px;
     }
 
     .col-grid {
         grid-template-columns: 1fr;
+    }
+
+    .col-list-section {
+        padding: 40px 16px 60px;
     }
 }

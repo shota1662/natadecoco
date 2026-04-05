@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { createClient } from '@/lib/supabase/server'
 import { signOut } from '@/app/auth/actions'
+import HeaderNav from './HeaderNav'
 
 export default async function Header() {
   const supabase = await createClient()
@@ -34,8 +35,8 @@ export default async function Header() {
         boxShadow: '0 2px 8px rgba(81,104,129,0.10)',
       }}
     >
-      {/* トップナビ */}
-      <div style={{ backgroundColor: '#9fd9f6', width: '100%', height: '28px', display: 'flex', alignItems: 'center' }}>
+      {/* トップナビ（デスクトップのみ表示） */}
+      <div className="header-topbar" style={{ backgroundColor: '#9fd9f6', width: '100%', height: '28px', display: 'flex', alignItems: 'center' }}>
         <ul
           style={{
             margin: 0,
@@ -91,10 +92,11 @@ export default async function Header() {
       {/* メインヘッダー */}
       <div
         style={{
+          position: 'relative',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          padding: '10px 40px',
+          padding: '8px 24px',
           maxWidth: '1200px',
           margin: '0 auto',
           width: '100%',
@@ -105,102 +107,49 @@ export default async function Header() {
           <Image
             src="/logo.svg"
             alt="NPOナタデココ"
-            width={160}
-            height={50}
+            width={120}
+            height={38}
             style={{ display: 'block' }}
             priority
           />
         </Link>
 
-        {/* ナビゲーション */}
-        <nav>
-          <ul
-            style={{
-              display: 'flex',
-              gap: '32px',
-              margin: 0,
-              padding: 0,
-              listStyle: 'none',
-              alignItems: 'center',
-            }}
-          >
-            {user ? (
-              <>
-                <li>
-                  <Link
-                    href="/dashboard"
-                    style={{
-                      color: '#516881',
-                      fontWeight: '700',
-                      fontSize: '14px',
-                      transition: 'color 0.2s',
-                    }}
-                  >
-                    マイページ
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/profile"
-                    style={{
-                      color: '#516881',
-                      fontWeight: '700',
-                      fontSize: '14px',
-                      transition: 'color 0.2s',
-                    }}
-                  >
-                    プロフィールを編集
-                  </Link>
-                </li>
-                {isAdmin && (
-                  <li>
-                    <Link
-                      href="/admin"
-                      style={{
-                        color: '#fe4c7f',
-                        fontWeight: '700',
-                        fontSize: '14px',
-                      }}
-                    >
-                      管理者ページ
-                    </Link>
-                  </li>
-                )}
-              </>
-            ) : (
-              <>
-                <li>
-                  <Link
-                    href="/login"
-                    className="btn-teal"
-                    style={{
-                      padding: '10px 24px',
-                      height: 'auto',
-                      width: 'auto',
-                      fontSize: '14px',
-                    }}
-                  >
-                    ログイン
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/register"
-                    className="btn-coral"
-                    style={{
-                      padding: '10px 24px',
-                      height: 'auto',
-                      width: 'auto',
-                      fontSize: '14px',
-                    }}
-                  >
-                    ボランティア登録
-                  </Link>
-                </li>
-              </>
-            )}
-          </ul>
-        </nav>
+        {/* ナビゲーション（ログイン済み：バーガー切替 / 未ログイン：ボタン） */}
+        {user ? (
+          <HeaderNav isAdmin={isAdmin} />
+        ) : (
+          <nav>
+            <ul
+              style={{
+                display: 'flex',
+                gap: '16px',
+                margin: 0,
+                padding: 0,
+                listStyle: 'none',
+                alignItems: 'center',
+              }}
+            >
+              <li>
+                <Link
+                  href="/login"
+                  className="btn-teal"
+                  style={{ padding: '10px 24px', height: 'auto', width: 'auto', fontSize: '14px' }}
+                >
+                  ログイン
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/register"
+                  className="btn-coral"
+                  style={{ padding: '10px 24px', height: 'auto', width: 'auto', fontSize: '14px' }}
+                >
+                  ボランティア登録
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        )}
       </div>
     </header>
   )

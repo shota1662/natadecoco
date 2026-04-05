@@ -88,12 +88,35 @@
 #jf4 { transition-delay: 1.4s; }
 
 /* ===================================
-   レスポンシブ：jack-flag
+   レスポンシブ：jack-flag（モバイル：左右に再配置）
    =================================== */
 @media (max-width: 900px) {
     .jack-flag {
-        display: none;
+        display: block;
     }
+
+    .jack-flag .fi {
+        width: 36px;
+        height: 27px;
+    }
+
+    /* 左列：jf0, jf2, jf4 */
+    #jf0 { left: -6px; right: auto; top: 10%; transform: translateY(10px) rotate(-9deg); }
+    #jf2 { left: -10px; right: auto; top: 42%; transform: translateY(10px) rotate(-13deg); }
+    #jf4 { left: -4px; right: auto; top: 70%; transform: translateY(10px) rotate(-4deg); }
+
+    /* 右列：jf1, jf3, jf5 */
+    #jf1 { left: auto; right: -6px; top: 18%; transform: translateY(10px) rotate(6deg); }
+    #jf3 { left: auto; right: -10px; top: 52%; transform: translateY(10px) rotate(8deg); }
+    #jf5 { left: auto; right: -4px; top: 34%; transform: translateY(10px) rotate(5deg); }
+
+    /* is-visible 時 */
+    #jf0.is-visible { transform: translateY(0) rotate(-9deg); }
+    #jf2.is-visible { transform: translateY(0) rotate(-13deg); }
+    #jf4.is-visible { transform: translateY(0) rotate(-4deg); }
+    #jf1.is-visible { transform: translateY(0) rotate(6deg); }
+    #jf3.is-visible { transform: translateY(0) rotate(8deg); }
+    #jf5.is-visible { transform: translateY(0) rotate(5deg); }
 }
 
 /* ===================================================

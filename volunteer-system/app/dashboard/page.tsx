@@ -4,6 +4,7 @@ import Link from 'next/link'
 import WaveDivider from '../components/WaveDivider'
 import EventCard from './EventCard'
 import RegistrationCard from './RegistrationCard'
+import OrientationAccordion from './OrientationAccordion'
 
 interface DashboardPageProps {
   searchParams: Promise<{ message?: string }>
@@ -108,14 +109,7 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
 
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '20px' }}>
             <div>
-              <h1
-                style={{
-                  fontSize: '28px',
-                  fontWeight: '700',
-                  color: '#516881',
-                  margin: '0 0 8px',
-                }}
-              >
+              <h1 className="dashboard-welcome-title">
                 ようこそ、{profile?.full_name || user.email} さん！
               </h1>
               <p style={{ fontSize: '14px', color: '#888', margin: 0 }}>
@@ -241,35 +235,73 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
             </p>
           </div>
 
-          {upcomingRegistrations.length > 0 ? (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              {upcomingRegistrations.map((reg) => {
-                const ev = reg.events as Parameters<typeof EventCard>[0]['event'] | null
-                if (!ev) return null
-                return (
-                  <EventCard
-                    key={reg.id}
-                    event={ev}
-                    isRegistered={true}
-                    participantCount={eventParticipantCounts[ev.id] || 0}
-                    registrationId={reg.id}
-                    registrationStatus={(reg as { status?: string }).status as 'applied' | 'selected' | 'rejected' | undefined}
-                  />
-                )
-              })}
-            </div>
-          ) : (
-            <div style={{ textAlign: 'center', padding: '40px 20px', backgroundColor: '#fff', borderRadius: '16px' }}>
-              <p style={{ fontSize: '15px', color: '#888', margin: 0 }}>参加予定のイベントはありません</p>
-            </div>
-          )}
+          {(() => {
+            const orientationDate = profile?.orientation_date
+            const isOrientationFuture = orientationDate && new Date(orientationDate) >= new Date()
+            const hasUpcoming = upcomingRegistrations.length > 0 || isOrientationFuture
+
+            return (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                {/* 説明会カード */}
+                {isOrientationFuture && (
+                  <div style={{
+                    backgroundColor: '#fff',
+                    borderRadius: '14px',
+                    boxShadow: '3px 3px rgba(81,104,129,0.12)',
+                    overflow: 'hidden',
+                    display: 'flex',
+                    borderLeft: '5px solid #30b9bf',
+                  }}>
+                    <div style={{ flex: 1, padding: '16px 20px', display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>
+                      <span style={{ display: 'inline-block', padding: '4px 10px', borderRadius: '6px', border: '1.5px solid #30b9bf', backgroundColor: '#f0fffe', color: '#1a8a8f', fontSize: '12px', fontWeight: '700', whiteSpace: 'nowrap', flexShrink: 0 }}>
+                        説明会
+                      </span>
+                      <div style={{ flex: 1, minWidth: '180px' }}>
+                        <p style={{ fontSize: '15px', fontWeight: '700', color: '#333', margin: '0 0 4px' }}>
+                          ボランティア説明会
+                        </p>
+                        <p style={{ fontSize: '12px', color: '#666', margin: 0 }}>
+                          📅 {new Date(orientationDate).toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'short' })}　20:00-20:45　オンライン
+                        </p>
+                      </div>
+                      <span style={{ display: 'inline-block', padding: '4px 12px', borderRadius: '6px', border: '1.5px solid #9fb8cc', backgroundColor: '#f0f4f8', color: '#516881', fontSize: '12px', fontWeight: '700', whiteSpace: 'nowrap' }}>
+                        申込済み
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                {/* 当選イベント */}
+                {upcomingRegistrations.map((reg) => {
+                  const ev = reg.events as Parameters<typeof EventCard>[0]['event'] | null
+                  if (!ev) return null
+                  return (
+                    <EventCard
+                      key={reg.id}
+                      event={ev}
+                      isRegistered={true}
+                      participantCount={eventParticipantCounts[ev.id] || 0}
+                      registrationId={reg.id}
+                      registrationStatus={(reg as { status?: string }).status as 'applied' | 'selected' | 'rejected' | undefined}
+                    />
+                  )
+                })}
+
+                {!hasUpcoming && (
+                  <div style={{ textAlign: 'center', padding: '40px 20px', backgroundColor: '#fff', borderRadius: '16px' }}>
+                    <p style={{ fontSize: '15px', color: '#888', margin: 0 }}>参加予定のイベントはありません</p>
+                  </div>
+                )}
+              </div>
+            )
+          })()}
         </div>
       </section>
 
       <WaveDivider fromColor="#9fd9f6" toColor="#fff" />
 
       {/* ② 参加受付中のイベント */}
-      <section style={{ backgroundColor: '#fff', padding: '60px 20px' }}>
+      <section style={{ backgroundColor: '#fff', padding: '60px 20px 30px' }}>
         <div style={{ maxWidth: '960px', margin: '0 auto' }}>
           <div style={{ marginBottom: '28px' }}>
             <h2 style={{ fontSize: '22px', fontWeight: '700', color: '#516881', margin: '0 0 6px' }}>
@@ -296,13 +328,15 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
               <p style={{ fontSize: '15px', color: '#888', margin: 0 }}>現在受付中のイベントはありません</p>
             </div>
           )}
+
+          <OrientationAccordion currentDate={profile?.orientation_date} />
         </div>
       </section>
 
       <WaveDivider fromColor="#fff" toColor="#f7fbfe" />
 
       {/* ③ 過去参加したイベント */}
-      <section style={{ backgroundColor: '#f7fbfe', padding: '60px 20px' }}>
+      <section style={{ backgroundColor: '#f7fbfe', padding: '30px 20px 60px' }}>
         <div style={{ maxWidth: '960px', margin: '0 auto' }}>
           <div style={{ marginBottom: '28px' }}>
             <h2 style={{ fontSize: '22px', fontWeight: '700', color: '#516881', margin: '0 0 6px' }}>
@@ -327,6 +361,17 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
               <p style={{ fontSize: '15px', color: '#888', margin: 0 }}>過去の参加履歴はありません</p>
             </div>
           )}
+
+          {/* お問い合わせ */}
+          <div style={{ marginTop: '48px', textAlign: 'center' }}>
+            <a
+              href="/contact.html"
+              className="btn-teal"
+              style={{ display: 'inline-flex', padding: '12px 36px', fontSize: '14px', height: 'auto', width: 'auto' }}
+            >
+              お問い合わせ
+            </a>
+          </div>
         </div>
       </section>
     </div>

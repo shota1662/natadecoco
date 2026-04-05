@@ -313,3 +313,44 @@ a:hover {
     display: none;
   }
 }
+
+/* ===================================
+   ダッシュボード レスポンシブ
+   =================================== */
+.dashboard-welcome-title {
+  font-size: 34px;
+  font-weight: 700;
+  color: #516881;
+  margin: 0 0 8px;
+}
+
+@media (max-width: 768px) {
+  .dashboard-welcome-title {
+    font-size: 18px;
+  }
+}
+
+/* ===================================
+   ヘッダー レスポンシブ
+   =================================== */
+/* デスクトップ：バーガーを非表示、通常ナビを表示 */
+.header-nav-desktop {
+  display: block;
+}
+.header-hamburger {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* モバイル：トップバーを非表示 */
+  .header-topbar {
+    display: none !important;
+  }
+  /* モバイル：通常ナビを非表示、バーガーを表示 */
+  .header-nav-desktop {
+    display: none;
+  }
+  .header-hamburger {
+    display: flex;
+  }
+}

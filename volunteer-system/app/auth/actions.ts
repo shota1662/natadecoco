@@ -7,6 +7,7 @@ import { createAdminClient } from '@/lib/supabase/admin'
 
 export type AuthState = {
   error?: string
+  redirect?: string
 } | null
 
 // ログイン
@@ -141,7 +142,7 @@ export async function signUpComplete(
   }
 
   revalidatePath('/', 'layout')
-  redirect('/register/orientation')
+  return { redirect: '/register/orientation' }
 }
 
 // 新規登録（旧: 後方互換用に残す）

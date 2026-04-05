@@ -440,7 +440,17 @@
 /* ===================================
    レスポンシブ
    =================================== */
+@media (max-width: 900px) {
+    .cd-related-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 700px) {
+    .cd-hero {
+        padding: 36px 20px 28px;
+    }
+
     .cd-hero-body {
         flex-direction: column-reverse;
         gap: 24px;
@@ -462,5 +472,25 @@
     .cd-footer-row {
         flex-direction: column;
         align-items: flex-start;
+    }
+}
+
+@media (max-width: 520px) {
+    .cd-article {
+        padding: 40px 16px 50px;
+    }
+
+    .cd-lead {
+        font-size: 14px;
+    }
+
+    .cd-summary-box {
+        flex-direction: column;
+        gap: 12px;
+        padding: 20px;
+    }
+
+    .cd-related {
+        padding: 40px 16px 50px;
     }
 }

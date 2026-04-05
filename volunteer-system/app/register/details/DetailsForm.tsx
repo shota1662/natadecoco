@@ -1,6 +1,7 @@
 'use client'
 
-import { useActionState, useState } from 'react'
+import { useActionState, useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { signUpComplete, type AuthState } from '@/app/auth/actions'
 
 const PREFECTURES = [
@@ -51,8 +52,26 @@ const selectArrow = {
 }
 
 export default function DetailsForm() {
+  const router = useRouter()
   const [state, formAction, isPending] = useActionState<AuthState, FormData>(signUpComplete, null)
   const [wantsPayment, setWantsPayment] = useState<boolean | null>(null)
+  const [birthYear,  setBirthYear]  = useState('')
+  const [birthMonth, setBirthMonth] = useState('')
+  const [birthDay,   setBirthDay]   = useState('')
+
+  const currentYear = new Date().getFullYear()
+  const years  = Array.from({ length: 80 }, (_, i) => currentYear - i)
+  const months = Array.from({ length: 12 }, (_, i) => i + 1)
+  const days   = Array.from({ length: 31 }, (_, i) => i + 1)
+  const birthdayValue = birthYear && birthMonth && birthDay
+    ? `${birthYear}-${String(birthMonth).padStart(2, '0')}-${String(birthDay).padStart(2, '0')}`
+    : ''
+
+  useEffect(() => {
+    if (state?.redirect) {
+      router.push(state.redirect)
+    }
+  }, [state, router])
 
   return (
     <div
@@ -92,21 +111,11 @@ export default function DetailsForm() {
 
         {/* タイトル */}
         <div style={{ textAlign: 'center', marginBottom: '36px' }}>
-          <div
-            style={{
-              width: '60px',
-              height: '60px',
-              backgroundColor: '#30b9bf',
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              margin: '0 auto 16px',
-              fontSize: '28px',
-            }}
-          >
-            📋
-          </div>
+          <img
+            src="/charactor/11.png"
+            alt=""
+            style={{ width: '80px', height: '80px', borderRadius: '50%', objectFit: 'cover', margin: '0 auto 16px', display: 'block' }}
+          />
           <h1 style={{ fontSize: '28px', fontWeight: '700', color: '#516881', margin: '0 0 8px' }}>
             詳細情報の登録
           </h1>
@@ -152,18 +161,64 @@ export default function DetailsForm() {
 
           {/* 生年月日 */}
           <div style={{ marginBottom: '24px' }}>
-            <label htmlFor="birthday" style={labelStyle}>
+            <label style={labelStyle}>
               生年月日
               <span className="badge-pink" style={{ fontSize: '10px', padding: '2px 7px' }}>必須</span>
             </label>
-            <input
-              className="form-input"
-              type="date"
-              id="birthday"
-              name="birthday"
-              required
-              disabled={isPending}
-            />
+            <input type="hidden" name="birthday" value={birthdayValue} />
+            <div style={{ display: 'flex', gap: '8px', alignItems: 'center', justifyContent: 'flex-start' }}>
+              {/* 年 */}
+              <div style={{ position: 'relative', width: '120px' }}>
+                <select
+                  className="form-select"
+                  value={birthYear}
+                  onChange={(e) => setBirthYear(e.target.value)}
+                  required
+                  disabled={isPending}
+                  style={{ paddingRight: '32px' }}
+                >
+                  <option value="">年</option>
+                  {years.map((y) => (
+                    <option key={y} value={y}>{y}年</option>
+                  ))}
+                </select>
+                <span style={selectArrow}>▾</span>
+              </div>
+              {/* 月 */}
+              <div style={{ position: 'relative', width: '80px' }}>
+                <select
+                  className="form-select"
+                  value={birthMonth}
+                  onChange={(e) => setBirthMonth(e.target.value)}
+                  required
+                  disabled={isPending}
+                  style={{ paddingRight: '32px' }}
+                >
+                  <option value="">月</option>
+                  {months.map((m) => (
+                    <option key={m} value={m}>{m}月</option>
+                  ))}
+                </select>
+                <span style={selectArrow}>▾</span>
+              </div>
+              {/* 日 */}
+              <div style={{ position: 'relative', width: '80px' }}>
+                <select
+                  className="form-select"
+                  value={birthDay}
+                  onChange={(e) => setBirthDay(e.target.value)}
+                  required
+                  disabled={isPending}
+                  style={{ paddingRight: '32px' }}
+                >
+                  <option value="">日</option>
+                  {days.map((d) => (
+                    <option key={d} value={d}>{d}日</option>
+                  ))}
+                </select>
+                <span style={selectArrow}>▾</span>
+              </div>
+            </div>
           </div>
 
           {/* 出身国・地域 */}
