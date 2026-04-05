@@ -1758,7 +1758,8 @@ h2 {
         max-width: 100%;
         border-radius: 30px;
         border-width: 6px;
-        height: 260px;
+        height: auto;
+        aspect-ratio: 1 / 1;
     }
 
     .top-letter {
@@ -1780,9 +1781,6 @@ h2 {
 }
 
 @media (max-width: 480px) {
-    .top-photo {
-        height: 200px;
-    }
 }
 
 /* ===================================
