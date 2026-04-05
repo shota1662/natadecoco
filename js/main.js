@@ -7,17 +7,12 @@ $(window).on('load', function() {
     var today = new Date().toDateString();
     var lastShown = localStorage.getItem('splashShownDate');
 
-    if (lastShown === today) {
-      // 今日すでに表示済み → 即非表示
-      $("#splash").hide();
-    } else {
-      // 初回 or 日付が変わった → 表示して記録
+    if (lastShown !== today) {
+      // 初回 or 日付が変わった → アニメーション表示して記録
       localStorage.setItem('splashShownDate', today);
       $("#splash").delay(1500).fadeOut('slow');
       $("#splash-logo").delay(1200).fadeOut('slow');
     }
-  } else {
-    $("#splash").hide();
   }
 });
 

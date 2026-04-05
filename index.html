@@ -19,11 +19,16 @@
 </head>
 
 <body>
-    <div id="splash">
+    <div id="splash" style="display: block">
         <div id="splash-logo">
             <img src="img/logo.png" alt="" class="fadeUp">
         </div>
     </div>
+    <script>
+        if (localStorage.getItem('splashShownDate') === new Date().toDateString()) {
+            document.getElementById('splash').style.display = 'none';
+        }
+    </script>
 
         <header id="header">
         <div class="header-inner">
