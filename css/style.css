@@ -1761,7 +1761,20 @@ h2 {
     }
 
     .top-letter {
+        width: 50%;
+        padding: 8px 0;
+        margin-left: auto;
+    }
+
+    .top-letter .jack-flag {
         display: none;
+    }
+
+    .top-letter img {
+        width: 100%;
+        height: auto;
+        display: block;
+        margin-left: auto;
     }
 }
 
