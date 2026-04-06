@@ -504,40 +504,14 @@ h2 {
 .mobile-nav-sub {
     list-style: none;
     margin: 0;
-    padding: 0;
+    padding: 4px 0 10px 0;
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.3s ease, padding 0.3s ease;
-}
-
-.mobile-nav-sub.is-open {
-    max-height: 200px;
-    padding: 4px 0 10px 0;
-}
-
-.mobile-has-sub > a {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
 }
 
 .mobile-sub-arrow {
-    display: inline-block;
-    width: 18px;
-    height: 18px;
-    line-height: 18px;
-    text-align: center;
-    font-size: 10px;
-    color: #9fd9f6;
-    transition: transform 0.3s ease;
-    flex-shrink: 0;
-}
-
-.mobile-has-sub.is-open > a .mobile-sub-arrow {
-    transform: rotate(180deg);
+    display: none;
 }
 
 .mobile-nav-sub li a {
@@ -601,15 +575,8 @@ h2 {
    =================================== */
 .top-area {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     padding: 40px 0 80px;
-    position: relative;
-}
-
-.top-letter {
-    width: 400px;
-    padding: 64px 16px 64px 64px;
-    position: relative;
 }
 
 .top-photo {
@@ -617,7 +584,22 @@ h2 {
     max-width: 60%;
     border-radius: 40px;
     overflow: hidden;
-    border: 10px solid #9fd9f6;
+    border: 5px solid #9fd9f6;
+    position: relative;
+}
+
+.top-letter {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 200px;
+    z-index: 1;
+}
+
+.top-letter img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 .top-photo img {
@@ -1748,17 +1730,16 @@ h2 {
     }
 
     .top-area {
-        flex-direction: column;
         padding: 0 0 40px;
     }
 
     .top-photo {
-        order: -1;
         width: 100%;
         max-width: 100%;
-        border-radius: 30px;
-        border-width: 6px;
-        height: 100vw;
+        border-radius: 0 0 30px 30px;
+        border: none;
+        aspect-ratio: 4 / 5;
+        height: auto;
     }
 
     .top-photo img {
@@ -1766,16 +1747,7 @@ h2 {
     }
 
     .top-letter {
-        width: 72%;
-        padding: 8px 0;
-        margin: 12px auto;
-    }
-
-    .top-letter img {
-        width: 100%;
-        height: auto;
-        display: block;
-        margin-left: auto;
+        display: none;
     }
 }
 

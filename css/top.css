@@ -181,10 +181,10 @@
 .msg-flag--l4 { left: 7%;  top: 80%; }
 
 /* 右側の配置 */
-.msg-flag--r1 { right: 3%;  top: 12%; }
-.msg-flag--r2 { right: 7%;  top: 38%; }
-.msg-flag--r3 { right: 2%;  top: 62%; }
-.msg-flag--r4 { right: 6%;  top: 84%; }
+.msg-flag--r1 { right: 3%;  top: 8%;  }
+.msg-flag--r2 { right: 6%;  top: 32%; }
+.msg-flag--r3 { right: 2%;  top: 58%; }
+.msg-flag--r4 { right: 7%;  top: 80%; }
 
 /* animation-delay は is-visible と同じタイミングで適用する必要がある */
 .msg-flag--l1.is-visible { animation-delay: 0s;   }

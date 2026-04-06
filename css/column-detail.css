@@ -85,6 +85,10 @@
     gap: 8px;
     padding-left: 16px;
     border-left: 1px solid #88b8cc;
+    text-decoration: none;
+}
+.cd-meta-author:hover .cd-meta-author-name {
+    text-decoration: underline;
 }
 .cd-meta-author-photo {
     width: 28px;
@@ -435,6 +439,247 @@
     font-size: 11px;
     color: #aaa;
     margin-top: auto;
+}
+
+/* ===================================
+   大見出し (cd-h2)
+   =================================== */
+.cd-h2 {
+    font-size: 21px;
+    font-weight: bold;
+    color: #1e3a5a;
+    background: linear-gradient(to right, #e4f4fb, transparent);
+    border-left: 5px solid #30b9bf;
+    padding: 10px 0 10px 16px;
+    margin: 56px 0 20px;
+    line-height: 1.5;
+}
+
+/* ===================================
+   STEP カード
+   =================================== */
+.cd-step {
+    border: 1.5px solid #e0eef7;
+    border-radius: 14px;
+    overflow: hidden;
+    margin: 32px 0;
+}
+
+.cd-step-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 20px;
+    color: #fff;
+}
+
+.cd-step-header--1 { background-color: #FF6B4A; }
+.cd-step-header--2 { background-color: #30b9bf; }
+.cd-step-header--3 { background-color: #fe4c7f; }
+.cd-step-header--4 { background-color: #516881; }
+
+.cd-step-num {
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 0.15em;
+    opacity: 0.85;
+    white-space: nowrap;
+    font-family: 'Roboto', sans-serif;
+}
+
+.cd-step-en {
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    font-family: 'Roboto', sans-serif;
+}
+
+.cd-step-ja {
+    font-size: 13px;
+    opacity: 0.88;
+}
+
+.cd-step-body {
+    padding: 24px 24px 20px;
+    background: #fff;
+}
+
+/* ===================================
+   ノート／コールアウトボックス
+   =================================== */
+.cd-note {
+    margin: 28px 0;
+    padding: 18px 22px;
+    background-color: #f5fbff;
+    border: 1.5px solid #c8e9f7;
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1.9;
+    color: #444;
+}
+
+.cd-note-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 0.12em;
+    background-color: #30b9bf;
+    color: #fff;
+    padding: 2px 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.cd-callout {
+    margin: 28px 0;
+    padding: 20px 24px;
+    background-color: #fffdf0;
+    border: 1.5px solid #f5e98a;
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1.9;
+    color: #444;
+}
+
+.cd-callout-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 0.12em;
+    background-color: #f5c400;
+    color: #1e3a5a;
+    padding: 2px 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+/* ===================================
+   テーブル
+   =================================== */
+.cd-table-wrap {
+    overflow-x: auto;
+    margin: 24px 0;
+    border-radius: 10px;
+    border: 1.5px solid #d9eaf4;
+}
+
+.cd-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    min-width: 480px;
+}
+
+.cd-table thead th {
+    background-color: #516881;
+    color: #fff;
+    padding: 12px 18px;
+    font-weight: bold;
+    text-align: left;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+}
+
+.cd-table tbody tr {
+    border-bottom: 1px solid #e8f5fd;
+}
+
+.cd-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.cd-table tbody td {
+    padding: 13px 18px;
+    color: #444;
+    line-height: 1.8;
+    vertical-align: top;
+}
+
+.cd-table tbody td:first-child {
+    font-weight: bold;
+    color: #516881;
+    white-space: nowrap;
+    background-color: #f0f9fe;
+}
+
+.cd-table tbody tr.dmis-ethnorelative td:first-child {
+    background-color: #edfafa;
+    color: #30b9bf;
+}
+
+/* ===================================
+   参考文献
+   =================================== */
+.cd-refs {
+    margin: 44px 0 0;
+    padding: 20px 24px;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.9;
+}
+
+.cd-refs-title {
+    font-size: 13px;
+    font-weight: bold;
+    color: #516881;
+    margin: 0 0 10px;
+}
+
+.cd-refs ol {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.cd-refs li {
+    list-style: decimal;
+    margin-bottom: 6px;
+}
+
+/* ===================================
+   記事末尾 CTA ボックス
+   =================================== */
+.cd-cta-box {
+    margin: 48px 0 0;
+    padding: 32px 32px;
+    background: linear-gradient(135deg, #edfafa 0%, #f0f9fe 100%);
+    border: 1.5px solid #b3e8ea;
+    border-radius: 16px;
+    text-align: center;
+}
+
+.cd-cta-box-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1e3a5a;
+    margin: 0 0 10px;
+}
+
+.cd-cta-box-text {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.9;
+    margin: 0 0 22px;
+}
+
+.cd-cta-box-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #30b9bf;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 12px 32px;
+    border-radius: 30px;
+    transition: opacity 0.2s, transform 0.15s;
+}
+
+.cd-cta-box-btn:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+    color: #fff;
 }
 
 /* ===================================

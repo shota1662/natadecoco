@@ -1,0 +1,618 @@
+@charset "UTF-8";
+
+/* ===================================
+   ステップカラー変数
+   =================================== */
+:root {
+    --be-color:    #30b9bf;
+    --touch-color: #fe4c7f;
+    --cross-color: #516881;
+}
+
+/* ===================================
+   ① HERO
+   =================================== */
+.cls-hero {
+    width: 100%;
+    background-color: #9fd9f6;
+    padding: 70px 20px 60px;
+}
+
+.cls-hero-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.cls-hero-text {
+    flex: 1;
+}
+
+.cls-hero-en {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: #fff;
+    font-weight: bold;
+    margin: 0 0 14px;
+}
+
+.cls-hero-catch {
+    font-size: 40px;
+    font-weight: bold;
+    color: #1e3a5a;
+    line-height: 1.5;
+    margin: 0 0 24px;
+    letter-spacing: 0.03em;
+}
+
+.cls-hero-desc {
+    font-size: 14px;
+    color: #516881;
+    line-height: 1.9;
+    margin: 0 0 28px;
+}
+
+.cls-hero-btns {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.cls-hero-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 14px 32px;
+    border-radius: 32px;
+    letter-spacing: 0.05em;
+    transition: opacity 0.2s, transform 0.15s;
+    text-align: center;
+}
+
+.cls-hero-btn--primary {
+    background-color: #30b9bf;
+    color: #fff;
+}
+
+.cls-hero-btn:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+    color: #fff;
+}
+
+.cls-hero-visual {
+    font-size: 120px;
+    line-height: 1;
+    flex-shrink: 0;
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.08));
+}
+
+/* ===================================
+   セクション共通
+   =================================== */
+.cls-inner {
+    max-width: 860px;
+    width: 100%;
+}
+
+.cls-section-head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.cls-section-title {
+    font-size: 34px;
+    color: #516881;
+    margin: 10px 0 12px;
+    letter-spacing: 0.05em;
+    font-weight: bold;
+}
+
+.cls-section-sub {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.9;
+    margin: 0;
+}
+
+/* ===================================
+   ② プログラム基本情報
+   =================================== */
+.cls-overview {
+    width: 100%;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    padding: 80px 20px;
+}
+
+.cls-overview-inner {
+    /* cls-inner から max-width 継承 */
+}
+
+.cls-meta-list {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1.5px solid #d9eaf4;
+}
+
+.cls-meta-row {
+    display: flex;
+    border-bottom: 1.5px solid #d9eaf4;
+}
+
+.cls-meta-row:last-child {
+    border-bottom: none;
+}
+
+.cls-meta-row dt {
+    width: 160px;
+    flex-shrink: 0;
+    background: #f0f9fe;
+    padding: 18px 24px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #516881;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cls-meta-row dt svg {
+    flex-shrink: 0;
+    color: #30b9bf;
+}
+
+.cls-meta-row dd {
+    flex: 1;
+    padding: 18px 24px;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.9;
+}
+
+/* ===================================
+   ③ 3ステップ
+   =================================== */
+.cls-steps {
+    width: 100%;
+    background: #9fd9f6;
+    display: flex;
+    justify-content: center;
+    padding: 80px 20px;
+}
+
+.cls-steps-inner {
+    /* cls-inner から継承 */
+}
+
+.cls-steps-parts {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cls-step-part {
+    position: relative;
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px 36px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.cls-part-number {
+    position: absolute;
+    top: -12px;
+    left: 18px;
+    font-size: 100px;
+    font-weight: 900;
+    line-height: 1;
+    color: rgba(159, 217, 246, 0.28);
+    pointer-events: none;
+    user-select: none;
+}
+
+.cls-part-body {
+    position: relative;
+    z-index: 1;
+}
+
+.cls-part-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.cls-part-badge {
+    display: inline-block;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+}
+
+.cls-badge--be    { background-color: var(--be-color); }
+.cls-badge--touch { background-color: var(--touch-color); }
+.cls-badge--cross { background-color: var(--cross-color); }
+
+.cls-part-step-label {
+    font-size: 11px;
+    font-weight: bold;
+    color: #aaa;
+    letter-spacing: 0.12em;
+}
+
+.cls-part-title {
+    font-size: 19px;
+    font-weight: bold;
+    color: #1e3a5a;
+    margin: 0 0 12px;
+}
+
+.cls-part-text {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.9;
+    margin: 0;
+}
+
+.cls-part-note {
+    font-size: 12px;
+    color: #888;
+    margin: 10px 0 0;
+    padding-left: 1em;
+}
+
+/* ===================================
+   ④ 過去のテーマ
+   =================================== */
+.cls-themes {
+    width: 100%;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    padding: 80px 20px;
+}
+
+.cls-themes-inner {
+    /* cls-inner から継承 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cls-themes-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+}
+
+.cls-theme-badge {
+    font-size: 13px;
+    font-weight: bold;
+    color: #516881;
+    background: #f0f9fe;
+    border: 1.5px solid #d9eaf4;
+    border-radius: 40px;
+    padding: 9px 20px;
+    line-height: 1.4;
+    transition: background 0.2s, transform 0.15s;
+}
+
+.cls-theme-badge:hover {
+    background: #e4f4fb;
+    transform: translateY(-2px);
+}
+
+.cls-themes-note {
+    font-size: 13px;
+    color: #888;
+    margin-top: 28px;
+    text-align: center;
+}
+
+/* ===================================
+   ⑤ タイムライン
+   =================================== */
+.cls-timeline {
+    width: 100%;
+    background: #9fd9f6;
+    display: flex;
+    justify-content: center;
+    padding: 80px 20px;
+}
+
+.cls-timeline-inner {
+    /* cls-inner から継承 */
+}
+
+/* タイムライン本体 */
+.cls-tl-steps {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cls-tl-step {
+    display: flex;
+    gap: 28px;
+    padding-bottom: 28px;
+    position: relative;
+}
+
+.cls-tl-step--last {
+    padding-bottom: 0;
+}
+
+/* 縦線（受付・開始を除くアクティビティ間） */
+.cls-tl-step:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 26px;
+    top: 54px;
+    bottom: 0;
+    width: 2px;
+    background: #d9eaf4;
+}
+
+/* 受付・開始ステップの縦線は薄く */
+.cls-tl-step--reception::before,
+.cls-tl-step--start::before {
+    background: #c8e5f2;
+}
+
+.cls-tl-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    flex-shrink: 0;
+    background: #fff;
+    color: #516881;
+    box-shadow: 0 2px 8px rgba(81,104,129,0.10);
+}
+
+.cls-tl-step--reception .cls-tl-icon,
+.cls-tl-step--start .cls-tl-icon {
+    background: rgba(255,255,255,0.7);
+    font-size: 24px;
+}
+
+.cls-tl-icon--be    { background-color: var(--be-color);    color: #fff; }
+.cls-tl-icon--touch { background-color: var(--touch-color); color: #fff; }
+.cls-tl-icon--cross { background-color: var(--cross-color); color: #fff; }
+
+.cls-tl-body {
+    flex: 1;
+    padding-top: 12px;
+}
+
+.cls-tl-time-label {
+    font-size: 12px;
+    color: #30b9bf;
+    font-weight: bold;
+    margin: 0 0 4px;
+}
+
+.cls-tl-head {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.cls-tl-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #1e3a5a;
+    margin: 0;
+}
+
+.cls-tl-step--reception .cls-tl-title,
+.cls-tl-step--start .cls-tl-title {
+    color: #516881;
+}
+
+/* タイムライン内バッジ */
+.cls-tl-badge {
+    display: inline-block;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+
+/* 凡例 */
+.cls-tl-legend {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 36px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px 24px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cls-tl-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #555;
+}
+
+.cls-tl-legend-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: bold;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+/* ===================================
+   ⑥ CTA
+   =================================== */
+.cls-apply {
+    width: 100%;
+    background-color: #9fd9f6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px 20px 100px;
+}
+
+.cls-apply-inner {
+    max-width: 640px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.cls-apply-title {
+    font-size: 34px;
+    color: #516881;
+    margin: 10px 0 16px;
+    letter-spacing: 0.05em;
+    font-weight: bold;
+}
+
+.cls-apply-text {
+    font-size: 15px;
+    color: #516881;
+    line-height: 2;
+    margin: 0 0 40px;
+}
+
+.cls-apply-btns {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.cls-apply-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 14px 40px;
+    border-radius: 32px;
+    letter-spacing: 0.05em;
+    transition: opacity 0.2s, transform 0.15s;
+    min-width: 200px;
+}
+
+.cls-apply-btn--primary {
+    background-color: #30b9bf;
+    color: #fff;
+}
+
+.cls-apply-btn:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+    color: #fff;
+}
+
+/* ===================================
+   Responsive
+   =================================== */
+@media (max-width: 860px) {
+    .cls-hero-inner {
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .cls-hero-visual {
+        font-size: 80px;
+    }
+
+    .cls-hero-catch {
+        font-size: 32px;
+    }
+
+    .cls-section-title {
+        font-size: 28px;
+    }
+
+    .cls-apply-title {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cls-hero {
+        padding: 50px 20px 40px;
+    }
+
+    .cls-hero-catch {
+        font-size: 26px;
+    }
+
+    .cls-hero-btns {
+        flex-direction: column;
+    }
+
+    .cls-hero-btn {
+        width: 100%;
+    }
+
+    .cls-meta-row dt {
+        width: 110px;
+        padding: 14px 16px;
+        font-size: 13px;
+    }
+
+    .cls-meta-row dd {
+        padding: 14px 16px;
+        font-size: 13px;
+    }
+
+    .cls-step-part {
+        padding: 24px 20px;
+    }
+
+    .cls-tl-legend {
+        gap: 14px;
+    }
+
+    .cls-apply-btn {
+        width: 100%;
+    }
+}
