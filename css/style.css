@@ -2281,6 +2281,35 @@ h2 {
     }
 }
 
+@media (max-width: 600px) {
+    .column-btn {
+        display: none;
+    }
+
+    .column-slider-wrap {
+        padding: 20px 0 10px;
+    }
+
+    .column-viewport {
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding: 0 16px;
+        box-sizing: border-box;
+    }
+
+    .column-track {
+        transform: none !important;
+        padding: 4px 0;
+    }
+
+    .column-card {
+        width: 82vw !important;
+        scroll-snap-align: start;
+        flex-shrink: 0;
+    }
+}
+
 /* ===================================
    スクロールリビール
    =================================== */
