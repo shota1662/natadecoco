@@ -839,6 +839,12 @@
     opacity: 1;
 }
 
+@media (max-width: 640px) {
+    .event-accordion.is-open {
+        max-height: 1400px;
+    }
+}
+
 .event-accordion-inner {
     padding: 28px 32px 24px;
 }
