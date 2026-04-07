@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress/min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/top.css">
+    <link rel="stylesheet" href="css/activities.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="js/main.js"></script>
@@ -192,6 +193,15 @@
             </div>
         </div>
 
+        <!-- モバイル専用：イベント情報ボタン -->
+        <div class="top-event-btn-wrap">
+            <a href="event.html" class="top-event-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+                イベント情報を見る
+                <span class="top-event-btn-arrow">→</span>
+            </a>
+        </div>
+
         <!-- ホットトピック -->
         <section class="hot-topics">
             <div class="hot-topics-inner">
@@ -230,12 +240,86 @@
                 <p class="our-message-en">OUR MESSAGE</p>
                 <h2 class="our-message-title">私たちの想い</h2>
                 <div class="our-message-body">
-                    <p>私たちは、全国の子供たちに、<br>異文化に触れる楽しさを伝えています。</p>
+                    <p>世界にはたくさんの文化があふれています。</p>
                     <p>おやつにカブトムシを食べる東南アジアの小さな村。<br>
-                    暑さを避け、小学校が夜中まで続くアフリカの小さな村。<br>
-                    世界にはたくさんの文化があふれています。</p>
+                    暑さを避け、小学校が夜中まで続くアフリカの小さな村。</p>
                     <p>「もっともっと世界のことを知りたい」</p>
                     <p>そんな風に感じる子供を<br>一人でも増やしていければと願っています。</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 水色 → 白 -->
+        <div class="wave-divider" style="background-color: #9fd9f6;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path fill="#fff" fill-opacity="0.3" d="M0,55 C240,95 480,15 720,55 C960,95 1200,15 1440,55 L1440,120 L0,120 Z"/>
+                <path fill="#fff" fill-opacity="0.6" d="M0,70 C200,105 440,30 680,70 C920,100 1160,35 1440,70 L1440,120 L0,120 Z"/>
+                <path fill="#fff" d="M0,85 C160,108 380,55 600,82 C820,105 1040,56 1260,80 C1360,90 1410,68 1440,85 L1440,120 L0,120 Z"/>
+            </svg>
+        </div>
+
+        <!-- 文化交流教室（白） -->
+        <section class="act-section act-section--white" id="classroom">
+            <div class="act-section-inner">
+                <div class="act-section-head">
+                    <div class="act-service-badge" style="background-color: #fe4c7f;">SERVICE 1</div>
+                    <h2 class="act-section-title">文化交流教室</h2>
+                    <p class="act-section-catch">異文化に触れる体験を、直接届ける。</p>
+                    <p class="act-section-desc">外国人との直接の触れ合いを通じて、世界の文化に触れる楽しさを身体と心で感じる教室です。<br>英語力・海外経験等一切不要。子どもから大人まで、誰でも楽しめるナタデコならではの教室です。</p>
+                </div>
+                <img src="img/class-photo/class-photo002.jpg" alt="文化交流教室" class="act-kit-photo reveal">
+                <div class="act-classroom-grid">
+                    <div class="act-classroom-card">
+                        <div class="act-classroom-card-header" style="background-color: #f87a6d;">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" width="36" height="36"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+                            <h3 class="act-classroom-card-title">主催イベント</h3>
+                        </div>
+                        <div class="act-classroom-card-body">
+                            <p>ナタデコが主催する文化交流イベントを定期的に開催しています。外国人メンバーと子どもたちが一緒に楽しめる体験型のプログラムです。</p>
+                            <ul class="act-feature-list"><li>毎月さまざまなテーマで開催</li><li>子どもから大人まで参加可能</li><li>外国人メンバーとの直接交流あり</li></ul>
+                            <a href="event.html" class="act-link-btn">イベント情報</a>
+                        </div>
+                    </div>
+                    <div class="act-classroom-card">
+                        <div class="act-classroom-card-header" style="background-color: #30b9bf;">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" width="36" height="36"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
+                            <h3 class="act-classroom-card-title">出張教室</h3>
+                        </div>
+                        <div class="act-classroom-card-body">
+                            <p>小学校・幼稚園・保育園への出張教室を実施しています。1時間の単発授業から複数回の継続プログラムまで、学校のニーズに合わせて柔軟に対応します。</p>
+                            <ul class="act-feature-list"><li>1時間の単発授業から対応可能</li><li>外国人スタッフが直接関わる体験型授業</li><li>英語・外国語の授業との連携も可能</li></ul>
+                            <a href="cases.html" class="act-link-btn">事例紹介を見る</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 白 → 水色 -->
+        <div class="wave-divider" style="background-color: #fff;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path fill="#9fd9f6" fill-opacity="0.3" d="M0,58 C220,18 460,98 700,58 C940,18 1180,98 1440,58 L1440,120 L0,120 Z"/>
+                <path fill="#9fd9f6" fill-opacity="0.6" d="M0,72 C180,32 420,108 660,72 C900,36 1140,108 1440,72 L1440,120 L0,120 Z"/>
+                <path fill="#9fd9f6" d="M0,88 C140,60 360,110 580,84 C800,58 1020,108 1240,82 C1350,70 1410,92 1440,88 L1440,120 L0,120 Z"/>
+            </svg>
+        </div>
+
+        <!-- CocoSalon（水色） -->
+        <section class="act-section act-section--blue" id="cocosalon">
+            <div class="act-section-inner">
+                <div class="act-section-head">
+                    <div class="act-service-badge" style="background-color: #30b9bf;">SERVICE 2</div>
+                    <h2 class="act-section-title">CocoSalon</h2>
+                    <p class="act-section-catch">オンラインで国際交流を楽しむ、ここだけのサロン。</p>
+                    <p class="act-section-desc">世界の人々と出会い、異文化を体験するオンライン交流サロンです。<br><br>毎月テーマを変えながら、フリートークや文化体験セッションなど多彩なアクティビティを提供します。<br><br>また、夏にはBBQやピクニック、冬にはクリスマスパーティなどで国際色豊かな交流会も開催しています。</p>
+                </div>
+                <div class="act-cocosalon-layout">
+                    <img src="img/cocosalon-photo/photo-cocosalon004.jpg" alt="CocoSalon" class="act-cocosalon-photo reveal">
+                    <div class="act-cocosalon-cta">
+                        <p class="act-cocosalon-cta-text">CocoSalonの詳細・お申し込みはこちらから</p>
+                        <a href="cocosalon.html" class="act-cta-btn"><img src="img/mayu-one.svg" alt=""><span>CocoSalonを詳しく見る</span></a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -249,85 +333,79 @@
             </svg>
         </div>
 
-        <section class="program">
-            <img src="img/mayu.svg" alt="" class="section-icon">
-            <div class="opening-message">
-                <h2 class="section-title">提供サービス</h2>
-                <span class="program-subtitle">子どもたちの心に世界地図を！をスローガンに、多様なプログラムを提供しています。</span>
+        <!-- 文化交流キット（白） -->
+        <section class="act-section act-section--white" id="kit">
+            <div class="act-section-inner">
+                <div class="act-section-head">
+                    <div class="act-service-badge" style="background-color: #516881;">SERVICE 3</div>
+                    <h2 class="act-section-title">文化交流キット</h2>
+                    <p class="act-section-catch">先生だけでできる、異文化理解の授業を。</p>
+                    <p class="act-section-desc">先生だけで文化交流の授業ができる教材キットです。<br><br>世界各地の文化・生活・子どもたちの様子をコンパクトにまとめ、授業にすぐ使える形でお届けします。</p>
+                </div>
+                <div class="act-kit-grid">
+                    <div class="act-kit-card"><div class="act-kit-icon" style="background-color: #9fd9f6;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#516881" width="32" height="32"><path d="M20 18h-2V8l-6-6H6c-1.1 0-2 .9-2 2v14H2v2h20v-2zm-8-12.5L17.5 11H12V5.5z"/></svg></div><h4 class="act-kit-title">授業スライド</h4><p class="act-kit-text">写真・イラスト・クイズ付きの授業スライドを提供。そのままプロジェクターで投影できます。</p></div>
+                    <div class="act-kit-card"><div class="act-kit-icon" style="background-color: #9fd9f6;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#516881" width="32" height="32"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div><h4 class="act-kit-title">指導案・進行シート</h4><p class="act-kit-text">授業の流れを丁寧に記した指導案つき。授業経験が少ない先生でも安心して進められます。</p></div>
+                    <div class="act-kit-card"><div class="act-kit-icon" style="background-color: #9fd9f6;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#516881" width="32" height="32"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg></div><h4 class="act-kit-title">ワークシート</h4><p class="act-kit-text">子どもたちが書き込みながら学べるワークシートを収録。授業後の振り返りにも活用できます。</p></div>
+                    <div class="act-kit-card"><div class="act-kit-icon" style="background-color: #9fd9f6;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#516881" width="32" height="32"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg></div><h4 class="act-kit-title">テーマ別ラインナップ</h4><p class="act-kit-text">「食文化」「学校生活」「伝統行事」など、テーマ別に複数のキットをご用意しています。</p></div>
+                </div>
+                <img src="img/kit-photo/photo-kit001.jpg" alt="文化交流キット" class="act-kit-photo reveal">
+                <div class="act-kit-cta"><a href="kit.html" class="act-link-btn act-link-btn--lg">文化交流キットの詳細を見る</a></div>
             </div>
+        </section>
 
-            <div class="program-area">
+        <!-- 白 → 水色 -->
+        <div class="wave-divider" style="background-color: #fff;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path fill="#9fd9f6" fill-opacity="0.3" d="M0,55 C240,15 480,95 720,55 C960,15 1200,95 1440,55 L1440,120 L0,120 Z"/>
+                <path fill="#9fd9f6" fill-opacity="0.6" d="M0,70 C200,30 440,105 680,70 C920,35 1160,100 1440,70 L1440,120 L0,120 Z"/>
+                <path fill="#9fd9f6" d="M0,85 C160,55 380,108 600,82 C820,56 1040,105 1260,80 C1360,68 1410,90 1440,85 L1440,120 L0,120 Z"/>
+            </svg>
+        </div>
 
-                <!-- SERVICE 1 -->
-                <div class="service-card">
-                    <span class="service-bg-number">01</span>
-                    <div class="service-card-body">
-                        <div class="service-head">
-                            <span class="service-letter">SERVICE 1</span>
-                            <span>外国人との対面交流の機会を！</span>
-                        </div>
-                        <div class="class-title">文化交流教室</div>
-                        <p class="service-text">外国人との直接の触れ合いを通じて、世界の文化に触れる楽しさを身体と心で感じる教室です。英語力、海外経験等に応じて柔軟なプログラムを用意。だれでも楽しめるここだけの教室です！</p>
-                        <div class="service1-sub">
-                            <div class="service1-sub-left">
-                                <div class="service1-sub-heading">
-                                    <img src="img/mayu-one.svg" alt="">
-                                    <span class="service1-sub-label">出張教室</span>
-                                </div>
-                                <p>小学校・幼稚園や地方自治体への出張教室を実施しています。１時間の単発教室から対応可能です。</p>
-                                <a href="cases.html" class="service-link">事例紹介</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="service-card-photo">
-                        <img src="img/class-photo.jpg" alt="">
-                        <img src="img/logo.png" alt="" class="service-card-illust">
-                    </div>
+        <!-- その他の活動（水色） -->
+        <section class="act-section act-section--blue" id="others">
+            <div class="act-section-inner">
+                <div class="act-section-head">
+                    <h2 class="act-section-title act-section-title--sm">その他の活動</h2>
+                    <p class="act-section-desc">３つのメインプログラムのほか、さまざまな取り組みも行っています。</p>
                 </div>
-
-                <!-- SERVICE 2 -->
-                <div class="service-card">
-                    <span class="service-bg-number">02</span>
-                    <div class="service-card-body">
-                        <div class="service-head">
-                            <span class="service-letter">SERVICE 2</span>
-                            <span>オンラインで国際交流を楽しむ</span>
-                        </div>
-                        <div class="class-title">CocoSalon</div>
-                        <p class="service-text">世界各国の外国人メンバーが参加するここだけのオンラインサロンです。子供向けのWSから大人向けのディスカッションまで誰でも楽しめる空間になっています。</p>
-                        <a href="cocosalon.html" class="service-link">詳細を見る</a>
-                    </div>
-                    <div class="service-card-photo">
-                        <img src="img/cocosalon.logo.jpg" alt="CocoSalon">
-                    </div>
-                </div>
-
-                <!-- SERVICE 3 -->
-                <div class="service-card">
-                    <span class="service-bg-number">03</span>
-                    <div class="service-card-body">
-                        <div class="service-head">
-                            <span class="service-letter">SERVICE 3</span>
-                            <span>先生向けの文化交流教材</span>
-                        </div>
-                        <div class="class-title">文化交流キット</div>
-                        <p class="service-text">学校の先生向けの授業教材です。ナタデココに登録する40か国以上の外国人ネットワークを活用するとともに、これまで1,000人以上の子どもたちにプログラム提供をした知見を最大限盛り込んでいます。                      </p>
-                        <a href="" class="service-link">詳細を見る</a>
-                    </div>
-                    <div class="service-card-photo">
-                        <img src="img/kit.logo.jpg" alt="文化交流キット">
-                    </div>
-                </div>
-
+                <ul class="act-others-list">
+                    <li class="act-other-item"><span class="act-other-tag" style="background-color: #30b9bf;">企画</span><div class="act-other-body"><h4 class="act-other-title">３×３プロジェクト</h4><p class="act-other-text">３人チームで３か月間にわたって国際交流イベントを作り上げるプロジェクトです。</p></div></li>
+                    <li class="act-other-item"><span class="act-other-tag" style="background-color: #fe4c7f;">講演</span><div class="act-other-body"><h4 class="act-other-title">多文化共生ワークショップ</h4><p class="act-other-text">多文化共生に関するワークショップ型講演を随時実施しています。</p></div></li>
+                    <li class="act-other-item"><span class="act-other-tag" style="background-color: #a58bbf;">制作</span><div class="act-other-body"><h4 class="act-other-title">教材開発</h4><p class="act-other-text">世界各地の文化・生活・子どもたちの様子をまとめたオリジナル教材を制作しています。授業や体験活動にすぐ活用できる形でデザインしています。</p></div></li>
+                </ul>
             </div>
+        </section>
+        <!-- 水色 → 白 -->
+        <div class="wave-divider" style="background-color: #9fd9f6;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path fill="#fff" fill-opacity="0.3" d="M0,55 C240,95 480,15 720,55 C960,95 1200,15 1440,55 L1440,120 L0,120 Z"/>
+                <path fill="#fff" fill-opacity="0.6" d="M0,70 C200,105 440,30 680,70 C920,100 1160,35 1440,70 L1440,120 L0,120 Z"/>
+                <path fill="#fff" d="M0,85 C160,108 380,55 600,82 C820,105 1040,56 1260,80 C1360,90 1410,68 1440,85 L1440,120 L0,120 Z"/>
+            </svg>
+        </div>
 
-            <div class="btn-area">
-                <a href="activities.html">
-                    <div class="btn-more-info">
-                        <img src="img/mayu-one.svg" alt="">
-                        <span class="btn-letter">詳しくはこちら</span>
-                    </div>
-                </a>
+        <section class="volunteer">
+            <div class="volunteer-content">
+                <img src="" alt="" class="volunteer-face volunteer-face-1" id="volunteerFace1">
+                <img src="" alt="" class="volunteer-face volunteer-face-2" id="volunteerFace2">
+                <img src="" alt="" class="volunteer-face volunteer-face-3" id="volunteerFace3">
+                <img src="" alt="" class="volunteer-face volunteer-face-4" id="volunteerFace4">
+                <div class="opening-message">
+                    <h2 class="section-title">ボランティア募集</h2>
+                </div>
+                <p class="volunteer-lead">
+                    NPOナタデココは、子どもたちに「世界と出会う喜び」を届けるボランティアを大募集しています。<br>
+                    学生から社会人まで、未経験でも大歓迎。あなたの力が子どもたちの笑顔につながります。
+                </p>
+                <div class="btn-area">
+                    <a href="volunteer.html">
+                        <div class="btn-more-info">
+                            <img src="img/mayu-one.svg" alt="">
+                            <span class="btn-letter">詳しくはこちら</span>
+                        </div>
+                    </a>
+                </div>
             </div>
         </section>
 
@@ -342,7 +420,6 @@
 
         <!-- コラム -->
         <section class="column-section">
-            <img src="img/mayu.svg" alt="" class="section-icon">
             <div class="opening-message">
                 <h2 class="section-title">コラム</h2>
                 <span>国際交流にまつわる読み物をお届けします。</span>
@@ -458,48 +535,13 @@
         <!-- 水色 → 白 -->
         <div class="wave-divider" style="background-color: #9fd9f6;">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
-                <path fill="#fff" fill-opacity="0.3" d="M0,58 C220,98 460,18 700,58 C940,98 1180,18 1440,58 L1440,120 L0,120 Z"/>
-                <path fill="#fff" fill-opacity="0.6" d="M0,72 C180,108 420,32 660,72 C900,108 1140,36 1440,72 L1440,120 L0,120 Z"/>
-                <path fill="#fff" d="M0,88 C140,110 360,60 580,84 C800,108 1020,58 1240,82 C1350,92 1410,70 1440,88 L1440,120 L0,120 Z"/>
-            </svg>
-        </div>
-
-        <section class="volunteer">
-            <div class="volunteer-content">
-                <img src="" alt="" class="volunteer-face volunteer-face-1" id="volunteerFace1">
-                <img src="" alt="" class="volunteer-face volunteer-face-2" id="volunteerFace2">
-                <img src="" alt="" class="volunteer-face volunteer-face-3" id="volunteerFace3">
-                <img src="" alt="" class="volunteer-face volunteer-face-4" id="volunteerFace4">
-                <img src="img/mayu.svg" alt="" class="section-icon">
-                <div class="opening-message">
-                    <h2 class="section-title">ボランティア募集</h2>
-                </div>
-                <p class="volunteer-lead">
-                    NPOナタデココは、子どもたちに「世界と出会う喜び」を届けるボランティアを大募集しています。<br>
-                    学生から社会人まで、未経験でも大歓迎。あなたの力が子どもたちの笑顔につながります。
-                </p>
-                <div class="btn-area">
-                    <a href="volunteer.html">
-                        <div class="btn-more-info">
-                            <img src="img/mayu-one.svg" alt="">
-                            <span class="btn-letter">詳しくはこちら</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- 白 → 水色 -->
-        <div class="wave-divider" style="background-color: #fff;">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
-                <path fill="#9fd9f6" fill-opacity="0.3" d="M0,55 C240,15 480,95 720,55 C960,15 1200,95 1440,55 L1440,120 L0,120 Z"/>
-                <path fill="#9fd9f6" fill-opacity="0.6" d="M0,70 C200,30 440,105 680,70 C920,35 1160,100 1440,70 L1440,120 L0,120 Z"/>
-                <path fill="#9fd9f6" d="M0,85 C160,55 380,108 600,82 C820,56 1040,105 1260,80 C1360,68 1410,90 1440,85 L1440,120 L0,120 Z"/>
+                <path fill="#fff" fill-opacity="0.3" d="M0,55 C240,95 480,15 720,55 C960,95 1200,15 1440,55 L1440,120 L0,120 Z"/>
+                <path fill="#fff" fill-opacity="0.6" d="M0,70 C200,105 440,30 680,70 C920,100 1160,35 1440,70 L1440,120 L0,120 Z"/>
+                <path fill="#fff" d="M0,85 C160,108 380,55 600,82 C820,105 1040,56 1260,80 C1360,90 1410,68 1440,85 L1440,120 L0,120 Z"/>
             </svg>
         </div>
 
         <section class="sponsors">
-            <img src="img/mayu.svg" alt="" class="section-icon">
             <div class="sponsors-heading">
                 <h2 class="sponsors-title">お世話になっている方々</h2>
                 <p class="sponsors-subtitle">日頃よりご支援・ご協力いただいている団体・企業の皆様に、心より感謝申し上げます。</p>
@@ -585,19 +627,18 @@
             </div>
         </section>
 
-        <!-- 水色 → 白 -->
-        <div class="wave-divider" style="background-color: #9fd9f6;">
+        <!-- 白 → 水色 -->
+        <div class="wave-divider" style="background-color: #fff;">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
-                <path fill="#fff" fill-opacity="0.3" d="M0,55 C240,95 480,15 720,55 C960,95 1200,15 1440,55 L1440,120 L0,120 Z"/>
-                <path fill="#fff" fill-opacity="0.6" d="M0,70 C200,105 440,30 680,70 C920,100 1160,35 1440,70 L1440,120 L0,120 Z"/>
-                <path fill="#fff" d="M0,85 C160,108 380,55 600,82 C820,105 1040,56 1260,80 C1360,90 1410,68 1440,85 L1440,120 L0,120 Z"/>
+                <path fill="#9fd9f6" fill-opacity="0.3" d="M0,55 C240,15 480,95 720,55 C960,15 1200,95 1440,55 L1440,120 L0,120 Z"/>
+                <path fill="#9fd9f6" fill-opacity="0.6" d="M0,70 C200,30 440,105 680,70 C920,35 1160,100 1440,70 L1440,120 L0,120 Z"/>
+                <path fill="#9fd9f6" d="M0,85 C160,55 380,108 600,82 C820,56 1040,105 1260,80 C1360,68 1410,90 1440,85 L1440,120 L0,120 Z"/>
             </svg>
         </div>
 
         <section class="contact">
             <div class="contact-inner">
                 <div class="contact-heading">
-                    <img src="img/mayu.svg" alt="" class="section-icon">
                     <h2 class="contact-title">お問い合わせ</h2>
                     <p class="contact-subtitle">ご不明な点やご相談は、お気軽にご連絡ください。</p>
                 </div>
@@ -614,8 +655,8 @@
 
     </main>
 
-    <!-- 白 → フッター紺 -->
-    <div class="wave-divider" style="background-color: #fff;">
+    <!-- 水色 → フッター紺 -->
+    <div class="wave-divider" style="background-color: #9fd9f6;">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
             <path fill="#516881" fill-opacity="0.3" d="M0,55 C240,15 480,95 720,55 C960,15 1200,95 1440,55 L1440,120 L0,120 Z"/>
             <path fill="#516881" fill-opacity="0.6" d="M0,70 C200,30 440,105 680,70 C920,35 1160,100 1440,70 L1440,120 L0,120 Z"/>
@@ -682,19 +723,9 @@
                         <a href="mailto:info@natadecoco.org">info@natadecoco.org</a>
                     </address>
                     <div class="footer-sns">
-                        <a href="" class="sns-link" aria-label="Twitter / X">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                            </svg>
-                        </a>
                         <a href="" class="sns-link" aria-label="Instagram">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
-                            </svg>
-                        </a>
-                        <a href="" class="sns-link" aria-label="Facebook">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                             </svg>
                         </a>
                     </div>
