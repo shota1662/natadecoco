@@ -505,63 +505,68 @@
 
 .flow-steps {
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
     gap: 0;
     margin-top: 48px;
-    flex-wrap: wrap;
-    justify-content: center;
-    max-width: 1000px;
+    width: 100%;
+    max-width: 640px;
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 8px 36px;
 }
 
 .flow-step {
-    background-color: #fff;
-    border-radius: 16px;
-    padding: 28px 20px;
-    width: 160px;
-    text-align: center;
-    box-shadow: 4px 4px 0 rgba(81, 104, 129, 0.15);
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 24px 0;
+    border-bottom: none;
+    position: relative;
 }
 
-.flow-arrow {
-    display: flex;
-    align-items: center;
-    padding: 0 4px;
-    color: #516881;
-    font-size: 20px;
-    align-self: center;
-    margin-top: -8px;
+.flow-step:not(:last-child) {
+    margin-bottom: 28px;
+}
+
+.flow-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: -24px;
+    left: 50%;
+    width: 14px;
+    height: 14px;
+    border-right: 3px solid #fe4c7f;
+    border-bottom: 3px solid #fe4c7f;
+    transform: translateX(-50%) rotate(45deg);
+    z-index: 1;
 }
 
 .flow-step-num {
-    font-size: 11px;
+    font-size: 22px;
     font-weight: bold;
     color: #fe4c7f;
-    letter-spacing: 0.1em;
-    margin-bottom: 10px;
     font-family: 'Roboto', sans-serif;
+    line-height: 1;
+    min-width: 36px;
+    padding-top: 2px;
 }
 
-.flow-step-icon {
-    font-size: 32px;
-    margin-bottom: 10px;
-    line-height: 1;
+.flow-step-body {
+    flex: 1;
 }
 
 .flow-step-title {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: bold;
-    color: #516881;
-    margin: 0 0 10px;
+    color: #1e3a5a;
+    margin: 0 0 6px;
     line-height: 1.4;
 }
 
 .flow-step-text {
-    font-size: 11px;
-    color: #777;
-    line-height: 1.7;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.8;
     margin: 0;
 }
 
@@ -699,4 +704,32 @@
     .cta-title {
         font-size: 22px;
     }
+}
+
+/* ===================================
+   送信ボタン（cases.html 用上書き）
+   =================================== */
+.cases-cta .btn-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 280px;
+    height: 56px;
+    margin: 0 auto;
+    background-color: #f5f29f;
+    color: #333;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+    border: none;
+    border-radius: 28px;
+    cursor: pointer;
+    box-shadow: 2px 2px #898787;
+    transition: all 0.1s;
+}
+
+.cases-cta .btn-submit:hover {
+    box-shadow: none;
+    transform: translate(5px, 5px);
+    color: #333;
 }

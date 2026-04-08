@@ -74,6 +74,28 @@
     width: 100%;
 }
 
+/* メイン画像 */
+.st-main-photo {
+    width: 100%;
+    margin-bottom: 60px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.st-main-photo img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    display: block;
+}
+
+@media (max-width: 600px) {
+    .st-main-photo img {
+        height: 240px;
+    }
+}
+
+
 /* 区切り線 */
 .st-divider {
     border: none;
