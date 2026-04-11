@@ -61,6 +61,7 @@ export default function EventCard({
   const canApply = reception.type === 'open' && !registered && !isFull
   const appStatus = registered ? (registrationStatus ?? 'applied') : null
   const appStyle = appStatus ? STATUS_STYLE[appStatus] : null
+  const isOrientation = event.title.includes('説明会')
 
   const handleRegister = async () => {
     setLoading(true)
@@ -99,7 +100,7 @@ export default function EventCard({
         boxShadow: '3px 3px rgba(81,104,129,0.12)',
         overflow: 'hidden',
         display: 'flex',
-        borderLeft: `5px solid ${receptionStyle.border}`,
+        borderLeft: `5px solid ${isOrientation ? '#3dba72' : receptionStyle.border}`,
       }}
     >
       <div
@@ -133,6 +134,16 @@ export default function EventCard({
 
         {/* タイトル・詳細 */}
         <div style={{ flex: 1, minWidth: '180px' }}>
+          {isOrientation && (
+            <span style={{
+              display: 'inline-block', marginBottom: '6px',
+              padding: '2px 9px', borderRadius: '6px',
+              backgroundColor: '#edfaf3', border: '1.5px solid #3dba72',
+              color: '#1f8a56', fontSize: '11px', fontWeight: '700',
+            }}>
+              説明会
+            </span>
+          )}
           <p style={{ fontSize: '15px', fontWeight: '700', color: '#333', margin: '0 0 4px', lineHeight: 1.4 }}>
             {event.title}
           </p>

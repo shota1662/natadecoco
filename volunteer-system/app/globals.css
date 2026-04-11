@@ -99,7 +99,7 @@ a:hover {
   width: 260px;
   height: 54px;
   border-radius: 27px;
-  box-shadow: 2px 2px #898787;
+  box-shadow: 2px 2px rgba(0, 0, 0, 0.15);
   cursor: pointer;
   font-size: 15px;
   font-family: inherit;
@@ -123,7 +123,7 @@ a:hover {
   background-color: #f87a6d;
   border: none;
   border-radius: 25px;
-  box-shadow: 2px 2px rgba(137,135,135,0.45);
+  box-shadow: 2px 2px rgba(0, 0, 0, 0.15);
   cursor: pointer;
   font-family: inherit;
   font-weight: bold;
@@ -147,7 +147,7 @@ a:hover {
   background-color: #30b9bf;
   border: none;
   border-radius: 25px;
-  box-shadow: 2px 2px #898787;
+  box-shadow: 2px 2px rgba(0, 0, 0, 0.15);
   cursor: pointer;
   font-family: inherit;
   font-weight: bold;
@@ -171,7 +171,7 @@ a:hover {
   background-color: #fe4c7f;
   border: none;
   border-radius: 25px;
-  box-shadow: 2px 2px #898787;
+  box-shadow: 2px 2px rgba(0, 0, 0, 0.15);
   cursor: pointer;
   font-family: inherit;
   font-weight: bold;

@@ -300,15 +300,15 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
 
       <WaveDivider fromColor="#9fd9f6" toColor="#fff" />
 
-      {/* ② 参加受付中のイベント */}
+      {/* ② 今後のイベント予定 */}
       <section style={{ backgroundColor: '#fff', padding: '60px 20px 30px' }}>
         <div style={{ maxWidth: '960px', margin: '0 auto' }}>
           <div style={{ marginBottom: '28px' }}>
             <h2 style={{ fontSize: '22px', fontWeight: '700', color: '#516881', margin: '0 0 6px' }}>
-              ② 参加受付中のイベント
+              ② 今後のイベント予定
             </h2>
             <p style={{ fontSize: '13px', color: '#888', margin: 0 }}>
-              興味のあるイベントに申し込みましょう
+              興味のあるイベントに申し込みましょう！人数制限のあるイベントについては、記載の期日までに参加の可否をご連絡いたします。
             </p>
           </div>
 
