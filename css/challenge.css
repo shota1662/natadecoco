@@ -44,7 +44,7 @@
 .ch-hero-en {
     font-size: 13px;
     letter-spacing: 0.2em;
-    color: #516881;
+    color: #fff;
     font-weight: bold;
     margin: 0 0 8px;
 }
@@ -213,8 +213,13 @@
    レスポンシブ
    =================================== */
 @media (max-width: 860px) {
+    .ch-hero-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
     .ch-hero-chara {
-        display: none;
+        width: 100px;
     }
     .ch-hero-title {
         font-size: 38px;

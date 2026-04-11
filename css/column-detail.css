@@ -213,6 +213,18 @@
     line-height: 1.6;
 }
 
+/* STEPの大きい画像 */
+.cd-figure--step {
+    float: none;
+    width: 100%;
+    margin: 32px 0 0;
+    clear: both;
+}
+
+.cd-figure--step img {
+    max-height: 440px;
+}
+
 /* float解除 */
 .cd-article-inner::after {
     content: "";
@@ -413,6 +425,14 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    overflow: hidden;
+}
+
+.cd-related-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .cd-related-body {

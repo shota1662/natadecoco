@@ -22,7 +22,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: url('../img/class-photo.jpg') center / cover no-repeat;
+    background: url('../img/common/3.jpg') center / cover no-repeat;
     opacity: 0.12;
 }
 
@@ -211,19 +211,22 @@
 }
 
 .sch-strength-more a {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 14px;
-    font-weight: 700;
-    color: #30b9bf;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 12px 28px;
+    border: 2px solid #516881;
+    border-radius: 8px;
+    color: #516881;
+    background-color: #f7fbfe;
     text-decoration: none;
-    border-bottom: 1.5px solid #30b9bf;
-    padding-bottom: 2px;
-    transition: opacity 0.2s;
+    transition: background-color 0.2s, color 0.2s;
 }
 
-.sch-strength-more a:hover { opacity: 0.7; }
+.sch-strength-more a:hover {
+    background-color: #516881;
+    color: #fff;
+}
 
 /* ③ CASES */
 .sch-cases {

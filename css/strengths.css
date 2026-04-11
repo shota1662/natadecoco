@@ -32,7 +32,7 @@
 .st-hero-en {
     font-size: 13px;
     letter-spacing: 0.2em;
-    color: #516881;
+    color: #fff;
     font-weight: bold;
     margin: 0 0 8px;
 }
@@ -145,6 +145,12 @@
 @media (max-width: 768px) {
     .st-hero {
         padding: 60px 20px 40px;
+    }
+
+    .st-hero-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
     }
 
     .st-hero-chara {
@@ -597,6 +603,6 @@
     }
     
     .st-hero-chara {
-        display: none;
+        width: 100px;
     }
 }

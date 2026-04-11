@@ -198,11 +198,23 @@ $(document).ready(function() {
     $('.mobile-menu').toggleClass('is-open');
   });
 
+  // アコーディオン：サブメニュー開閉
+  $('.mobile-has-sub > a').on('click', function(e) {
+    e.preventDefault();
+    var $parent = $(this).parent();
+    var isOpen = $parent.hasClass('is-open');
+    $('.mobile-has-sub').removeClass('is-open');
+    if (!isOpen) {
+      $parent.addClass('is-open');
+    }
+  });
+
   // メニュー外クリックで閉じる
   $(document).on('click', function(e) {
     if (!$(e.target).closest('#header').length) {
       $('.hamburger').removeClass('is-open').attr('aria-expanded', 'false');
       $('.mobile-menu').removeClass('is-open');
+      $('.mobile-has-sub').removeClass('is-open');
     }
   });
 });

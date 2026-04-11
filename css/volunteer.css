@@ -77,15 +77,8 @@
     padding: 56px 40px 48px;
 }
 
-.vol-hero-inner {
-    flex-direction: row;
-    justify-content: space-between;
-    max-width: 1060px;
-    margin: 0 auto;
-}
-
 .vol-hero-content {
-    flex: 1;
+    grid-area: content;
     min-width: 0;
 }
 
@@ -106,6 +99,7 @@
 }
 
 .vol-hero-btn {
+    grid-area: btn;
     display: inline-flex;
     align-items: center;
     background-color: #f5f29f;
@@ -117,6 +111,7 @@
     font-size: 15px;
     font-weight: 700;
     margin-top: 24px;
+    align-self: start;
 }
 
 .vol-hero-btn img {
@@ -133,7 +128,7 @@
 
 @media (max-width: 900px) {
     .vol-hero { padding: 40px 24px 40px; }
-    .vol-hero-inner { flex-direction: column; gap: 32px; }
+    .vol-hero-inner { display: flex; flex-direction: column; gap: 32px; }
     .vol-hero-photo { width: 100%; max-width: 560px; margin: 0 auto; }
     .vol-hero-photo img { height: 260px; }
 }
@@ -601,11 +596,13 @@
 }
 
 .vol-hero-inner {
-    max-width: 860px;
+    max-width: 1060px;
     margin: 0 auto;
-    display: flex;
-    align-items: center;
-    gap: 40px;
+    display: grid;
+    grid-template-columns: 1fr 480px;
+    grid-template-areas: "content photo" "btn photo";
+    column-gap: 40px;
+    align-items: start;
 }
 
 .vol-hero-icon {

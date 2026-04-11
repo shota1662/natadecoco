@@ -51,7 +51,7 @@
 }
 
 .abt-hero-icon {
-    width: 100px;
+    width: 160px;
     flex-shrink: 0;
 }
 
@@ -720,7 +720,7 @@
 
 @media (max-width: 480px) {
     .abt-hero-icon {
-        width: 72px;
+        width: 100px;
     }
 
     .abt-hero-title {
