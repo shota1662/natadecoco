@@ -83,6 +83,7 @@
 }
 
 .vol-hero-photo {
+    grid-area: photo;
     width: 480px;
     flex-shrink: 0;
     border-radius: 28px;
@@ -128,9 +129,10 @@
 
 @media (max-width: 900px) {
     .vol-hero { padding: 40px 24px 40px; }
-    .vol-hero-inner { display: flex; flex-direction: column; gap: 32px; }
-    .vol-hero-photo { width: 100%; max-width: 560px; margin: 0 auto; }
+    .vol-hero-inner { display: flex; flex-direction: column; gap: 32px; align-items: stretch; }
+    .vol-hero-photo { width: 100%; max-width: 560px; margin: 0 auto; flex-shrink: 1; }
     .vol-hero-photo img { height: 260px; }
+    .vol-hero-btn { align-self: flex-start; }
 }
 
 /* ===================================
