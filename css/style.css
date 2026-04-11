@@ -2080,12 +2080,6 @@ h2 {
     overflow: hidden;
     box-shadow: 2px 2px #898787;
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.column-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 3px 5px #898787;
 }
 
 /* カテゴリ別シャドウ */
@@ -2093,11 +2087,6 @@ h2 {
 .column-card:has(.col-tag-culture)  { box-shadow: 5px 5px #30b9bf; }
 .column-card:has(.col-tag-volunteer){ box-shadow: 5px 5px #f87a6d; }
 .column-card:has(.col-tag-report)   { box-shadow: 5px 5px #fe4c7f; }
-
-.column-card:has(.col-tag-edu):hover      { box-shadow: 5px 9px #516881; }
-.column-card:has(.col-tag-culture):hover  { box-shadow: 5px 9px #30b9bf; }
-.column-card:has(.col-tag-volunteer):hover{ box-shadow: 5px 9px #f87a6d; }
-.column-card:has(.col-tag-report):hover   { box-shadow: 5px 9px #fe4c7f; }
 
 /* サムネイル（仮置き画像） */
 .column-thumb {
@@ -2165,15 +2154,16 @@ h2 {
 }
 
 .column-card-author-img {
-    width: 32px;
-    height: 32px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     object-fit: cover;
     border: 1px solid #d0e4f0;
 }
 
 .column-card-author-name {
-    font-size: 12px;
+    font-size: 14px;
+    font-weight: bold;
     color: #555;
     white-space: nowrap;
 }

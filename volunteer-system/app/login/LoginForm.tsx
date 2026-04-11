@@ -118,21 +118,33 @@ export default function LoginForm({ message }: { message?: string }) {
           </div>
 
           <div style={{ marginBottom: '32px' }}>
-            <label
-              htmlFor="password"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                fontSize: '14px',
-                fontWeight: '700',
-                color: '#516881',
-                marginBottom: '8px',
-              }}
-            >
-              パスワード
-              <span className="badge-pink" style={{ fontSize: '10px', padding: '2px 7px' }}>必須</span>
-            </label>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
+              <label
+                htmlFor="password"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  fontSize: '14px',
+                  fontWeight: '700',
+                  color: '#516881',
+                }}
+              >
+                パスワード
+                <span className="badge-pink" style={{ fontSize: '10px', padding: '2px 7px' }}>必須</span>
+              </label>
+              <Link
+                href="/forgot-password"
+                style={{
+                  fontSize: '12px',
+                  color: '#30b9bf',
+                  textDecoration: 'underline',
+                  textUnderlineOffset: '3px',
+                }}
+              >
+                パスワードを忘れた方へ
+              </Link>
+            </div>
             <input
               className="form-input"
               type="password"

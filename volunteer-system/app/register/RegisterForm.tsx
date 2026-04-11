@@ -55,21 +55,11 @@ export default function RegisterForm() {
 
         {/* タイトル */}
         <div style={{ textAlign: 'center', marginBottom: '36px' }}>
-          <div
-            style={{
-              width: '60px',
-              height: '60px',
-              backgroundColor: '#fe4c7f',
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              margin: '0 auto 16px',
-              fontSize: '28px',
-            }}
-          >
-            🌏
-          </div>
+          <img
+            src="/logo.svg"
+            alt="NPOナタデココ"
+            style={{ width: '80px', margin: '0 auto 16px', display: 'block' }}
+          />
           <h1 style={{ fontSize: '28px', fontWeight: '700', color: '#516881', margin: '0 0 8px' }}>
             ボランティア登録
           </h1>

@@ -185,3 +185,47 @@ export async function signOut() {
   revalidatePath('/', 'layout')
   redirect('/')
 }
+
+// パスワードリセットメール送信
+export async function resetPassword(
+  _prevState: AuthState,
+  formData: FormData
+): Promise<AuthState> {
+  const supabase = await createClient()
+  const email = formData.get('email') as string
+
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/auth/callback?next=/reset-password`,
+  })
+
+  if (error) {
+    return { error: 'メールの送信に失敗しました。メールアドレスをご確認ください。' }
+  }
+
+  redirect('/forgot-password?sent=true')
+}
+
+// 新しいパスワードに更新
+export async function updatePassword(
+  _prevState: AuthState,
+  formData: FormData
+): Promise<AuthState> {
+  const supabase = await createClient()
+  const password = formData.get('password') as string
+  const confirm = formData.get('confirm') as string
+
+  if (password !== confirm) {
+    return { error: 'パスワードが一致しません。' }
+  }
+  if (password.length < 8) {
+    return { error: 'パスワードは8文字以上で設定してください。' }
+  }
+
+  const { error } = await supabase.auth.updateUser({ password })
+
+  if (error) {
+    return { error: 'パスワードの更新に失敗しました。再度お試しください。' }
+  }
+
+  redirect('/login?message=' + encodeURIComponent('パスワードを更新しました。新しいパスワードでログインしてください。'))
+}

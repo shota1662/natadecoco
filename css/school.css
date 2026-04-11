@@ -95,6 +95,14 @@
     text-align: right;
 }
 
+/* セクション共通 */
+.cases-appeal-sub {
+    font-size: 16px;
+    color: #516881;
+    margin: 8px 0 0;
+    text-align: center;
+}
+
 /* ② STRENGTHS */
 .sch-strengths {
     background-color: #9fd9f6;
@@ -111,6 +119,57 @@
     grid-template-columns: repeat(5, 1fr);
     gap: 16px;
     margin-top: 44px;
+}
+
+/* 新リストデザイン */
+.sch-strength-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 44px;
+}
+
+.sch-str-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 28px;
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(81,104,129,0.2);
+}
+
+.sch-str-item:first-child {
+    border-top: 1px solid rgba(81,104,129,0.2);
+}
+
+.sch-str-num {
+    font-size: 40px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+    min-width: 64px;
+    text-align: center;
+    letter-spacing: -0.02em;
+    flex-shrink: 0;
+    padding-top: 4px;
+    opacity: 0.6;
+}
+
+.sch-str-body {
+    flex: 1;
+}
+
+.sch-str-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1e3a5a;
+    margin: 0 0 8px;
+}
+
+.sch-str-text {
+    font-size: 14px;
+    color: #516881;
+    line-height: 1.85;
+    margin: 0;
 }
 
 .sch-strength-card {
@@ -307,6 +366,9 @@
 .sch-flow-inner {
     max-width: 940px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .sch-flow-steps {
@@ -380,6 +442,73 @@
     margin: 6px 0;
     transform: rotate(90deg);
     display: block;
+}
+
+/* フロー新デザイン（cases.html流用） */
+.flow-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 48px;
+    width: 100%;
+    max-width: 640px;
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 8px 36px;
+}
+
+.flow-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 24px 0;
+    position: relative;
+}
+
+.flow-step:not(:last-child) {
+    margin-bottom: 28px;
+}
+
+.flow-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: -24px;
+    left: 50%;
+    width: 14px;
+    height: 14px;
+    border-right: 3px solid #fe4c7f;
+    border-bottom: 3px solid #fe4c7f;
+    transform: translateX(-50%) rotate(45deg);
+    z-index: 1;
+}
+
+.flow-step-num {
+    font-size: 22px;
+    font-weight: bold;
+    color: #fe4c7f;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1;
+    min-width: 36px;
+    padding-top: 2px;
+}
+
+.flow-step-body {
+    flex: 1;
+}
+
+.flow-step-title {
+    font-size: 15px;
+    font-weight: bold;
+    color: #1e3a5a;
+    margin: 0 0 6px;
+    line-height: 1.4;
+}
+
+.flow-step-text {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.8;
+    margin: 0;
 }
 
 /* CTA */

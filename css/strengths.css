@@ -14,26 +14,19 @@
 .st-hero-inner {
     max-width: 860px;
     width: 100%;
+    margin: 0 auto;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    position: relative;
-}
-
-.st-hero-icon {
-    width: 90px;
-    margin-bottom: 24px;
-}
-
-.st-hero-text {
-    text-align: center;
+    gap: 40px;
 }
 
 .st-hero-chara {
-    position: absolute;
-    left: 80px;
-    bottom: 0;
-    width: 154px;
+    width: 160px;
+    flex-shrink: 0;
+}
+
+.st-hero-text {
+    flex: 1;
 }
 
 .st-hero-en {
@@ -486,5 +479,124 @@
 
     .st-network-stat-unit {
         font-size: 15px;
+    }
+}
+
+/* ===================================
+   関連コラム (Related Columns)
+   =================================== */
+.st-related {
+    width: 100%;
+    background-color: #9fd9f6;
+    padding: 70px 20px 80px;
+}
+
+.st-related-inner {
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.st-related-head {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.st-related-en {
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.3em;
+    color: #516881;
+    margin: 0 0 8px;
+}
+
+.st-related-title {
+    font-size: 30px;
+    font-weight: bold;
+    color: #1e3a5a;
+    margin: 0 0 12px;
+}
+
+.st-related-sub {
+    font-size: 14px;
+    color: #516881;
+    margin: 0;
+}
+
+.st-related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.st-related-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.st-related-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.st-related-thumb {
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+}
+
+.st-related-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.st-related-body {
+    padding: 16px 20px 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.st-related-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background-color: #e8f4fb;
+    color: #516881;
+}
+
+.st-related-title-text {
+    font-size: 14px;
+    font-weight: bold;
+    color: #1e3a5a;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.st-related-more {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+@media (max-width: 760px) {
+    .st-related-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .st-hero-chara {
+        display: none;
     }
 }

@@ -78,6 +78,11 @@
     color: #fff;
 }
 
+.cls-hero-btn--event {
+    background-color: #f5a623;
+    color: #fff;
+}
+
 .cls-hero-btn:hover {
     opacity: 0.85;
     transform: translateY(-2px);
@@ -614,5 +619,178 @@
 
     .cls-apply-btn {
         width: 100%;
+    }
+}
+
+/* ===================================
+   追加スタイル（2026-04更新）
+   =================================== */
+
+/* ヒーロー キャラクター */
+.cls-hero-chara {
+    width: 200px;
+    flex-shrink: 0;
+    order: -1;
+}
+
+/* 写真プレースホルダー */
+.cls-photo-block {
+    width: 100%;
+    aspect-ratio: 16/9;
+    margin-bottom: 40px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #e8f4fb;
+    border: 2px dashed #9fd9f6;
+}
+
+.cls-photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #30b9bf;
+    font-size: 14px;
+    font-weight: bold;
+    min-height: 220px;
+}
+
+/* ステップ番号ラベル（大きく右側） */
+.cls-step-num-label {
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 64px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.15;
+}
+
+.cls-step-num--be    { color: var(--be-color); }
+.cls-step-num--touch { color: var(--touch-color); }
+.cls-step-num--cross { color: var(--cross-color); }
+
+/* タイムライン新デザイン */
+.cls-tl-overview {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 40px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.cls-tl-overview-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cls-tl-overview-label {
+    font-size: 11px;
+    font-weight: bold;
+    color: #30b9bf;
+    letter-spacing: 0.05em;
+}
+
+.cls-tl-overview-val {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+}
+
+.cls-tl-table {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    margin-bottom: 28px;
+}
+
+.cls-tl-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 24px;
+    border-bottom: 1px solid #f0f6fb;
+}
+
+.cls-tl-row--last {
+    border-bottom: none;
+}
+
+.cls-tl-time {
+    font-size: 13px;
+    font-weight: bold;
+    color: #30b9bf;
+    min-width: 48px;
+    flex-shrink: 0;
+}
+
+.cls-tl-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+
+.cls-tl-event-label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.cls-tl-event--neutral { color: #888; font-weight: 500; }
+.cls-tl-event--start { color: #30b9bf; }
+.cls-tl-event--be { color: #1e3a5a; }
+.cls-tl-event--touch { color: #1e3a5a; }
+.cls-tl-event--cross { color: #1e3a5a; }
+
+.cls-tl-step-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 12px;
+    color: #fff;
+}
+
+/* 凡例 新デザイン */
+.cls-tl-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 24px;
+    justify-content: center;
+    margin-top: 0;
+}
+
+.cls-tl-legend-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 4px;
+}
+
+/* CTA 白背景 */
+.cls-apply--white {
+    background: #fff !important;
+}
+
+/* ヒーロー レスポンシブ */
+@media (max-width: 600px) {
+    .cls-hero-chara {
+        display: none;
+    }
+    
+    .cls-tl-overview {
+        grid-template-columns: 1fr;
     }
 }

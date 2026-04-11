@@ -55,14 +55,14 @@
                                     </div>
                                 </a>
                                 <a href="challenge.html" class="mega-item">
-                                <div class="mega-img"><img src="img/logo/2.jpg" alt=""></div>
+                                <div class="mega-img"><img src="img/charactor/16.png" alt=""></div>
                                 <div class="mega-body">
                                     <span class="mega-title">挑戦する課題</span>
                                     <span class="mega-desc">ナタデココが向き合う６つの社会課題</span>
                                 </div>
                             </a>
                             <a href="strengths.html" class="mega-item">
-                                <div class="mega-img"><img src="img/logo/3.jpg" alt=""></div>
+                                <div class="mega-img"><img src="img/charactor/10.png" alt=""></div>
                                 <div class="mega-body">
                                     <span class="mega-title">５つの強み</span>
                                     <span class="mega-desc">NPO法人ナタデココ届ける</span>
@@ -74,7 +74,7 @@
                             <a href="activities.html">活動紹介</a>
                             <div class="mega-menu mega-menu--col">
                                 <div class="mega-top-row">
-                                    <a href="" class="mega-item">
+                                    <a href="class.html" class="mega-item">
                                         <div class="mega-img"><img src="img/logo/4.png" alt=""></div>
                                         <div class="mega-body">
                                             <span class="mega-title">文化交流教室</span>
@@ -105,17 +105,17 @@
                             </div>
                         </li>
                         <li class="has-dropdown">
-                        <a href="volunteer.html">ボランティア</a>
+                        <a href="volunteer.html">チーム</a>
                         <div class="mega-menu">
                             <a href="member.html" class="mega-item">
-                                <div class="mega-img"><img src="img/logo/3.jpg" alt=""></div>
+                                <div class="mega-img"><img src="img/volunteer/8.jpg" alt=""></div>
                                 <div class="mega-body">
-                                    <span class="mega-title">メンバー</span>
+                                    <span class="mega-title">メンバー紹介</span>
                                     <span class="mega-desc">ナタデココを支えるメンバー紹介</span>
                                 </div>
                             </a>
                             <a href="volunteer.html" class="mega-item">
-                                <div class="mega-img"><img src="img/volunteer-photo/3.jpg" alt=""></div>
+                                <div class="mega-img"><img src="img/volunteer/13.jpg" alt=""></div>
                                 <div class="mega-body">
                                     <span class="mega-title">仲間になる</span>
                                     <span class="mega-desc">ボランティアとして活動に参加する</span>
@@ -157,7 +157,7 @@
                             <li><a href="kit.html">文化交流キット</a></li>
                         </ul>
                     </li>
-                    <li class="mobile-has-sub"><a href="volunteer.html">ボランティア<span class="mobile-sub-arrow">▼</span></a>
+                    <li class="mobile-has-sub"><a href="volunteer.html">チーム<span class="mobile-sub-arrow">▼</span></a>
                     <ul class="mobile-nav-sub">
                         <li><a href="member.html">メンバー</a></li>
                         <li><a href="volunteer.html">仲間になる</a></li>
@@ -176,39 +176,29 @@
 
     <main id="main">
 
-        <!-- HERO -->
-        <section class="contact-hero">
-            <img src="img/mayu.svg" alt="" class="contact-hero-icon">
-            <p class="contact-hero-en">CONTACT</p>
-            <h2 class="contact-hero-title">お問い合わせ</h2>
-            <p class="contact-hero-sub">ご不明な点やご相談は、お気軽にご連絡ください。</p>
-        </section>
-
-        <!-- 水色 → 白 -->
-        <div class="wave-divider" style="background-color: #9fd9f6;">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
-                <path fill="#fff" fill-opacity="0.3" d="M0,55 C240,95 480,15 720,55 C960,95 1200,15 1440,55 L1440,120 L0,120 Z"/>
-                <path fill="#fff" fill-opacity="0.6" d="M0,70 C200,105 440,30 680,70 C920,100 1160,35 1440,70 L1440,120 L0,120 Z"/>
-                <path fill="#fff" d="M0,85 C160,108 380,55 600,82 C820,105 1040,56 1260,80 C1360,90 1410,68 1440,85 L1440,120 L0,120 Z"/>
-            </svg>
-        </div>
-
-        <!-- 送信完了 / エラーメッセージ -->
-        <div id="contact-sent-msg" class="contact-result contact-result--success" style="display:none;">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#30b9bf" width="40" height="40"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5l-4-4 1.41-1.41L10 13.67l6.59-6.59L18 8.5l-8 8z"/></svg>
-            <p class="contact-result-title">送信が完了しました</p>
-            <p class="contact-result-text">お問い合わせありがとうございます。<br>3営業日以内に担当者よりご連絡いたします。</p>
-        </div>
-        <div id="contact-error-msg" class="contact-result contact-result--error" style="display:none;">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fe4c7f" width="40" height="40"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-            <p class="contact-result-title">送信に失敗しました</p>
-            <p class="contact-result-text">お手数ですが、しばらく経ってから再度お試しください。<br>改善しない場合はメールにて直接お問い合わせください。</p>
-        </div>
-
-        <!-- フォーム -->
-        <section class="contact" id="contact-form-section">
+        <!-- お問い合わせ -->
+        <div class="contact-wrap">
             <div class="contact-inner">
-                <form class="contact-form" id="contactForm">
+
+                <div class="contact-head">
+                    <p class="contact-head-en">CONTACT</p>
+                    <h2 class="contact-head-title">お問い合わせ</h2>
+                    <p class="contact-head-sub">ご不明な点やご相談は、お気軽にご連絡ください。</p>
+                </div>
+
+                <!-- 送信完了 / エラーメッセージ -->
+                <div id="contact-sent-msg" class="contact-result contact-result--success" style="display:none;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#30b9bf" width="40" height="40"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5l-4-4 1.41-1.41L10 13.67l6.59-6.59L18 8.5l-8 8z"/></svg>
+                    <p class="contact-result-title">送信が完了しました</p>
+                    <p class="contact-result-text">お問い合わせありがとうございます。<br>3営業日以内に担当者よりご連絡いたします。</p>
+                </div>
+                <div id="contact-error-msg" class="contact-result contact-result--error" style="display:none;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fe4c7f" width="40" height="40"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                    <p class="contact-result-title">送信に失敗しました</p>
+                    <p class="contact-result-text">お手数ですが、しばらく経ってから再度お試しください。<br>改善しない場合はメールにて直接お問い合わせください。</p>
+                </div>
+
+                <form class="contact-form" id="contactForm" id="contact-form-section">
 
                     <div class="form-row">
                         <label class="form-label" for="name">お名前<span class="form-required">必須</span></label>
@@ -230,7 +220,10 @@
                         <div class="form-select-wrap">
                             <select class="form-select" id="category" name="category" required>
                                 <option value="" disabled selected>選択してください</option>
-                                <option value="event">イベントについて</option>
+                                <option value="class">文化交流教室について</option>
+                                <option value="cocosalon">CocoSalonについて</option>
+                                <option value="kit">文化交流キットについて</option>
+
                                 <option value="volunteer">ボランティアについて</option>
                                 <option value="sponsor">スポンサー・支援について</option>
                                 <option value="media">報道・取材について</option>
@@ -263,12 +256,12 @@
 
                 </form>
             </div>
-        </section>
+        </div>
 
     </main>
 
-    <!-- 白 → フッター紺 -->
-    <div class="wave-divider" style="background-color: #fff;">
+    <!-- 青 → フッター紺 -->
+    <div class="wave-divider" style="background-color: #9fd9f6;">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
             <path fill="#516881" fill-opacity="0.3" d="M0,55 C240,15 480,95 720,55 C960,15 1200,95 1440,55 L1440,120 L0,120 Z"/>
             <path fill="#516881" fill-opacity="0.6" d="M0,70 C200,30 440,105 680,70 C920,35 1160,100 1440,70 L1440,120 L0,120 Z"/>
@@ -319,7 +312,7 @@
                     
                     <ul class="footer-nav-list">
                         <li><a href="event.html">イベント情報</a></li>
-                        <li><a href="volunteer.html">ボランティア</a></li>
+                        <li><a href="volunteer.html">チーム</a></li>
                         <li><a href="column.html">コラム・ニュース</a></li>
                         <li><a href="faq.html">よくある質問</a></li>
                         <li><a href="contact.html">お問い合わせ</a></li>
