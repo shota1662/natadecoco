@@ -382,16 +382,16 @@
                     </label>
                     <select class="form-select" id="eventSelect" name="eventSelect" required>
                         <option value="">選択してください</option>
-                        <option value="camp-20260530">世界探検キャンプ（5/30〜31）（仮申し込み）</option>
+                        <option value="camp-20260530">世界探検キャンプ（5/30〜31）</option>
                     </select>
                 </div>
 
-                <!-- 仮申し込みバナー（キャンプ選択時のみ表示） -->
-                <div class="provisional-banner" id="provisionalBanner" style="display:none;">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-                    <p>
-                        <strong>こちらは仮申し込みフォームです</strong><br>
-                        正式な受付開始は4月30日を予定しています。仮申し込みいただいた方には、受付開始時に優先的にご案内をお送りします。
+                <!-- キャンセル規定（キャンプ選択時のみ表示） -->
+                <div class="provisional-banner" id="provisionalBanner" style="display:none; background:#fff8f8; border-color:#f4b4b4;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#c0392b" width="22" height="22"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                    <p style="color:#555;">
+                        <strong style="color:#c0392b;">キャンセル規定</strong><br>
+                        5/10〜5/17：参加費の30％／5/19〜5/27：参加費の50％／5/28〜5/29：参加費の100％
                     </p>
                 </div>
 
@@ -605,11 +605,10 @@
     var provisionalBanner = document.getElementById('provisionalBanner');
     var submitBtn = document.getElementById('submitBtn');
 
-    // イベント選択時：仮申し込みバナーとボタン文言のみ切り替え
+    // イベント選択時：キャンセル規定バナー表示切り替え
     eventSel.addEventListener('change', function () {
         var isCamp = (eventSel.value === 'camp-20260530');
         provisionalBanner.style.display = isCamp ? 'flex' : 'none';
-        submitBtn.textContent = isCamp ? '仮申し込みを送信する' : '申し込みを送信する';
     });
 
     // お子様の人数変更時：詳細フィールドを動的生成
@@ -634,7 +633,6 @@
             return;
         }
         var form = e.target;
-        var isCamp = (eventSel.value === 'camp-20260530');
         submitBtn.disabled = true;
         submitBtn.textContent = '送信中...';
         try {
@@ -647,16 +645,14 @@
                 headers: { 'Accept': 'application/json' }
             });
             form.style.display = 'none';
-            document.getElementById('sent-title').textContent = isCamp ? '仮申し込みを受け付けました' : '申し込みを受け付けました';
-            document.getElementById('sent-body').innerHTML = isCamp
-                ? '正式受付開始時にご登録のメールアドレスへご案内をお送りします。<br>しばらくお待ちください。'
-                : 'ご登録のメールアドレスに確認メールをお送りします。<br>しばらくお待ちください。';
+            document.getElementById('sent-title').textContent = '申し込みを受け付けました';
+            document.getElementById('sent-body').innerHTML = 'ご登録のメールアドレスに確認メールをお送りします。<br>しばらくお待ちください。';
             document.getElementById('sent-msg').style.display = 'block';
             document.getElementById('sent-msg').scrollIntoView({ behavior: 'smooth', block: 'center' });
         } catch(err) {
             document.getElementById('error-msg').style.display = 'block';
             submitBtn.disabled = false;
-            submitBtn.textContent = isCamp ? '仮申し込みを送信する' : '申し込みを送信する';
+            submitBtn.textContent = '申し込みを送信する';
         }
     });
 }());

@@ -966,6 +966,39 @@
     color: #e07b00;
 }
 
+.acc-cancel-policy {
+    background-color: #fff8f8;
+    border: 1.5px solid #f4b4b4;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 16px;
+}
+
+.acc-cancel-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #c0392b;
+    margin: 0 0 8px;
+}
+
+.acc-cancel-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.acc-cancel-table td {
+    padding: 4px 8px;
+    color: #555;
+}
+
+.acc-cancel-table td:first-child {
+    white-space: nowrap;
+    color: #333;
+    font-weight: 500;
+    width: 50%;
+}
+
 .acc-btns {
     display: flex;
     flex-direction: column;
