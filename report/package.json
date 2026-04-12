@@ -1,0 +1,14 @@
+{
+  "name": "natadecoco-weekly-report",
+  "version": "1.0.0",
+  "description": "週次レポート自動生成スクリプト",
+  "main": "weekly-report.js",
+  "scripts": {
+    "report": "node weekly-report.js"
+  },
+  "dependencies": {
+    "@google-analytics/data": "^4.0.0",
+    "@anthropic-ai/sdk": "^0.35.0",
+    "googleapis": "^140.0.0"
+  }
+}

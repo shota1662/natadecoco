@@ -1,0 +1,5 @@
+# サービスアカウントキー（機密情報 - コミット禁止）
+natadecoco-report-*.json
+
+# Node.js
+report/node_modules/
