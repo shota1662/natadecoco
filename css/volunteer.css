@@ -113,6 +113,7 @@
     font-weight: 700;
     margin-top: 24px;
     align-self: start;
+    justify-self: start;
 }
 
 .vol-hero-btn img {
