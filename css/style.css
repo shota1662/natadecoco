@@ -1263,11 +1263,14 @@ h2 {
     flex-direction: column;
     align-items: center;
     box-shadow: 4px 4px 0 rgba(81, 104, 129, 0.2);
-    transition: transform 0.2s, box-shadow 0.2s;
     color: inherit;
 }
 
-.sponsor-card:hover {
+a.sponsor-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+a.sponsor-card:hover {
     transform: translateY(-4px);
     box-shadow: 4px 8px 0 rgba(81, 104, 129, 0.2);
     opacity: 1;
