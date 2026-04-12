@@ -41,7 +41,8 @@ function getFormLabel(formType) {
   if (formType === "event-20260405") return "国際交流体験クラス(4/5)";
   if (formType === "event-20260412") return "国際交流体験クラス(4/12)";
   if (formType === "event-20260419") return "国際交流体験クラス(4/19)";
-  if (formType === "camp-20260530")  return "国際交流キャンプ(5/30-31)";
+  if (formType === "camp-20260530")   return "国際交流キャンプ(5/30-31)";
+  if (formType === "class-20260718") return "子どもたちの文化交流教室(7/18)";
   if (formType === "contact")        return "お問い合わせ";
   return formType;
 }

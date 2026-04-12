@@ -113,18 +113,18 @@
 .event-list-section .msg-flag--r4.is-visible { animation-delay: 0.9s; }
 
 @media (max-width: 768px) {
-    .event-list-section .msg-flag .fi { width: 36px; height: 27px; }
-    .event-list-section .msg-flag--l1,
-    .event-list-section .msg-flag--l2,
-    .event-list-section .msg-flag--l3,
-    .event-list-section .msg-flag--l4 { left: 0; }
-    .event-list-section .msg-flag--r1,
-    .event-list-section .msg-flag--r2,
-    .event-list-section .msg-flag--r3,
-    .event-list-section .msg-flag--r4 { right: 0; }
+    .event-list-section .msg-flag .fi { width: 30px; height: 22px; }
+    .event-list-section .msg-flag--l1 { left: -8px; }
+    .event-list-section .msg-flag--l2 { left: -4px; }
+    .event-list-section .msg-flag--l3 { left: -8px; }
+    .event-list-section .msg-flag--l4 { left: -4px; }
+    .event-list-section .msg-flag--r1 { right: -8px; }
+    .event-list-section .msg-flag--r2 { right: -4px; }
+    .event-list-section .msg-flag--r3 { right: -8px; }
+    .event-list-section .msg-flag--r4 { right: -4px; }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
     .event-list-section .msg-flag { display: none; }
 }
 

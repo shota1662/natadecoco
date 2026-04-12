@@ -637,6 +637,7 @@
 .cls-photo-block {
     width: 100%;
     aspect-ratio: 16/9;
+    margin-top: 48px;
     margin-bottom: 40px;
     border-radius: 16px;
     overflow: hidden;

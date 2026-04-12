@@ -1,18 +1,18 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="canonical" href="https://natadecoco.org/event-form-20260331.html">
+    <link rel="canonical" href="https://natadecoco.org/event-form.html">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://natadecoco.org/event-form-20260331.html">
-    <meta property="og:title" content="世界を旅する文化交流教室 申し込み｜NPOナタデココ">
-    <meta property="og:description" content="世界を旅する文化交流教室 申し込み｜NPOナタデココ">
+    <meta property="og:url" content="https://natadecoco.org/event-form.html">
+    <meta property="og:title" content="イベント申し込み｜NPOナタデデコ">
+    <meta property="og:description" content="NPOナタデデコのイベント申し込みフォームです。">
     <meta property="og:image" content="https://natadecoco.org/img/logo.png">
-    <meta property="og:site_name" content="NPOナタデコ">
+    <meta property="og:site_name" content="NPOナタデデコ">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="世界を旅する文化交流教室 申し込み｜NPOナタデココ">
-    <meta name="twitter:description" content="世界を旅する文化交流教室 申し込み｜NPOナタデココ">
+    <meta name="twitter:title" content="イベント申し込み｜NPOナタデデコ">
+    <meta name="twitter:description" content="NPOナタデデコのイベント申し込みフォームです。">
     <meta name="twitter:image" content="https://natadecoco.org/img/logo.png">
 <script type="application/ld+json">
 {
@@ -26,7 +26,7 @@
   "email": "info@natadecoco.org"
 }
 </script>
-    <title>世界を旅する文化交流教室 申し込み｜NPOナタデココ</title>
+    <title>イベント申し込み｜NPOナタデデコ</title>
     <link rel="icon" href="img/favicon.ico.png">
     <link rel="apple-touch-icon" href="img/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,7 +43,7 @@
             color: #333;
         }
 
-        .badge-visit-class {
+        .badge-event {
             display: inline-block;
             background: #fde8d8;
             color: #e07a3a;
@@ -96,13 +96,13 @@
         .form-textarea {
             width: 100%;
             padding: 10px 14px;
-            border: 1.5px solid #ddd;
+            border: 1px solid #ddd;
             border-radius: 8px;
-            font-size: 15px;
-            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 14px;
+            font-family: inherit;
             background: #fafafa;
-            box-sizing: border-box;
             transition: border-color 0.2s;
+            box-sizing: border-box;
         }
 
         .form-input:focus,
@@ -113,87 +113,56 @@
             background: #fff;
         }
 
-        .form-textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
+        .form-textarea { min-height: 120px; resize: vertical; }
+        .form-note { font-size: 12px; color: #888; margin: 6px 0 0; }
 
-        .radio-group {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
+        .radio-group { display: flex; flex-direction: column; gap: 10px; }
+        .radio-label { display: flex; align-items: center; gap: 8px; font-size: 14px; cursor: pointer; }
+        .radio-label input[type="radio"] { width: 16px; height: 16px; accent-color: #e07a3a; flex-shrink: 0; }
 
-        .radio-label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
-        .radio-label input[type="radio"] {
-            accent-color: #e07a3a;
-            width: 16px;
-            height: 16px;
-        }
-
-        .child-block {
-            background: #fff8f4;
-            border: 1px solid #fde8d8;
-            border-radius: 10px;
-            padding: 20px 24px;
-            margin-bottom: 16px;
-        }
-
-        .child-block-title {
-            font-size: 13px;
-            font-weight: 700;
-            color: #e07a3a;
-            margin-bottom: 14px;
-        }
-
-        .child-field {
-            margin-bottom: 14px;
-        }
+        .child-block { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px dashed #fde8d8; }
+        .child-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .child-block-title { font-size: 15px; font-weight: 700; color: #e07a3a; margin-bottom: 16px; }
+        .child-field { margin-bottom: 14px; }
 
         .submit-btn {
-            display: block;
             width: 100%;
-            max-width: 360px;
-            margin: 40px auto 0;
             padding: 16px;
-            background: #e07a3a;
+            background: linear-gradient(135deg, #e07a3a, #f0a060);
             color: #fff;
-            font-size: 17px;
+            font-size: 16px;
             font-weight: 700;
-            font-family: 'Noto Sans JP', sans-serif;
             border: none;
-            border-radius: 50px;
+            border-radius: 12px;
             cursor: pointer;
-            text-align: center;
-            letter-spacing: 0.05em;
+            font-family: inherit;
             transition: background 0.2s, transform 0.1s;
-            box-shadow: 0 4px 14px rgba(224,122,58,0.35);
+            letter-spacing: 0.05em;
         }
 
-        .submit-btn:hover {
-            background: #c9672a;
-            transform: translateY(-1px);
+        .submit-btn:hover { background: linear-gradient(135deg, #c96a2a, #e08a40); transform: translateY(-1px); }
+        .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+        /* 仮申し込みバナー */
+        .provisional-banner {
+            background: #fff4e6;
+            border: 2px solid #f0a040;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        .provisional-banner svg { flex-shrink: 0; margin-top: 2px; color: #f0a040; }
+        .provisional-banner p { font-size: 13px; color: #7a4a00; line-height: 1.7; margin: 0; }
+
+        @media (max-width: 600px) {
+            .form-card { padding: 20px 18px; }
         }
 
-        @media (max-width: 640px) {
-            .form-card {
-                padding: 20px 16px;
-            }
-
-            .child-block {
-                padding: 16px 14px;
-            }
-
-            .hero-title {
-                font-size: 22px !important;
-            }
+        @media (max-width: 480px) {
+            .hero-title { font-size: 22px !important; }
         }
     </style>
 </head>
@@ -204,7 +173,7 @@
         <div class="header-logo">
             <p class="logo">
                 <a href="index.html">
-                    <img src="img/logo.svg" alt="NPOナタデココ">
+                    <img src="img/logo.svg" alt="NPOナタデデコ">
                 </a>
             </p>
         </div>
@@ -212,7 +181,7 @@
         <div class="header-nav-wrap">
             <div class="header-top-nav">
                 <ul class="top-nav-list">
-                                        <li><a href="faq.html">よくある質問</a></li>
+                    <li><a href="faq.html">よくある質問</a></li>
                     <li><a href="school.html">学校・自治体のみなさまへ</a></li>
                     <li><a href="contact.html">お問い合わせ</a></li>
                 </ul>
@@ -220,27 +189,27 @@
             <nav class="header-bottom-nav">
                 <ul class="bottom-nav-list">
                     <li class="has-dropdown">
-                        <a href="about.html">ナタデココとは</a>
+                        <a href="about.html">ナタデデコとは</a>
                         <div class="mega-menu">
                             <a href="about.html" class="mega-item">
                                 <div class="mega-img"><img src="img/logo/1.jpg" alt="団体概要"></div>
                                 <div class="mega-body">
                                     <span class="mega-title">団体概要</span>
-                                    <span class="mega-desc">NPOナタデココの成り立ちと活動について</span>
+                                    <span class="mega-desc">NPOナタデデコの成り立ちと活動について</span>
                                 </div>
                             </a>
                             <a href="challenge.html" class="mega-item">
                                 <div class="mega-img"><img src="img/logo/12.jpg" alt="挑戦する課題"></div>
                                 <div class="mega-body">
                                     <span class="mega-title">挑戦する課題</span>
-                                    <span class="mega-desc">ナタデココが向き合う６つの社会課題</span>
+                                    <span class="mega-desc">ナタデデコが向き合う６つの社会課題</span>
                                 </div>
                             </a>
                             <a href="strengths.html" class="mega-item">
                                 <div class="mega-img"><img src="img/logo/10.jpg" alt="５つの強み"></div>
                                 <div class="mega-body">
                                     <span class="mega-title">５つの強み</span>
-                                    <span class="mega-desc">ナタデココの５つの強みをご紹介します。</span>
+                                    <span class="mega-desc">ナタデデコの５つの強みをご紹介します。</span>
                                 </div>
                             </a>
                         </div>
@@ -289,7 +258,7 @@
                                 <div class="mega-img"><img src="img/volunteer/8.jpg" alt="メンバー紹介"></div>
                                 <div class="mega-body">
                                     <span class="mega-title">メンバー紹介</span>
-                                    <span class="mega-desc">ナタデココを支えるメンバー紹介</span>
+                                    <span class="mega-desc">ナタデデコを支えるメンバー紹介</span>
                                 </div>
                             </a>
                             <a href="volunteer.html" class="mega-item">
@@ -312,28 +281,28 @@
         </a>
 
         <button class="hamburger" aria-label="メニューを開く" aria-expanded="false">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span></span><span></span><span></span>
         </button>
     </div>
 
     <div class="mobile-menu">
         <nav class="mobile-nav">
             <ul class="mobile-nav-list">
-                <li class="mobile-has-sub"><a href="about.html">ナタデココとは<span class="mobile-sub-arrow">▼</span></a>
-                            <ul class="mobile-nav-sub">
-                                <li><a href="about.html">団体概要</a></li>
-                                <li><a href="challenge.html">挑戦する課題</a></li>
+                <li class="mobile-has-sub"><a href="about.html">ナタデデコとは<span class="mobile-sub-arrow">▼</span></a>
+                    <ul class="mobile-nav-sub">
+                        <li><a href="about.html">団体概要</a></li>
+                        <li><a href="challenge.html">挑戦する課題</a></li>
                         <li><a href="strengths.html">５つの強み</a></li>
-                            </ul>
-                        </li>
-                        <li class="mobile-has-sub"><a href="activities.html">活動紹介<span class="mobile-sub-arrow">▼</span></a>
-                            <ul class="mobile-nav-sub">
-                                <li><a href="class.html">文化交流教室</a></li>
-                                <li><a href="cocosalon.html">CocoSalon</a></li>
-                                <li><a href="kit.html">文化交流キット</a></li><li><a href="cases.html">事例紹介</a></li>                            </ul>
-                        </li>
+                    </ul>
+                </li>
+                <li class="mobile-has-sub"><a href="activities.html">活動紹介<span class="mobile-sub-arrow">▼</span></a>
+                    <ul class="mobile-nav-sub">
+                        <li><a href="class.html">文化交流教室</a></li>
+                        <li><a href="cocosalon.html">CocoSalon</a></li>
+                        <li><a href="kit.html">文化交流キット</a></li>
+                        <li><a href="cases.html">事例紹介</a></li>
+                    </ul>
+                </li>
                 <li class="mobile-has-sub"><a href="volunteer.html">チーム<span class="mobile-sub-arrow">▼</span></a>
                     <ul class="mobile-nav-sub">
                         <li><a href="member.html">メンバー</a></li>
@@ -342,7 +311,7 @@
                 </li>
                 <li><a href="column.html">コラム・ニュース</a></li>
                 <li class="mobile-nav-sep"></li>
-                                <li><a href="faq.html">よくある質問</a></li>
+                <li><a href="faq.html">よくある質問</a></li>
                 <li><a href="school.html">学校・自治体のみなさまへ</a></li>
                 <li><a href="contact.html">お問い合わせ</a></li>
             </ul>
@@ -356,27 +325,16 @@
     <!-- ヒーロー -->
     <section style="background: #9fd9f6; padding: 48px 20px 56px;">
         <div style="max-width: 860px; margin: 0 auto;">
-            <!-- パンくず -->
             <nav style="font-size: 12px; color: #fff; margin-bottom: 20px; opacity: 0.9;">
                 <a href="index.html" style="color:#fff;">ホーム</a>
                 <span style="margin: 0 6px;">›</span>
                 <a href="event.html" style="color:#fff;">イベント情報</a>
                 <span style="margin: 0 6px;">›</span>
-                <a href="event-detail-20260331.html" style="color:#fff;">世界を旅する文化交流教室</a>
-                <span style="margin: 0 6px;">›</span>
                 <span>申し込み</span>
             </nav>
-            <!-- カテゴリバッジ -->
-            <span class="badge-visit-class" style="margin-bottom: 12px; display: inline-block;">出張教室</span>
-            <!-- タイトル -->
-            <h2 class="hero-title" style="font-size: 28px; font-weight: bold; color: #1e3a5a; margin-bottom: 16px;">「世界を旅する文化交流教室」</h2>
-            <!-- pills -->
-            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-                <span style="background:#fff; border-radius: 20px; padding: 6px 14px; font-size: 13px; color: #555;">📅 2026年3月31日（火）</span>
-                <span style="background:#fff; border-radius: 20px; padding: 6px 14px; font-size: 13px; color: #555;">🕐 10:00〜11:00</span>
-                <span style="background:#fff; border-radius: 20px; padding: 6px 14px; font-size: 13px; color: #555;">📍 愛知県津島市中央児童館</span>
-                <span style="background:#fff; border-radius: 20px; padding: 6px 14px; font-size: 13px; color: #555;">👥 対象：小学生</span>
-            </div>
+            <span class="badge-event" style="margin-bottom: 12px; display: inline-block;">ナタデデコ主催</span>
+            <h2 class="hero-title" style="font-size: 28px; font-weight: bold; color: #1e3a5a; margin-bottom: 8px;">イベント申し込み</h2>
+            <p style="font-size: 14px; color: #1e3a5a; opacity: 0.8;">下のフォームでイベントを選択してお申し込みください。</p>
         </div>
     </section>
 
@@ -392,13 +350,16 @@
     <!-- フォームセクション -->
     <section style="background: #fff8f4; padding: 60px 20px 80px;">
         <div style="max-width: 680px; margin: 0 auto;">
+
             <h2 style="font-size: 22px; font-weight: bold; color: #333; margin-bottom: 32px; text-align: center;">申し込みフォーム</h2>
+
             <!-- 送信完了メッセージ -->
             <div id="sent-msg" style="display:none; background:#f0fffe; border:2px solid #30b9bf; border-radius:12px; padding:32px 24px; text-align:center; margin-bottom:24px;">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#30b9bf" width="48" height="48"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5l-4-4 1.41-1.41L10 13.67l6.59-6.59L18 8.5l-8 8z"/></svg>
-                <p style="font-size:18px; font-weight:bold; color:#1a8a8f; margin:12px 0 8px;">申し込みを受け付けました</p>
-                <p style="font-size:14px; color:#555; margin:0;">ご登録のメールアドレスに確認メールをお送りします。<br>しばらくお待ちください。</p>
+                <p style="font-size:18px; font-weight:bold; color:#1a8a8f; margin:12px 0 8px;" id="sent-title">申し込みを受け付けました</p>
+                <p style="font-size:14px; color:#555; margin:0;" id="sent-body">ご登録のメールアドレスに確認メールをお送りします。<br>しばらくお待ちください。</p>
             </div>
+
             <!-- エラーメッセージ -->
             <div id="error-msg" style="display:none; background:#fff0f3; border:2px solid #fe4c7f; border-radius:12px; padding:20px 24px; text-align:center; margin-bottom:24px;">
                 <p style="font-size:14px; color:#c0234a; margin:0;">⚠️ 送信に失敗しました。しばらく経ってから再度お試しください。</p>
@@ -406,34 +367,55 @@
 
             <form id="eventForm">
 
-                <!-- ① 保護者の氏名 -->
+                <!-- ① イベント選択 -->
+                <div class="form-card">
+                    <label class="form-label" for="eventSelect">
+                        ① 参加するイベント<span class="required">必須</span>
+                    </label>
+                    <select class="form-select" id="eventSelect" name="eventSelect" required>
+                        <option value="">選択してください</option>
+                        <option value="camp-20260530">世界探検キャンプ（5/30〜31）（仮申し込み）</option>
+                    </select>
+                </div>
+
+                <!-- 仮申し込みバナー（キャンプ選択時のみ表示） -->
+                <div class="provisional-banner" id="provisionalBanner" style="display:none;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                    <p>
+                        <strong>こちらは仮申し込みフォームです</strong><br>
+                        正式な受付開始は4月30日を予定しています。仮申し込みいただいた方には、受付開始時に優先的にご案内をお送りします。
+                    </p>
+                </div>
+
+                <!-- ② 保護者の氏名 -->
                 <div class="form-card">
                     <label class="form-label" for="parentName">
-                        ① 保護者の氏名<span class="required">必須</span>
+                        ② 保護者の氏名<span class="required">必須</span>
                     </label>
                     <input class="form-input" type="text" id="parentName" name="parentName" placeholder="例：山田 太郎" required>
                 </div>
 
-                <!-- ② メールアドレス -->
+                <!-- ③ メールアドレス -->
                 <div class="form-card">
                     <label class="form-label" for="email">
-                        ② メールアドレス<span class="required">必須</span>
+                        ③ メールアドレス<span class="required">必須</span>
                     </label>
                     <input class="form-input" type="email" id="email" name="email" placeholder="例：example@email.com" required>
+                    <p class="form-note" id="emailNote">受付確認メールをこちらにお送りします</p>
                 </div>
 
-                <!-- ③ 電話番号 -->
+                <!-- ④ 電話番号 -->
                 <div class="form-card">
                     <label class="form-label" for="tel">
-                        ③ 電話番号<span class="required">必須</span>
+                        ④ 電話番号<span class="optional">任意</span>
                     </label>
-                    <input class="form-input" type="tel" id="tel" name="tel" placeholder="例：090-1234-5678" required>
+                    <input class="form-input" type="tel" id="tel" name="tel" placeholder="例：090-1234-5678">
                 </div>
 
-                <!-- ④ お子様の人数 -->
+                <!-- ⑤ お子様の人数 -->
                 <div class="form-card">
                     <label class="form-label" for="childCount">
-                        ④ お子様の人数<span class="required">必須</span>
+                        ⑤ お子様の人数<span class="required">必須</span>
                     </label>
                     <select class="form-select" id="childCount" name="childCount" required>
                         <option value="">選択してください</option>
@@ -445,12 +427,12 @@
                     </select>
                 </div>
 
-                <!-- ⑤〜⑦ お子様情報（人数分） -->
+                <!-- お子様情報 -->
                 <div id="childrenContainer"></div>
 
                 <!-- ⑧ 参加歴 -->
                 <div class="form-card">
-                    <label class="form-label">⑧ ナタデココイベントへの参加歴<span class="required">必須</span></label>
+                    <label class="form-label">⑧ ナタデデコイベントへの参加歴<span class="required">必須</span></label>
                     <div class="radio-group">
                         <label class="radio-label">
                             <input type="radio" name="participationHistory" value="first" required>
@@ -476,6 +458,7 @@
                             同意しない
                         </label>
                     </div>
+                    <p class="form-note" style="margin-top: 12px; line-height: 1.7;">取材等により、イベントの様子を撮影させていただく場合があります。撮影した内容をSNS・HPなどで紹介させていただく可能性がありますが、お子様の顔が大きく掲載される場合には個別にご相談させていただきます。</p>
                 </div>
 
                 <!-- ⑩ ご質問・その他 -->
@@ -487,7 +470,7 @@
                 </div>
 
                 <!-- 送信ボタン -->
-                <button type="submit" class="submit-btn">申し込みを送信する</button>
+                <button type="submit" class="submit-btn" id="submitBtn">申し込みを送信する</button>
 
             </form>
         </div>
@@ -500,25 +483,28 @@
         <div class="footer-top">
             <div class="footer-logo">
                 <a href="index.html">
-                    <img src="img/logo.png" alt="NPOナタデココ">
+                    <img src="img/logo.png" alt="NPOナタデデコ">
                 </a>
             </div>
             <nav class="footer-nav">
                 <ul class="footer-nav-list">
-                    <li><a href="">ナタデココについて</a></li>
+                    <li><a href="about.html">ナタデデコについて</a></li>
                     <li class="mobile-has-sub"><a href="activities.html">活動紹介<span class="mobile-sub-arrow">▼</span></a></li>
-                    <li><a href="">ボランティア</a></li>
+                    <li><a href="volunteer.html">ボランティア</a></li>
+                    <li><a href="faq.html">よくある質問</a></li>
                 </ul>
             </nav>
         </div>
         <div class="footer-copy">
-            <p>© 2026 NPOナタデココ All Rights Reserved.</p>
+            <p>© 2026 NPOナタデデコ All Rights Reserved.</p>
         </div>
     </div>
 </footer>
 
 <script>
 (function () {
+    var GAS_URL = 'https://script.google.com/macros/s/AKfycbwMcxbx7N8vb_5j_5rkssjm9bxRlJLQwYHUGEHxVgI3Cd3ZwNH0KBQLbwMIR-lWNoVa-g/exec';
+
     var gradeOptions = [
         { value: '', label: '選択してください' },
         { value: 'preschool', label: '未就学児' },
@@ -527,7 +513,8 @@
         { value: 'grade3', label: '小学3年生' },
         { value: 'grade4', label: '小学4年生' },
         { value: 'grade5', label: '小学5年生' },
-        { value: 'grade6', label: '小学6年生' }
+        { value: 'grade6', label: '小学6年生' },
+        { value: 'other', label: 'その他' }
     ];
 
     var englishOptions = [
@@ -563,12 +550,11 @@
         title.textContent = 'お子様 ' + num + ' 人目';
         block.appendChild(title);
 
-        // ⑤ 名前
         var nameField = document.createElement('div');
         nameField.className = 'child-field';
         var nameLbl = document.createElement('label');
         nameLbl.className = 'form-label';
-        nameLbl.textContent = '⑤ お子様の名前';
+        nameLbl.textContent = 'お子様の名前';
         nameLbl.insertAdjacentHTML('beforeend', '<span class="required">必須</span>');
         var nameInput = document.createElement('input');
         nameInput.className = 'form-input';
@@ -580,24 +566,22 @@
         nameField.appendChild(nameInput);
         block.appendChild(nameField);
 
-        // ⑥ 学年
         var gradeField = document.createElement('div');
         gradeField.className = 'child-field';
         var gradeLbl = document.createElement('label');
         gradeLbl.className = 'form-label';
-        gradeLbl.textContent = '⑥ 学年';
+        gradeLbl.textContent = '学年';
         gradeLbl.insertAdjacentHTML('beforeend', '<span class="required">必須</span>');
         var gradeSel = buildSelect('childGrade' + num, gradeOptions);
         gradeField.appendChild(gradeLbl);
         gradeField.appendChild(gradeSel);
         block.appendChild(gradeField);
 
-        // ⑦ 英語力
         var engField = document.createElement('div');
         engField.className = 'child-field';
         var engLbl = document.createElement('label');
         engLbl.className = 'form-label';
-        engLbl.textContent = '⑦ 英語力';
+        engLbl.textContent = '英語力';
         engLbl.insertAdjacentHTML('beforeend', '<span class="required">必須</span>');
         var engSel = buildSelect('childEnglish' + num, englishOptions);
         engField.appendChild(engLbl);
@@ -609,8 +593,19 @@
 
     var container = document.getElementById('childrenContainer');
     var countSel = document.getElementById('childCount');
+    var eventSel = document.getElementById('eventSelect');
+    var provisionalBanner = document.getElementById('provisionalBanner');
+    var submitBtn = document.getElementById('submitBtn');
 
-    function updateChildren() {
+    // イベント選択時：仮申し込みバナーとボタン文言のみ切り替え
+    eventSel.addEventListener('change', function () {
+        var isCamp = (eventSel.value === 'camp-20260530');
+        provisionalBanner.style.display = isCamp ? 'flex' : 'none';
+        submitBtn.textContent = isCamp ? '仮申し込みを送信する' : '申し込みを送信する';
+    });
+
+    // お子様の人数変更時：詳細フィールドを動的生成
+    countSel.addEventListener('change', function () {
         var n = parseInt(countSel.value, 10) || 0;
         container.innerHTML = '';
         if (n > 0) {
@@ -622,38 +617,44 @@
             }
             container.appendChild(card);
         }
-    }
-
-    countSel.addEventListener('change', updateChildren);
+    });
 
     document.getElementById('eventForm').addEventListener('submit', async function (e) {
         e.preventDefault();
-        const form = e.target;
-        const submitBtn = form.querySelector('button[type="submit"]');
+        if (!eventSel.value) {
+            alert('参加するイベントを選択してください。');
+            return;
+        }
+        var form = e.target;
+        var isCamp = (eventSel.value === 'camp-20260530');
         submitBtn.disabled = true;
         submitBtn.textContent = '送信中...';
         try {
-            const formData = new FormData(form);
-                const obj = { formType: 'event-20260331' };
-                formData.forEach(function(v, k) { obj[k] = v; });
-                const res = await fetch('https://script.google.com/macros/s/AKfycbwMcxbx7N8vb_5j_5rkssjm9bxRlJLQwYHUGEHxVgI3Cd3ZwNH0KBQLbwMIR-lWNoVa-g/exec', {
+            var formData = new FormData(form);
+            var obj = { formType: eventSel.value };
+            formData.forEach(function(v, k) { obj[k] = v; });
+            var res = await fetch(GAS_URL, {
                 method: 'POST',
-                                body: JSON.stringify(obj),
+                body: JSON.stringify(obj),
                 headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
             });
             if (res.ok) {
                 form.style.display = 'none';
+                document.getElementById('sent-title').textContent = isCamp ? '仮申し込みを受け付けました' : '申し込みを受け付けました';
+                document.getElementById('sent-body').innerHTML = isCamp
+                    ? '正式受付開始時にご登録のメールアドレスへご案内をお送りします。<br>しばらくお待ちください。'
+                    : 'ご登録のメールアドレスに確認メールをお送りします。<br>しばらくお待ちください。';
                 document.getElementById('sent-msg').style.display = 'block';
                 document.getElementById('sent-msg').scrollIntoView({ behavior: 'smooth', block: 'center' });
             } else {
                 document.getElementById('error-msg').style.display = 'block';
                 submitBtn.disabled = false;
-                submitBtn.textContent = '申し込みを送信する';
+                submitBtn.textContent = isCamp ? '仮申し込みを送信する' : '申し込みを送信する';
             }
-        } catch {
+        } catch(err) {
             document.getElementById('error-msg').style.display = 'block';
             submitBtn.disabled = false;
-            submitBtn.textContent = '申し込みを送信する';
+            submitBtn.textContent = isCamp ? '仮申し込みを送信する' : '申し込みを送信する';
         }
     });
 }());
@@ -661,5 +662,3 @@
 
 </body>
 </html>
-
-
