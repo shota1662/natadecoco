@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="utf-8">
@@ -11,7 +11,7 @@
     <meta property="og:title" content="子どもと外国人をつなぐ、NPOスタッフの1日｜コラム｜NPOナタデココ">
     <meta property="og:description" content="国際交流NPOのボランティアは1日何をするのか？土曜日午後の交流イベントを例に、タイムラインと具体的な役割をリアルにご紹介します。">
     <meta property="og:image" content="https://natadecoco.org/img/logo.png">
-    <meta property="og:site_name" content="NPOナタデコ">
+    <meta property="og:site_name" content="NPOナタデココ">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="子どもと外国人をつなぐ、NPOスタッフの1日｜コラム｜NPOナタデココ">
     <meta name="twitter:description" content="国際交流NPOのボランティアは1日何をするのか？土曜日午後の交流イベントを例に、タイムラインと具体的な役割をリアルにご紹介します。">
@@ -20,8 +20,8 @@
 {
   "@context": "https://schema.org",
   "@type": "NGO",
-  "name": "NPO法人ナタデコ",
-  "alternateName": "NPOナタデコ",
+  "name": "NPO法人ナタデココ",
+  "alternateName": "NPOナタデココ",
   "url": "https://natadecoco.org",
   "logo": "https://natadecoco.org/img/logo.svg",
   "description": "子どもたちに国際交流の原体験を届けるNPO法人",
@@ -101,6 +101,39 @@
         }
         .cd-quote-box p::after {
             content: "」";
+        }
+
+        @media (max-width: 640px) {
+            .cd-table thead { display: none; }
+            .cd-table, .cd-table tbody,
+            .cd-table tr, .cd-table td { display: block; width: 100%; }
+            .cd-table tr {
+                border: 1px solid #d0e4f0;
+                border-radius: 8px;
+                margin-bottom: 12px;
+                overflow: hidden;
+            }
+            .cd-table td {
+                border: none;
+                border-bottom: 1px solid #e8f5fd;
+                padding: 9px 14px;
+                display: flex;
+            }
+            .cd-table td:last-child { border-bottom: none; }
+            .cd-table td::before {
+                content: attr(data-label);
+                font-weight: 700;
+                color: #516881;
+                font-size: 11px;
+                min-width: 60px;
+                margin-right: 10px;
+                padding-top: 2px;
+                flex-shrink: 0;
+            }
+            .cd-table .col-time {
+                background-color: #eaf5fb;
+                white-space: normal;
+            }
         }
     </style>
 </head>
@@ -349,64 +382,64 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="col-time">13:00</td>
-                            <td><strong>会場入り・設営</strong></td>
-                            <td>机・椅子の配置、道具の準備、名札作成など。メンバーで分担しながら準備を進めます。</td>
+                            <td class="col-time" data-label="時間">13:00</td>
+                            <td data-label="内容"><strong>会場入り・設営</strong></td>
+                            <td data-label="動き">机・椅子の配置、道具の準備、名札作成など。メンバーで分担しながら準備を進めます。</td>
                         </tr>
                         <tr>
-                            <td class="col-time">13:15</td>
-                            <td><strong>スタッフ・ボランティアのミーティング</strong></td>
-                            <td>当日の流れや担当の確認、外国人メンバーとの顔合わせ。一度に20人ほどのボランティアが集まるので、「今日はどんな国の人がいるのかな？」とドキドキ・ワクワクの瞬間です。</td>
+                            <td class="col-time" data-label="時間">13:15</td>
+                            <td data-label="内容"><strong>スタッフ・ボランティアのミーティング</strong></td>
+                            <td data-label="動き">当日の流れや担当の確認、外国人メンバーとの顔合わせ。一度に20人ほどのボランティアが集まるので、「今日はどんな国の人がいるのかな？」とドキドキ・ワクワクの瞬間です。</td>
                         </tr>
                         <tr>
-                            <td class="col-time">13:45</td>
-                            <td><strong>子ども・保護者の受付開始</strong></td>
-                            <td>玄関で出迎え、名前の確認、子どもをグループに案内。緊張した子供たちを笑顔でお迎えします。</td>
+                            <td class="col-time" data-label="時間">13:45</td>
+                            <td data-label="内容"><strong>子ども・保護者の受付開始</strong></td>
+                            <td data-label="動き">玄関で出迎え、名前の確認、子どもをグループに案内。緊張した子供たちを笑顔でお迎えします。</td>
                         </tr>
                         <tr>
-                            <td class="col-time">14:00</td>
-                            <td><strong>アイスブレイク → グロメン自己紹介 → 風船 → サイレントジェスチャー → 世界地図</strong></td>
-                            <td>グループのサポート、盛り上げ役、困っている子のフォロー。</td>
+                            <td class="col-time" data-label="時間">14:00</td>
+                            <td data-label="内容"><strong>アイスブレイク → グロメン自己紹介 → 風船 → サイレントジェスチャー → 世界地図</strong></td>
+                            <td data-label="動き">グループのサポート、盛り上げ役、困っている子のフォロー。</td>
                         </tr>
                         <tr>
-                            <td class="col-time">14:15</td>
-                            <td><strong>自己紹介タイム</strong></td>
-                            <td>子どもと外国人メンバーが自己紹介しやすいよう会話をつなぐ。</td>
+                            <td class="col-time" data-label="時間">14:15</td>
+                            <td data-label="内容"><strong>自己紹介タイム</strong></td>
+                            <td data-label="動き">子どもと外国人メンバーが自己紹介しやすいよう会話をつなぐ。</td>
                         </tr>
                         <tr>
-                            <td class="col-time">14:30</td>
-                            <td><strong>外国の遊び①（色鬼）日本</strong></td>
-                            <td>子どもたちが安心して参加できるよう見守る。</td>
+                            <td class="col-time" data-label="時間">14:30</td>
+                            <td data-label="内容"><strong>外国の遊び①（色鬼）日本</strong></td>
+                            <td data-label="動き">子どもたちが安心して参加できるよう見守る。</td>
                         </tr>
                         <tr>
-                            <td class="col-time">14:40</td>
-                            <td><strong>外国の遊び②（キムズゲーム）英国</strong></td>
-                            <td>活動中の様子に気を配りながらサポートする。</td>
+                            <td class="col-time" data-label="時間">14:40</td>
+                            <td data-label="内容"><strong>外国の遊び②（キムズゲーム）英国</strong></td>
+                            <td data-label="動き">活動中の様子に気を配りながらサポートする。</td>
                         </tr>
                         <tr>
-                            <td class="col-time">14:50</td>
-                            <td><strong>外国の遊び③（フリーズダンス）欧米</strong></td>
-                            <td>子どもたちや外国人メンバーと一緒に体を動かして楽しむ。</td>
+                            <td class="col-time" data-label="時間">14:50</td>
+                            <td data-label="内容"><strong>外国の遊び③（フリーズダンス）欧米</strong></td>
+                            <td data-label="動き">子どもたちや外国人メンバーと一緒に体を動かして楽しむ。</td>
                         </tr>
                         <tr>
-                            <td class="col-time">15:00</td>
-                            <td><strong>クイズ大会</strong></td>
-                            <td>クイズに参加する子どもたちをサポートする。</td>
+                            <td class="col-time" data-label="時間">15:00</td>
+                            <td data-label="内容"><strong>クイズ大会</strong></td>
+                            <td data-label="動き">クイズに参加する子どもたちをサポートする。</td>
                         </tr>
                         <tr>
-                            <td class="col-time">15:15</td>
-                            <td><strong>メッセージ交換（質問カード）</strong></td>
-                            <td>子どもと外国人メンバーが自然にやり取りできるよう後押しする。</td>
+                            <td class="col-time" data-label="時間">15:15</td>
+                            <td data-label="内容"><strong>メッセージ交換（質問カード）</strong></td>
+                            <td data-label="動き">子どもと外国人メンバーが自然にやり取りできるよう後押しする。</td>
                         </tr>
                         <tr>
-                            <td class="col-time">15:30</td>
-                            <td><strong>解散・片付け</strong></td>
-                            <td>会場を元の状態に戻し、片付けを行う。</td>
+                            <td class="col-time" data-label="時間">15:30</td>
+                            <td data-label="内容"><strong>解散・片付け</strong></td>
+                            <td data-label="動き">会場を元の状態に戻し、片付けを行う。</td>
                         </tr>
                         <tr>
-                            <td class="col-time">16:30</td>
-                            <td><strong>スタッフ・外国人メンバーの振り返りミーティング</strong></td>
-                            <td>感想を共有し、次回に向けた改善点を話し合う。</td>
+                            <td class="col-time" data-label="時間">16:30</td>
+                            <td data-label="内容"><strong>スタッフ・外国人メンバーの振り返りミーティング</strong></td>
+                            <td data-label="動き">感想を共有し、次回に向けた改善点を話し合う。</td>
                         </tr>
                     </tbody>
                 </table>

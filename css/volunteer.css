@@ -600,11 +600,16 @@
 .vol-hero-inner {
     max-width: 1060px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 480px;
-    grid-template-areas: "content photo" "btn photo";
-    column-gap: 40px;
-    align-items: start;
+}
+
+@media (min-width: 901px) {
+    .vol-hero-inner {
+        display: grid;
+        grid-template-columns: 1fr 480px;
+        grid-template-areas: "content photo" "btn photo";
+        column-gap: 40px;
+        align-items: start;
+    }
 }
 
 .vol-hero-icon {

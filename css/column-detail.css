@@ -759,3 +759,68 @@
         padding: 40px 16px 50px;
     }
 }
+
+/* ===================================
+   テーブル：スマホ縦積みレイアウト
+   =================================== */
+@media (max-width: 640px) {
+    .cd-table-wrap {
+        overflow-x: visible;
+        border: none;
+        border-radius: 0;
+        margin: 16px 0;
+    }
+
+    .cd-table {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .cd-table thead {
+        display: none;
+    }
+
+    .cd-table tbody tr {
+        display: block;
+        border: 1.5px solid #d9eaf4;
+        border-radius: 10px;
+        margin-bottom: 12px;
+        overflow: hidden;
+    }
+
+    .cd-table tbody tr:last-child {
+        border-bottom: 1.5px solid #d9eaf4;
+    }
+
+    .cd-table tbody td {
+        display: flex;
+        padding: 10px 14px;
+        border-bottom: 1px solid #e8f5fd;
+        font-size: 13px;
+    }
+
+    .cd-table tbody td:last-child {
+        border-bottom: none;
+    }
+
+    .cd-table tbody td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: #516881;
+        font-size: 11px;
+        min-width: 56px;
+        margin-right: 10px;
+        padding-top: 2px;
+        flex-shrink: 0;
+    }
+
+    .cd-table tbody td:first-child {
+        white-space: normal;
+        background-color: #eaf4fb;
+        font-size: 13px;
+    }
+
+    .cd-table tbody tr.dmis-ethnorelative td:first-child {
+        background-color: #edfafa;
+    }
+}

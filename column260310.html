@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="utf-8">
@@ -11,7 +11,7 @@
     <meta property="og:title" content="総合的な学習の時間に使える国際理解プログラムとは？外部講師活用のポイント｜コラム｜NPOナタデココ">
     <meta property="og:description" content="総合的な学習の時間に国際理解教育を取り入れたい教員向けに、外部講師（外国人講師）を活用したプログラムの進め方と成功のポイントを解説します。">
     <meta property="og:image" content="https://natadecoco.org/img/logo.png">
-    <meta property="og:site_name" content="NPOナタデコ">
+    <meta property="og:site_name" content="NPOナタデココ">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="総合的な学習の時間に使える国際理解プログラムとは？外部講師活用のポイント｜コラム｜NPOナタデココ">
     <meta name="twitter:description" content="総合的な学習の時間に国際理解教育を取り入れたい教員向けに、外部講師（外国人講師）を活用したプログラムの進め方と成功のポイントを解説します。">
@@ -20,8 +20,8 @@
 {
   "@context": "https://schema.org",
   "@type": "NGO",
-  "name": "NPO法人ナタデコ",
-  "alternateName": "NPOナタデコ",
+  "name": "NPO法人ナタデココ",
+  "alternateName": "NPOナタデココ",
   "url": "https://natadecoco.org",
   "logo": "https://natadecoco.org/img/logo.svg",
   "description": "子どもたちに国際交流の原体験を届けるNPO法人",
@@ -112,6 +112,40 @@
             position: absolute;
             left: 0;
             font-size: 0.8rem;
+        }
+
+        @media (max-width: 640px) {
+            .cd-table thead { display: none; }
+            .cd-table, .cd-table tbody,
+            .cd-table tr, .cd-table td { display: block; width: 100%; }
+            .cd-table tr {
+                border: 1px solid #d0e4f0;
+                border-radius: 8px;
+                margin-bottom: 12px;
+                overflow: hidden;
+            }
+            .cd-table td {
+                border: none;
+                border-bottom: 1px solid #e8f5fd;
+                padding: 9px 14px;
+                display: flex;
+            }
+            .cd-table td:last-child { border-bottom: none; }
+            .cd-table td::before {
+                content: attr(data-label);
+                font-weight: 700;
+                color: #516881;
+                font-size: 11px;
+                min-width: 60px;
+                margin-right: 10px;
+                padding-top: 2px;
+                flex-shrink: 0;
+            }
+            .cd-table-step td:first-child {
+                text-align: left;
+                width: 100%;
+                background-color: #eaf5fb;
+            }
         }
     </style>
 </head>
@@ -403,34 +437,34 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>1</td>
-                            <td><strong>テーマ・目標の設定</strong><br>授業で子どもに何を体験・気づかせたいかを明確にする</td>
-                            <td>実施の2〜3ヶ月前</td>
+                            <td data-label="STEP">1</td>
+                            <td data-label="内容"><strong>テーマ・目標の設定</strong><br>授業で子どもに何を体験・気づかせたいかを明確にする</td>
+                            <td data-label="目安">実施の2〜3ヶ月前</td>
                         </tr>
                         <tr>
-                            <td>2</td>
-                            <td><strong>外部講師（団体）への問い合わせ</strong><br>NPO・国際交流協会などに連絡し、プログラム内容・費用・日程を確認する</td>
-                            <td>実施の2ヶ月前</td>
+                            <td data-label="STEP">2</td>
+                            <td data-label="内容"><strong>外部講師（団体）への問い合わせ</strong><br>NPO・国際交流協会などに連絡し、プログラム内容・費用・日程を確認する</td>
+                            <td data-label="目安">実施の2ヶ月前</td>
                         </tr>
                         <tr>
-                            <td>3</td>
-                            <td><strong>事前打ち合わせ</strong><br>学年・クラス数・子どもの様子・学校のルールなどを共有する</td>
-                            <td>実施の1〜2週間前</td>
+                            <td data-label="STEP">3</td>
+                            <td data-label="内容"><strong>事前打ち合わせ</strong><br>学年・クラス数・子どもの様子・学校のルールなどを共有する</td>
+                            <td data-label="目安">実施の1〜2週間前</td>
                         </tr>
                         <tr>
-                            <td>4</td>
-                            <td><strong>子どもへの事前学習</strong><br>講師の出身国や文化について簡単に学んでおくと、当日の交流が深まる</td>
-                            <td>実施の数日前</td>
+                            <td data-label="STEP">4</td>
+                            <td data-label="内容"><strong>子どもへの事前学習</strong><br>講師の出身国や文化について簡単に学んでおくと、当日の交流が深まる</td>
+                            <td data-label="目安">実施の数日前</td>
                         </tr>
                         <tr>
-                            <td>5</td>
-                            <td><strong>授業当日</strong><br>プログラム実施。教員はサポートや記録に回る</td>
-                            <td>当日</td>
+                            <td data-label="STEP">5</td>
+                            <td data-label="内容"><strong>授業当日</strong><br>プログラム実施。教員はサポートや記録に回る</td>
+                            <td data-label="目安">当日</td>
                         </tr>
                         <tr>
-                            <td>6</td>
-                            <td><strong>振り返り・まとめ</strong><br>感想文・発表・壁新聞など、学びを言語化・共有する活動を行う</td>
-                            <td>実施後1〜2週間</td>
+                            <td data-label="STEP">6</td>
+                            <td data-label="内容"><strong>振り返り・まとめ</strong><br>感想文・発表・壁新聞など、学びを言語化・共有する活動を行う</td>
+                            <td data-label="目安">実施後1〜2週間</td>
                         </tr>
                     </tbody>
                 </table>
@@ -477,24 +511,24 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>国際交流協会</td>
-                            <td>行政との連携実績が豊富。費用が低めな場合が多い</td>
-                            <td>はじめての依頼、費用を抑えたい場合</td>
+                            <td data-label="依頼先">国際交流協会</td>
+                            <td data-label="特徴">行政との連携実績が豊富。費用が低めな場合が多い</td>
+                            <td data-label="向いているケース">はじめての依頼、費用を抑えたい場合</td>
                         </tr>
                         <tr>
-                            <td>NPO法人</td>
-                            <td>体験型プログラムの設計・進行に長けている場合が多い。多国籍の講師が揃っていることも</td>
-                            <td>複数国の文化を比較したい、継続的な連携を考えている場合</td>
+                            <td data-label="依頼先">NPO法人</td>
+                            <td data-label="特徴">体験型プログラムの設計・進行に長けている場合が多い。多国籍の講師が揃っていることも</td>
+                            <td data-label="向いているケース">複数国の文化を比較したい、継続的な連携を考えている場合</td>
                         </tr>
                         <tr>
-                            <td>JICAボランティア経験者</td>
-                            <td>途上国の生活やSDGsの視点を持った語り手として有効</td>
-                            <td>SDGs・国際協力テーマと組み合わせたい場合</td>
+                            <td data-label="依頼先">JICAボランティア経験者</td>
+                            <td data-label="特徴">途上国の生活やSDGsの視点を持った語り手として有効</td>
+                            <td data-label="向いているケース">SDGs・国際協力テーマと組み合わせたい場合</td>
                         </tr>
                         <tr>
-                            <td>大学留学生</td>
-                            <td>子どもと年齢が近く親しみやすい。費用が低めな場合が多い</td>
-                            <td>英語や文化紹介に特化したシンプルな授業</td>
+                            <td data-label="依頼先">大学留学生</td>
+                            <td data-label="特徴">子どもと年齢が近く親しみやすい。費用が低めな場合が多い</td>
+                            <td data-label="向いているケース">英語や文化紹介に特化したシンプルな授業</td>
                         </tr>
                     </tbody>
                 </table>

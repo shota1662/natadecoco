@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="utf-8">
@@ -11,7 +11,7 @@
     <meta property="og:title" content="子どもに国際感覚を身につけさせたい…そんなときに親がまず知っておきたいこと｜コラム｜NPOナタデココ">
     <meta property="og:description" content="「国際感覚」の本当の意味を整理したうえで、保護者が知っておきたい考え方や、子どもの年齢に応じた育て方のヒントをお伝えします。">
     <meta property="og:image" content="https://natadecoco.org/img/logo.png">
-    <meta property="og:site_name" content="NPOナタデコ">
+    <meta property="og:site_name" content="NPOナタデココ">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="子どもに国際感覚を身につけさせたい…そんなときに親がまず知っておきたいこと｜コラム｜NPOナタデココ">
     <meta name="twitter:description" content="「国際感覚」の本当の意味を整理したうえで、保護者が知っておきたい考え方や、子どもの年齢に応じた育て方のヒントをお伝えします。">
@@ -20,8 +20,8 @@
 {
   "@context": "https://schema.org",
   "@type": "NGO",
-  "name": "NPO法人ナタデコ",
-  "alternateName": "NPOナタデコ",
+  "name": "NPO法人ナタデココ",
+  "alternateName": "NPOナタデココ",
   "url": "https://natadecoco.org",
   "logo": "https://natadecoco.org/img/logo.svg",
   "description": "子どもたちに国際交流の原体験を届けるNPO法人",
@@ -127,6 +127,71 @@
             color: #2a3e4f;
             white-space: nowrap;
             width: 110px;
+        }
+
+        @media (max-width: 640px) {
+            .cd-table thead {
+                display: none;
+            }
+            .cd-table,
+            .cd-table tbody,
+            .cd-table tr,
+            .cd-table td {
+                display: block;
+                width: 100%;
+            }
+            .cd-table tr {
+                border: 1px solid #d0e4f0;
+                border-radius: 8px;
+                margin-bottom: 12px;
+                overflow: hidden;
+            }
+            .cd-table td {
+                border: none;
+                border-bottom: 1px solid #e8f5fd;
+                padding: 9px 14px;
+                display: flex;
+            }
+            .cd-table td:last-child {
+                border-bottom: none;
+            }
+            .cd-table td::before {
+                content: attr(data-label);
+                font-weight: 700;
+                color: #516881;
+                font-size: 11px;
+                min-width: 60px;
+                margin-right: 10px;
+                padding-top: 2px;
+                flex-shrink: 0;
+            }
+            .cd-table th[scope] {
+                white-space: normal;
+            }
+
+            .cd-program-box table,
+            .cd-program-box tbody,
+            .cd-program-box tr,
+            .cd-program-box td {
+                display: block;
+                width: 100%;
+            }
+            .cd-program-box td:first-child {
+                white-space: normal;
+                width: 100%;
+                background-color: #d4ecf7;
+                padding: 6px 10px;
+                border-radius: 4px 4px 0 0;
+            }
+            .cd-program-box td:last-child {
+                padding: 8px 10px 14px;
+            }
+            .cd-program-box tr {
+                margin-bottom: 12px;
+                border: 1px solid #b8d9ee;
+                border-radius: 6px;
+                overflow: hidden;
+            }
         }
     </style>
 </head>
@@ -373,19 +438,19 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>語学力</td>
-                            <td>外国語でコミュニケーションできる力</td>
-                            <td>語学力だけでは国際感覚とは言えない</td>
+                            <td data-label="軸">語学力</td>
+                            <td data-label="内容">外国語でコミュニケーションできる力</td>
+                            <td data-label="注意">語学力だけでは国際感覚とは言えない</td>
                         </tr>
                         <tr>
-                            <td>知識・教養</td>
-                            <td>世界の地理・歴史・文化・社会問題への理解</td>
-                            <td>知識があっても共感や好奇心がなければ活きない</td>
+                            <td data-label="軸">知識・教養</td>
+                            <td data-label="内容">世界の地理・歴史・文化・社会問題への理解</td>
+                            <td data-label="注意">知識があっても共感や好奇心がなければ活きない</td>
                         </tr>
                         <tr>
-                            <td>姿勢・マインドセット</td>
-                            <td>違いを面白いと思える好奇心、相手の立場に立てる共感力、異なる価値観を尊重する態度</td>
-                            <td>最も根本的であり、最も育てにくい</td>
+                            <td data-label="軸">姿勢・マインドセット</td>
+                            <td data-label="内容">違いを面白いと思える好奇心、相手の立場に立てる共感力、異なる価値観を尊重する態度</td>
+                            <td data-label="注意">最も根本的であり、最も育てにくい</td>
                         </tr>
                     </tbody>
                 </table>
@@ -453,19 +518,19 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>未就学（〜6歳）</td>
-                            <td>感覚・感情で世界を受け取る時期。「楽しい・好き」という体験が記憶に残りやすい</td>
-                            <td>絵本・音楽・食べ物など感覚的な異文化体験。外国人の大人との楽しい時間。</td>
+                            <td data-label="年齢">未就学（〜6歳）</td>
+                            <td data-label="特徴">感覚・感情で世界を受け取る時期。「楽しい・好き」という体験が記憶に残りやすい</td>
+                            <td data-label="アプローチ">絵本・音楽・食べ物など感覚的な異文化体験。外国人の大人との楽しい時間。</td>
                         </tr>
                         <tr>
-                            <td>小学校低学年（7〜9歳）</td>
-                            <td>好奇心が爆発する時期。「なぜ？」「どうして？」への向き合い方が大切</td>
-                            <td>世界の文化クイズ・ゲーム。地球儀や世界地図に触れる機会。外国人との交流体験。</td>
+                            <td data-label="年齢">小学校低学年（7〜9歳）</td>
+                            <td data-label="特徴">好奇心が爆発する時期。「なぜ？」「どうして？」への向き合い方が大切</td>
+                            <td data-label="アプローチ">世界の文化クイズ・ゲーム。地球儀や世界地図に触れる機会。外国人との交流体験。</td>
                         </tr>
                         <tr>
-                            <td>小学校高学年（10〜12歳）</td>
-                            <td>論理的思考が育ち、「違い」を比べ・考えられるようになる</td>
-                            <td>SDGsや世界の社会問題への関心。外国人とのより深い対話。英語学習の動機づけ。</td>
+                            <td data-label="年齢">小学校高学年（10〜12歳）</td>
+                            <td data-label="特徴">論理的思考が育ち、「違い」を比べ・考えられるようになる</td>
+                            <td data-label="アプローチ">SDGsや世界の社会問題への関心。外国人とのより深い対話。英語学習の動機づけ。</td>
                         </tr>
                     </tbody>
                 </table>

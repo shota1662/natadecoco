@@ -1792,7 +1792,9 @@ h2 {
     }
 
     .top-letter {
-        display: none;
+        width: 28%;
+        bottom: 7%;
+        right: 7%;
     }
 
     .top-event-btn-wrap {

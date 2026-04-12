@@ -633,10 +633,13 @@
         submitBtn.disabled = true;
         submitBtn.textContent = '送信中...';
         try {
-            const res = await fetch('https://formspree.io/f/mkoppney', {
+            const formData = new FormData(form);
+                const obj = { formType: 'event-20260405' };
+                formData.forEach(function(v, k) { obj[k] = v; });
+                const res = await fetch('https://script.google.com/macros/s/AKfycbwMcxbx7N8vb_5j_5rkssjm9bxRlJLQwYHUGEHxVgI3Cd3ZwNH0KBQLbwMIR-lWNoVa-g/exec', {
                 method: 'POST',
-                body: new FormData(form),
-                headers: { 'Accept': 'application/json' }
+                                body: JSON.stringify(obj),
+                headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
             });
             if (res.ok) {
                 form.style.display = 'none';

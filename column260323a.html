@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="utf-8">
@@ -11,7 +11,7 @@
     <meta property="og:title" content="外国人講師を最高の学びのパートナーにしよう〜体験型授業がもたらす学びとは〜｜コラム｜NPOナタデココ">
     <meta property="og:description" content="外国人講師との体験型授業が子どもにもたらす学びの効果と、授業設計に活かせる視点を国際文化交流・国際理解教育の観点から解説します。">
     <meta property="og:image" content="https://natadecoco.org/img/logo.png">
-    <meta property="og:site_name" content="NPOナタデコ">
+    <meta property="og:site_name" content="NPOナタデココ">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="外国人講師を最高の学びのパートナーにしよう〜体験型授業がもたらす学びとは〜｜コラム｜NPOナタデココ">
     <meta name="twitter:description" content="外国人講師との体験型授業が子どもにもたらす学びの効果と、授業設計に活かせる視点を国際文化交流・国際理解教育の観点から解説します。">
@@ -20,8 +20,8 @@
 {
   "@context": "https://schema.org",
   "@type": "NGO",
-  "name": "NPO法人ナタデコ",
-  "alternateName": "NPOナタデコ",
+  "name": "NPO法人ナタデココ",
+  "alternateName": "NPOナタデココ",
   "url": "https://natadecoco.org",
   "logo": "https://natadecoco.org/img/logo.svg",
   "description": "子どもたちに国際交流の原体験を届けるNPO法人",
@@ -91,6 +91,39 @@
             color: #30b9bf;
             display: block;
             margin-bottom: 4px;
+        }
+
+        @media (max-width: 640px) {
+            .cd-table thead { display: none; }
+            .cd-table, .cd-table tbody,
+            .cd-table tr, .cd-table td { display: block; width: 100%; }
+            .cd-table tr {
+                border: 1px solid #d0e4f0;
+                border-radius: 8px;
+                margin-bottom: 12px;
+                overflow: hidden;
+            }
+            .cd-table td {
+                border: none;
+                border-bottom: 1px solid #e8f5fd;
+                padding: 9px 14px;
+                display: flex;
+            }
+            .cd-table td:last-child { border-bottom: none; }
+            .cd-table td::before {
+                content: attr(data-label);
+                font-weight: 700;
+                color: #516881;
+                font-size: 11px;
+                min-width: 60px;
+                margin-right: 10px;
+                padding-top: 2px;
+                flex-shrink: 0;
+            }
+            .cd-table td:first-child {
+                background-color: #eaf5fb;
+                font-weight: 700;
+            }
         }
     </style>
 </head>
@@ -361,24 +394,24 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>情報の受け取り方</td>
-                            <td>児童・生徒がリアルな「人」から直接体験や対話を得る</td>
-                            <td>教員から伝達されたり、書かれた知識・映像から得る</td>
+                            <td data-label="項目">情報の受け取り方</td>
+                            <td data-label="体験型">児童・生徒がリアルな「人」から直接体験や対話を得る</td>
+                            <td data-label="座学">教員から伝達されたり、書かれた知識・映像から得る</td>
                         </tr>
                         <tr>
-                            <td>感情の動き</td>
-                            <td>驚き・共感・好奇心が生まれやすい</td>
-                            <td>比較的静的</td>
+                            <td data-label="項目">感情の動き</td>
+                            <td data-label="体験型">驚き・共感・好奇心が生まれやすい</td>
+                            <td data-label="座学">比較的静的</td>
                         </tr>
                         <tr>
-                            <td>記憶への残りやすさ</td>
-                            <td>エピソード記憶として定着しやすい</td>
-                            <td>繰り返しがないと忘れやすい</td>
+                            <td data-label="項目">記憶への残りやすさ</td>
+                            <td data-label="体験型">エピソード記憶として定着しやすい</td>
+                            <td data-label="座学">繰り返しがないと忘れやすい</td>
                         </tr>
                         <tr>
-                            <td>クラスの雰囲気</td>
-                            <td>自然な笑い・やりとりが生まれる</td>
-                            <td>整然とした受信状態</td>
+                            <td data-label="項目">クラスの雰囲気</td>
+                            <td data-label="体験型">自然な笑い・やりとりが生まれる</td>
+                            <td data-label="座学">整然とした受信状態</td>
                         </tr>
                     </tbody>
                 </table>
