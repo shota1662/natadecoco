@@ -51,22 +51,27 @@ async function getGA4Data() {
 
   console.log(`GA4 取得期間: ${curr.startDate} 〜 ${curr.endDate}`);
 
-  // 概要指標（今週 vs 先週）
-  const [overview] = await client.runReport({
-    property: `properties/${GA4_PROPERTY_ID}`,
-    dateRanges: [
-      { ...curr, name: 'current' },
-      { ...prev, name: 'previous' }
-    ],
-    metrics: [
-      { name: 'screenPageViews' },
-      { name: 'activeUsers' },
-      { name: 'sessions' },
-      { name: 'bounceRate' },
-      { name: 'averageSessionDuration' }
-    ],
-    dimensions: [{ name: 'dateRange' }]
-  });
+  const OVERVIEW_METRICS = [
+    { name: 'screenPageViews' },
+    { name: 'activeUsers' },
+    { name: 'sessions' },
+    { name: 'bounceRate' },
+    { name: 'averageSessionDuration' }
+  ];
+
+  // 概要指標（今週・先週を別々に取得）
+  const [[overviewCurr], [overviewPrev]] = await Promise.all([
+    client.runReport({
+      property: `properties/${GA4_PROPERTY_ID}`,
+      dateRanges: [curr],
+      metrics: OVERVIEW_METRICS
+    }),
+    client.runReport({
+      property: `properties/${GA4_PROPERTY_ID}`,
+      dateRanges: [prev],
+      metrics: OVERVIEW_METRICS
+    })
+  ]);
 
   // 流入チャネル
   const [sources] = await client.runReport({
@@ -92,7 +97,7 @@ async function getGA4Data() {
     limit: 10
   });
 
-  return { overview, sources, pages, curr, prev };
+  return { overviewCurr, overviewPrev, sources, pages, curr, prev };
 }
 
 // ─── Search Console データ取得 ─────────────────────────────
@@ -138,11 +143,11 @@ async function getSearchConsoleData() {
 
 // ─── Markdown レポート生成 ─────────────────────────────────
 function buildMarkdown(ga4, sc) {
-  const { overview, sources, pages, curr } = ga4;
+  const { overviewCurr, overviewPrev, sources, pages, curr } = ga4;
   const { overall, queries, scPages } = sc;
 
-  const rowCurr = overview.rows?.find(r => r.dimensionValues[0].value === 'current');
-  const rowPrev = overview.rows?.find(r => r.dimensionValues[0].value === 'previous');
+  const rowCurr = overviewCurr.rows?.[0];
+  const rowPrev = overviewPrev.rows?.[0];
   const m = (row, idx) => parseFloat(row?.metricValues?.[idx]?.value || 0);
 
   const pvC = m(rowCurr, 0), pvP = m(rowPrev, 0);
