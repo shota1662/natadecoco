@@ -633,24 +633,18 @@
             var formData = new FormData(form);
             var obj = { formType: eventSel.value };
             formData.forEach(function(v, k) { obj[k] = v; });
-            var res = await fetch(GAS_URL, {
+            await fetch(GAS_URL, {
                 method: 'POST',
                 body: JSON.stringify(obj),
                 headers: { 'Accept': 'application/json' }
             });
-            if (res.ok) {
-                form.style.display = 'none';
-                document.getElementById('sent-title').textContent = isCamp ? '仮申し込みを受け付けました' : '申し込みを受け付けました';
-                document.getElementById('sent-body').innerHTML = isCamp
-                    ? '正式受付開始時にご登録のメールアドレスへご案内をお送りします。<br>しばらくお待ちください。'
-                    : 'ご登録のメールアドレスに確認メールをお送りします。<br>しばらくお待ちください。';
-                document.getElementById('sent-msg').style.display = 'block';
-                document.getElementById('sent-msg').scrollIntoView({ behavior: 'smooth', block: 'center' });
-            } else {
-                document.getElementById('error-msg').style.display = 'block';
-                submitBtn.disabled = false;
-                submitBtn.textContent = isCamp ? '仮申し込みを送信する' : '申し込みを送信する';
-            }
+            form.style.display = 'none';
+            document.getElementById('sent-title').textContent = isCamp ? '仮申し込みを受け付けました' : '申し込みを受け付けました';
+            document.getElementById('sent-body').innerHTML = isCamp
+                ? '正式受付開始時にご登録のメールアドレスへご案内をお送りします。<br>しばらくお待ちください。'
+                : 'ご登録のメールアドレスに確認メールをお送りします。<br>しばらくお待ちください。';
+            document.getElementById('sent-msg').style.display = 'block';
+            document.getElementById('sent-msg').scrollIntoView({ behavior: 'smooth', block: 'center' });
         } catch(err) {
             document.getElementById('error-msg').style.display = 'block';
             submitBtn.disabled = false;

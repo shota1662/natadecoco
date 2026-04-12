@@ -395,23 +395,15 @@
             const formData = new FormData(form);
                 const obj = { formType: 'contact' };
                 formData.forEach(function(v, k) { obj[k] = v; });
-                const res = await fetch('https://script.google.com/macros/s/AKfycbwMcxbx7N8vb_5j_5rkssjm9bxRlJLQwYHUGEHxVgI3Cd3ZwNH0KBQLbwMIR-lWNoVa-g/exec', {
+                await fetch('https://script.google.com/macros/s/AKfycbwMcxbx7N8vb_5j_5rkssjm9bxRlJLQwYHUGEHxVgI3Cd3ZwNH0KBQLbwMIR-lWNoVa-g/exec', {
                 method: 'POST',
-                                body: JSON.stringify(obj),
+                body: JSON.stringify(obj),
                 headers: { 'Accept': 'application/json' }
             });
-            if (res.ok) {
-                document.getElementById('contact-form-section').style.display = 'none';
-                var el = document.getElementById('contact-sent-msg');
-                el.style.display = 'flex';
-                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            } else {
-                var el = document.getElementById('contact-error-msg');
-                el.style.display = 'flex';
-                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                submitBtn.disabled = false;
-                submitSpan.textContent = '送信する';
-            }
+            document.getElementById('contact-form-section').style.display = 'none';
+            var el = document.getElementById('contact-sent-msg');
+            el.style.display = 'flex';
+            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
         } catch {
             var el = document.getElementById('contact-error-msg');
             el.style.display = 'flex';
