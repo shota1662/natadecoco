@@ -1,11 +1,12 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import './globals.css'
 import Header from './components/Header'
 import Footer from './components/Footer'
 
 export const metadata: Metadata = {
-  title: 'ボランティア管理システム | NPOナタデココ',
-  description: 'NPOナタデココのボランティア登録・イベント管理システムです。',
+  title: 'ボランティア管理システム | NPOナタデコ',
+  description: 'NPOナタデコのボランティア登録・イベント管理システムです。',
+  icons: { icon: '/icon.png', apple: '/icon.png' },
 }
 
 function isSupabaseConfigured() {
@@ -92,3 +93,4 @@ export default function RootLayout({
     </html>
   )
 }
+
