@@ -5,6 +5,7 @@
 const { BetaAnalyticsDataClient } = require('@google-analytics/data');
 const { google } = require('googleapis');
 const Anthropic = require('@anthropic-ai/sdk');
+const nodemailer = require('nodemailer');
 const fs = require('fs');
 const path = require('path');
 
@@ -241,6 +242,40 @@ ${reportMd}
   return message.content[0].text;
 }
 
+// ─── メール送信 ───────────────────────────────────────────
+async function sendEmail(subject, markdownBody) {
+  const user = process.env.GMAIL_USER;
+  const pass = process.env.GMAIL_APP_PASSWORD;
+  if (!user || !pass) {
+    console.log('メール設定なし（GMAIL_USER / GMAIL_APP_PASSWORD 未設定）。スキップします。');
+    return;
+  }
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: { user, pass }
+  });
+
+  // MarkdownをシンプルなHTMLに変換（テーブル・見出し対応）
+  const html = markdownBody
+    .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/^---$/gm, '<hr>')
+    .replace(/\n/g, '<br>');
+
+  await transporter.sendMail({
+    from: `"ナタデコ週次レポート" <${user}>`,
+    to: user,
+    subject,
+    text: markdownBody,
+    html: `<div style="font-family:sans-serif;max-width:800px;margin:auto">${html}</div>`
+  });
+
+  console.log(`メール送信完了: ${user}`);
+}
+
 // ─── メイン ───────────────────────────────────────────────
 async function main() {
   console.log('=== 週次レポート生成開始 ===');
@@ -267,7 +302,10 @@ async function main() {
   fs.writeFileSync(filepath, fullReport, 'utf8');
 
   console.log(`\nレポート保存完了: report/outputs/${filename}`);
-  console.log('\n' + fullReport);
+
+  // メール送信
+  const subject = `【ナタデコ週次レポート】${ga4Data.curr.startDate} 〜 ${ga4Data.curr.endDate}`;
+  await sendEmail(subject, fullReport);
 }
 
 main().catch(err => {
