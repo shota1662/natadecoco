@@ -333,27 +333,28 @@ async function getInstagramData() {
     }
   }
 
-  // デバッグ用ログ
-  console.log('[DEBUG] insightsNewRes:', JSON.stringify(insightsNewRes, null, 2));
-  console.log('[DEBUG] insightsOldRes:', JSON.stringify(insightsOldRes, null, 2));
-
-  // 週次インサイト（日次合計を算出）
-  const sumValues = (metricData) =>
-    (metricData?.values || []).reduce((sum, v) => sum + (v.value ?? 0), 0);
-
+  // 週次インサイト（metric_type=total_value 形式: total_value.value を使用）
   let impressions = 0, totalInteractions = 0;
   if (insightsNewRes?.data) {
     for (const metric of insightsNewRes.data) {
-      if (metric.name === 'views') impressions = sumValues(metric);
-      if (metric.name === 'total_interactions') totalInteractions = sumValues(metric);
+      const val = metric.total_value?.value ?? 0;
+      console.log(`Instagram insights(new) ${metric.name}: ${val}`);
+      if (metric.name === 'views') impressions = val;
+      if (metric.name === 'total_interactions') totalInteractions = val;
     }
   }
+
+  // 週次インサイト（period=day 形式: values[] の合計）
+  const sumValues = (metricData) =>
+    (metricData?.values || []).reduce((sum, v) => sum + (v.value ?? 0), 0);
 
   let reach = 0, profileViews = 0;
   if (insightsOldRes?.data) {
     for (const metric of insightsOldRes.data) {
-      if (metric.name === 'reach') reach = sumValues(metric);
-      if (metric.name === 'profile_views') profileViews = sumValues(metric);
+      const val = sumValues(metric);
+      console.log(`Instagram insights(old) ${metric.name}: ${val}`);
+      if (metric.name === 'reach') reach = val;
+      if (metric.name === 'profile_views') profileViews = val;
     }
   }
 
