@@ -602,7 +602,7 @@ ${instagram.topPosts.length > 0 ? `- ベスト投稿TOP3（リーチ順）:\n${i
 
   const message = await client.messages.create({
     model: 'claude-opus-4-6',
-    max_tokens: 4000,
+    max_tokens: 8000,
     messages: [{
       role: 'user',
       content: `あなたはNPO法人ナタデコのWebサイト・SNS改善コンサルタントです。
