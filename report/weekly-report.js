@@ -605,7 +605,7 @@ ${instagram.topPosts.length > 0 ? `- ベスト投稿TOP3（リーチ順）:\n${i
     max_tokens: 4000,
     messages: [{
       role: 'user',
-      content: `あなたはNPO法人ナタデコのWebサイト・SNS改善コンサルタントです。
+      content: `あなたはNPO法人ナタデココのWebサイト・SNS改善コンサルタントです。
 
 ## サイト概要
 - URL: https://natadecoco.org
@@ -707,7 +707,7 @@ async function sendEmail(subject, markdownBody) {
   console.log(`メールHTMLサイズ: ${(htmlSize / 1024).toFixed(1)} KB`);
 
   await transporter.sendMail({
-    from: `"ナタデコ週次レポート" <${user}>`,
+    from: `"ナタデココ週次レポート" <${user}>`,
     to: user,
     subject,
     html: `<div style="font-family:sans-serif;max-width:800px;margin:auto;padding:16px">${html}</div>`
@@ -767,7 +767,7 @@ async function main() {
   console.log(`\nレポート保存完了: report/outputs/${filename}`);
 
   // メール送信
-  const subject = `【ナタデコ週次レポート】${ga4Data.curr.startDate} 〜 ${ga4Data.curr.endDate}`;
+  const subject = `【ナタデココ週次レポート】${ga4Data.curr.startDate} 〜 ${ga4Data.curr.endDate}`;
   await sendEmail(subject, fullReport);
 }
 
