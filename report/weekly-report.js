@@ -353,13 +353,14 @@ async function getInstagramData() {
     }
   }
 
-  // 投稿TOP3（今週分・いいね数 + 保存数の合計順）
+  // 投稿TOP3（今月分・いいね数 + 保存数の合計順）
   let topPosts = [];
   if (mediaRes?.data) {
-    const thisWeekPosts = mediaRes.data.filter(post =>
-      new Date(post.timestamp) >= weekMonday
+    const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+    const thisMonthPosts = mediaRes.data.filter(post =>
+      new Date(post.timestamp) >= monthStart
     );
-    const targetPosts = thisWeekPosts.length > 0 ? thisWeekPosts : mediaRes.data.slice(0, 10);
+    const targetPosts = thisMonthPosts.length > 0 ? thisMonthPosts : mediaRes.data.slice(0, 10);
     const posts = targetPosts.map(post => {
       const saved = post.insights?.data?.find(d => d.name === 'saved')?.values?.[0]?.value ?? 0;
       const score = (post.like_count ?? 0) + saved;
@@ -373,7 +374,7 @@ async function getInstagramData() {
       };
     });
     topPosts = posts.sort((a, b) => b.score - a.score).slice(0, 3);
-    if (thisWeekPosts.length === 0) console.log('今週の投稿なし。直近10件から集計します。');
+    if (thisMonthPosts.length === 0) console.log('今月の投稿なし。直近10件から集計します。');
   }
 
   // トークン期限チェック・自動更新
@@ -561,7 +562,7 @@ function buildMarkdown(ga4, sc, instagram, costs) {
     md += `| プロフィールアクセス | ${instagram.profileViews.toLocaleString()} |\n\n`;
 
     if (instagram.topPosts.length > 0) {
-      md += `### 今週のベスト投稿 TOP${instagram.topPosts.length}（いいね＋保存数順）\n\n`;
+      md += `### 今月のベスト投稿 TOP${instagram.topPosts.length}（いいね＋保存数順）\n\n`;
       md += `| 投稿 | いいね | 保存 | コメント |\n`;
       md += `|------|------:|----:|---------:|\n`;
       for (const post of instagram.topPosts) {
