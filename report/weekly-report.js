@@ -294,26 +294,38 @@ async function getInstagramData() {
 
   console.log(`Instagram 取得期間: ${curr.startDate} 〜 ${curr.endDate} (${since} 〜 ${until})`);
 
-  // metric_type=total_value が必要な新指標（views, total_interactions）
-  const insightsNewUrl = `${base}/${INSTAGRAM_USER_ID}/insights?metric=views,total_interactions&metric_type=total_value&period=day&since=${since}&until=${until}&${token}`;
-  // period=day で取得して週合計を算出する指標（reach, profile_views）
-  const insightsOldUrl = `${base}/${INSTAGRAM_USER_ID}/insights?metric=reach,profile_views&period=day&since=${since}&until=${until}&${token}`;
+  // 全指標を metric_type=total_value で一括取得
+  const insightsUrl = `${base}/${INSTAGRAM_USER_ID}/insights?metric=views,total_interactions,reach,profile_views&metric_type=total_value&period=day&since=${since}&until=${until}&${token}`;
   // follower_count は period=day のみ対応のため個別取得
   const followerUrl = `${base}/${INSTAGRAM_USER_ID}/insights?metric=follower_count&period=day&${token}`;
-  // 投稿一覧（今週分のみ・インサイト付き）
+  // 投稿一覧（今月分・インサイト付き）
   const mediaUrl = `${base}/${INSTAGRAM_USER_ID}/media?fields=id,caption,timestamp,like_count,comments_count,insights.metric(views,reach,saved)&limit=50&${token}`;
   // トークン期限チェック
   const debugUrl = `${base}/debug_token?input_token=${INSTAGRAM_ACCESS_TOKEN}&access_token=${META_APP_ID}|${META_APP_SECRET}`;
 
-  const [insightsNewRes, insightsOldRes, followerRes, mediaRes, debugRes] = await Promise.all([
-    httpsGet(insightsNewUrl).catch(e => { console.warn('insights(new)取得失敗:', e.message); return null; }),
-    httpsGet(insightsOldUrl).catch(e => { console.warn('insights(old)取得失敗:', e.message); return null; }),
+  // デバッグ用：URLをトークンなしで出力
+  console.log(`insightsURL(no token): ${base}/${INSTAGRAM_USER_ID}/insights?metric=views,total_interactions,reach,profile_views&metric_type=total_value&period=day&since=${since}&until=${until}`);
+
+  const [insightsRes, followerRes, mediaRes, debugRes] = await Promise.all([
+    httpsGet(insightsUrl).catch(e => { console.warn('insights取得失敗:', e.message); return null; }),
     httpsGet(followerUrl).catch(e => { console.warn('follower_count取得失敗:', e.message); return null; }),
     httpsGet(mediaUrl).catch(e => { console.warn('media取得失敗:', e.message); return null; }),
     (META_APP_ID && META_APP_SECRET)
       ? httpsGet(debugUrl).catch(e => { console.warn('token debug取得失敗:', e.message); return null; })
       : Promise.resolve(null)
   ]);
+
+  // デバッグ：レスポンス構造を確認
+  if (insightsRes) {
+    console.log('insightsRes keys:', Object.keys(insightsRes).join(','));
+    if (insightsRes.error) {
+      console.error('Instagram insights APIエラー:', JSON.stringify(insightsRes.error));
+    } else if (insightsRes.data) {
+      console.log('insightsRes.data 件数:', insightsRes.data.length);
+    }
+  } else {
+    console.warn('insightsRes が null（ネットワークエラーか例外）');
+  }
 
   // フォロワー数（直近2日分から増減を計算）
   let followerCount = null;
@@ -332,34 +344,23 @@ async function getInstagramData() {
   }
 
   // 週次インサイト（metric_type=total_value 形式: total_value.value を使用）
-  let impressions = 0, totalInteractions = 0;
-  if (insightsNewRes?.data) {
-    for (const metric of insightsNewRes.data) {
+  let impressions = 0, totalInteractions = 0, reach = 0, profileViews = 0;
+  if (insightsRes?.data) {
+    for (const metric of insightsRes.data) {
       const val = metric.total_value?.value ?? 0;
-      console.log(`Instagram insights(new) ${metric.name}: ${val}`);
+      console.log(`Instagram insights ${metric.name}: ${val}`);
       if (metric.name === 'views') impressions = val;
       if (metric.name === 'total_interactions') totalInteractions = val;
-    }
-  }
-
-  // 週次インサイト（period=day 形式: values[] の合計）
-  const sumValues = (metricData) =>
-    (metricData?.values || []).reduce((sum, v) => sum + (v.value ?? 0), 0);
-
-  let reach = 0, profileViews = 0;
-  if (insightsOldRes?.data) {
-    for (const metric of insightsOldRes.data) {
-      const val = sumValues(metric);
-      console.log(`Instagram insights(old) ${metric.name}: ${val}`);
       if (metric.name === 'reach') reach = val;
       if (metric.name === 'profile_views') profileViews = val;
     }
   }
 
   // 投稿TOP3（今月分・いいね数 + 保存数の合計順）
+  const reportNow = new Date();
   let topPosts = [];
   if (mediaRes?.data) {
-    const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+    const monthStart = new Date(reportNow.getFullYear(), reportNow.getMonth(), 1);
     const thisMonthPosts = mediaRes.data.filter(post =>
       new Date(post.timestamp) >= monthStart
     );
