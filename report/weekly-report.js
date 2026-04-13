@@ -287,17 +287,15 @@ async function getInstagramData() {
 
   console.log('Instagram API からインサイトを取得中...');
 
-  // 今週の日付範囲（UNIX timestamp）
-  const now = new Date();
-  const dow = now.getDay() === 0 ? 7 : now.getDay();
-  const weekMonday = new Date(now);
-  weekMonday.setDate(now.getDate() - dow + 1);
-  weekMonday.setHours(0, 0, 0, 0);
-  const since = Math.floor(weekMonday.getTime() / 1000);
-  const until = Math.floor(now.getTime() / 1000);
+  // GA4と同じ「先週」の期間をUNIX timestampに変換
+  const curr = getDateRange(1);
+  const since = Math.floor(new Date(curr.startDate + 'T00:00:00Z').getTime() / 1000);
+  const until = Math.floor(new Date(curr.endDate + 'T23:59:59Z').getTime() / 1000);
+
+  console.log(`Instagram 取得期間: ${curr.startDate} 〜 ${curr.endDate} (${since} 〜 ${until})`);
 
   // metric_type=total_value が必要な新指標（views, total_interactions）
-  const insightsNewUrl = `${base}/${INSTAGRAM_USER_ID}/insights?metric=views,total_interactions&metric_type=total_value&period=week&${token}`;
+  const insightsNewUrl = `${base}/${INSTAGRAM_USER_ID}/insights?metric=views,total_interactions&metric_type=total_value&period=day&since=${since}&until=${until}&${token}`;
   // period=day で取得して週合計を算出する指標（reach, profile_views）
   const insightsOldUrl = `${base}/${INSTAGRAM_USER_ID}/insights?metric=reach,profile_views&period=day&since=${since}&until=${until}&${token}`;
   // follower_count は period=day のみ対応のため個別取得
