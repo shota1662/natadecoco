@@ -8,11 +8,21 @@ const Anthropic = require('@anthropic-ai/sdk');
 const nodemailer = require('nodemailer');
 const fs = require('fs');
 const path = require('path');
+const https = require('https');
+const sodium = require('libsodium-wrappers');
 
 // ─── 設定 ────────────────────────────────────────────────
 const GA4_PROPERTY_ID = process.env.GA4_PROPERTY_ID || '431468420';
 const SITE_URL = 'https://natadecoco.org/';
 const CREDENTIALS = JSON.parse(process.env.GOOGLE_CREDENTIALS_JSON);
+
+const INSTAGRAM_ACCESS_TOKEN = process.env.INSTAGRAM_ACCESS_TOKEN;
+const INSTAGRAM_USER_ID = process.env.INSTAGRAM_USER_ID;
+const META_APP_ID = process.env.META_APP_ID;
+const META_APP_SECRET = process.env.META_APP_SECRET;
+const ANTHROPIC_ADMIN_API_KEY = process.env.ANTHROPIC_ADMIN_API_KEY;
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const GITHUB_REPOSITORY = process.env.GITHUB_REPOSITORY || 'shota1662/natadecoco';
 
 // ─── 日付ヘルパー ─────────────────────────────────────────
 function getDateRange(weeksAgo = 1) {
@@ -42,6 +52,19 @@ function diffLabel(curr, prev) {
   if (!prev || prev === 0) return '';
   const d = ((curr - prev) / prev * 100).toFixed(1);
   return parseFloat(d) >= 0 ? ` (+${d}%)` : ` (${d}%)`;
+}
+
+function httpsGet(url) {
+  return new Promise((resolve, reject) => {
+    https.get(url, res => {
+      let data = '';
+      res.on('data', chunk => { data += chunk; });
+      res.on('end', () => {
+        try { resolve(JSON.parse(data)); }
+        catch (e) { reject(new Error(`JSON parse error: ${data}`)); }
+      });
+    }).on('error', reject);
+  });
 }
 
 // ─── GA4 データ取得 ────────────────────────────────────────
@@ -142,8 +165,288 @@ async function getSearchConsoleData() {
   return { overall, queries, scPages, curr };
 }
 
+// ─── GitHub Secret 更新 ───────────────────────────────────
+async function updateGitHubSecret(secretName, secretValue) {
+  if (!GITHUB_TOKEN) {
+    console.warn('GITHUB_TOKEN 未設定。GitHub Secret の自動更新をスキップします。');
+    return false;
+  }
+
+  await sodium.ready;
+
+  const [owner, repo] = GITHUB_REPOSITORY.split('/');
+
+  // リポジトリの公開鍵を取得
+  const pubKeyRes = await new Promise((resolve, reject) => {
+    const options = {
+      hostname: 'api.github.com',
+      path: `/repos/${owner}/${repo}/actions/secrets/public-key`,
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${GITHUB_TOKEN}`,
+        'Accept': 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28',
+        'User-Agent': 'natadecoco-weekly-report'
+      }
+    };
+    const req = https.request(options, res => {
+      let data = '';
+      res.on('data', chunk => { data += chunk; });
+      res.on('end', () => {
+        try { resolve(JSON.parse(data)); }
+        catch (e) { reject(new Error(`公開鍵取得 JSON parse error: ${data}`)); }
+      });
+    });
+    req.on('error', reject);
+    req.end();
+  });
+
+  if (!pubKeyRes.key || !pubKeyRes.key_id) {
+    throw new Error(`公開鍵の取得に失敗: ${JSON.stringify(pubKeyRes)}`);
+  }
+
+  // 新しいトークン値を公開鍵で暗号化
+  const keyBytes = sodium.from_base64(pubKeyRes.key, sodium.base64_variants.ORIGINAL);
+  const valueBytes = Buffer.from(secretValue);
+  const encryptedBytes = sodium.crypto_box_seal(valueBytes, keyBytes);
+  const encryptedValue = sodium.to_base64(encryptedBytes, sodium.base64_variants.ORIGINAL);
+
+  // GitHub Secret を上書き
+  await new Promise((resolve, reject) => {
+    const body = JSON.stringify({ encrypted_value: encryptedValue, key_id: pubKeyRes.key_id });
+    const options = {
+      hostname: 'api.github.com',
+      path: `/repos/${owner}/${repo}/actions/secrets/${secretName}`,
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${GITHUB_TOKEN}`,
+        'Accept': 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28',
+        'User-Agent': 'natadecoco-weekly-report',
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(body)
+      }
+    };
+    const req = https.request(options, res => {
+      let data = '';
+      res.on('data', chunk => { data += chunk; });
+      res.on('end', () => {
+        // 201 Created or 204 No Content が成功
+        if (res.statusCode === 201 || res.statusCode === 204) {
+          resolve();
+        } else {
+          reject(new Error(`Secret 更新失敗 (HTTP ${res.statusCode}): ${data}`));
+        }
+      });
+    });
+    req.on('error', reject);
+    req.write(body);
+    req.end();
+  });
+
+  return true;
+}
+
+// ─── Instagram トークン更新 ────────────────────────────────
+async function refreshInstagramToken(currentToken) {
+  if (!META_APP_ID || !META_APP_SECRET) {
+    console.warn('META_APP_ID / META_APP_SECRET 未設定。トークン自動更新をスキップします。');
+    return null;
+  }
+
+  console.log('Instagram アクセストークンを更新中...');
+
+  const url = `https://graph.facebook.com/v19.0/oauth/access_token`
+    + `?grant_type=fb_exchange_token`
+    + `&client_id=${META_APP_ID}`
+    + `&client_secret=${META_APP_SECRET}`
+    + `&fb_exchange_token=${currentToken}`;
+
+  const res = await httpsGet(url);
+
+  if (!res.access_token) {
+    throw new Error(`トークン更新APIエラー: ${JSON.stringify(res)}`);
+  }
+
+  console.log('トークン更新成功。GitHub Secret を書き換えます...');
+  await updateGitHubSecret('INSTAGRAM_ACCESS_TOKEN', res.access_token);
+  console.log('GitHub Secret (INSTAGRAM_ACCESS_TOKEN) を更新しました。');
+
+  return res.access_token;
+}
+
+// ─── Instagram データ取得 ──────────────────────────────────
+async function getInstagramData() {
+  if (!INSTAGRAM_ACCESS_TOKEN || !INSTAGRAM_USER_ID) {
+    console.log('Instagram 環境変数未設定。スキップします。');
+    return null;
+  }
+
+  const base = `https://graph.facebook.com/v19.0`;
+  const token = `access_token=${INSTAGRAM_ACCESS_TOKEN}`;
+
+  console.log('Instagram API からインサイトを取得中...');
+
+  // アカウント全体インサイト（週次）
+  const insightsUrl = `${base}/${INSTAGRAM_USER_ID}/insights?metric=impressions,reach,profile_views&period=week&${token}`;
+  // follower_count は period=day のみ対応のため個別取得
+  const followerUrl = `${base}/${INSTAGRAM_USER_ID}/insights?metric=follower_count&period=day&${token}`;
+  // 投稿一覧（インサイト付き）
+  const mediaUrl = `${base}/${INSTAGRAM_USER_ID}/media?fields=id,caption,timestamp,like_count,comments_count,insights.metric(impressions,reach,saved)&limit=20&${token}`;
+  // トークン期限チェック
+  const debugUrl = `${base}/debug_token?input_token=${INSTAGRAM_ACCESS_TOKEN}&access_token=${META_APP_ID}|${META_APP_SECRET}`;
+
+  const [insightsRes, followerRes, mediaRes, debugRes] = await Promise.all([
+    httpsGet(insightsUrl).catch(e => { console.warn('insights取得失敗:', e.message); return null; }),
+    httpsGet(followerUrl).catch(e => { console.warn('follower_count取得失敗:', e.message); return null; }),
+    httpsGet(mediaUrl).catch(e => { console.warn('media取得失敗:', e.message); return null; }),
+    (META_APP_ID && META_APP_SECRET)
+      ? httpsGet(debugUrl).catch(e => { console.warn('token debug取得失敗:', e.message); return null; })
+      : Promise.resolve(null)
+  ]);
+
+  // フォロワー数（直近2日分から増減を計算）
+  let followerCount = null;
+  let followerDiff = null;
+  if (followerRes?.data?.length) {
+    const values = followerRes.data[0]?.values || [];
+    if (values.length >= 2) {
+      followerCount = values[values.length - 1]?.value ?? null;
+      const prev = values[values.length - 2]?.value ?? null;
+      if (followerCount !== null && prev !== null) {
+        followerDiff = followerCount - prev;
+      }
+    } else if (values.length === 1) {
+      followerCount = values[0]?.value ?? null;
+    }
+  }
+
+  // 週次インサイト（impressions, reach, profile_views の最新値合計）
+  let impressions = 0, reach = 0, profileViews = 0;
+  if (insightsRes?.data) {
+    for (const metric of insightsRes.data) {
+      const latest = metric.values?.[metric.values.length - 1]?.value ?? 0;
+      if (metric.name === 'impressions') impressions = latest;
+      if (metric.name === 'reach') reach = latest;
+      if (metric.name === 'profile_views') profileViews = latest;
+    }
+  }
+
+  // 投稿TOP3（いいね数 + 保存数の合計順）
+  let topPosts = [];
+  if (mediaRes?.data) {
+    const posts = mediaRes.data.map(post => {
+      const saved = post.insights?.data?.find(d => d.name === 'saved')?.values?.[0]?.value ?? 0;
+      const score = (post.like_count ?? 0) + saved;
+      return {
+        caption: (post.caption || '（キャプションなし）').slice(0, 40),
+        timestamp: post.timestamp,
+        likeCount: post.like_count ?? 0,
+        commentsCount: post.comments_count ?? 0,
+        saved,
+        score
+      };
+    });
+    topPosts = posts.sort((a, b) => b.score - a.score).slice(0, 3);
+  }
+
+  // トークン期限チェック・自動更新
+  let tokenDaysLeft = null;
+  let tokenWarning = false;
+  let tokenRefreshed = false;
+  if (debugRes?.data?.expires_at) {
+    const expiresAt = new Date(debugRes.data.expires_at * 1000);
+    const now = new Date();
+    tokenDaysLeft = Math.floor((expiresAt - now) / (1000 * 60 * 60 * 24));
+    tokenWarning = tokenDaysLeft <= 30;
+    if (tokenWarning) {
+      console.warn(`⚠️ Instagram アクセストークンの有効期限まで ${tokenDaysLeft} 日です。自動更新を試みます...`);
+      try {
+        const newToken = await refreshInstagramToken(INSTAGRAM_ACCESS_TOKEN);
+        if (newToken) {
+          tokenRefreshed = true;
+          tokenDaysLeft = 60; // 新トークンは60日有効
+          tokenWarning = false;
+          console.log('トークン自動更新完了。次回以降は新トークンで実行されます。');
+        }
+      } catch (e) {
+        console.error('トークン自動更新に失敗しました:', e.message);
+      }
+    }
+  }
+
+  return {
+    followerCount,
+    followerDiff,
+    impressions,
+    reach,
+    profileViews,
+    topPosts,
+    tokenDaysLeft,
+    tokenWarning,
+    tokenRefreshed
+  };
+}
+
+// ─── Anthropic APIコスト取得 ───────────────────────────────
+async function getAnthropicCosts() {
+  if (!ANTHROPIC_ADMIN_API_KEY) {
+    console.log('ANTHROPIC_ADMIN_API_KEY 未設定。コスト取得をスキップします。');
+    return null;
+  }
+
+  console.log('Anthropic APIコストを取得中...');
+
+  const now = new Date();
+  // 今週月曜〜今日
+  const dow = now.getDay() === 0 ? 7 : now.getDay();
+  const weekStart = new Date(now);
+  weekStart.setDate(now.getDate() - dow + 1);
+  weekStart.setHours(0, 0, 0, 0);
+  // 今月1日〜今日
+  const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+
+  const toISO = d => d.toISOString().replace(/\.\d{3}Z$/, 'Z');
+
+  function fetchCost(startingAt, endingAt) {
+    return new Promise((resolve, reject) => {
+      const params = new URLSearchParams({ starting_at: startingAt, ending_at: endingAt });
+      const options = {
+        hostname: 'api.anthropic.com',
+        path: `/v1/organizations/cost_report?${params}`,
+        method: 'GET',
+        headers: {
+          'x-api-key': ANTHROPIC_ADMIN_API_KEY,
+          'anthropic-version': '2023-06-01'
+        }
+      };
+      const req = https.request(options, res => {
+        let data = '';
+        res.on('data', chunk => { data += chunk; });
+        res.on('end', () => {
+          try { resolve(JSON.parse(data)); }
+          catch (e) { reject(new Error(`JSON parse error: ${data}`)); }
+        });
+      });
+      req.on('error', reject);
+      req.end();
+    });
+  }
+
+  const [weeklyCost, monthlyCost] = await Promise.all([
+    fetchCost(toISO(weekStart), toISO(now)).catch(e => { console.warn('週次コスト取得失敗:', e.message); return null; }),
+    fetchCost(toISO(monthStart), toISO(now)).catch(e => { console.warn('月次コスト取得失敗:', e.message); return null; })
+  ]);
+
+  // レスポンス形式: { total_cost: number, currency: 'USD', ... } を想定
+  const weeklyUSD = weeklyCost?.total_cost ?? weeklyCost?.data?.reduce?.((s, r) => s + (r.cost ?? 0), 0) ?? null;
+  const monthlyUSD = monthlyCost?.total_cost ?? monthlyCost?.data?.reduce?.((s, r) => s + (r.cost ?? 0), 0) ?? null;
+
+  return { weeklyUSD, monthlyUSD, weekStart: toISO(weekStart).slice(0, 10), monthStart: toISO(monthStart).slice(0, 10) };
+}
+
 // ─── Markdown レポート生成 ─────────────────────────────────
-function buildMarkdown(ga4, sc) {
+function buildMarkdown(ga4, sc, instagram, costs) {
   const { overviewCurr, overviewPrev, sources, pages, curr } = ga4;
   const { overall, queries, scPages } = sc;
 
@@ -207,19 +510,60 @@ function buildMarkdown(ga4, sc) {
   }
   md += `\n`;
 
+  // 5. Instagram セクション
+  if (instagram) {
+    md += `## 5. Instagram インサイト\n\n`;
+
+    if (instagram.tokenRefreshed) {
+      md += `> ✅ **アクセストークンを自動更新しました（新しい有効期限: 60日後）。**\n\n`;
+    } else if (instagram.tokenWarning && instagram.tokenDaysLeft !== null) {
+      md += `> ⚠️ **アクセストークンの有効期限まで ${instagram.tokenDaysLeft} 日です。自動更新に失敗したため手動で更新してください。**\n\n`;
+    }
+
+    md += `| 指標 | 今週 |\n`;
+    md += `|------|-----:|\n`;
+    if (instagram.followerCount !== null) {
+      const diffStr = instagram.followerDiff !== null
+        ? (instagram.followerDiff >= 0 ? ` (+${instagram.followerDiff})` : ` (${instagram.followerDiff})`)
+        : '';
+      md += `| フォロワー数 | ${instagram.followerCount.toLocaleString()}人${diffStr} |\n`;
+    }
+    md += `| リーチ | ${instagram.reach.toLocaleString()} |\n`;
+    md += `| インプレッション | ${instagram.impressions.toLocaleString()} |\n`;
+    md += `| プロフィールアクセス | ${instagram.profileViews.toLocaleString()} |\n\n`;
+
+    if (instagram.topPosts.length > 0) {
+      md += `### 今週のベスト投稿 TOP${instagram.topPosts.length}（いいね＋保存数順）\n\n`;
+      md += `| 投稿 | いいね | 保存 | コメント |\n`;
+      md += `|------|------:|----:|---------:|\n`;
+      for (const post of instagram.topPosts) {
+        md += `| ${post.caption} | ${post.likeCount} | ${post.saved} | ${post.commentsCount} |\n`;
+      }
+      md += `\n`;
+    }
+  }
+
   return md;
 }
 
 // ─── Claude API 改善提案生成 ──────────────────────────────
-async function generateSuggestions(reportMd) {
+async function generateSuggestions(reportMd, instagram) {
   const client = new Anthropic();
+
+  const instagramSection = instagram
+    ? `\n## Instagramインサイト
+- フォロワー数: ${instagram.followerCount !== null ? instagram.followerCount.toLocaleString() + '人' + (instagram.followerDiff !== null ? (instagram.followerDiff >= 0 ? ` (+${instagram.followerDiff})` : ` (${instagram.followerDiff})`) : '') : '取得不可'}
+- リーチ: ${instagram.reach.toLocaleString()}
+- インプレッション: ${instagram.impressions.toLocaleString()}
+${instagram.topPosts.length > 0 ? `- ベスト投稿TOP3:\n${instagram.topPosts.map((p, i) => `  ${i + 1}. 「${p.caption}」いいね${p.likeCount} 保存${p.saved}`).join('\n')}` : ''}`
+    : '';
 
   const message = await client.messages.create({
     model: 'claude-opus-4-6',
-    max_tokens: 1500,
+    max_tokens: 2000,
     messages: [{
       role: 'user',
-      content: `あなたはNPO法人ナタデコのWebサイト改善コンサルタントです。
+      content: `あなたはNPO法人ナタデコのWebサイト・SNS改善コンサルタントです。
 
 ## サイト概要
 - URL: https://natadecoco.org
@@ -227,14 +571,23 @@ async function generateSuggestions(reportMd) {
 - ターゲット: 教育機関・保護者・大学生ボランティア・外国人・自治体
 
 ## 今週のアクセスデータ
-${reportMd}
+${reportMd}${instagramSection}
 
-上記データを分析し、以下の形式でWebサイト改善提案を3〜5件生成してください。
+上記データを分析し、以下の形式で改善提案を生成してください。
+
+### Webサイト改善提案（3〜5件）
 
 ### 提案N: [タイトル]
 **優先度**: 高/中/低
 **根拠**: （データに基づく理由）
 **具体的な修正案**: （何をどう変えるか）
+
+${instagram ? `### Instagram投稿改善提案（2〜3件）
+
+### 提案N: [タイトル]
+**優先度**: 高/中/低
+**根拠**: （データに基づく理由）
+**具体的なアクション**: （何をどうするか）` : ''}
 `
     }]
   });
@@ -280,18 +633,41 @@ async function sendEmail(subject, markdownBody) {
 async function main() {
   console.log('=== 週次レポート生成開始 ===');
 
-  const [ga4Data, scData] = await Promise.all([
+  const [ga4Data, scData, instagram, costs] = await Promise.all([
     getGA4Data(),
-    getSearchConsoleData()
+    getSearchConsoleData(),
+    getInstagramData(),
+    getAnthropicCosts()
   ]);
 
-  const reportBase = buildMarkdown(ga4Data, scData);
+  const reportBase = buildMarkdown(ga4Data, scData, instagram, costs);
 
   console.log('Claude API で改善提案を生成中...');
-  const suggestions = await generateSuggestions(reportBase);
+  const suggestions = await generateSuggestions(reportBase, instagram);
 
-  const fullReport = reportBase
-    + `## 5. HP 改善提案（AI 生成）\n\n${suggestions}\n`;
+  // セクション番号をInstagramの有無で調整
+  const suggestionSection = instagram ? 6 : 5;
+  const costSection = suggestionSection + 1;
+
+  let fullReport = reportBase
+    + `## ${suggestionSection}. 改善提案（AI 生成）\n\n${suggestions}\n\n`;
+
+  // Anthropic APIコストセクション
+  if (costs) {
+    fullReport += `## ${costSection}. Anthropic API 利用コスト\n\n`;
+    fullReport += `| 期間 | コスト |\n`;
+    fullReport += `|------|-------:|\n`;
+    fullReport += `| 今週（${costs.weekStart}〜） | ${costs.weeklyUSD !== null ? `$${costs.weeklyUSD.toFixed(4)}` : '取得失敗'} |\n`;
+    fullReport += `| 今月累計（${costs.monthStart}〜） | ${costs.monthlyUSD !== null ? `$${costs.monthlyUSD.toFixed(4)}` : '取得失敗'} |\n`;
+    fullReport += `\n> 残高確認: https://console.anthropic.com/settings/billing\n\n`;
+  }
+
+  // トークン更新結果をレポート末尾にも追記
+  if (instagram?.tokenRefreshed) {
+    fullReport += `---\n\n✅ **Instagram アクセストークンを自動更新しました（GitHub Secret: INSTAGRAM_ACCESS_TOKEN を更新済み）。**\n`;
+  } else if (instagram?.tokenWarning && instagram?.tokenDaysLeft !== null) {
+    fullReport += `---\n\n⚠️ **Instagram アクセストークンの有効期限まで ${instagram.tokenDaysLeft} 日です。自動更新に失敗したため手動で更新してください。**\n`;
+  }
 
   // ファイル保存
   const outputDir = path.join(__dirname, 'outputs');
