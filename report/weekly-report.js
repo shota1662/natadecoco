@@ -297,7 +297,7 @@ async function getInstagramData() {
   const until = Math.floor(now.getTime() / 1000);
 
   // metric_type=total_value が必要な新指標（views, total_interactions）
-  const insightsNewUrl = `${base}/${INSTAGRAM_USER_ID}/insights?metric=views,total_interactions&metric_type=total_value&period=day&since=${since}&until=${until}&${token}`;
+  const insightsNewUrl = `${base}/${INSTAGRAM_USER_ID}/insights?metric=views,total_interactions&metric_type=total_value&period=week&${token}`;
   // period=day で取得して週合計を算出する指標（reach, profile_views）
   const insightsOldUrl = `${base}/${INSTAGRAM_USER_ID}/insights?metric=reach,profile_views&period=day&since=${since}&until=${until}&${token}`;
   // follower_count は period=day のみ対応のため個別取得
