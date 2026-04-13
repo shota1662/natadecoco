@@ -256,7 +256,7 @@ async function refreshInstagramToken(currentToken) {
 
   console.log('Instagram アクセストークンを更新中...');
 
-  const url = `https://graph.facebook.com/v19.0/oauth/access_token`
+  const url = `https://graph.facebook.com/v25.0/oauth/access_token`
     + `?grant_type=fb_exchange_token`
     + `&client_id=${META_APP_ID}`
     + `&client_secret=${META_APP_SECRET}`
@@ -282,7 +282,7 @@ async function getInstagramData() {
     return null;
   }
 
-  const base = `https://graph.facebook.com/v19.0`;
+  const base = `https://graph.facebook.com/v25.0`;
   const token = `access_token=${INSTAGRAM_ACCESS_TOKEN}`;
 
   console.log('Instagram API からインサイトを取得中...');
@@ -297,9 +297,9 @@ async function getInstagramData() {
   const until = Math.floor(now.getTime() / 1000);
 
   // metric_type=total_value が必要な新指標（views, total_interactions）
-  const insightsNewUrl = `${base}/${INSTAGRAM_USER_ID}/insights?metric=views,total_interactions&metric_type=total_value&period=week&since=${since}&until=${until}&${token}`;
-  // 旧来の period 形式で取得できる指標（reach, profile_views）
-  const insightsOldUrl = `${base}/${INSTAGRAM_USER_ID}/insights?metric=reach,profile_views&period=week&${token}`;
+  const insightsNewUrl = `${base}/${INSTAGRAM_USER_ID}/insights?metric=views,total_interactions&metric_type=total_value&period=day&since=${since}&until=${until}&${token}`;
+  // period=day で取得して週合計を算出する指標（reach, profile_views）
+  const insightsOldUrl = `${base}/${INSTAGRAM_USER_ID}/insights?metric=reach,profile_views&period=day&since=${since}&until=${until}&${token}`;
   // follower_count は period=day のみ対応のため個別取得
   const followerUrl = `${base}/${INSTAGRAM_USER_ID}/insights?metric=follower_count&period=day&${token}`;
   // 投稿一覧（今週分のみ・インサイト付き）
@@ -333,23 +333,23 @@ async function getInstagramData() {
     }
   }
 
-  // 週次インサイト（新形式: views, total_interactions）
+  // 週次インサイト（日次合計を算出）
+  const sumValues = (metricData) =>
+    (metricData?.values || []).reduce((sum, v) => sum + (v.value ?? 0), 0);
+
   let impressions = 0, totalInteractions = 0;
   if (insightsNewRes?.data) {
     for (const metric of insightsNewRes.data) {
-      const val = metric.total_value?.value ?? metric.values?.[metric.values.length - 1]?.value ?? 0;
-      if (metric.name === 'views') impressions = val;
-      if (metric.name === 'total_interactions') totalInteractions = val;
+      if (metric.name === 'views') impressions = sumValues(metric);
+      if (metric.name === 'total_interactions') totalInteractions = sumValues(metric);
     }
   }
 
-  // 週次インサイト（旧形式: reach, profile_views）
   let reach = 0, profileViews = 0;
   if (insightsOldRes?.data) {
     for (const metric of insightsOldRes.data) {
-      const latest = metric.values?.[metric.values.length - 1]?.value ?? 0;
-      if (metric.name === 'reach') reach = latest;
-      if (metric.name === 'profile_views') profileViews = latest;
+      if (metric.name === 'reach') reach = sumValues(metric);
+      if (metric.name === 'profile_views') profileViews = sumValues(metric);
     }
   }
 
