@@ -661,6 +661,33 @@ ${instagram ? `## 【Instagram改善提案】
   return message.content[0].text;
 }
 
+// ─── Markdown → HTML 変換 ────────────────────────────────
+function markdownToHtml(md) {
+  // テーブルを先にHTMLに変換（複数行にまたがるため）
+  const withTables = md.replace(/(\|.+\n)+/g, (match) => {
+    const rows = match.trim().split('\n');
+    let html = '<table style="border-collapse:collapse;width:100%;margin:8px 0">';
+    rows.forEach((row, i) => {
+      if (/^\|[-: |]+\|$/.test(row)) return; // セパレータ行はスキップ
+      const cells = row.split('|').slice(1, -1);
+      const tag = i === 0 ? 'th' : 'td';
+      const style = `border:1px solid #ddd;padding:4px 8px${tag === 'th' ? ';background:#f0f0f0;font-weight:bold' : ''}`;
+      html += '<tr>' + cells.map(c => `<${tag} style="${style}">${c.trim()}</${tag}>`).join('') + '</tr>';
+    });
+    html += '</table>';
+    return html;
+  });
+
+  return withTables
+    .replace(/^# (.+)$/gm, '<h1 style="margin:16px 0 8px">$1</h1>')
+    .replace(/^## (.+)$/gm, '<h2 style="margin:14px 0 6px;border-bottom:1px solid #eee;padding-bottom:4px">$1</h2>')
+    .replace(/^### (.+)$/gm, '<h3 style="margin:10px 0 4px">$1</h3>')
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/^> (.+)$/gm, '<div style="border-left:3px solid #ddd;padding:4px 12px;color:#666;margin:4px 0">$1</div>')
+    .replace(/^---$/gm, '<hr style="border:none;border-top:1px solid #eee;margin:12px 0">')
+    .replace(/\n/g, '<br>');
+}
+
 // ─── メール送信 ───────────────────────────────────────────
 async function sendEmail(subject, markdownBody) {
   const user = process.env.GMAIL_USER;
@@ -675,21 +702,15 @@ async function sendEmail(subject, markdownBody) {
     auth: { user, pass }
   });
 
-  // MarkdownをシンプルなHTMLに変換（テーブル・見出し対応）
-  const html = markdownBody
-    .replace(/^# (.+)$/gm, '<h1>$1</h1>')
-    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
-    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
-    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    .replace(/^---$/gm, '<hr>')
-    .replace(/\n/g, '<br>');
+  const html = markdownToHtml(markdownBody);
+  const htmlSize = Buffer.byteLength(html, 'utf8');
+  console.log(`メールHTMLサイズ: ${(htmlSize / 1024).toFixed(1)} KB`);
 
   await transporter.sendMail({
     from: `"ナタデコ週次レポート" <${user}>`,
     to: user,
     subject,
-    text: markdownBody,
-    html: `<div style="font-family:sans-serif;max-width:800px;margin:auto">${html}</div>`
+    html: `<div style="font-family:sans-serif;max-width:800px;margin:auto;padding:16px">${html}</div>`
   });
 
   console.log(`メール送信完了: ${user}`);
