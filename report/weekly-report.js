@@ -287,76 +287,73 @@ async function getInstagramData() {
 
   console.log('Instagram API からインサイトを取得中...');
 
-  // GA4と同じ「先週」の期間をUNIX timestampに変換
+  // 今週・先々週の期間をUNIX timestampに変換
   const curr = getDateRange(1);
+  const prevWeek = getDateRange(2);
   const since = Math.floor(new Date(curr.startDate + 'T00:00:00Z').getTime() / 1000);
   const until = Math.floor(new Date(curr.endDate + 'T23:59:59Z').getTime() / 1000);
+  const prevSince = Math.floor(new Date(prevWeek.startDate + 'T00:00:00Z').getTime() / 1000);
+  const prevUntil = Math.floor(new Date(prevWeek.endDate + 'T23:59:59Z').getTime() / 1000);
 
-  console.log(`Instagram 取得期間: ${curr.startDate} 〜 ${curr.endDate} (${since} 〜 ${until})`);
+  console.log(`Instagram 取得期間(今週): ${curr.startDate} 〜 ${curr.endDate}`);
+  console.log(`Instagram 取得期間(先週): ${prevWeek.startDate} 〜 ${prevWeek.endDate}`);
 
-  // 全指標を metric_type=total_value で一括取得
-  const insightsUrl = `${base}/${INSTAGRAM_USER_ID}/insights?metric=views,total_interactions,reach,profile_views&metric_type=total_value&period=day&since=${since}&until=${until}&${token}`;
+  const metricsParam = 'metric=views,total_interactions,reach,profile_views&metric_type=total_value&period=day';
+  // 全指標を metric_type=total_value で一括取得（今週・先週）
+  const insightsUrl     = `${base}/${INSTAGRAM_USER_ID}/insights?${metricsParam}&since=${since}&until=${until}&${token}`;
+  const insightsPrevUrl = `${base}/${INSTAGRAM_USER_ID}/insights?${metricsParam}&since=${prevSince}&until=${prevUntil}&${token}`;
   // follower_count は period=day のみ対応のため個別取得
-  const followerUrl = `${base}/${INSTAGRAM_USER_ID}/insights?metric=follower_count&period=day&${token}`;
+  const followerUrl     = `${base}/${INSTAGRAM_USER_ID}/insights?metric=follower_count&period=day&since=${since}&until=${until}&${token}`;
+  const followerPrevUrl = `${base}/${INSTAGRAM_USER_ID}/insights?metric=follower_count&period=day&since=${prevSince}&until=${prevUntil}&${token}`;
   // 投稿一覧（今月分・インサイト付き）
   const mediaUrl = `${base}/${INSTAGRAM_USER_ID}/media?fields=id,caption,timestamp,like_count,comments_count,insights.metric(views,reach,saved)&limit=50&${token}`;
   // トークン期限チェック
   const debugUrl = `${base}/debug_token?input_token=${INSTAGRAM_ACCESS_TOKEN}&access_token=${META_APP_ID}|${META_APP_SECRET}`;
 
-  // デバッグ用：URLをトークンなしで出力
-  console.log(`insightsURL(no token): ${base}/${INSTAGRAM_USER_ID}/insights?metric=views,total_interactions,reach,profile_views&metric_type=total_value&period=day&since=${since}&until=${until}`);
-
-  const [insightsRes, followerRes, mediaRes, debugRes] = await Promise.all([
+  const [insightsRes, insightsPrevRes, followerRes, followerPrevRes, mediaRes, debugRes] = await Promise.all([
     httpsGet(insightsUrl).catch(e => { console.warn('insights取得失敗:', e.message); return null; }),
+    httpsGet(insightsPrevUrl).catch(e => { console.warn('insights(先週)取得失敗:', e.message); return null; }),
     httpsGet(followerUrl).catch(e => { console.warn('follower_count取得失敗:', e.message); return null; }),
+    httpsGet(followerPrevUrl).catch(e => { console.warn('follower_count(先週)取得失敗:', e.message); return null; }),
     httpsGet(mediaUrl).catch(e => { console.warn('media取得失敗:', e.message); return null; }),
     (META_APP_ID && META_APP_SECRET)
       ? httpsGet(debugUrl).catch(e => { console.warn('token debug取得失敗:', e.message); return null; })
       : Promise.resolve(null)
   ]);
 
-  // デバッグ：レスポンス構造を確認
-  if (insightsRes) {
-    console.log('insightsRes keys:', Object.keys(insightsRes).join(','));
-    if (insightsRes.error) {
-      console.error('Instagram insights APIエラー:', JSON.stringify(insightsRes.error));
-    } else if (insightsRes.data) {
-      console.log('insightsRes.data 件数:', insightsRes.data.length);
+  // インサイト値をオブジェクトにパース（metric_type=total_value 形式）
+  const parseInsights = (res) => {
+    const out = { views: 0, total_interactions: 0, reach: 0, profile_views: 0 };
+    if (res?.error) {
+      console.error('Instagram insights APIエラー:', JSON.stringify(res.error));
+      return out;
     }
-  } else {
-    console.warn('insightsRes が null（ネットワークエラーか例外）');
-  }
-
-  // フォロワー数（直近2日分から増減を計算）
-  let followerCount = null;
-  let followerDiff = null;
-  if (followerRes?.data?.length) {
-    const values = followerRes.data[0]?.values || [];
-    if (values.length >= 2) {
-      followerCount = values[values.length - 1]?.value ?? null;
-      const prev = values[values.length - 2]?.value ?? null;
-      if (followerCount !== null && prev !== null) {
-        followerDiff = followerCount - prev;
+    if (res?.data) {
+      for (const metric of res.data) {
+        const val = metric.total_value?.value ?? 0;
+        if (metric.name in out) out[metric.name] = val;
       }
-    } else if (values.length === 1) {
-      followerCount = values[0]?.value ?? null;
     }
-  }
+    return out;
+  };
 
-  // 週次インサイト（metric_type=total_value 形式: total_value.value を使用）
-  let impressions = 0, totalInteractions = 0, reach = 0, profileViews = 0;
-  if (insightsRes?.data) {
-    for (const metric of insightsRes.data) {
-      const val = metric.total_value?.value ?? 0;
-      console.log(`Instagram insights ${metric.name}: ${val}`);
-      if (metric.name === 'views') impressions = val;
-      if (metric.name === 'total_interactions') totalInteractions = val;
-      if (metric.name === 'reach') reach = val;
-      if (metric.name === 'profile_views') profileViews = val;
-    }
-  }
+  const curr_ins = parseInsights(insightsRes);
+  const prev_ins = parseInsights(insightsPrevRes);
 
-  // 投稿TOP3（今月分・いいね数 + 保存数の合計順）
+  console.log('今週インサイト:', JSON.stringify(curr_ins));
+  console.log('先週インサイト:', JSON.stringify(prev_ins));
+
+  // フォロワー数（今週末と先週末の値を比較）
+  const getLastFollower = (res) => {
+    const values = res?.data?.[0]?.values || [];
+    return values.length > 0 ? (values[values.length - 1]?.value ?? null) : null;
+  };
+  const followerCount = getLastFollower(followerRes);
+  const followerPrevCount = getLastFollower(followerPrevRes);
+  const followerDiff = (followerCount !== null && followerPrevCount !== null)
+    ? followerCount - followerPrevCount : null;
+
+  // 投稿TOP3（今月分・リーチ順）
   const reportNow = new Date();
   let topPosts = [];
   if (mediaRes?.data) {
@@ -366,18 +363,19 @@ async function getInstagramData() {
     );
     const targetPosts = thisMonthPosts.length > 0 ? thisMonthPosts : mediaRes.data.slice(0, 10);
     const posts = targetPosts.map(post => {
-      const saved = post.insights?.data?.find(d => d.name === 'saved')?.values?.[0]?.value ?? 0;
-      const score = (post.like_count ?? 0) + saved;
+      const insData = post.insights?.data || [];
+      const postReach = insData.find(d => d.name === 'reach')?.values?.[0]?.value ?? 0;
+      const saved     = insData.find(d => d.name === 'saved')?.values?.[0]?.value ?? 0;
       return {
         caption: (post.caption || '（キャプションなし）').slice(0, 40),
         timestamp: post.timestamp,
         likeCount: post.like_count ?? 0,
         commentsCount: post.comments_count ?? 0,
         saved,
-        score
+        reach: postReach
       };
     });
-    topPosts = posts.sort((a, b) => b.score - a.score).slice(0, 3);
+    topPosts = posts.sort((a, b) => b.reach - a.reach).slice(0, 3);
     if (thisMonthPosts.length === 0) console.log('今月の投稿なし。直近10件から集計します。');
   }
 
@@ -387,8 +385,8 @@ async function getInstagramData() {
   let tokenRefreshed = false;
   if (debugRes?.data?.expires_at) {
     const expiresAt = new Date(debugRes.data.expires_at * 1000);
-    const now = new Date();
-    tokenDaysLeft = Math.floor((expiresAt - now) / (1000 * 60 * 60 * 24));
+    const nowTs = new Date();
+    tokenDaysLeft = Math.floor((expiresAt - nowTs) / (1000 * 60 * 60 * 24));
     tokenWarning = tokenDaysLeft <= 30;
     if (tokenWarning) {
       console.warn(`⚠️ Instagram アクセストークンの有効期限まで ${tokenDaysLeft} 日です。自動更新を試みます...`);
@@ -396,7 +394,7 @@ async function getInstagramData() {
         const newToken = await refreshInstagramToken(INSTAGRAM_ACCESS_TOKEN);
         if (newToken) {
           tokenRefreshed = true;
-          tokenDaysLeft = 60; // 新トークンは60日有効
+          tokenDaysLeft = 60;
           tokenWarning = false;
           console.log('トークン自動更新完了。次回以降は新トークンで実行されます。');
         }
@@ -409,10 +407,14 @@ async function getInstagramData() {
   return {
     followerCount,
     followerDiff,
-    impressions,
-    totalInteractions,
-    reach,
-    profileViews,
+    impressions:        curr_ins.views,
+    impressionsPrev:    prev_ins.views,
+    totalInteractions:      curr_ins.total_interactions,
+    totalInteractionsPrev:  prev_ins.total_interactions,
+    reach:        curr_ins.reach,
+    reachPrev:    prev_ins.reach,
+    profileViews:      curr_ins.profile_views,
+    profileViewsPrev:  prev_ins.profile_views,
     topPosts,
     tokenDaysLeft,
     tokenWarning,
@@ -552,25 +554,31 @@ function buildMarkdown(ga4, sc, instagram, costs) {
       md += `> ⚠️ **アクセストークンの有効期限まで ${instagram.tokenDaysLeft} 日です。自動更新に失敗したため手動で更新してください。**\n\n`;
     }
 
-    md += `| 指標 | 今週 |\n`;
-    md += `|------|-----:|\n`;
+    const igDiff = (curr, prev) => {
+      if (!prev || prev === 0) return '';
+      const d = ((curr - prev) / prev * 100).toFixed(1);
+      return parseFloat(d) >= 0 ? ` (+${d}%)` : ` (${d}%)`;
+    };
+
+    md += `| 指標 | 今週 | 先週比 |\n`;
+    md += `|------|-----:|-------:|\n`;
     if (instagram.followerCount !== null) {
       const diffStr = instagram.followerDiff !== null
-        ? (instagram.followerDiff >= 0 ? ` (+${instagram.followerDiff})` : ` (${instagram.followerDiff})`)
-        : '';
-      md += `| フォロワー数 | ${instagram.followerCount.toLocaleString()}人${diffStr} |\n`;
+        ? (instagram.followerDiff >= 0 ? `+${instagram.followerDiff}人` : `${instagram.followerDiff}人`)
+        : '—';
+      md += `| フォロワー数 | ${instagram.followerCount.toLocaleString()}人 | ${diffStr} |\n`;
     }
-    md += `| リーチ | ${instagram.reach.toLocaleString()} |\n`;
-    md += `| ビュー数 | ${instagram.impressions.toLocaleString()} |\n`;
-    md += `| 合計インタラクション | ${instagram.totalInteractions.toLocaleString()} |\n`;
-    md += `| プロフィールアクセス | ${instagram.profileViews.toLocaleString()} |\n\n`;
+    md += `| リーチ | ${instagram.reach.toLocaleString()} | ${igDiff(instagram.reach, instagram.reachPrev)} |\n`;
+    md += `| ビュー数 | ${instagram.impressions.toLocaleString()} | ${igDiff(instagram.impressions, instagram.impressionsPrev)} |\n`;
+    md += `| 合計インタラクション | ${instagram.totalInteractions.toLocaleString()} | ${igDiff(instagram.totalInteractions, instagram.totalInteractionsPrev)} |\n`;
+    md += `| プロフィールアクセス | ${instagram.profileViews.toLocaleString()} | ${igDiff(instagram.profileViews, instagram.profileViewsPrev)} |\n\n`;
 
     if (instagram.topPosts.length > 0) {
-      md += `### 今月のベスト投稿 TOP${instagram.topPosts.length}（いいね＋保存数順）\n\n`;
-      md += `| 投稿 | いいね | 保存 | コメント |\n`;
-      md += `|------|------:|----:|---------:|\n`;
+      md += `### 今月のベスト投稿 TOP${instagram.topPosts.length}（リーチ数順）\n\n`;
+      md += `| 投稿 | リーチ | いいね | 保存 | コメント |\n`;
+      md += `|------|------:|------:|----:|---------:|\n`;
       for (const post of instagram.topPosts) {
-        md += `| ${post.caption} | ${post.likeCount} | ${post.saved} | ${post.commentsCount} |\n`;
+        md += `| ${post.caption} | ${post.reach} | ${post.likeCount} | ${post.saved} | ${post.commentsCount} |\n`;
       }
       md += `\n`;
     }
@@ -585,11 +593,11 @@ async function generateSuggestions(reportMd, instagram) {
 
   const instagramSection = instagram
     ? `\n## Instagramインサイト
-- フォロワー数: ${instagram.followerCount !== null ? instagram.followerCount.toLocaleString() + '人' + (instagram.followerDiff !== null ? (instagram.followerDiff >= 0 ? ` (+${instagram.followerDiff})` : ` (${instagram.followerDiff})`) : '') : '取得不可'}
-- リーチ: ${instagram.reach.toLocaleString()}
-- ビュー数: ${instagram.impressions.toLocaleString()}
-- 合計インタラクション: ${instagram.totalInteractions.toLocaleString()}
-${instagram.topPosts.length > 0 ? `- ベスト投稿TOP3:\n${instagram.topPosts.map((p, i) => `  ${i + 1}. 「${p.caption}」いいね${p.likeCount} 保存${p.saved}`).join('\n')}` : ''}`
+- フォロワー数: ${instagram.followerCount !== null ? instagram.followerCount.toLocaleString() + '人' + (instagram.followerDiff !== null ? (instagram.followerDiff >= 0 ? ` (+${instagram.followerDiff}人)` : ` (${instagram.followerDiff}人)`) : '') : '取得不可'}
+- リーチ: ${instagram.reach.toLocaleString()}（先週: ${instagram.reachPrev.toLocaleString()}）
+- ビュー数: ${instagram.impressions.toLocaleString()}（先週: ${instagram.impressionsPrev.toLocaleString()}）
+- 合計インタラクション: ${instagram.totalInteractions.toLocaleString()}（先週: ${instagram.totalInteractionsPrev.toLocaleString()}）
+${instagram.topPosts.length > 0 ? `- ベスト投稿TOP3（リーチ順）:\n${instagram.topPosts.map((p, i) => `  ${i + 1}. 「${p.caption}」リーチ${p.reach} いいね${p.likeCount} 保存${p.saved}`).join('\n')}` : ''}`
     : '';
 
   const message = await client.messages.create({
