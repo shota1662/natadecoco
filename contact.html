@@ -231,6 +231,11 @@
 
                 <form class="contact-form" id="contactForm" id="contact-form-section">
 
+                    <!-- honeypot: botが自動入力するが人間には見えない -->
+                    <div style="display:none;" aria-hidden="true">
+                        <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
+                    </div>
+
                     <div class="form-row">
                         <label class="form-label" for="name">お名前<span class="form-required">必須</span></label>
                         <input class="form-input" type="text" id="name" name="name" placeholder="例）山田 太郎" required>
@@ -388,6 +393,15 @@
         const submitSpan = submitBtn.querySelector('span');
         submitBtn.disabled = true;
         submitSpan.textContent = '送信中...';
+
+        // ハニーポットチェック：値が入っていたらbotと判定して送信せず成功に見せる
+        if (document.getElementById('website').value) {
+            document.getElementById('contactForm').style.display = 'none';
+            var honeypotEl = document.getElementById('contact-sent-msg');
+            honeypotEl.style.display = 'flex';
+            honeypotEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return;
+        }
 
         try {
             const formData = new FormData(form);
