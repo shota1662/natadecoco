@@ -333,6 +333,10 @@ async function getInstagramData() {
     }
   }
 
+  // デバッグ用ログ
+  console.log('[DEBUG] insightsNewRes:', JSON.stringify(insightsNewRes, null, 2));
+  console.log('[DEBUG] insightsOldRes:', JSON.stringify(insightsOldRes, null, 2));
+
   // 週次インサイト（日次合計を算出）
   const sumValues = (metricData) =>
     (metricData?.values || []).reduce((sum, v) => sum + (v.value ?? 0), 0);
