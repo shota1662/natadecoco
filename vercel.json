@@ -1,6 +1,6 @@
 {
   "redirects": [
-    { "source": "/foreigner.html", "destination": "/", "permanent": false },
+    { "source": "/foreigner.html", "destination": "/", "permanent": true },
 
     { "source": "/visiting-class/", "destination": "/class.html", "permanent": true },
     { "source": "/culture-exchange-class/", "destination": "/class.html", "permanent": true },
