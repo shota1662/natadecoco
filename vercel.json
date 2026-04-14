@@ -1,5 +1,22 @@
 {
   "redirects": [
-    { "source": "/foreigner.html", "destination": "/", "permanent": false }
+    { "source": "/foreigner.html", "destination": "/", "permanent": false },
+
+    { "source": "/visiting-class/", "destination": "/class.html", "permanent": true },
+    { "source": "/culture-exchange-class/", "destination": "/class.html", "permanent": true },
+    { "source": "/culture-exchange-education/", "destination": "/class.html", "permanent": true },
+    { "source": "/culture-exchange-kit/", "destination": "/kit.html", "permanent": true },
+    { "source": "/aboutus/", "destination": "/about.html", "permanent": true },
+    { "source": "/organization/", "destination": "/about.html", "permanent": true },
+    { "source": "/thoughts/", "destination": "/about.html", "permanent": true },
+    { "source": "/gm/", "destination": "/about.html", "permanent": true },
+    { "source": "/member-recruit/", "destination": "/volunteer.html", "permanent": true },
+    { "source": "/member-countries/", "destination": "/member.html", "permanent": true },
+
+    { "source": "/:year(\\d{4})/:month(\\d{2})/:day(\\d{2})/:slug*", "destination": "/column.html", "permanent": true },
+
+    { "source": "/category/:cat*", "destination": "/", "permanent": true },
+    { "source": "/tag/:tag*", "destination": "/", "permanent": true },
+    { "source": "/wp-content/:path*", "destination": "/", "permanent": true }
   ]
 }
