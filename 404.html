@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ページが見つかりません | NPOナタデココ</title>
+    <meta name="robots" content="noindex">
+    <script>
+        (function () {
+            var path = window.location.pathname.replace(/\/$/, '') || '/';
+
+            // 旧URL → 新URLのマッピング
+            var redirects = {
+                '/visiting-class':           '/class.html',
+                '/culture-exchange-class':   '/class.html',
+                '/culture-exchange-education': '/class.html',
+                '/culture-exchange-kit':     '/kit.html',
+                '/aboutus':                  '/about.html',
+                '/organization':             '/about.html',
+                '/thoughts':                 '/about.html',
+                '/gm':                       '/about.html',
+                '/member-recruit':           '/volunteer.html',
+                '/member-countries':         '/member.html',
+            };
+
+            // 末尾スラッシュあり・なし両対応で一致確認
+            var dest = redirects[path] || redirects[path + '/'];
+            if (dest) {
+                window.location.replace(dest);
+                return;
+            }
+
+            // WordPressの日付ベースURL（/2024/01/01/slug/）→ コラム一覧
+            if (/^\/\d{4}\/\d{2}\/\d{2}(\/|$)/.test(window.location.pathname)) {
+                window.location.replace('/column.html');
+                return;
+            }
+
+            // /category/, /tag/, /wp-content/ → トップ
+            if (/^\/(category|tag|wp-content)(\/|$)/.test(window.location.pathname)) {
+                window.location.replace('/');
+                return;
+            }
+        })();
+    </script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: #f9f6f0;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+            text-align: center;
+        }
+        h1 { font-size: 5rem; color: #e8a838; line-height: 1; }
+        h2 { font-size: 1.25rem; margin: 1rem 0 0.5rem; }
+        p  { color: #666; font-size: 0.95rem; margin-bottom: 2rem; }
+        a {
+            display: inline-block;
+            background: #e8a838;
+            color: #fff;
+            text-decoration: none;
+            padding: 0.75rem 2rem;
+            border-radius: 999px;
+            font-size: 0.95rem;
+        }
+        a:hover { background: #d4932a; }
+    </style>
+</head>
+<body>
+    <h1>404</h1>
+    <h2>ページが見つかりませんでした</h2>
+    <p>お探しのページは移動・削除されたか、URLが変更された可能性があります。</p>
+    <a href="/">トップページへ戻る</a>
+</body>
+</html>
