@@ -36,46 +36,11 @@
                 return;
             }
 
-            // /category/, /tag/, /wp-content/ → トップ
-            if (/^\/(category|tag|wp-content)(\/|$)/.test(window.location.pathname)) {
-                window.location.replace('/');
-                return;
-            }
+            // その他すべて → トップ
+            window.location.replace('/');
         })();
     </script>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: 'Noto Sans JP', sans-serif;
-            background: #f9f6f0;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 2rem;
-            text-align: center;
-        }
-        h1 { font-size: 5rem; color: #e8a838; line-height: 1; }
-        h2 { font-size: 1.25rem; margin: 1rem 0 0.5rem; }
-        p  { color: #666; font-size: 0.95rem; margin-bottom: 2rem; }
-        a {
-            display: inline-block;
-            background: #e8a838;
-            color: #fff;
-            text-decoration: none;
-            padding: 0.75rem 2rem;
-            border-radius: 999px;
-            font-size: 0.95rem;
-        }
-        a:hover { background: #d4932a; }
-    </style>
 </head>
 <body>
-    <h1>404</h1>
-    <h2>ページが見つかりませんでした</h2>
-    <p>お探しのページは移動・削除されたか、URLが変更された可能性があります。</p>
-    <a href="/">トップページへ戻る</a>
 </body>
 </html>
