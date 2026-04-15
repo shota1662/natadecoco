@@ -65,6 +65,7 @@ function sendAutoReply(email, name, formType, data) {
       "お問い合わせありがとうございます。",
       "内容を確認の上、担当者より改めてご連絡いたします。",
       sep,
+      (data.org ? "学校・団体名：" + data.org : ""),
       "種別：" + (data.category || ""),
       (data.message || ""),
       sep,
