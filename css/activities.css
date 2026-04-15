@@ -8,7 +8,7 @@
     background-color: #9fd9f6;
     display: flex;
     justify-content: center;
-    padding: 80px 20px 60px;
+    padding: 60px 20px 40px;
 }
 
 .act-hero-inner {
@@ -17,6 +17,21 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+}
+
+.act-hero-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+.act-hero-chara {
+    position: absolute;
+    left: 80px;
+    top: 0;
+    width: 154px;
 }
 
 .act-hero-icon {
@@ -26,7 +41,11 @@
 
 .act-hero-text {
     text-align: center;
-    margin-bottom: 48px;
+    margin-bottom: 0;
+}
+
+.act-hero-text .act-hero-sub {
+    margin-top: 160px;
 }
 
 .act-hero-en {
@@ -52,54 +71,6 @@
 }
 
 /* ページ内ジャンプナビ */
-.act-anchor-nav {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.act-anchor-btn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    background-color: #fff;
-    border-radius: 12px;
-    padding: 14px 24px;
-    min-width: 140px;
-    text-align: center;
-    box-shadow: 3px 3px 0 rgba(81, 104, 129, 0.2);
-    transition: transform 0.15s, box-shadow 0.15s;
-}
-
-.act-anchor-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 3px 6px 0 rgba(81, 104, 129, 0.2);
-    opacity: 1;
-}
-
-.act-anchor-btn--sub {
-    background-color: rgba(255,255,255,0.6);
-    min-width: 120px;
-}
-
-.act-anchor-num {
-    font-size: 10px;
-    font-weight: bold;
-    letter-spacing: 0.1em;
-    color: #fe4c7f;
-}
-
-.act-anchor-btn--sub .act-anchor-num {
-    display: none;
-}
-
-.act-anchor-label {
-    font-size: 14px;
-    font-weight: bold;
-    color: #516881;
-}
 
 /* ===================================
    セクション共通 (Section Common)
@@ -270,8 +241,26 @@
 .act-cocosalon-layout {
     display: flex;
     flex-direction: column;
-    gap: 48px;
+    gap: 40px;
     align-items: center;
+}
+
+.act-cocosalon-photo {
+    width: 100%;
+    max-width: 680px;
+    border-radius: 16px;
+    object-fit: cover;
+    box-shadow: 0 6px 24px rgba(81, 104, 129, 0.15);
+}
+
+.act-kit-photo {
+    display: block;
+    width: 100%;
+    max-width: 520px;
+    margin: 32px auto 40px;
+    border-radius: 16px;
+    object-fit: cover;
+    box-shadow: 0 6px 24px rgba(81, 104, 129, 0.15);
 }
 
 .act-cocosalon-points {
@@ -343,7 +332,7 @@
     width: 280px;
     height: 56px;
     border-radius: 28px;
-    box-shadow: 5px 5px #898787;
+    box-shadow: 2px 2px #898787;
     transition: all 0.1s;
     letter-spacing: 0.08em;
 }
@@ -409,53 +398,61 @@
 .act-kit-cta {
     display: flex;
     justify-content: center;
+    margin-top: 40px;
 }
 
 /* ===================================
    ④ その他の活動 (Others)
    =================================== */
-.act-others-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
+.act-others-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-.act-other-card {
-    background-color: #fff;
-    border-radius: 14px;
-    padding: 24px 20px;
-    box-shadow: 3px 3px 0 rgba(81, 104, 129, 0.15);
+.act-other-item {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid #ddeef7;
 }
 
-.act-other-card--add {
-    background-color: rgba(255,255,255,0.5);
-    border: 2px dashed rgba(81, 104, 129, 0.3);
-    box-shadow: none;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+.act-other-item:first-child {
+    border-top: 1px solid #ddeef7;
 }
 
 .act-other-tag {
     display: inline-block;
     font-size: 10px;
     font-weight: bold;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     color: #fff;
     background-color: #516881;
-    padding: 3px 10px;
+    padding: 3px 0;
     border-radius: 20px;
-    width: fit-content;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 3px;
+    width: 72px;
+    text-align: center;
+}
+
+.act-other-tag--add {
+    background-color: rgba(81, 104, 129, 0.3);
+    font-size: 14px;
+    padding: 1px 10px;
+}
+
+.act-other-body {
+    flex: 1;
 }
 
 .act-other-title {
     font-size: 15px;
     font-weight: bold;
     color: #516881;
-    margin: 0;
+    margin: 0 0 4px;
     line-height: 1.4;
 }
 
@@ -466,13 +463,66 @@
     margin: 0;
 }
 
-.act-other-add-icon {
-    font-size: 36px;
-    color: rgba(81, 104, 129, 0.3);
-    line-height: 1;
+.act-other-item--add .act-other-text {
+    color: rgba(81, 104, 129, 0.5);
 }
 
-.act-other-card--add .act-other-text {
-    color: rgba(81, 104, 129, 0.5);
-    font-size: 12px;
+/* ===================================
+   レスポンシブ
+   =================================== */
+@media (max-width: 768px) {
+    .act-hero {
+        padding: 60px 20px 40px;
+    }
+
+    .act-hero-chara {
+        position: static;
+        width: 100px;
+        margin-bottom: 8px;
+    }
+
+    .act-hero-title-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .act-hero-text .act-hero-sub {
+        margin-top: 12px;
+    }
+
+    .act-hero-title {
+        font-size: 36px;
+    }
+
+    .act-section-title {
+        font-size: 30px;
+    }
+
+    .act-classroom-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .act-kit-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 480px) {
+    .act-hero-title {
+        font-size: 26px;
+    }
+
+    .act-section-title {
+        font-size: 24px;
+    }
+
+    .act-section {
+        padding: 60px 20px 80px;
+    }
+
+    .act-kit-grid {
+        grid-template-columns: 1fr;
+    }
+
 }
