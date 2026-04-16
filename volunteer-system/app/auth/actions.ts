@@ -37,6 +37,24 @@ export async function signUpStep1(
 ): Promise<AuthState> {
   const supabase = await createClient()
 
+  // Turnstile検証
+  const turnstileToken = formData.get('cf-turnstile-response') as string
+  if (!turnstileToken) {
+    return { error: 'スパム検証を完了してください。' }
+  }
+  const verifyRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({
+      secret: process.env.TURNSTILE_SECRET_KEY!,
+      response: turnstileToken,
+    }),
+  })
+  const verifyData = await verifyRes.json()
+  if (!verifyData.success) {
+    return { error: 'スパム検証に失敗しました。もう一度お試しください。' }
+  }
+
   const email = formData.get('email') as string
   const password = formData.get('password') as string
 

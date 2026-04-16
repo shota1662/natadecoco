@@ -114,42 +114,8 @@ export default async function Header() {
           />
         </Link>
 
-        {/* ナビゲーション（ログイン済み：バーガー切替 / 未ログイン：ボタン） */}
-        {user ? (
-          <HeaderNav isAdmin={isAdmin} />
-        ) : (
-          <nav>
-            <ul
-              style={{
-                display: 'flex',
-                gap: '16px',
-                margin: 0,
-                padding: 0,
-                listStyle: 'none',
-                alignItems: 'center',
-              }}
-            >
-              <li>
-                <Link
-                  href="/login"
-                  className="btn-teal"
-                  style={{ padding: '10px 24px', height: 'auto', width: 'auto', fontSize: '14px' }}
-                >
-                  ログイン
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/register"
-                  className="btn-coral"
-                  style={{ padding: '10px 24px', height: 'auto', width: 'auto', fontSize: '14px' }}
-                >
-                  ボランティア登録
-                </Link>
-              </li>
-            </ul>
-          </nav>
-        )}
+        {/* ナビゲーション（ログイン済み：バーガー切替） */}
+        {user && <HeaderNav isAdmin={isAdmin} />}
       </div>
     </header>
   )

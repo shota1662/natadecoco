@@ -1,7 +1,8 @@
 'use client'
 
-import { useActionState } from 'react'
+import { useActionState, useState, useRef } from 'react'
 import Link from 'next/link'
+import { Turnstile } from '@marsidev/react-turnstile'
 import { signUpStep1, type AuthState } from '@/app/auth/actions'
 
 const labelStyle = {
@@ -16,6 +17,20 @@ const labelStyle = {
 
 export default function RegisterForm() {
   const [state, formAction, isPending] = useActionState<AuthState, FormData>(signUpStep1, null)
+  const [confirmError, setConfirmError] = useState<string | null>(null)
+  const formRef = useRef<HTMLFormElement>(null)
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    const form = e.currentTarget
+    const password = (form.elements.namedItem('password') as HTMLInputElement).value
+    const confirm = (form.elements.namedItem('confirm_password') as HTMLInputElement).value
+    if (password !== confirm) {
+      e.preventDefault()
+      setConfirmError('パスワードが一致しません。')
+    } else {
+      setConfirmError(null)
+    }
+  }
 
   return (
     <div
@@ -81,7 +96,7 @@ export default function RegisterForm() {
           </div>
         )}
 
-        <form action={formAction}>
+        <form action={formAction} onSubmit={handleSubmit} ref={formRef}>
           {/* メールアドレス */}
           <div style={{ marginBottom: '24px' }}>
             <label htmlFor="email" style={labelStyle}>
@@ -101,7 +116,7 @@ export default function RegisterForm() {
           </div>
 
           {/* パスワード */}
-          <div style={{ marginBottom: '36px' }}>
+          <div style={{ marginBottom: '24px' }}>
             <label htmlFor="password" style={labelStyle}>
               パスワード
               <span className="badge-pink" style={{ fontSize: '10px', padding: '2px 7px' }}>必須</span>
@@ -120,6 +135,34 @@ export default function RegisterForm() {
             <p style={{ fontSize: '12px', color: '#888', marginTop: '6px' }}>
               ※ 8文字以上の英数字を設定してください
             </p>
+          </div>
+
+          {/* パスワード確認 */}
+          <div style={{ marginBottom: '36px' }}>
+            <label htmlFor="confirm_password" style={labelStyle}>
+              パスワード（確認）
+              <span className="badge-pink" style={{ fontSize: '10px', padding: '2px 7px' }}>必須</span>
+            </label>
+            <input
+              className="form-input"
+              type="password"
+              id="confirm_password"
+              name="confirm_password"
+              placeholder="もう一度入力してください"
+              required
+              minLength={8}
+              autoComplete="new-password"
+              disabled={isPending}
+            />
+            {confirmError && (
+              <p style={{ fontSize: '13px', color: '#c0234a', marginTop: '6px' }}>
+                ⚠️ {confirmError}
+              </p>
+            )}
+          </div>
+
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '24px' }}>
+            <Turnstile siteKey="0x4AAAAAAC-gaHLqg87tdJH_" />
           </div>
 
           <div style={{ display: 'flex', justifyContent: 'center' }}>
