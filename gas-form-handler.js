@@ -1,14 +1,13 @@
 var ADMIN_EMAIL = "ここに運営のメールアドレスを入力";
 var EVENT_SHEET_ID = "イベント用スプレッドシートのIDを入力";
 var CONTACT_SHEET_ID = "お問い合わせ用スプレッドシートのIDを入力";
-var TURNSTILE_SECRET_KEY = "0x4AAAAAAC-gWiNZpp0wihsNM2cguvxy56g";
-
 function verifyTurnstile(token) {
   if (!token) return false;
+  var secret = PropertiesService.getScriptProperties().getProperty('TURNSTILE_SECRET_KEY');
   var response = UrlFetchApp.fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
     method: "post",
     payload: {
-      secret: TURNSTILE_SECRET_KEY,
+      secret: secret,
       response: token
     }
   });
