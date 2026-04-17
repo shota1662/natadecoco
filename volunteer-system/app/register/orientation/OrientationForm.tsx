@@ -4,7 +4,7 @@ import { useActionState, useState } from 'react'
 import { registerOrientation, type AuthState } from '@/app/auth/actions'
 
 const SESSIONS = [
-  { date: '2026-05-07', label: '5/7（水）20:00-20:45　オンライン' },
+  { date: '2026-05-06', label: '5/6（祝）20:00-20:45　オンライン' },
   { date: '2026-06-01', label: '6/1（月）20:00-20:45　オンライン' },
   { date: '2026-07-06', label: '7/6（月）20:00-20:45　オンライン' },
   { date: '2026-08-03', label: '8/3（月）20:00-20:45　オンライン' },
