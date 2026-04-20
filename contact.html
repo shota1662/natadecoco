@@ -38,7 +38,7 @@
     <link rel="stylesheet" href="css/contact.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="js/main.js"></script>
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-423JJRMF0E"></script>
 <script>
@@ -289,11 +289,7 @@
                         </label>
                     </div>
 
-                    <div style="display:flex; justify-content:center; margin-bottom:24px;">
-                        <div class="cf-turnstile" data-sitekey="0x4AAAAAAC-gWoVjmAxJ8eZw"></div>
-                    </div>
-
-                    <div class="form-submit-area">
+<div class="form-submit-area">
                         <button type="submit" class="btn-submit">
                             <img src="img/mayu-one.svg" alt="">
                             <span>送信する</span>
@@ -416,16 +412,6 @@
         const formData = new FormData(form);
         const obj = { formType: 'contact' };
         formData.forEach(function(v, k) { obj[k] = v; });
-
-        // Turnstile未完了チェック
-        if (!obj['cf-turnstile-response']) {
-            var el = document.getElementById('contact-error-msg');
-            el.style.display = 'flex';
-            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            submitBtn.disabled = false;
-            submitSpan.textContent = '送信する';
-            return;
-        }
 
         try {
             await fetch('https://script.google.com/macros/s/AKfycbwMcxbx7N8vb_5j_5rkssjm9bxRlJLQwYHUGEHxVgI3Cd3ZwNH0KBQLbwMIR-lWNoVa-g/exec', {
