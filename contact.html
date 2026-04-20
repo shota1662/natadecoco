@@ -419,7 +419,6 @@
                 formData.forEach(function(v, k) { obj[k] = v; });
                 await fetch('https://script.google.com/macros/s/AKfycbwMcxbx7N8vb_5j_5rkssjm9bxRlJLQwYHUGEHxVgI3Cd3ZwNH0KBQLbwMIR-lWNoVa-g/exec', {
                 method: 'POST',
-                mode: 'no-cors',
                 body: JSON.stringify(obj),
                 headers: { 'Accept': 'application/json' }
             });
