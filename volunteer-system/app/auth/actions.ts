@@ -4,6 +4,9 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
+import { Resend } from 'resend'
+
+const resend = new Resend(process.env.RESEND_API_KEY)
 
 export type AuthState = {
   error?: string
@@ -171,6 +174,17 @@ export async function signUp(
   return signUpStep1(_prevState, formData)
 }
 
+const ORIENTATION_LABELS: Record<string, string> = {
+  '2026-05-06': '5/6（祝）20:00-20:45　オンライン',
+  '2026-06-01': '6/1（月）20:00-20:45　オンライン',
+  '2026-07-06': '7/6（月）20:00-20:45　オンライン',
+  '2026-08-03': '8/3（月）20:00-20:45　オンライン',
+  '2026-09-07': '9/7（月）20:00-20:45　オンライン',
+  '2026-10-05': '10/5（月）20:00-20:45　オンライン',
+  '2026-11-02': '11/2（月）20:00-20:45　オンライン',
+  '2026-12-07': '12/7（月）20:00-20:45　オンライン',
+}
+
 // 説明会申込み
 export async function registerOrientation(
   _prevState: AuthState,
@@ -191,6 +205,36 @@ export async function registerOrientation(
       .update({ orientation_date: orientationDate })
       .eq('id', user.id)
   }
+
+  // プロフィール情報を取得して通知メール送信
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('full_name, email, nationality, phone, prefecture')
+    .eq('id', user.id)
+    .single()
+
+  const name = profile?.full_name || user.email || '（名前未設定）'
+  const orientationLabel = orientationDate
+    ? (ORIENTATION_LABELS[orientationDate] ?? orientationDate)
+    : '未定（あとで申し込む）'
+
+  await resend.emails.send({
+    from: 'ボランティアシステム <info@natadecoco.org>',
+    to: 'info@natadecoco.org',
+    subject: `【新規ボランティア登録】${name}さんが登録しました`,
+    html: `
+      <h2>新規ボランティア登録のお知らせ</h2>
+      <table style="border-collapse:collapse;width:100%;max-width:600px">
+        <tr><td style="padding:8px;border:1px solid #ddd;background:#f5f5f5;width:140px"><strong>氏名</strong></td><td style="padding:8px;border:1px solid #ddd">${name}</td></tr>
+        <tr><td style="padding:8px;border:1px solid #ddd;background:#f5f5f5"><strong>メール</strong></td><td style="padding:8px;border:1px solid #ddd">${profile?.email ?? user.email ?? '—'}</td></tr>
+        <tr><td style="padding:8px;border:1px solid #ddd;background:#f5f5f5"><strong>電話番号</strong></td><td style="padding:8px;border:1px solid #ddd">${profile?.phone ?? '—'}</td></tr>
+        <tr><td style="padding:8px;border:1px solid #ddd;background:#f5f5f5"><strong>国籍</strong></td><td style="padding:8px;border:1px solid #ddd">${profile?.nationality ?? '—'}</td></tr>
+        <tr><td style="padding:8px;border:1px solid #ddd;background:#f5f5f5"><strong>都道府県</strong></td><td style="padding:8px;border:1px solid #ddd">${profile?.prefecture ?? '—'}</td></tr>
+        <tr><td style="padding:8px;border:1px solid #ddd;background:#f5f5f5"><strong>説明会日程</strong></td><td style="padding:8px;border:1px solid #ddd">${orientationLabel}</td></tr>
+      </table>
+      <p style="margin-top:16px"><a href="https://volunteer.natadecoco.org/admin/volunteers">管理者画面で確認する</a></p>
+    `,
+  })
 
   revalidatePath('/', 'layout')
   redirect('/dashboard?message=' + encodeURIComponent('登録が完了しました！ようこそナタデココへ🎉'))

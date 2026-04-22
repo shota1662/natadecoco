@@ -175,6 +175,13 @@ export default async function AdminPage() {
                 icon: '👥',
               },
               {
+                href: '/admin/orientations',
+                label: '説明会管理',
+                desc: '日程別の申込み・出席管理',
+                color: '#f4a44a',
+                icon: '📋',
+              },
+              {
                 href: '/admin/email-templates',
                 label: 'メールテンプレート',
                 desc: '当選・落選メールの文面編集',

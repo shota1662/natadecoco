@@ -41,6 +41,8 @@ ALTER TABLE public.profiles ADD COLUMN IF NOT EXISTS bank_name           TEXT;
 ALTER TABLE public.profiles ADD COLUMN IF NOT EXISTS bank_branch         TEXT;
 ALTER TABLE public.profiles ADD COLUMN IF NOT EXISTS bank_account_number TEXT;
 ALTER TABLE public.profiles ADD COLUMN IF NOT EXISTS bank_account_holder TEXT;
+ALTER TABLE public.profiles ADD COLUMN IF NOT EXISTS orientation_date    DATE;
+ALTER TABLE public.profiles ADD COLUMN IF NOT EXISTS orientation_attended BOOLEAN DEFAULT false;
 
 -- ============================================================
 -- 2. イベントテーブル

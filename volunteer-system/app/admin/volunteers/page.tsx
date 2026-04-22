@@ -38,6 +38,16 @@ export default async function AdminVolunteersPage() {
   }
 
   const levelLabels = ['', '初級', '基礎', '中級', '上級', 'ネイティブ']
+  const orientationLabels: Record<string, string> = {
+    '2026-05-06': '5/6',
+    '2026-06-01': '6/1',
+    '2026-07-06': '7/6',
+    '2026-08-03': '8/3',
+    '2026-09-07': '9/7',
+    '2026-10-05': '10/5',
+    '2026-11-02': '11/2',
+    '2026-12-07': '12/7',
+  }
 
   return (
     <div style={{ minHeight: 'calc(100vh - 120px)', background: '#f7fbfe', padding: '40px 20px 60px' }}>
@@ -80,6 +90,7 @@ export default async function AdminVolunteersPage() {
                   <th style={{ textAlign: 'center' }}>日本語力</th>
                   <th style={{ textAlign: 'center' }}>英語力</th>
                   <th style={{ textAlign: 'center' }}>参加数</th>
+                  <th>説明会日程</th>
                   <th>登録日</th>
                 </tr>
               </thead>
@@ -143,6 +154,21 @@ export default async function AdminVolunteersPage() {
                         {participationCounts[v.id] || 0}
                       </span>
                       <span style={{ fontSize: '12px', color: '#888', marginLeft: '2px' }}>回</span>
+                    </td>
+                    <td style={{ fontSize: '13px', color: '#555', whiteSpace: 'nowrap' }}>
+                      {v.orientation_date
+                        ? (
+                          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                            <span style={{ color: '#30b9bf', fontWeight: '600' }}>
+                              {orientationLabels[v.orientation_date] ?? v.orientation_date}
+                            </span>
+                            {v.orientation_attended && (
+                              <span style={{ fontSize: '11px', color: '#1a8a8f', backgroundColor: '#f0fffe', border: '1px solid #30b9bf', borderRadius: '4px', padding: '1px 5px' }}>参加済</span>
+                            )}
+                          </span>
+                        )
+                        : <span style={{ color: '#ccc' }}>未定</span>
+                      }
                     </td>
                     <td style={{ fontSize: '13px', color: '#888', whiteSpace: 'nowrap' }}>
                       {new Date(v.created_at).toLocaleDateString('ja-JP')}

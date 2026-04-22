@@ -38,6 +38,17 @@ export default async function VolunteerDetailPage({ params }: Props) {
     .eq('user_id', id)
     .order('registered_at', { ascending: false })
 
+  const ORIENTATION_LABELS: Record<string, string> = {
+    '2026-05-06': '5/6（祝）20:00-20:45　オンライン',
+    '2026-06-01': '6/1（月）20:00-20:45　オンライン',
+    '2026-07-06': '7/6（月）20:00-20:45　オンライン',
+    '2026-08-03': '8/3（月）20:00-20:45　オンライン',
+    '2026-09-07': '9/7（月）20:00-20:45　オンライン',
+    '2026-10-05': '10/5（月）20:00-20:45　オンライン',
+    '2026-11-02': '11/2（月）20:00-20:45　オンライン',
+    '2026-12-07': '12/7（月）20:00-20:45　オンライン',
+  }
+
   const STATUS_LABEL: Record<string, string> = { applied: '申込済み', selected: '当選', rejected: '落選' }
   const STATUS_COLOR: Record<string, string> = { applied: '#516881', selected: '#1a8a8f', rejected: '#c0234a' }
   const STATUS_BG: Record<string, string>    = { applied: '#f0f4f8', selected: '#f0fffe', rejected: '#fff0f3' }
@@ -88,6 +99,17 @@ export default async function VolunteerDetailPage({ params }: Props) {
           <div style={{ height: '6px', backgroundColor: '#30b9bf' }} />
           <div style={{ padding: '28px 32px' }}>
             <h2 style={{ fontSize: '18px', fontWeight: '700', color: '#516881', margin: '0 0 20px' }}>ボランティア説明会参加</h2>
+
+            {/* 申し込み日程 */}
+            <div style={{ marginBottom: '16px', padding: '12px 16px', backgroundColor: '#f7fbfe', borderRadius: '10px', border: '1.5px solid #d9eaf4' }}>
+              <span style={{ fontSize: '13px', color: '#888', fontWeight: '600', display: 'block', marginBottom: '4px' }}>申込日程</span>
+              <span style={{ fontSize: '14px', color: v.orientation_date ? '#333' : '#ccc', fontWeight: v.orientation_date ? '600' : '400' }}>
+                {v.orientation_date
+                  ? (ORIENTATION_LABELS[v.orientation_date] ?? new Date(v.orientation_date).toLocaleDateString('ja-JP'))
+                  : '未定（申し込み待ち）'}
+              </span>
+            </div>
+
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>
               {v.orientation_attended ? (
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', backgroundColor: '#f0fffe', border: '1.5px solid #30b9bf', borderRadius: '6px', padding: '6px 16px', fontSize: '14px', fontWeight: '700', color: '#1a8a8f' }}>

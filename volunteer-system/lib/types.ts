@@ -17,6 +17,8 @@ export interface Profile {
   bank_branch: string | null
   bank_account_number: string | null
   bank_account_holder: string | null
+  orientation_date: string | null
+  orientation_attended: boolean | null
   created_at: string
   updated_at: string
 }
