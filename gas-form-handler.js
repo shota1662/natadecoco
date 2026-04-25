@@ -97,30 +97,14 @@ function sendAutoReply(email, name, formType, data) {
       "info@natadecoco.org"
     ]);
 
-  } else if (formType === "camp-20260530") {
-    subject = "[NPOナタデデコ] 国際交流キャンプ 仮申し込みを受け付けました";
-    body = buildBody([
-      name + " 様",
-      "",
-      "国際交流キャンプの仮申し込みありがとうございます。",
-      "正式受付開始(4月30日予定)の際に、優先的にご案内をお送りします。",
-      sep,
-      "お名前：" + name,
-      "メール：" + (data.email || ""),
-      "お子様の人数：" + (data.childCount || "") + "人",
-      (data.message ? "備考：" + data.message : ""),
-      sep,
-      "NPO法人ナタデデコ",
-      "info@natadecoco.org"
-    ]);
-
   } else {
     subject = "[NPOナタデデコ] " + label + " お申し込みを受け付けました";
     body = buildBody([
       name + " 様",
       "",
       label + "へのお申し込みありがとうございます。",
-      "ご参加をお待ちしております！",
+      "詳細については改めてご案内いたしますので、もう少々お待ちください。",
+      "スタッフ一同お会いできるのを楽しみにしております。",
       sep,
       "お名前：" + name,
       "メール：" + (data.email || ""),
