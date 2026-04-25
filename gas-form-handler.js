@@ -82,7 +82,7 @@ function sendAutoReply(email, name, formType, data) {
   var sep = "\n-----------------\n";
 
   if (formType === "contact") {
-    subject = "[NPOナタデデコ] お問い合わせを受け付けました";
+    subject = "[NPOナタデココ] お問い合わせを受け付けました";
     body = buildBody([
       name + " 様",
       "",
@@ -93,12 +93,12 @@ function sendAutoReply(email, name, formType, data) {
       "種別：" + (data.category || ""),
       (data.message || ""),
       sep,
-      "NPO法人ナタデデコ",
+      "NPO法人ナタデココ",
       "info@natadecoco.org"
     ]);
 
   } else {
-    subject = "[NPOナタデデコ] " + label + " お申し込みを受け付けました";
+    subject = "[NPOナタデココ] " + label + " お申し込みを受け付けました";
     body = buildBody([
       name + " 様",
       "",
@@ -112,7 +112,7 @@ function sendAutoReply(email, name, formType, data) {
       "お子様の人数：" + (data.childCount || "") + "人",
       (data.message ? "備考：" + data.message : ""),
       sep,
-      "NPO法人ナタデデコ",
+      "NPO法人ナタデココ",
       "info@natadecoco.org"
     ]);
   }
