@@ -219,6 +219,33 @@
         <div class="top-area">
             <div class="top-photo">
                 <img id="topPhotoImg" src="" alt="">
+                <script>
+                    (function () {
+                        const topPhotos = [
+                            "img/top/6.jpg",
+                            "img/top/10.jpg",
+                            "img/top/12.jpg",
+                            "img/top/14.jpg",
+                            "img/top/15.jpg",
+                            "img/top/16.jpg",
+                            "img/top/20.jpg",
+                            "img/top/21.jpg",
+                            "img/top/22.jpg"
+                        ];
+                        const responsivePhotos = [
+                            "img/top/responsive/1.jpg",
+                            "img/top/responsive/2.jpg",
+                            "img/top/responsive/4.jpg",
+                            "img/top/responsive/5.jpg",
+                            "img/top/responsive/6.jpg",
+                            "img/top/responsive/7.jpg"
+                        ];
+                        const isMobile = window.matchMedia("(max-width: 768px)").matches;
+                        const photos = isMobile ? responsivePhotos : topPhotos;
+                        document.getElementById("topPhotoImg").src =
+                            photos[Math.floor(Math.random() * photos.length)];
+                    })();
+                </script>
                 <div class="top-letter"><img src="img/top-letter.png" alt="子どもたちに世界との出会いを"></div>
             </div>
         </div>
@@ -789,34 +816,6 @@
 
         </div>
     </footer>
-
-    <script>
-        (function () {
-            const topPhotos = [
-                "img/top/6.jpg",
-                "img/top/10.jpg",
-                "img/top/12.jpg",
-                "img/top/14.jpg",
-                "img/top/15.jpg",
-                "img/top/16.jpg",
-                "img/top/20.jpg",
-                "img/top/21.jpg",
-                "img/top/22.jpg"
-            ];
-            const responsivePhotos = [
-                "img/top/responsive/1.jpg",
-                "img/top/responsive/2.jpg",
-                "img/top/responsive/4.jpg",
-                "img/top/responsive/5.jpg",
-                "img/top/responsive/6.jpg",
-                "img/top/responsive/7.jpg"
-            ];
-            const isMobile = window.matchMedia("(max-width: 768px)").matches;
-            const photos = isMobile ? responsivePhotos : topPhotos;
-            document.getElementById("topPhotoImg").src =
-                photos[Math.floor(Math.random() * photos.length)];
-        })();
-    </script>
 
     <script>
         (function () {
