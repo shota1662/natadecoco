@@ -604,6 +604,7 @@ h2 {
     border: 5px solid #9fd9f6;
     position: relative;
     background-color: #fff;
+    aspect-ratio: 16 / 9;
 }
 
 .top-letter {
