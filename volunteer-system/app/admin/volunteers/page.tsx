@@ -91,6 +91,7 @@ export default async function AdminVolunteersPage() {
                   <th style={{ textAlign: 'center' }}>英語力</th>
                   <th style={{ textAlign: 'center' }}>参加数</th>
                   <th>説明会日程</th>
+                  <th style={{ textAlign: 'center' }}>説明会参加</th>
                   <th>登録日</th>
                 </tr>
               </thead>
@@ -157,18 +158,20 @@ export default async function AdminVolunteersPage() {
                     </td>
                     <td style={{ fontSize: '13px', color: '#555', whiteSpace: 'nowrap' }}>
                       {v.orientation_date
-                        ? (
-                          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-                            <span style={{ color: '#30b9bf', fontWeight: '600' }}>
-                              {orientationLabels[v.orientation_date] ?? v.orientation_date}
-                            </span>
-                            {v.orientation_attended && (
-                              <span style={{ fontSize: '11px', color: '#1a8a8f', backgroundColor: '#f0fffe', border: '1px solid #30b9bf', borderRadius: '4px', padding: '1px 5px' }}>参加済</span>
-                            )}
-                          </span>
-                        )
+                        ? <span style={{ color: '#30b9bf', fontWeight: '600' }}>{orientationLabels[v.orientation_date] ?? v.orientation_date}</span>
                         : <span style={{ color: '#ccc' }}>未定</span>
                       }
+                    </td>
+                    <td style={{ textAlign: 'center' }}>
+                      {v.orientation_attended ? (
+                        <span style={{ display: 'inline-block', padding: '3px 10px', borderRadius: '5px', backgroundColor: '#f0fffe', border: '1.5px solid #30b9bf', color: '#1a8a8f', fontSize: '12px', fontWeight: '700', whiteSpace: 'nowrap' }}>
+                          ✓ 参加済み
+                        </span>
+                      ) : (
+                        <span style={{ display: 'inline-block', padding: '3px 10px', borderRadius: '5px', backgroundColor: '#f5f5f5', border: '1.5px solid #ddd', color: '#aaa', fontSize: '12px', fontWeight: '700', whiteSpace: 'nowrap' }}>
+                          未参加
+                        </span>
+                      )}
                     </td>
                     <td style={{ fontSize: '13px', color: '#888', whiteSpace: 'nowrap' }}>
                       {new Date(v.created_at).toLocaleDateString('ja-JP')}
