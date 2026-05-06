@@ -603,7 +603,7 @@ h2 {
     overflow: hidden;
     border: 5px solid #9fd9f6;
     position: relative;
-    background-color: #d4eef9;
+    background-color: #fff;
 }
 
 .top-letter {
@@ -625,6 +625,12 @@ h2 {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.top-photo img.is-loaded {
+    opacity: 1;
 }
 
 /* ===================================

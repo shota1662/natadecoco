@@ -242,8 +242,9 @@
                         ];
                         const isMobile = window.matchMedia("(max-width: 768px)").matches;
                         const photos = isMobile ? responsivePhotos : topPhotos;
-                        document.getElementById("topPhotoImg").src =
-                            photos[Math.floor(Math.random() * photos.length)];
+                        const img = document.getElementById("topPhotoImg");
+                        img.onload = function () { img.classList.add("is-loaded"); };
+                        img.src = photos[Math.floor(Math.random() * photos.length)];
                     })();
                 </script>
                 <div class="top-letter"><img src="img/top-letter.png" alt="子どもたちに世界との出会いを"></div>
