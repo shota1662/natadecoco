@@ -1,7 +1,7 @@
 'use client'
 
-import { useActionState } from 'react'
-import { updateProfile, type ProfileState } from './actions'
+import { useActionState, useState, useTransition } from 'react'
+import { updateProfile, deleteAccount, type ProfileState } from './actions'
 import type { Profile } from '@/lib/types'
 
 const NATIONALITIES = [
@@ -53,6 +53,19 @@ interface ProfileFormProps {
 
 export default function ProfileForm({ profile }: ProfileFormProps) {
   const [state, formAction, isPending] = useActionState<ProfileState, FormData>(updateProfile, null)
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
+  const [deleteConfirmText, setDeleteConfirmText] = useState('')
+  const [deleteError, setDeleteError] = useState<string | null>(null)
+  const [isDeleting, startDeleteTransition] = useTransition()
+
+  const handleDelete = () => {
+    startDeleteTransition(async () => {
+      const result = await deleteAccount()
+      if (result?.error) {
+        setDeleteError(result.error)
+      }
+    })
+  }
 
   return (
     <div
@@ -398,7 +411,112 @@ export default function ProfileForm({ profile }: ProfileFormProps) {
             </button>
           </div>
         </form>
+
+        {/* 退会リンク（目立たないよう最下部に配置） */}
+        <div style={{ textAlign: 'center', marginTop: '40px', paddingTop: '24px', borderTop: '1px solid #f0f4f8' }}>
+          <button
+            onClick={() => { setShowDeleteModal(true); setDeleteConfirmText(''); setDeleteError(null) }}
+            style={{
+              background: 'none',
+              border: 'none',
+              fontSize: '12px',
+              color: '#bbb',
+              cursor: 'pointer',
+              textDecoration: 'underline',
+              fontFamily: 'inherit',
+              padding: 0,
+            }}
+          >
+            退会する
+          </button>
+        </div>
       </div>
+
+      {/* 退会確認モーダル */}
+      {showDeleteModal && (
+        <div
+          style={{
+            position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.45)',
+            zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px',
+          }}
+          onClick={() => !isDeleting && setShowDeleteModal(false)}
+        >
+          <div
+            style={{
+              backgroundColor: '#fff', borderRadius: '16px',
+              boxShadow: '8px 8px 0 rgba(81,104,129,0.2)',
+              padding: '32px 28px 28px', maxWidth: '420px', width: '100%',
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h3 style={{ fontSize: '18px', fontWeight: '700', color: '#333', margin: '0 0 12px' }}>
+              退会の確認
+            </h3>
+            <p style={{ fontSize: '14px', color: '#666', lineHeight: 1.7, margin: '0 0 16px' }}>
+              退会するとアカウントおよびすべての登録情報が削除されます。この操作は取り消せません。
+            </p>
+            <div
+              style={{
+                backgroundColor: '#fff8f0', border: '1.5px solid #f4a44a',
+                borderRadius: '8px', padding: '12px 14px', marginBottom: '20px',
+                fontSize: '13px', color: '#a05800',
+              }}
+            >
+              ⚠️ イベントの申し込み履歴・プロフィール情報がすべて削除されます。
+            </div>
+            <p style={{ fontSize: '13px', color: '#888', margin: '0 0 8px' }}>
+              確認のため、下のフィールドに <strong style={{ color: '#333' }}>退会</strong> と入力してください。
+            </p>
+            <input
+              type="text"
+              value={deleteConfirmText}
+              onChange={(e) => setDeleteConfirmText(e.target.value)}
+              placeholder="退会"
+              disabled={isDeleting}
+              style={{
+                width: '100%', padding: '10px 14px',
+                border: `2px solid ${deleteConfirmText === '退会' ? '#fe4c7f' : '#d9eaf4'}`,
+                borderRadius: '8px', fontSize: '14px',
+                fontFamily: 'inherit', boxSizing: 'border-box',
+                outline: 'none', marginBottom: '8px',
+              }}
+            />
+            {deleteError && (
+              <p style={{ fontSize: '12px', color: '#fe4c7f', margin: '0 0 12px' }}>⚠️ {deleteError}</p>
+            )}
+            <div style={{ display: 'flex', gap: '10px', marginTop: '16px' }}>
+              <button
+                onClick={() => setShowDeleteModal(false)}
+                disabled={isDeleting}
+                style={{
+                  flex: 1, padding: '10px', backgroundColor: '#f7fbfe',
+                  border: '2px solid #d9eaf4', borderRadius: '10px',
+                  fontSize: '14px', color: '#516881',
+                  cursor: isDeleting ? 'not-allowed' : 'pointer',
+                  fontFamily: 'inherit', fontWeight: '700',
+                }}
+              >
+                キャンセル
+              </button>
+              <button
+                onClick={handleDelete}
+                disabled={deleteConfirmText !== '退会' || isDeleting}
+                style={{
+                  flex: 1, padding: '10px',
+                  backgroundColor: deleteConfirmText === '退会' && !isDeleting ? '#fe4c7f' : '#f5c0cc',
+                  border: 'none', borderRadius: '10px',
+                  fontSize: '14px', color: '#fff',
+                  cursor: deleteConfirmText === '退会' && !isDeleting ? 'pointer' : 'not-allowed',
+                  fontFamily: 'inherit', fontWeight: '700',
+                  transition: 'background-color 0.2s',
+                }}
+              >
+                {isDeleting ? '削除中...' : '退会する'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

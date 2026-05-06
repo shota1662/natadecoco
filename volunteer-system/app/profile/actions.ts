@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 
 export type ProfileState = {
   error?: string
@@ -60,4 +61,26 @@ export async function updateProfile(
   revalidatePath('/profile')
   revalidatePath('/dashboard')
   redirect('/dashboard?message=' + encodeURIComponent('プロフィールを更新しました。'))
+}
+
+export async function deleteAccount(): Promise<{ error?: string }> {
+  const supabase = await createClient()
+
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) {
+    redirect('/login')
+  }
+
+  const adminClient = createAdminClient()
+  if (!adminClient) {
+    return { error: 'アカウントの削除に失敗しました。管理者にお問い合わせください。' }
+  }
+
+  const { error } = await adminClient.auth.admin.deleteUser(user.id)
+  if (error) {
+    return { error: 'アカウントの削除に失敗しました。再度お試しください。' }
+  }
+
+  await supabase.auth.signOut()
+  redirect('/')
 }

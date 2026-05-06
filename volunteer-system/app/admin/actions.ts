@@ -227,7 +227,9 @@ export async function updateOrientationAttended(volunteerId: string, attended: b
     return { error: error.message }
   }
 
+  revalidatePath('/admin/orientations')
   revalidatePath(`/admin/volunteers/${volunteerId}`)
+  revalidatePath('/dashboard')
   return { success: true }
 }
 

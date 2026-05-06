@@ -314,14 +314,19 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
 
           {openEvents.length > 0 ? (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              {openEvents.map((event) => (
-                <EventCard
-                  key={event.id}
-                  event={event}
-                  isRegistered={false}
-                  participantCount={eventParticipantCounts[event.id] || 0}
-                />
-              ))}
+              {openEvents.map((event) => {
+                const reg = myRegistrations?.find((r) => r.event_id === event.id)
+                return (
+                  <EventCard
+                    key={event.id}
+                    event={event}
+                    isRegistered={!!reg}
+                    participantCount={eventParticipantCounts[event.id] || 0}
+                    registrationId={reg?.id}
+                    registrationStatus={(reg as { status?: string } | undefined)?.status as 'applied' | 'selected' | 'rejected' | undefined}
+                  />
+                )
+              })}
             </div>
           ) : (
             <div style={{ textAlign: 'center', padding: '40px 20px', backgroundColor: '#f7fbfe', borderRadius: '16px', border: '2px solid #d9eaf4' }}>

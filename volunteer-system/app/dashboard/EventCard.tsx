@@ -52,6 +52,7 @@ export default function EventCard({
   const [regId, setRegId] = useState(registrationId)
   const [error, setError] = useState<string | null>(null)
   const [showModal, setShowModal] = useState(false)
+  const [showCancelModal, setShowCancelModal] = useState(false)
   const [wantsTransportFee, setWantsTransportFee] = useState(false)
   const [wantsHonorarium, setWantsHonorarium] = useState(false)
 
@@ -80,6 +81,7 @@ export default function EventCard({
     if (!regId) return
     setLoading(true)
     setError(null)
+    setShowCancelModal(false)
     const result = await cancelRegistration(regId)
     if (result.error) {
       setError(result.error)
@@ -197,24 +199,24 @@ export default function EventCard({
           )}
 
           {registered ? (
-            appStatus === 'applied' && (
+            (appStatus === 'applied' || appStatus === 'selected') && (
               <button
-                onClick={handleCancel}
+                onClick={() => setShowCancelModal(true)}
                 disabled={loading}
                 style={{
                   padding: '7px 16px',
                   backgroundColor: '#f7fbfe',
-                  border: '1.5px solid #d9eaf4',
+                  border: `1.5px solid ${appStatus === 'selected' ? '#fe4c7f' : '#d9eaf4'}`,
                   borderRadius: '8px',
                   fontSize: '13px',
-                  color: '#516881',
+                  color: appStatus === 'selected' ? '#fe4c7f' : '#516881',
                   cursor: loading ? 'not-allowed' : 'pointer',
                   fontFamily: 'inherit',
                   fontWeight: '700',
                   whiteSpace: 'nowrap',
                 }}
               >
-                {loading ? '処理中...' : 'キャンセル'}
+                {loading ? '処理中...' : '登録解除'}
               </button>
             )
           ) : canApply ? (
@@ -238,6 +240,61 @@ export default function EventCard({
           ) : reception.type === 'closed' ? null : null}
         </div>
       </div>
+
+      {/* 登録解除確認モーダル */}
+      {showCancelModal && (
+        <div
+          style={{
+            position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.4)',
+            zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px',
+          }}
+          onClick={() => setShowCancelModal(false)}
+        >
+          <div
+            style={{
+              backgroundColor: '#fff', borderRadius: '16px',
+              boxShadow: '8px 8px 0 rgba(81,104,129,0.2)',
+              padding: '28px 28px 24px', maxWidth: '400px', width: '100%',
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h3 style={{ fontSize: '18px', fontWeight: '700', color: '#333', margin: '0 0 8px' }}>
+              登録を解除しますか？
+            </h3>
+            <p style={{ fontSize: '14px', color: '#666', margin: '0 0 8px' }}>{event.title}</p>
+            {appStatus === 'selected' && (
+              <p style={{ fontSize: '13px', color: '#fe4c7f', backgroundColor: '#fff0f3', border: '1.5px solid #fe4c7f', borderRadius: '8px', padding: '10px 14px', margin: '0 0 16px' }}>
+                ⚠️ このイベントはすでに当選しています。解除すると参加枠が失われます。
+              </p>
+            )}
+            <div style={{ display: 'flex', gap: '10px', marginTop: '16px' }}>
+              <button
+                onClick={() => setShowCancelModal(false)}
+                style={{
+                  flex: 1, padding: '10px', backgroundColor: '#f7fbfe',
+                  border: '2px solid #d9eaf4', borderRadius: '10px',
+                  fontSize: '14px', color: '#516881', cursor: 'pointer',
+                  fontFamily: 'inherit', fontWeight: '700',
+                }}
+              >
+                戻る
+              </button>
+              <button
+                onClick={handleCancel}
+                disabled={loading}
+                style={{
+                  flex: 1, padding: '10px', backgroundColor: '#fe4c7f',
+                  border: '2px solid #fe4c7f', borderRadius: '10px',
+                  fontSize: '14px', color: '#fff', cursor: loading ? 'not-allowed' : 'pointer',
+                  fontFamily: 'inherit', fontWeight: '700',
+                }}
+              >
+                {loading ? '処理中...' : '解除する'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* 申し込み確認モーダル */}
       {showModal && (
