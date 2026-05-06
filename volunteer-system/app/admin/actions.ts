@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import { Resend } from 'resend'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
@@ -216,9 +217,14 @@ export async function updateEmailTemplate(
 }
 
 export async function updateOrientationAttended(volunteerId: string, attended: boolean) {
-  const { supabase } = await checkAdmin()
+  await checkAdmin()
 
-  const { error } = await supabase
+  const adminClient = createAdminClient()
+  if (!adminClient) {
+    return { error: 'サーバー設定エラーが発生しました' }
+  }
+
+  const { error } = await adminClient
     .from('profiles')
     .update({ orientation_attended: attended })
     .eq('id', volunteerId)

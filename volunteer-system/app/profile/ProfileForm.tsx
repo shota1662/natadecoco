@@ -420,7 +420,7 @@ export default function ProfileForm({ profile }: ProfileFormProps) {
               background: 'none',
               border: 'none',
               fontSize: '12px',
-              color: '#bbb',
+              color: '#999',
               cursor: 'pointer',
               textDecoration: 'underline',
               fontFamily: 'inherit',
