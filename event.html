@@ -284,7 +284,7 @@
                                         日比谷図書文化館
                                     </p>
                                     <span class="ticket-fee">参加費：無料</span>
-                                    <div class="ticket-status ticket-status--upcoming">
+                                    <div id="status-718" class="ticket-status ticket-status--upcoming">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
                                         <span class="status-date">6/18</span> 8:00受付開始
                                     </div>
@@ -327,6 +327,12 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <div class="acc-btns">
+                                <p id="acc-status-718" style="font-size:14px; color:#888; text-align:center; padding:8px 0;">受付開始は6月18日（水）8:00です</p>
+                                <a id="acc-btn-718" href="https://bxoo63091ut.typeform.com/event260718" target="_blank" rel="noopener" class="event-card-btn" style="display:none;">
+                                    <img src="img/mayu.svg" alt="">申し込みはこちら
+                                </a>
+                            </div>
                         </div>
                     </div><!-- /.event-accordion -->
                 </div><!-- /.event-card-wrapper -->
@@ -800,6 +806,28 @@
                 target.classList.toggle('is-open', !isOpen);
             });
         });
+
+        // 7/18イベント：受付開始時刻に申し込みボタンを表示
+        (function() {
+            var openTime = new Date('2026-06-18T08:00:00+09:00');
+
+            function update718() {
+                var now = new Date();
+                if (now >= openTime) {
+                    var statusEl = document.getElementById('status-718');
+                    statusEl.className = 'ticket-status ticket-status--open';
+                    statusEl.innerHTML = '<span class="status-dot"></span>受付中';
+                    var accStatusEl = document.getElementById('acc-status-718');
+                    if (accStatusEl) accStatusEl.style.display = 'none';
+                    var accBtnEl = document.getElementById('acc-btn-718');
+                    if (accBtnEl) accBtnEl.style.display = '';
+                } else {
+                    setTimeout(update718, openTime - now + 500);
+                }
+            }
+
+            update718();
+        })();
     </script>
 
 </body>
