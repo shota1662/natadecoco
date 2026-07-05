@@ -182,6 +182,13 @@ export default async function AdminPage() {
                 icon: '📋',
               },
               {
+                href: '/admin/intl-volunteers',
+                label: '外国人サポーター一覧',
+                desc: '/register-intl からの登録者',
+                color: '#5a9bd8',
+                icon: '🌏',
+              },
+              {
                 href: '/admin/email-templates',
                 label: 'メールテンプレート',
                 desc: '当選・落選メールの文面編集',

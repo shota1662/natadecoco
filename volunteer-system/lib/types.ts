@@ -23,6 +23,19 @@ export interface Profile {
   updated_at: string
 }
 
+export interface IntlVolunteer {
+  id: string
+  created_at: string
+  full_name: string
+  birth_date: string
+  email: string
+  origin_country: string
+  residence_pref: string
+  preferred_session: string
+  privacy_consent: boolean
+  locale: 'en' | 'ja'
+}
+
 export interface Event {
   id: string
   title: string
