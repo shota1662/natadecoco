@@ -16,6 +16,7 @@ export const PRIVACY_POLICY_URL = 'https://natadecoco.org/privacy.html'
 export interface Dict {
   langName: string
   toggleTo: string
+  nav: { back: string }
   hero: { title: string; subtitle: string; button: string }
   why: { heading: string; intro: string; items: { title: string; body: string }[] }
   forYou: { heading: string; intro: string; items: string[] }
@@ -62,6 +63,7 @@ export const DICT: Record<Locale, Dict> = {
   en: {
     langName: 'English',
     toggleTo: 'やさしい日本語',
+    nav: { back: 'Back to Nata de Coco' },
     hero: {
       title: 'Become an International Supporter',
       subtitle:
@@ -182,6 +184,7 @@ export const DICT: Record<Locale, Dict> = {
   ja: {
     langName: 'やさしい日本語',
     toggleTo: 'English',
+    nav: { back: 'ナタデココHPへ戻る' },
     hero: {
       title: '外国人サポーター募集',
       subtitle:

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import RegisterIntlForm from './RegisterIntlForm'
+import { PublicHeader, PublicFooter } from './PublicChrome'
 import { DICT, type Locale } from './i18n'
 import { IMAGES, type ImageAsset } from './images'
 
@@ -75,6 +76,9 @@ export default function RegisterIntlContent() {
 
   return (
     <div style={{ backgroundColor: '#fff' }}>
+      {/* 公開募集ページ用のシンプルなヘッダー（会員向け共通 chrome は非表示） */}
+      <PublicHeader locale={locale} />
+
       {/* 言語トグル（スティッキー） */}
       <div
         style={{
@@ -113,33 +117,72 @@ export default function RegisterIntlContent() {
       </div>
 
       {/* ============ 1. Hero ============ */}
-      <section style={{ position: 'relative' }}>
-        <ImagePlaceholder asset={IMAGES.hero} locale={locale} />
+      {/* volunteer.html の .vol-hero に準拠：フラットな水色ベタ塗り＋通常フローの横並び。
+          overlay は使わず、見出しは #516881 のダーク文字。テキスト左／写真右、モバイルで縦積み。 */}
+      <section style={{ backgroundColor: '#9fd9f6', padding: '36px 20px 40px' }}>
         <div
           style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'linear-gradient(0deg, rgba(81,104,129,0.55), rgba(81,104,129,0.25))',
-            borderRadius: '14px',
+            maxWidth: '960px',
+            margin: '0 auto',
             display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            textAlign: 'center',
-            padding: '24px',
+            alignItems: 'flex-start',
+            gap: '40px',
+            flexWrap: 'wrap',
           }}
         >
-          <h1 style={{ fontSize: 'clamp(24px, 5vw, 40px)', fontWeight: 700, color: '#fff', margin: '0 0 16px', lineHeight: 1.4, textShadow: '0 2px 8px rgba(0,0,0,0.3)' }}>
-            {d.hero.title}
-          </h1>
-          <p style={{ fontSize: 'clamp(13px, 2.4vw, 17px)', color: '#fff', maxWidth: '640px', margin: '0 0 24px', lineHeight: 1.8, textShadow: '0 1px 6px rgba(0,0,0,0.35)' }}>
-            {d.hero.subtitle}
-          </p>
-          <a href="#signup" className="btn-coral" style={{ padding: '16px 40px', height: 'auto', width: 'auto', fontSize: '15px' }}>
-            {d.hero.button}
-          </a>
+          {/* テキスト（左） */}
+          <div style={{ flex: '1 1 320px', minWidth: '260px' }}>
+            <p style={{ fontSize: '13px', fontWeight: 700, letterSpacing: '0.3em', color: '#516881', margin: '0 0 8px' }}>
+              INTERNATIONAL SUPPORTER
+            </p>
+            <h1
+              style={{
+                fontSize: 'clamp(28px, 5vw, 36px)',
+                fontWeight: 700,
+                color: '#516881',
+                margin: '0 0 16px',
+                lineHeight: 1.3,
+                letterSpacing: '0.05em',
+              }}
+            >
+              {d.hero.title}
+            </h1>
+            <p style={{ fontSize: '15px', color: '#516881', lineHeight: 1.9, margin: '0 0 28px' }}>
+              {d.hero.subtitle}
+            </p>
+            <a
+              href="#signup"
+              className="btn-coral"
+              style={{ display: 'inline-flex', padding: '15px 36px', height: 'auto', width: 'auto', fontSize: '15px' }}
+            >
+              {d.hero.button}
+            </a>
+          </div>
+
+          {/* 写真（右）: 丸枠フレームで ImagePlaceholder を配置 */}
+          <div
+            style={{
+              flex: '1 1 360px',
+              minWidth: '260px',
+              borderRadius: '18px',
+              overflow: 'hidden',
+              boxShadow: '4px 4px 0 rgba(81,104,129,0.2)',
+              border: '3px solid #fff',
+            }}
+          >
+            <ImagePlaceholder asset={IMAGES.hero} locale={locale} />
+          </div>
         </div>
       </section>
+
+      {/* 波形ディバイダ（水色 → 白）: volunteer.html と同一 */}
+      <div className="wave-divider" style={{ backgroundColor: '#9fd9f6' }}>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+          <path fill="#fff" fillOpacity="0.3" d="M0,55 C240,95 480,15 720,55 C960,95 1200,15 1440,55 L1440,120 L0,120 Z" />
+          <path fill="#fff" fillOpacity="0.6" d="M0,70 C200,105 440,30 680,70 C920,100 1160,35 1440,70 L1440,120 L0,120 Z" />
+          <path fill="#fff" d="M0,85 C160,108 380,55 600,82 C820,105 1040,56 1260,80 C1360,90 1410,68 1440,85 L1440,120 L0,120 Z" />
+        </svg>
+      </div>
 
       {/* ============ 2. Why it's easy to join ============ */}
       <section style={{ backgroundColor: '#f7fbfe', padding: '56px 20px' }}>
@@ -276,35 +319,51 @@ export default function RegisterIntlContent() {
       </section>
 
       {/* ============ 6. How to get started ============ */}
+      {/* 縦タイムライン：大きめ丸番号バッジ＋タイトル＋説明を1行とし、上から Step1→4。
+          バッジ同士を縦線でつなぎ進行の流れを示す（最後のステップ下は線なし）。 */}
       <section style={{ backgroundColor: '#f7fbfe', padding: '56px 20px' }}>
-        <div style={{ maxWidth: maxW, margin: '0 auto' }}>
+        <div style={{ maxWidth: '680px', margin: '0 auto' }}>
           <SectionHeading>{d.steps.heading}</SectionHeading>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px', marginTop: '32px' }}>
-            {d.steps.items.map((item, i) => (
-              <div key={i} className="card" style={{ padding: '24px', position: 'relative' }}>
-                <div
-                  style={{
-                    width: '40px',
-                    height: '40px',
-                    borderRadius: '50%',
-                    backgroundColor: '#fe4c7f',
-                    color: '#fff',
-                    fontSize: '18px',
-                    fontWeight: 700,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginBottom: '14px',
-                  }}
-                >
-                  {i + 1}
+          <div style={{ marginTop: '32px' }}>
+            {d.steps.items.map((item, i) => {
+              const isLast = i === d.steps.items.length - 1
+              return (
+                <div key={i} style={{ display: 'flex', gap: '20px' }}>
+                  {/* レール：番号バッジ＋縦のつなぎ線 */}
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
+                    <div
+                      style={{
+                        width: '48px',
+                        height: '48px',
+                        borderRadius: '50%',
+                        backgroundColor: '#30b9bf',
+                        color: '#fff',
+                        fontSize: '20px',
+                        fontWeight: 700,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        boxShadow: '2px 2px 0 rgba(81,104,129,0.2)',
+                      }}
+                    >
+                      {i + 1}
+                    </div>
+                    {/* 最後のステップの下には線を引かない */}
+                    {!isLast && (
+                      <div style={{ flex: 1, width: '2px', backgroundColor: '#d9eaf4', marginTop: '8px', minHeight: '24px' }} />
+                    )}
+                  </div>
+
+                  {/* 本文：タイトル＋説明 */}
+                  <div style={{ flex: 1, minWidth: 0, paddingTop: '8px', paddingBottom: isLast ? 0 : '32px' }}>
+                    <h3 style={{ fontSize: '17px', fontWeight: 700, color: '#516881', margin: '0 0 6px', lineHeight: 1.5 }}>
+                      {item.title}
+                    </h3>
+                    <p style={{ fontSize: '14px', color: '#888', margin: 0, lineHeight: 1.9 }}>{item.body}</p>
+                  </div>
                 </div>
-                <h3 style={{ fontSize: '16px', fontWeight: 700, color: '#516881', margin: '0 0 8px', lineHeight: 1.5 }}>
-                  {item.title}
-                </h3>
-                <p style={{ fontSize: '13px', color: '#888', margin: 0, lineHeight: 1.9 }}>{item.body}</p>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </section>
@@ -313,6 +372,9 @@ export default function RegisterIntlContent() {
       <section id="signup" style={{ background: 'linear-gradient(135deg, #f7fbfe 0%, #d9eaf4 100%)', padding: '56px 20px 72px', scrollMarginTop: '56px' }}>
         <RegisterIntlForm locale={locale} />
       </section>
+
+      {/* 公開募集ページ用のシンプルなフッター（ログアウト等は非表示） */}
+      <PublicFooter locale={locale} />
     </div>
   )
 }
