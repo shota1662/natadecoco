@@ -21,6 +21,11 @@ export interface Dict {
   why: { heading: string; intro: string; items: { title: string; body: string }[] }
   forYou: { heading: string; intro: string; items: string[] }
   message: { heading: string; paragraphs: string[] }
+  programs: {
+    heading: string
+    intro: string
+    items: { title: string; body: string }[]
+  }
   company: {
     heading: string
     intro: string
@@ -107,6 +112,28 @@ export const DICT: Record<Locale, Dict> = {
       paragraphs: [
         "At Nata de Coco, we work toward one simple goal: to draw a map of the world in every child's heart. All across Japan, we give children the chance to experience other cultures firsthand.",
         "Why not share the country or region you come from, or one that's close to your heart, with the children here? We can't wait to work alongside you.",
+      ],
+    },
+    programs: {
+      heading: 'Example programs',
+      intro: 'Here are some of the activities our supporters take part in.',
+      items: [
+        {
+          title: 'Elementary school visits',
+          body: 'We run special lessons for 3rd-grade classes where children encounter cultures from around the world. English lessons begin in 3rd grade in Japanese schools, so simple English communication works well.',
+        },
+        {
+          title: 'Nursery school visits',
+          body: 'We give young children aged 3–6 their very first taste of foreign cultures. Exchanges through songs and dancing are especially popular.',
+        },
+        {
+          title: 'Summer camp',
+          body: 'A two-day, one-night international exchange camp with the children. Beyond the kids, connecting with other adults is part of the fun too.',
+        },
+        {
+          title: 'High school visits',
+          body: 'We hold discussions with high school students — on global issues, of course, but also topics like building an international career.',
+        },
       ],
     },
     company: {
@@ -230,6 +257,28 @@ export const DICT: Record<Locale, Dict> = {
       paragraphs: [
         'わたしたち ナタデココは、「子どもたちの 心に 世界地図を えがく」ことを 目ざして います。日本ぜんこくで、子どもたちに 外国の 文化を つたえて います。',
         'あなたの 国や、大切に 思う 国のことを、日本の 子どもたちに つたえて みませんか。いっしょに かつどうできるのを 楽しみに して います。',
+      ],
+    },
+    programs: {
+      heading: 'プログラムの れい',
+      intro: 'サポーターが 参加する かつどうの れいを しょうかいします。',
+      items: [
+        {
+          title: '小学校 訪問プログラム',
+          body: '小学３年生の 授業で、世界の 文化に ふれる 特別な クラスを 行います。日本の 学校では 小学３年生から 英語の 授業が 始まります。だから、かんたんな 英語で コミュニケーションが できます。',
+        },
+        {
+          title: '保育園 訪問プログラム',
+          body: '３〜６才の 小さな 子どもたちに、外国の 文化に ふれる はじめての 体験を とどけます。歌や ダンスを つかった 交流が 人気です。',
+        },
+        {
+          title: 'サマーキャンプ',
+          body: '１泊２日で、子どもたちと 国際交流キャンプを 行います。子どもは もちろん、大人どうしの 交流も みりょくです。',
+        },
+        {
+          title: '高校 訪問プログラム',
+          body: '高校生と いろいろな テーマで 話し合いを します。世界の 問題は もちろん、外国で はたらくこと（グローバルキャリア）に ついても 話します。',
+        },
       ],
     },
     company: {

@@ -293,6 +293,45 @@ export default function RegisterIntlContent() {
         </div>
       </section>
 
+      {/* ============ 4.5 プログラム例（Message の下） ============ */}
+      <section style={{ backgroundColor: '#f7fbfe', padding: '56px 20px' }}>
+        <div style={{ maxWidth: maxW, margin: '0 auto' }}>
+          <SectionHeading>{d.programs.heading}</SectionHeading>
+          <p style={{ textAlign: 'center', color: '#888', fontSize: '15px', margin: '0 0 40px', lineHeight: 1.8 }}>
+            {d.programs.intro}
+          </p>
+          {/* 1案件=1行。画像左／テキスト右、縦に4つ。モバイルでは画像上に折り返す */}
+          <div style={{ maxWidth: '900px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            {d.programs.items.map((item, i) => (
+              <div
+                key={i}
+                style={{
+                  display: 'flex',
+                  gap: '20px',
+                  alignItems: 'center',
+                  flexWrap: 'wrap',
+                  padding: '16px',
+                  backgroundColor: '#fff',
+                  borderRadius: '14px',
+                  boxShadow: '2px 2px 0 rgba(81,104,129,0.2)',
+                }}
+              >
+                {/* 画像枠（後で images.ts の program{n} の src を入れると表示される） */}
+                <div style={{ flex: '1 1 200px', minWidth: '180px', maxWidth: '256px' }}>
+                  <ImagePlaceholder asset={IMAGES[`program${i + 1}`]} locale={locale} />
+                </div>
+                <div style={{ flex: '2 1 300px', minWidth: '240px' }}>
+                  <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#516881', margin: '0 0 10px' }}>
+                    {item.title}
+                  </h3>
+                  <p style={{ fontSize: '14px', color: '#516881', margin: 0, lineHeight: 1.9 }}>{item.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ============ 5. You'll be in good company ============ */}
       <section style={{ backgroundColor: '#fff', padding: '56px 20px' }}>
         <div style={{ maxWidth: maxW, margin: '0 auto' }}>
