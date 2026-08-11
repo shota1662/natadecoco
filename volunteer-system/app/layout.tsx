@@ -2,6 +2,7 @@
 import './globals.css'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import LayoutChrome from './components/LayoutChrome'
 
 export const metadata: Metadata = {
   title: 'ボランティア管理システム | NPOナタデコ',
@@ -86,9 +87,9 @@ export default function RootLayout({
             を設定してください。
           </div>
         )}
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <LayoutChrome header={<Header />} footer={<Footer />}>
+          {children}
+        </LayoutChrome>
       </body>
     </html>
   )

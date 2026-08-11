@@ -322,6 +322,37 @@ INSERT INTO public.email_templates (id, subject, body_html) VALUES
 ON CONFLICT (id) DO NOTHING;
 
 -- ============================================================
+-- 11b. 外国人サポーター登録テーブル (/register-intl)
+--     既存 profiles とは分離した公開フォーム専用テーブル。
+--     アカウント不要のフォーム送信を Service Role 経由で INSERT する。
+-- ============================================================
+CREATE TABLE IF NOT EXISTS public.intl_volunteers (
+  id                UUID        DEFAULT gen_random_uuid() PRIMARY KEY,
+  created_at        TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  full_name         TEXT        NOT NULL,
+  birth_date        DATE        NOT NULL,
+  email             TEXT        NOT NULL,
+  origin_country    TEXT        NOT NULL,
+  residence_pref    TEXT        NOT NULL,
+  question          TEXT,                     -- 任意の質問（自由記述、未入力可）
+  privacy_consent   BOOLEAN     NOT NULL DEFAULT false,
+  locale            TEXT        NOT NULL DEFAULT 'en'
+                                CHECK (locale IN ('en', 'ja'))
+);
+
+ALTER TABLE public.intl_volunteers ENABLE ROW LEVEL SECURITY;
+
+-- 管理者のみ参照可能。
+-- INSERT は Service Role（SUPABASE_SERVICE_ROLE_KEY）で RLS をバイパスして行うため、
+-- 匿名 INSERT ポリシーはあえて開けない（公開フォームの安全性を確保）。
+DROP POLICY IF EXISTS "admin_select_intl_volunteers" ON public.intl_volunteers;
+CREATE POLICY "admin_select_intl_volunteers" ON public.intl_volunteers
+  FOR SELECT
+  USING (public.get_user_role(auth.uid()) = 'admin');
+
+CREATE INDEX IF NOT EXISTS idx_intl_volunteers_created_at ON public.intl_volunteers(created_at DESC);
+
+-- ============================================================
 -- 12. インデックス（パフォーマンス向上）
 -- ============================================================
 CREATE INDEX IF NOT EXISTS idx_profiles_role ON public.profiles(role);
