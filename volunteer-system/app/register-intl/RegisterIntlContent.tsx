@@ -1,18 +1,44 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Image from 'next/image'
 import RegisterIntlForm from './RegisterIntlForm'
 import { PublicHeader, PublicFooter } from './PublicChrome'
 import { DICT, type Locale } from './i18n'
 import { IMAGES, type ImageAsset } from './images'
 
 /**
- * 画像プレースホルダー枠。
- * aspect-ratio を指定してレイアウトシフトを防ぐ。実素材が用意できたら
- * images.ts の src を差し替え、ここを next/image に置き換える（段階2）。
+ * 画像枠。asset.src があれば next/image を object-fit: cover で aspect 枠に
+ * 収めて描画（枠比率と画像比率が違っても中央基準でトリミングし、レイアウト
+ * シフトを防ぐ）。src が null のときは従来のダッシュ枠プレースホルダーを描画。
  */
 function ImagePlaceholder({ asset, locale }: { asset: ImageAsset; locale: Locale }) {
   const alt = locale === 'en' ? asset.alt_en : asset.alt_ja
+
+  // 実画像あり：aspect 枠に cover で収める（顔などが中央で切れないよう center 基準）
+  if (asset.src) {
+    return (
+      <div
+        style={{
+          position: 'relative',
+          aspectRatio: asset.aspect,
+          width: '100%',
+          borderRadius: '14px',
+          overflow: 'hidden',
+        }}
+      >
+        <Image
+          src={asset.src}
+          alt={alt}
+          fill
+          sizes="(max-width: 640px) 100vw, 400px"
+          style={{ objectFit: 'cover', objectPosition: 'center' }}
+        />
+      </div>
+    )
+  }
+
+  // 実画像なし：プレースホルダー枠
   return (
     <div
       role={alt ? 'img' : undefined}
@@ -194,7 +220,7 @@ export default function RegisterIntlContent() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '24px' }}>
             {d.why.items.map((item, i) => (
               <div key={i} className="card" style={{ padding: '24px', textAlign: 'center' }}>
-                <div style={{ maxWidth: '120px', margin: '0 auto 16px' }}>
+                <div style={{ margin: '0 0 16px' }}>
                   <ImagePlaceholder asset={IMAGES[`why${i + 1}`]} locale={locale} />
                 </div>
                 <h3 style={{ fontSize: '17px', fontWeight: 700, color: '#fe4c7f', margin: '0 0 10px' }}>
