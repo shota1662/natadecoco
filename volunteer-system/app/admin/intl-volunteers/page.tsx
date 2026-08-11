@@ -2,7 +2,6 @@ import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
-import { sessionLabel } from '@/app/register-intl/sessions'
 import { prefectureLabel } from '@/app/register-intl/prefectures'
 import type { IntlVolunteer } from '@/lib/types'
 
@@ -70,7 +69,7 @@ export default async function AdminIntlVolunteersPage() {
                   <th>生年月日</th>
                   <th>出身の国・地域</th>
                   <th>居住地</th>
-                  <th>希望する説明会</th>
+                  <th>質問</th>
                   <th style={{ textAlign: 'center' }}>言語</th>
                   <th>登録日</th>
                 </tr>
@@ -87,7 +86,7 @@ export default async function AdminIntlVolunteersPage() {
                     </td>
                     <td style={{ fontSize: '13px', color: '#555' }}>{v.origin_country}</td>
                     <td style={{ fontSize: '13px', color: '#555' }}>{prefectureLabel(v.residence_pref, 'ja')}</td>
-                    <td style={{ fontSize: '13px', color: '#555' }}>{sessionLabel(v.preferred_session, 'ja')}</td>
+                    <td style={{ fontSize: '13px', color: '#555', whiteSpace: 'pre-wrap', maxWidth: '260px' }}>{v.question || '—'}</td>
                     <td style={{ textAlign: 'center' }}>
                       <span className={v.locale === 'ja' ? 'badge-teal' : 'badge-primary'}>
                         {v.locale === 'ja' ? 'やさしい日本語' : 'English'}

@@ -334,7 +334,7 @@ CREATE TABLE IF NOT EXISTS public.intl_volunteers (
   email             TEXT        NOT NULL,
   origin_country    TEXT        NOT NULL,
   residence_pref    TEXT        NOT NULL,
-  preferred_session TEXT        NOT NULL,   -- INFO_SESSIONS の id
+  question          TEXT,                     -- 任意の質問（自由記述、未入力可）
   privacy_consent   BOOLEAN     NOT NULL DEFAULT false,
   locale            TEXT        NOT NULL DEFAULT 'en'
                                 CHECK (locale IN ('en', 'ja'))

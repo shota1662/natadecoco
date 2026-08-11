@@ -34,18 +34,20 @@ export interface Dict {
     heading: string
     intro: string
     required: string
+    optional: string
     labels: {
       full_name: string
       birth_date: string
       email: string
       origin_country: string
       residence_pref: string
-      preferred_session: string
+      question: string
     }
     placeholders: {
       full_name: string
       email: string
       origin_country: string
+      question: string
       select: string
     }
     consentBefore: string
@@ -130,7 +132,7 @@ export const DICT: Record<Locale, Dict> = {
       items: [
         {
           title: 'Join an info session',
-          body: "We hold one every month. (Can't make any of the dates? Just get in touch and we'll arrange something that works for you.)",
+          body: "Once you sign up, we'll email you the dates for our monthly online info session. Just reply with the one that suits you. (None of the dates work? Get in touch and we'll arrange something else.)",
         },
         {
           title: 'Join our Nata de Coco LINE group',
@@ -148,20 +150,22 @@ export const DICT: Record<Locale, Dict> = {
     },
     form: {
       heading: 'Sign up as a supporter',
-      intro: 'Fill in the form below and we\'ll be in touch. All fields are required.',
+      intro: "Fill in the form below and we'll be in touch. All fields except the question are required.",
       required: 'Required',
+      optional: 'Optional',
       labels: {
         full_name: 'Full name',
         birth_date: 'Date of birth',
         email: 'Email address',
         origin_country: 'Country or region of origin',
         residence_pref: 'Where you live in Japan',
-        preferred_session: 'Preferred info session',
+        question: 'Questions',
       },
       placeholders: {
         full_name: 'e.g. Maria Santos',
         email: 'e.g. example@mail.com',
         origin_country: 'e.g. Philippines, USA, Vietnam',
+        question: "Anything you'd like to ask? Leave it blank if not.",
         select: 'Please select',
       },
       consentBefore: 'I agree to the ',
@@ -246,7 +250,7 @@ export const DICT: Record<Locale, Dict> = {
       items: [
         {
           title: '説明会に 参加する',
-          body: '毎月1回 あります。日が 合わない ときは、れんらく してください。べつの 日を 相談できます。',
+          body: '登録が おわったら、毎月の オンライン説明会の 日にちを メールで お知らせします。都合の いい 日を えらんで、返信してください。（どの日も 合わない ときは、れんらく してください。べつの 日を 相談できます。）',
         },
         {
           title: 'ナタデココの LINEグループに 入る',
@@ -264,20 +268,22 @@ export const DICT: Record<Locale, Dict> = {
     },
     form: {
       heading: 'サポーターに 登録する',
-      intro: 'したの フォームに 入力してください。ぜんぶ 必須です。',
+      intro: 'したの フォームに 入力してください。質問いがいは ぜんぶ 必須です。',
       required: '必須',
+      optional: '任意',
       labels: {
         full_name: '名前',
         birth_date: '生年月日',
         email: 'メールアドレス',
         origin_country: '出身の 国・地域',
         residence_pref: '住んでいる ところ（都道府県）',
-        preferred_session: '参加したい 説明会',
+        question: '質問',
       },
       placeholders: {
         full_name: '例）マリア サントス',
         email: '例）example@mail.com',
         origin_country: '例）フィリピン、アメリカ、ベトナム',
+        question: 'ききたいことが あれば 書いてください（なくても OK）',
         select: 'えらんでください',
       },
       consentBefore: '',

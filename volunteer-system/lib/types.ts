@@ -31,7 +31,7 @@ export interface IntlVolunteer {
   email: string
   origin_country: string
   residence_pref: string
-  preferred_session: string
+  question: string | null
   privacy_consent: boolean
   locale: 'en' | 'ja'
 }

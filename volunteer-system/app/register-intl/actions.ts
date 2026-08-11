@@ -2,7 +2,6 @@
 
 import { createAdminClient } from '@/lib/supabase/admin'
 import { Resend } from 'resend'
-import { sessionLabel } from './sessions'
 import { prefectureLabel } from './prefectures'
 import type { Locale } from './i18n'
 
@@ -49,19 +48,18 @@ export async function submitIntlVolunteer(
   const email = (formData.get('email') as string)?.trim() || ''
   const originCountry = (formData.get('origin_country') as string)?.trim() || ''
   const residencePref = (formData.get('residence_pref') as string)?.trim() || ''
-  const preferredSession = (formData.get('preferred_session') as string)?.trim() || ''
+  const question = (formData.get('question') as string)?.trim() || ''
   const privacyConsent = formData.get('privacy_consent') === 'on'
   const localeRaw = (formData.get('locale') as string) || 'en'
   const locale: Locale = localeRaw === 'ja' ? 'ja' : 'en'
 
-  // --- サーバー側バリデーション（すべて必須）---
+  // --- サーバー側バリデーション（question 以外はすべて必須）---
   if (
     !fullName ||
     !birthDate ||
     !email ||
     !originCountry ||
     !residencePref ||
-    !preferredSession ||
     !privacyConsent
   ) {
     return { ok: false, errorCode: 'validation' }
@@ -83,7 +81,7 @@ export async function submitIntlVolunteer(
     email,
     origin_country: originCountry,
     residence_pref: residencePref,
-    preferred_session: preferredSession,
+    question: question || null,
     privacy_consent: privacyConsent,
     locale,
   })
@@ -101,7 +99,7 @@ export async function submitIntlVolunteer(
       email,
       originCountry,
       residencePref,
-      preferredSession,
+      question,
       locale,
     })
   } catch (e) {
@@ -117,11 +115,10 @@ async function sendEmails(v: {
   email: string
   originCountry: string
   residencePref: string
-  preferredSession: string
+  question: string
   locale: Locale
 }) {
   const prefJa = prefectureLabel(v.residencePref, 'ja')
-  const sessionJa = sessionLabel(v.preferredSession, 'ja')
 
   // ① 運営（info@natadecoco.org）への通知 — 既存 /register と同様
   await resend.emails.send({
@@ -136,7 +133,7 @@ async function sendEmails(v: {
         <tr><td style="padding:8px;border:1px solid #ddd;background:#f5f5f5"><strong>メール</strong></td><td style="padding:8px;border:1px solid #ddd">${v.email}</td></tr>
         <tr><td style="padding:8px;border:1px solid #ddd;background:#f5f5f5"><strong>出身の国・地域</strong></td><td style="padding:8px;border:1px solid #ddd">${v.originCountry}</td></tr>
         <tr><td style="padding:8px;border:1px solid #ddd;background:#f5f5f5"><strong>住んでいる都道府県</strong></td><td style="padding:8px;border:1px solid #ddd">${prefJa}</td></tr>
-        <tr><td style="padding:8px;border:1px solid #ddd;background:#f5f5f5"><strong>希望する説明会</strong></td><td style="padding:8px;border:1px solid #ddd">${sessionJa}</td></tr>
+        <tr><td style="padding:8px;border:1px solid #ddd;background:#f5f5f5"><strong>質問</strong></td><td style="padding:8px;border:1px solid #ddd;white-space:pre-wrap">${v.question || '（なし）'}</td></tr>
         <tr><td style="padding:8px;border:1px solid #ddd;background:#f5f5f5"><strong>表示言語</strong></td><td style="padding:8px;border:1px solid #ddd">${v.locale}</td></tr>
       </table>
       <p style="margin-top:16px"><a href="https://volunteer.natadecoco.org/admin/intl-volunteers">管理者画面で確認する</a></p>
@@ -144,7 +141,6 @@ async function sendEmails(v: {
   })
 
   // ② 申込者本人への確認メール（登録時の locale で出し分け）
-  const sessionForUser = sessionLabel(v.preferredSession, v.locale)
   const prefForUser = prefectureLabel(v.residencePref, v.locale)
 
   if (v.locale === 'ja') {
@@ -155,8 +151,7 @@ async function sendEmails(v: {
       html: `
         <p>${v.fullName} さん</p>
         <p>サポーター登録を うけとりました。ありがとうございます。</p>
-        <p>あなたが 選んだ 説明会：<strong>${sessionForUser}</strong></p>
-        <p>説明会について、あとで れんらくします。しばらく お待ちください。</p>
+        <p>毎月の 説明会の 日にちを、あとで メールで お知らせします。しばらく お待ちください。</p>
         <p>住んでいる ところ：${prefForUser}</p>
         <br>
         <p>NPOナタデココ<br>https://natadecoco.org</p>
@@ -170,8 +165,7 @@ async function sendEmails(v: {
       html: `
         <p>Hi ${v.fullName},</p>
         <p>Thank you for signing up as an International Supporter. We've received your registration.</p>
-        <p>Your preferred info session: <strong>${sessionForUser}</strong></p>
-        <p>We'll be in touch about the info session soon. Please hold tight!</p>
+        <p>We'll email you the dates for our monthly info session soon. Please hold tight!</p>
         <p>Where you live: ${prefForUser}</p>
         <br>
         <p>Nata de Coco (NPO)<br>https://natadecoco.org</p>

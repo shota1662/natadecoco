@@ -3,7 +3,6 @@
 import { useActionState, useEffect, useRef } from 'react'
 import { Turnstile } from '@marsidev/react-turnstile'
 import { submitIntlVolunteer, type IntlSubmitState } from './actions'
-import { INFO_SESSIONS } from './sessions'
 import { PREFECTURES } from './prefectures'
 import { DICT, PRIVACY_POLICY_URL, type Locale } from './i18n'
 
@@ -212,31 +211,19 @@ export default function RegisterIntlForm({ locale }: { locale: Locale }) {
           </div>
         </div>
 
-        {/* Preferred info session */}
+        {/* Questions (optional) */}
         <div style={{ marginBottom: '24px' }}>
-          <label htmlFor="preferred_session" style={labelStyle}>
-            {t.labels.preferred_session}
-            <span className="badge-pink" style={{ fontSize: '10px', padding: '2px 7px' }}>{t.required}</span>
+          <label htmlFor="question" style={labelStyle}>
+            {t.labels.question}
+            <span className="badge-teal" style={{ fontSize: '10px', padding: '2px 7px' }}>{t.optional}</span>
           </label>
-          <div style={{ position: 'relative' }}>
-            <select
-              className="form-select"
-              id="preferred_session"
-              name="preferred_session"
-              style={{ paddingRight: '40px' }}
-              required
-              defaultValue=""
-              disabled={isPending}
-            >
-              <option value="" disabled>{t.placeholders.select}</option>
-              {INFO_SESSIONS.map((s) => (
-                <option key={s.id} value={s.id}>
-                  {locale === 'en' ? s.label_en : s.label_ja}
-                </option>
-              ))}
-            </select>
-            <span style={selectArrow}>▾</span>
-          </div>
+          <textarea
+            className="form-textarea"
+            id="question"
+            name="question"
+            placeholder={t.placeholders.question}
+            disabled={isPending}
+          />
         </div>
 
         {/* Privacy consent */}
