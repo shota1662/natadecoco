@@ -1,0 +1,1026 @@
+@charset "UTF-8";
+
+/* ==========================================================================
+   Global Design Camp - Landing Page
+   既存 natadecoco.org（event / volunteer）のトーン＆マナーに準拠
+   ベース色: #516881 / #1e3a5a（青）, #9fd9f6（水色）,
+             #fe4c7f / #FF6B4A（アクセント）, #fde8d8（桃背景）, #f7fbfe（淡背景）
+   ========================================================================== */
+
+.gdc-main {
+    overflow-x: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   Hero
+   -------------------------------------------------------------------------- */
+.gdc-hero {
+    position: relative;
+    width: 100%;
+    background: linear-gradient(160deg, #8fd6c4 0%, #b6e8d8 100%);
+    padding: 72px 40px 56px;
+    overflow: hidden;
+}
+
+/* 背景の飾り（ふわっとした円） */
+.gdc-hero::before,
+.gdc-hero::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.35);
+    pointer-events: none;
+}
+.gdc-hero::before {
+    width: 320px;
+    height: 320px;
+    top: -120px;
+    right: -80px;
+}
+.gdc-hero::after {
+    width: 200px;
+    height: 200px;
+    bottom: -80px;
+    left: -40px;
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.gdc-hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    grid-template-areas:
+        "content photo"
+        "meta    photo"
+        "btn     photo";
+    align-items: center;
+    column-gap: 48px;
+    row-gap: 20px;
+}
+
+.gdc-hero-content {
+    grid-area: content;
+    min-width: 0;
+}
+
+.gdc-hero-en {
+    display: inline-block;
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    font-size: 14px;
+    color: #fff;
+    background: #fe4c7f;
+    padding: 5px 16px;
+    border-radius: 999px;
+    box-shadow: 2px 2px rgba(81, 104, 129, 0.25);
+    margin-bottom: 18px;
+}
+
+.gdc-hero-title {
+    font-family: "Roboto", "Noto Sans JP", sans-serif;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 1.15;
+    color: #1e3a5a;
+    letter-spacing: 0.01em;
+    margin-bottom: 14px;
+}
+
+.gdc-hero-sub {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: #516881;
+    margin-bottom: 18px;
+}
+
+.gdc-hero-catch {
+    font-size: 16px;
+    line-height: 1.9;
+    color: #40566d;
+    font-weight: 500;
+}
+.gdc-hero-catch .gdc-em {
+    color: #fe4c7f;
+    font-weight: 700;
+}
+
+/* 特徴の要点（週末2日間 / 参加費無料 のバッジ） */
+.gdc-hero-meta {
+    grid-area: meta;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 4px;
+}
+.gdc-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    color: #1e3a5a;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 10px 20px;
+    border-radius: 999px;
+    box-shadow: 0 6px 18px rgba(81, 104, 129, 0.18);
+}
+.gdc-hero-badge .gdc-badge-ico {
+    font-size: 18px;
+    line-height: 1;
+}
+
+/* 写真プレースホルダー枠（差し替え前提） */
+.gdc-hero-photo {
+    grid-area: photo;
+    border-radius: 28px;
+    overflow: hidden;
+    border: 8px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 16px 48px rgba(81, 104, 129, 0.28);
+}
+
+/* 画像プレースホルダー共通（差し替え前提） */
+.gdc-ph {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        repeating-linear-gradient(
+            45deg,
+            #eef4f8,
+            #eef4f8 14px,
+            #e4edf3 14px,
+            #e4edf3 28px
+        );
+    color: #8ba3b7;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    text-align: center;
+    padding: 12px;
+}
+.gdc-ph::before {
+    content: "🖼";
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    font-size: 16px;
+    opacity: 0.6;
+}
+.gdc-hero-photo .gdc-ph {
+    aspect-ratio: 4 / 3;
+}
+/* Heroロゴ：透過PNGが見えづらいので白背景の上に置き、角丸＋やわらかい影で見せる */
+.gdc-hero-photo--logo {
+    border: none;
+    background: #fff;
+    padding: 28px;
+    box-shadow: 0 20px 50px rgba(30, 58, 90, 0.28);
+}
+.gdc-hero-photo--logo img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* CTA ボタン（押せる影 → hover でスライド、既存ボタン踏襲） */
+.gdc-hero-btn-wrap {
+    grid-area: btn;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 6px;
+}
+.gdc-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #fe4c7f;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    padding: 16px 40px;
+    border-radius: 999px;
+    box-shadow: 3px 3px #898787;
+    transition: transform 0.1s, box-shadow 0.1s, background-color 0.15s;
+}
+.gdc-cta-btn .gdc-cta-arrow {
+    font-size: 20px;
+    line-height: 1;
+    transition: transform 0.15s;
+}
+.gdc-cta-btn:hover {
+    background: #ff6b95;
+    box-shadow: none;
+    transform: translate(3px, 3px);
+    color: #fff;
+    opacity: 1;
+}
+.gdc-cta-btn:hover .gdc-cta-arrow {
+    transform: translateX(3px);
+}
+.gdc-cta-note {
+    font-size: 13px;
+    color: #516881;
+    font-weight: 500;
+    padding-left: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   波形ディバイダ（水色 → 白）: event.html の3層SVGを流用
+   -------------------------------------------------------------------------- */
+.gdc-wave {
+    line-height: 0;
+}
+.gdc-wave svg {
+    display: block;
+    width: 100%;
+    height: 90px;
+}
+
+/* --------------------------------------------------------------------------
+   共通セクション
+   -------------------------------------------------------------------------- */
+.gdc-section {
+    padding: 64px 40px;
+}
+.gdc-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+.gdc-container--wide {
+    max-width: 1040px;
+}
+
+.gdc-h2 {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    color: #1e3a5a;
+    line-height: 1.3;
+    margin-bottom: 40px;
+}
+.gdc-h2-en {
+    display: block;
+    font-family: "Roboto", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    color: #30b9bf;
+    margin-bottom: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   こんな人におすすめ
+   -------------------------------------------------------------------------- */
+.gdc-recommend {
+    background: #fff;
+}
+
+/* リード文（センター寄せ・改行多め） */
+.gdc-rec-lead {
+    max-width: 640px;
+    margin: 0 auto 48px;
+    text-align: center;
+}
+.gdc-rec-lead-main {
+    font-size: 23px;
+    font-weight: 700;
+    line-height: 1.9;
+    color: #1e3a5a;
+    letter-spacing: 0.02em;
+    margin-bottom: 22px;
+}
+.gdc-rec-lead-sub {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 2.15;
+    color: #516881;
+    letter-spacing: 0.02em;
+}
+
+/* 画像ギャラリー帯（見出しの上、複数枚のプレースホルダー） */
+.gdc-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 64px;
+    padding-bottom: 22px; /* 段違いレイアウトの下はみ出し分 */
+}
+.gdc-gallery-item {
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 8px 22px rgba(81, 104, 129, 0.12);
+    transition: transform 0.14s, box-shadow 0.14s;
+}
+.gdc-gallery-item .gdc-ph {
+    aspect-ratio: 3 / 4;
+}
+.gdc-gallery-item img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+}
+/* 偶数枚を少し下げて段違いに（おしゃれなリズム） */
+.gdc-gallery-item:nth-child(even) {
+    transform: translateY(22px);
+}
+.gdc-gallery-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 34px rgba(48, 185, 191, 0.20);
+}
+.gdc-gallery-item:nth-child(even):hover {
+    transform: translateY(18px);
+}
+
+.gdc-rec-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+}
+/* 横長カード（画像＋本文を左右に）。偶数行は左右反転してジグザグに */
+.gdc-rec-card {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+}
+.gdc-rec-card:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.gdc-rec-img {
+    position: relative;
+    flex: 0 0 48%;
+    max-width: 48%;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 16px 40px rgba(81, 104, 129, 0.18);
+}
+.gdc-rec-img .gdc-ph {
+    aspect-ratio: 4 / 3;
+}
+.gdc-rec-img img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+}
+/* 番号バッジ（画像の角に重ねる） */
+.gdc-rec-num {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 54px;
+    height: 54px;
+    padding: 0 8px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: #fff;
+    background: #30b9bf;
+    border-radius: 50%;
+    box-shadow: 0 6px 16px rgba(48, 185, 191, 0.45);
+    border: 3px solid #fff;
+}
+.gdc-rec-card:nth-child(even) .gdc-rec-num {
+    left: auto;
+    right: 16px;
+}
+
+.gdc-rec-body {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 0;
+}
+/* 本文側の薄い番号（装飾） */
+.gdc-rec-body::before {
+    content: counter(gdc-rec, decimal-leading-zero);
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 44px;
+    line-height: 1;
+    color: #cdeee9;
+    letter-spacing: 0.02em;
+}
+.gdc-rec-grid {
+    counter-reset: gdc-rec;
+}
+.gdc-rec-card {
+    counter-increment: gdc-rec;
+}
+.gdc-rec-title {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: #1e3a5a;
+    position: relative;
+    padding-bottom: 14px;
+}
+.gdc-rec-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 48px;
+    height: 3px;
+    border-radius: 2px;
+    background: #fe4c7f;
+}
+.gdc-rec-desc {
+    font-size: 15.5px;
+    line-height: 1.9;
+    color: #516881;
+    font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   「やり切る」経験（訴求）
+   -------------------------------------------------------------------------- */
+.gdc-achieve {
+    position: relative;
+    overflow: hidden;
+    padding-top: 88px;
+    padding-bottom: 88px;
+}
+/* 画面いっぱいの横長背景画像（差し替え前提のプレースホルダー） */
+.gdc-achieve-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(../img/gdc/001.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.gdc-achieve-bg-label {
+    display: none;
+}
+/* 背景の上に敷くごく薄い暗幕（ボックスを引き立てる／差し替え後も可読性確保） */
+.gdc-achieve::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: rgba(30, 58, 90, 0.12);
+    pointer-events: none;
+}
+.gdc-achieve .gdc-container {
+    position: relative;
+    z-index: 1;
+}
+/* 半透明ボックス */
+.gdc-achieve-card {
+    max-width: 640px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 28px;
+    padding: 44px 40px;
+    text-align: center;
+    box-shadow: 0 20px 56px rgba(30, 58, 90, 0.22);
+}
+.gdc-achieve-date {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fe4c7f;
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 9px 22px;
+    border-radius: 999px;
+    box-shadow: 0 8px 20px rgba(254, 76, 127, 0.35);
+    margin-bottom: 20px;
+}
+.gdc-achieve-ico {
+    font-size: 17px;
+    line-height: 1;
+}
+.gdc-achieve-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1e3a5a;
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+.gdc-achieve-text {
+    font-size: 17px;
+    line-height: 1.9;
+    color: #40566d;
+    font-weight: 500;
+}
+.gdc-achieve-text strong {
+    color: #30b9bf;
+    font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   概要
+   -------------------------------------------------------------------------- */
+.gdc-overview {
+    background: #fff;
+}
+.gdc-overview-list {
+    max-width: 680px;
+    margin: 0 auto;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #e4eef4;
+}
+.gdc-overview-row {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    border-bottom: 1px solid #e4eef4;
+}
+.gdc-overview-row:last-child {
+    border-bottom: none;
+}
+.gdc-overview-dt {
+    background: #f7fbfe;
+    padding: 20px 24px;
+    font-weight: 700;
+    color: #1e3a5a;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+.gdc-overview-dd {
+    padding: 20px 24px;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #40566d;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+.gdc-overview-em {
+    color: #fe4c7f;
+    font-weight: 700;
+    font-size: 18px;
+}
+.gdc-overview-note {
+    max-width: 680px;
+    margin: 28px auto 0;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.9;
+    color: #516881;
+    font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   参加申し込み（末尾CTA）
+   -------------------------------------------------------------------------- */
+.gdc-entry {
+    background: linear-gradient(160deg, #8fd6c4 0%, #b6e8d8 100%);
+    text-align: center;
+}
+.gdc-entry-lead {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.6;
+    color: #1e3a5a;
+    margin-bottom: 28px;
+}
+.gdc-entry-btn-wrap {
+    align-items: center;
+    margin-top: 0;
+}
+.gdc-cta-btn--lg {
+    font-size: 20px;
+    padding: 18px 52px;
+}
+/* 末尾CTA：2ボタンを横並び（モバイルは縦積み） */
+.gdc-entry-btns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+/* 説明会ボタン（アウトライン＝サブ） */
+.gdc-cta-btn--outline {
+    background: #fff;
+    color: #fe4c7f;
+    box-shadow: 3px 3px #898787;
+}
+.gdc-cta-btn--outline:hover {
+    background: #fff5f8;
+    color: #fe4c7f;
+    box-shadow: none;
+    transform: translate(3px, 3px);
+}
+.gdc-cta-note--light {
+    color: #3d6b5e;
+}
+
+/* オンライン説明会の案内カード（末尾CTA内） */
+.gdc-briefing {
+    max-width: 560px;
+    margin: 0 auto 32px;
+    background: #fff;
+    border-radius: 20px;
+    padding: 24px 28px;
+    box-shadow: 0 14px 34px rgba(30, 58, 90, 0.16);
+    text-align: center;
+}
+.gdc-briefing-head {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #30b9bf;
+    letter-spacing: 0.02em;
+    margin-bottom: 8px;
+}
+.gdc-briefing-ico {
+    font-size: 18px;
+    line-height: 1;
+}
+.gdc-briefing-date {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1e3a5a;
+    line-height: 1.4;
+    margin-bottom: 12px;
+}
+.gdc-briefing-text {
+    font-size: 15px;
+    line-height: 1.85;
+    color: #516881;
+    font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   3日間の流れ（プログラム）
+   -------------------------------------------------------------------------- */
+.gdc-flow {
+    background: #f7fbfe;
+}
+.gdc-flow-lead {
+    max-width: 720px;
+    margin: -12px auto 48px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 2;
+    color: #516881;
+    font-weight: 500;
+}
+.gdc-flow-lead .gdc-em {
+    color: #30b9bf;
+    font-weight: 700;
+}
+.gdc-flow-list {
+    position: relative;
+    max-width: 720px;
+    margin: 0 auto;
+    list-style: none;
+    padding: 0;
+}
+/* 左端の縦ライン（タイムライン） */
+.gdc-flow-list::before {
+    content: "";
+    position: absolute;
+    left: 27px;
+    top: 28px;
+    bottom: 28px;
+    width: 2px;
+    background: linear-gradient(#8fd6c4, #fe4c7f);
+}
+.gdc-flow-item {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 22px;
+    padding: 0 0 28px 0;
+}
+.gdc-flow-item:last-child {
+    padding-bottom: 0;
+}
+.gdc-flow-ico {
+    position: relative;
+    z-index: 1;
+    flex: 0 0 auto;
+    width: 56px;
+    height: 56px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    line-height: 1;
+    background: #fff;
+    border: 2px solid #cdeee9;
+    border-radius: 50%;
+    box-shadow: 0 6px 16px rgba(48, 185, 191, 0.18);
+}
+.gdc-flow-item--final .gdc-flow-ico {
+    border-color: #fe4c7f;
+    box-shadow: 0 6px 18px rgba(254, 76, 127, 0.3);
+}
+.gdc-flow-body {
+    flex: 1 1 auto;
+    min-width: 0;
+    background: #fff;
+    border-radius: 16px;
+    padding: 18px 24px;
+    box-shadow: 0 8px 22px rgba(81, 104, 129, 0.10);
+}
+.gdc-flow-item--final .gdc-flow-body {
+    background: #fff6ef;
+}
+.gdc-flow-title {
+    font-size: 19px;
+    font-weight: 700;
+    color: #1e3a5a;
+    line-height: 1.5;
+    margin-bottom: 8px;
+}
+.gdc-flow-item--final .gdc-flow-title {
+    color: #fe4c7f;
+}
+.gdc-flow-desc {
+    font-size: 15px;
+    line-height: 1.9;
+    color: #516881;
+    font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   企画チャレンジ
+   -------------------------------------------------------------------------- */
+.gdc-challenge {
+    background: #fff6ef;
+}
+.gdc-challenge-lead {
+    max-width: 720px;
+    margin: -12px auto 36px;
+    text-align: center;
+    font-size: 17px;
+    line-height: 1.95;
+    color: #516881;
+    font-weight: 500;
+}
+.gdc-challenge-lead .gdc-em {
+    color: #fe4c7f;
+    font-weight: 700;
+}
+.gdc-challenge-box {
+    max-width: 720px;
+    margin: 0 auto 40px;
+    background: #fff;
+    border-radius: 20px;
+    padding: 32px 36px;
+    box-shadow: 0 12px 30px rgba(81, 104, 129, 0.12);
+}
+.gdc-challenge-label {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1e3a5a;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.gdc-criteria-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    list-style: none;
+    padding: 0;
+}
+.gdc-criteria-list li {
+    background: #f2fbf8;
+    color: #1e3a5a;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 10px 20px;
+    border-radius: 999px;
+    border: 1px solid #cdeee9;
+}
+.gdc-challenge-award-lead {
+    max-width: 720px;
+    margin: 0 auto 24px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.9;
+    color: #516881;
+    font-weight: 500;
+}
+.gdc-challenge-award-lead .gdc-em {
+    color: #fe4c7f;
+    font-weight: 700;
+}
+.gdc-award-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    max-width: 720px;
+    margin: 0 auto;
+}
+.gdc-award-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    background: linear-gradient(160deg, #fff 0%, #fff2e4 100%);
+    border: 1px solid #ffe0c4;
+    border-radius: 18px;
+    padding: 24px 18px;
+    box-shadow: 0 10px 26px rgba(254, 141, 76, 0.14);
+}
+.gdc-award-ico {
+    font-size: 34px;
+    line-height: 1;
+}
+.gdc-award-name {
+    font-family: "Roboto", "Noto Sans JP", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #1e3a5a;
+    line-height: 1.4;
+}
+
+/* 参加特典リスト（概要内） */
+.gdc-perk-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.gdc-perk-list li {
+    line-height: 1.7;
+}
+
+/* --------------------------------------------------------------------------
+   レスポンシブ
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+    .gdc-hero {
+        padding: 48px 24px 40px;
+    }
+    .gdc-hero-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 24px;
+    }
+    .gdc-hero-photo {
+        order: -1;
+        max-width: 520px;
+        margin: 0 auto;
+        width: 100%;
+    }
+    .gdc-hero-title {
+        font-size: 36px;
+    }
+    .gdc-hero-sub {
+        font-size: 19px;
+    }
+    .gdc-hero-btn-wrap {
+        align-items: center;
+    }
+    .gdc-cta-btn {
+        width: 100%;
+        max-width: 360px;
+        justify-content: center;
+    }
+    .gdc-cta-note {
+        align-self: center;
+        padding-left: 0;
+    }
+    .gdc-wave svg {
+        height: 60px;
+    }
+    .gdc-section {
+        padding: 48px 24px;
+    }
+    .gdc-h2 {
+        font-size: 26px;
+    }
+    .gdc-rec-lead-main {
+        font-size: 20px;
+    }
+    .gdc-rec-lead-sub {
+        font-size: 15px;
+    }
+    .gdc-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+        margin-bottom: 48px;
+    }
+    .gdc-gallery-item:nth-child(even) {
+        transform: none;
+    }
+    .gdc-gallery-item:nth-child(even):hover {
+        transform: translateY(-4px);
+    }
+    .gdc-rec-grid {
+        gap: 44px;
+    }
+    .gdc-rec-card,
+    .gdc-rec-card:nth-child(even) {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 20px;
+    }
+    .gdc-rec-img,
+    .gdc-rec-card:nth-child(even) .gdc-rec-img {
+        flex-basis: auto;
+        max-width: 560px;
+        width: 100%;
+        margin: 0 auto;
+    }
+    .gdc-rec-body {
+        align-items: flex-start;
+        text-align: left;
+    }
+    .gdc-rec-body::before {
+        font-size: 38px;
+    }
+    .gdc-rec-title {
+        font-size: 21px;
+    }
+    .gdc-achieve {
+        padding-top: 56px;
+        padding-bottom: 56px;
+    }
+    .gdc-achieve-card {
+        padding: 32px 24px;
+    }
+    .gdc-achieve-title {
+        font-size: 24px;
+    }
+    .gdc-overview-row {
+        grid-template-columns: 1fr;
+    }
+    .gdc-overview-dt {
+        padding: 14px 20px 4px;
+    }
+    .gdc-overview-dd {
+        padding: 6px 20px 16px;
+    }
+    .gdc-entry-lead {
+        font-size: 21px;
+    }
+    .gdc-award-grid {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+    }
+    .gdc-challenge-box {
+        padding: 24px 20px;
+    }
+    .gdc-flow-item {
+        gap: 16px;
+    }
+    .gdc-flow-body {
+        padding: 16px 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gdc-hero-title {
+        font-size: 30px;
+    }
+    .gdc-hero-sub {
+        font-size: 17px;
+    }
+    .gdc-hero-catch {
+        font-size: 15px;
+    }
+    .gdc-hero-badge {
+        font-size: 14px;
+        padding: 9px 16px;
+    }
+    .gdc-entry-btns {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .gdc-entry-btns .gdc-cta-btn--lg {
+        justify-content: center;
+        padding: 16px 24px;
+        font-size: 17px;
+    }
+}
