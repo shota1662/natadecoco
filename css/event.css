@@ -128,37 +128,51 @@
     .event-list-section .msg-flag { display: none; }
 }
 
-/* カテゴリフィルター */
-.event-filter {
+/* ===================================
+   カテゴリ別グループ（ナタデココ主催／出張教室）
+   =================================== */
+.event-group {
+    max-width: 860px;
+    margin: 0 auto 64px;
+}
+
+.event-group:last-of-type {
+    margin-bottom: 0;
+}
+
+.event-group-heading {
     display: flex;
+    align-items: baseline;
     flex-wrap: wrap;
-    gap: 12px;
-    justify-content: center;
-    margin-bottom: 56px;
+    gap: 6px 14px;
+    margin-bottom: 20px;
 }
 
-.filter-btn {
-    padding: 9px 22px;
-    border-radius: 22px;
-    border: 2px solid #9fd9f6;
-    background-color: #fff;
-    color: #516881;
+/* バッジはevent-cat-badgeを再利用（position: staticに上書き） */
+.event-group-heading .event-cat-badge {
+    position: static;
+    flex-shrink: 0;
     font-size: 13px;
-    font-family: inherit;
+    padding: 6px 16px;
+}
+
+.event-group-note {
+    font-size: 13px;
+    color: #888;
+    line-height: 1.7;
+}
+
+.event-group-footnote {
+    font-size: 13px;
+    color: #888;
+    line-height: 1.9;
+    margin: 4px 0 0;
+}
+
+.event-group-footnote a {
+    color: #1a6fa0;
     font-weight: bold;
-    cursor: pointer;
-    letter-spacing: 0.05em;
-    transition: background-color 0.2s, color 0.2s, transform 0.15s;
-}
-
-.filter-btn:hover {
-    background-color: #e5f6fd;
-}
-
-.filter-btn--active {
-    background-color: #9fd9f6;
-    color: #516881;
-    border-color: #9fd9f6;
+    text-decoration: underline;
 }
 
 /* イベントカードグリッド（縦1列） */
@@ -168,6 +182,25 @@
     gap: 20px;
     max-width: 860px;
     margin: 0 auto 20px;
+}
+
+/* 募集中のイベントがないときの表示 */
+.event-empty {
+    padding: 48px 24px;
+    border: 2px dashed #cfe6f4;
+    border-radius: 18px;
+    background-color: #f8fcff;
+    color: #516881;
+    font-size: 15px;
+    line-height: 2;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .event-empty {
+        padding: 36px 18px;
+        font-size: 14px;
+    }
 }
 
 /* ===================================
@@ -182,6 +215,11 @@
     flex-direction: row;
     transition: transform 0.2s, box-shadow 0.2s, opacity 0.25s;
     cursor: pointer;
+}
+
+/* アコーディオンを持たないカード（出張教室など） */
+.event-card--static {
+    cursor: default;
 }
 
 
@@ -809,6 +847,13 @@
     border: 1.5px solid #ccc;
 }
 
+/* 詳細近日公開など */
+.ticket-status--info {
+    background-color: #f5f0ff;
+    color: #7c5cbf;
+    border: 1.5px solid #c9b8f0;
+}
+
 /* ===================================
    チケットカード：位置指定（ノッチ用）
    =================================== */
@@ -1013,6 +1058,20 @@
 .acc-external-note {
     font-size: 11px;
     color: #aaa;
+}
+
+/* 申込フォーム未公開時の案内 */
+.acc-apply-note {
+    background-color: #e8f6fd;
+    border: 1.5px solid #9fd9f6;
+    border-radius: 10px;
+    padding: 12px 18px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #1a6fa0;
+    line-height: 1.7;
+    text-align: center;
+    margin: 0;
 }
 
 /* アコーディオントグルボタン */
