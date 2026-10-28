@@ -105,7 +105,7 @@
                         </div>
                     </li>
                     <li class="has-dropdown">
-                        <a href="activities.html">活動紹介</a>
+                        <a href="class.html">活動紹介</a>
                         <div class="mega-menu mega-menu--col">
                             <div class="mega-top-row">
                             <a href="class.html" class="mega-item">
@@ -187,7 +187,7 @@
                         <li><a href="strengths.html">５つの強み</a></li>
                             </ul>
                         </li>
-                        <li class="mobile-has-sub"><a href="activities.html">活動紹介<span class="mobile-sub-arrow">▼</span></a>
+                        <li class="mobile-has-sub"><a href="class.html">活動紹介<span class="mobile-sub-arrow">▼</span></a>
                             <ul class="mobile-nav-sub">
                                 <li><a href="class.html">文化交流教室</a></li>
                                 <li><a href="cocosalon.html">CocoSalon</a></li>
@@ -281,8 +281,13 @@
                                             野毛地区センター（横浜市中区）
                                         </p>
                                         <span class="ticket-fee">参加費：無料　／　定員：15〜20名程度</span>
-                                        <div class="ticket-status ticket-status--open">
-                                            <span class="status-dot"></span>受付中
+                                        <div class="ticket-status-row">
+                                            <div class="ticket-status ticket-status--open">
+                                                <span class="status-dot"></span>受付中
+                                            </div>
+                                            <div class="ticket-status ticket-status--few">
+                                                <span class="status-dot status-dot--few"></span>残席僅か
+                                            </div>
                                         </div>
                                     </div>
                                     <button class="accordion-toggle" data-target="acc-1122" aria-expanded="false" aria-label="詳細を開く">
@@ -313,7 +318,7 @@
                                         </tr>
                                         <tr>
                                             <th>定員</th>
-                                            <td>15〜20名程度</td>
+                                            <td>15〜20名程度　<span class="acc-few-badge">残席僅か</span></td>
                                         </tr>
                                         <tr>
                                             <th>参加費</th>
@@ -354,8 +359,11 @@
                                             千代田区立日比谷図書文化館
                                         </p>
                                         <span class="ticket-fee">参加費：無料　／　定員：20〜25名程度</span>
-                                        <div class="ticket-status ticket-status--upcoming">
+                                        <div class="ticket-status ticket-status--upcoming" data-open-at="2026-10-29T08:00:00+09:00" data-state="before">
                                             <span class="status-date">10/29 8:00</span> 募集開始予定
+                                        </div>
+                                        <div class="ticket-status ticket-status--open" data-open-at="2026-10-29T08:00:00+09:00" data-state="after" hidden>
+                                            <span class="status-dot"></span>受付中
                                         </div>
                                     </div>
                                     <button class="accordion-toggle" data-target="acc-1129" aria-expanded="false" aria-label="詳細を開く">
@@ -392,13 +400,23 @@
                                             <th>参加費</th>
                                             <td><span class="acc-free-badge">無料</span></td>
                                         </tr>
-                                        <tr>
+                                        <tr data-open-at="2026-10-29T08:00:00+09:00" data-state="before">
                                             <th>募集開始</th>
                                             <td>10月29日（木）8:00</td>
                                         </tr>
+                                        <tr>
+                                            <th>受付</th>
+                                            <td>定員に達し次第終了</td>
+                                        </tr>
                                     </tbody>
                                 </table>
-                                <p class="acc-apply-note">お申し込みフォームは募集開始にあわせて公開します。</p>
+                                <p class="acc-apply-note" data-open-at="2026-10-29T08:00:00+09:00" data-state="before">お申し込みフォームは10月29日（木）8:00に公開します。<br>定員に達し次第、受付を終了します。</p>
+                                <div class="acc-btns" data-open-at="2026-10-29T08:00:00+09:00" data-state="after" hidden>
+                                    <a href="https://bxoo63091ut.typeform.com/20261129event" target="_blank" rel="noopener noreferrer" class="event-card-btn">
+                                        <img src="img/mayu.svg" alt="">申し込みはこちら
+                                    </a>
+                                    <p class="acc-external-note">※定員に達した場合は、受付を終了していることがあります。</p>
+                                </div>
                             </div>
                         </div><!-- /.event-accordion -->
                     </div><!-- /.event-card-wrapper -->
@@ -870,7 +888,7 @@
                                 <li><a href="strengths.html">５つの強み</a></li>
                             </ul>
                         </li>
-                        <li class="mobile-has-sub"><a href="activities.html">活動紹介<span class="mobile-sub-arrow">▼</span></a>
+                        <li class="mobile-has-sub"><a href="class.html">活動紹介<span class="mobile-sub-arrow">▼</span></a>
                             <ul class="footer-nav-sub">
                                 <li><a href="class.html">文化交流教室</a></li>
                                 <li><a href="cocosalon.html">CocoSalon</a></li>
@@ -938,6 +956,27 @@
                 target.classList.toggle('is-open', !isOpen);
             });
         });
+
+        // 募集開始時刻による表示切り替え
+        // data-open-at の時刻を境に、data-state="before" / "after" の要素を出し入れする
+        (function () {
+            const targets = document.querySelectorAll('[data-open-at][data-state]');
+            if (!targets.length) return;
+
+            function apply() {
+                const now = Date.now();
+                targets.forEach(el => {
+                    const openAt = Date.parse(el.dataset.openAt);
+                    if (isNaN(openAt)) return;
+                    const wanted = now >= openAt ? 'after' : 'before';
+                    el.hidden = el.dataset.state !== wanted;
+                });
+            }
+
+            apply();
+            // ページを開いたまま時刻をまたいだ場合にも切り替わるようにする
+            setInterval(apply, 30000);
+        })();
 
     </script>
 

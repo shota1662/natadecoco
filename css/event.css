@@ -775,6 +775,14 @@
     color: #888;
 }
 
+/* バッジを横並びにする行 */
+.ticket-status-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
 .ticket-status {
     display: inline-flex;
     align-items: center;
@@ -785,6 +793,11 @@
     border-radius: 20px;
     letter-spacing: 0.05em;
     align-self: flex-start;
+}
+
+/* 時刻切り替えなどで非表示にした要素 */
+[hidden] {
+    display: none !important;
 }
 
 /* 受付中 */
@@ -807,6 +820,17 @@
 @keyframes status-pulse {
     0%, 100% { opacity: 1; transform: scale(1); }
     50%       { opacity: 0.4; transform: scale(0.8); }
+}
+
+/* 残席僅か */
+.ticket-status--few {
+    background-color: #fdecea;
+    color: #c9341f;
+    border: 1.5px solid #ef9a8d;
+}
+
+.status-dot--few {
+    background-color: #c9341f;
 }
 
 /* XX/XX 受付開始 */
@@ -980,6 +1004,17 @@
     font-size: 12px;
     font-weight: bold;
     padding: 3px 14px;
+    border-radius: 10px;
+}
+
+.acc-few-badge {
+    display: inline-block;
+    background-color: #fdecea;
+    color: #c9341f;
+    border: 1.5px solid #ef9a8d;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 12px;
     border-radius: 10px;
 }
 
