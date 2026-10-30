@@ -861,8 +861,11 @@
     background-color: #f2f2f2;
     color: #999;
     border: 1.5px solid #ccc;
-    text-decoration: line-through;
-    text-decoration-color: #bbb;
+}
+
+.status-dot--full {
+    background-color: #bbb;
+    animation: none;
 }
 
 .ticket-status--closed {
@@ -1018,6 +1021,17 @@
     border-radius: 10px;
 }
 
+.acc-full-badge {
+    display: inline-block;
+    background-color: #f2f2f2;
+    color: #999;
+    border: 1.5px solid #ccc;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 12px;
+    border-radius: 10px;
+}
+
 .acc-gift-banner {
     display: flex;
     align-items: center;
@@ -1104,6 +1118,20 @@
     font-size: 13px;
     font-weight: bold;
     color: #1a6fa0;
+    line-height: 1.7;
+    text-align: center;
+    margin: 0;
+}
+
+/* 受付終了時の案内 */
+.acc-closed-note {
+    background-color: #f5f5f5;
+    border: 1.5px solid #ddd;
+    border-radius: 10px;
+    padding: 12px 18px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #888;
     line-height: 1.7;
     text-align: center;
     margin: 0;
